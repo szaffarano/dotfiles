@@ -19,3 +19,5 @@
     ~/.oh-my-zsh: lib/oh-my-zsh/
     ~/.zshrc: zshrc
     ~/.config/base16-shell: lib/base16-shell
+    ~/.config/systemd/user/ssh-agent.service: systemd/ssh-agent.service
+    ~/.pam_environment: ssh/pam_environment
