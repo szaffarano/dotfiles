@@ -1,0 +1,20 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~']
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
+    - [./scripts/sdkman.sh, Installing SDKMAN!]
+
+- link:
+    ~/.gitconfig: gitconfig
+    ~/.ssh/config: ssh/config
+    ~/.tmux.conf: lib/tmux/.tmux.conf
+    ~/.tmux.conf.local: tmux.conf.local
+    ~/.vim: vim
+    ~/.oh-my-zsh: lib/oh-my-zsh/
+    ~/.zshrc: zshrc
+    ~/.config/base16-shell: lib/base16-shell
