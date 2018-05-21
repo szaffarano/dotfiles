@@ -93,7 +93,7 @@ tmux_conf_theme_status_attr='none'
 # window status style
 #   - built-in variables are:
 #     - #{circled_window_index}
-tmux_conf_theme_window_status_fg='#8a8a8a'              # light gray
+tmux_conf_theme_window_status_fg='colour063'              # light gray
 tmux_conf_theme_window_status_bg='#080808'              # dark gray
 tmux_conf_theme_window_status_attr='none'
 tmux_conf_theme_window_status_format='#I #W'
@@ -103,8 +103,8 @@ tmux_conf_theme_window_status_format='#I #W'
 # window current status style
 #   - built-in variables are:
 #     - #{circled_window_index}
-tmux_conf_theme_window_status_current_fg='colour255'      # white
-tmux_conf_theme_window_status_current_bg='#00afff'      # light blue
+tmux_conf_theme_window_status_current_fg='colour226'      # white
+tmux_conf_theme_window_status_current_bg='colour063'      # light blue
 tmux_conf_theme_window_status_current_attr='bold'
 tmux_conf_theme_window_status_current_format='#I #W'
 #tmux_conf_theme_window_status_current_format='#{circled_window_index} #W'
@@ -121,7 +121,7 @@ tmux_conf_theme_window_status_bell_bg='default'
 tmux_conf_theme_window_status_bell_attr='blink,bold'
 
 # window last status style
-tmux_conf_theme_window_status_last_fg='#00afff'         # light blue
+tmux_conf_theme_window_status_last_fg='colour063'         # light blue
 tmux_conf_theme_window_status_last_bg='default'
 tmux_conf_theme_window_status_last_attr='none'
 
@@ -163,8 +163,8 @@ tmux_conf_theme_status_right='#{prefix}#{pairing} #{?battery_status, #{battery_s
 
 # status left style
 tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, white , white
-tmux_conf_theme_status_left_bg='#ffff00,#ff00af,#00afff'  # yellow, pink, white blue
-tmux_conf_theme_status_left_attr='bold,none,none'
+tmux_conf_theme_status_left_bg='colour7,colour0,colour8'
+tmux_conf_theme_status_left_attr='none,none,none'
 
 # status right style
 tmux_conf_theme_status_right_fg='#8a8a8a,#e4e4e4,#000000' # light gray, white, black
@@ -178,7 +178,7 @@ tmux_conf_theme_pairing_bg='none'
 tmux_conf_theme_pairing_attr='none'
 
 # prefix indicator
-tmux_conf_theme_prefix='⌨ '            # U+2328
+tmux_conf_theme_prefix=' ⌨ '            # U+2328
 tmux_conf_theme_prefix_fg='none'
 tmux_conf_theme_prefix_bg='none'
 tmux_conf_theme_prefix_attr='none'
@@ -190,10 +190,10 @@ tmux_conf_theme_root_bg='none'
 tmux_conf_theme_root_attr='bold,blink'
 
 # battery bar symbols
-tmux_conf_battery_bar_symbol_full='◼'
-tmux_conf_battery_bar_symbol_empty='◻'
-#tmux_conf_battery_bar_symbol_full='♥'
-#tmux_conf_battery_bar_symbol_empty='·'
+#tmux_conf_battery_bar_symbol_full='◼'
+#tmux_conf_battery_bar_symbol_empty='◻'
+tmux_conf_battery_bar_symbol_full='♥'
+tmux_conf_battery_bar_symbol_empty='·'
 
 # battery bar length (in number of symbols), possible values are:
 #   - auto
@@ -259,7 +259,7 @@ tmux_conf_copy_to_os_clipboard=false
 
 # replace C-b by C-a instead of using both prefixes
 # set -gu prefix2
-unbind C-a
+#unbind C-a
 #unbind C-b
 #set -g prefix C-c
 #bind C-c send-prefix
