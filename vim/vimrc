@@ -1,5 +1,6 @@
 set nocompatible
-filetype off
+filetype plugin on
+syntax on
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -14,6 +15,9 @@ Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'tbabej/taskwiki'
 
 call plug#end()
 
@@ -48,4 +52,6 @@ nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
-syntax on
+" vimwiki config
+let g:vimwiki_list = [{'path': '~/.wiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
