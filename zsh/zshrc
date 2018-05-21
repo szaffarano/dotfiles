@@ -8,25 +8,6 @@ ZSH_THEME="steeef"
 plugins=(git colorize github yum docker systemd) 
 plugins+=(zsh-nvm)
 
-export EDITOR=vim
-
-export GOPATH=$HOME/projects/go
-
-export PATH="/usr/local/bin"
-export PATH="$PATH:/usr/bin"
-export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:/bin"
-export PATH="$PATH:/usr/local/sbin"
-export PATH="$PATH:/usr/sbin"
-export PATH="$PATH:/home/sebas/.dotfiles/bin"
-export PATH="$PATH:/home/sebas/.yarn/bin"
-export PATH="/home/sebas/.local/anaconda3/bin:$PATH"
-export PATH="$PATH:$GOPATH/bin"
-
-export GPG_TTY=`tty` 
-
-export MOZILLA_FIVE_HOME=/usr/lib/mozilla
-
 #
 # Avoids gtk3 warnings (https://bbs.archlinux.org/viewtopic.php?id=176663)
 #
@@ -38,6 +19,13 @@ zstyle ':completion:*' special-dirs true
 
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
+
+#
+# Exports
+#
+if [ -f ~/.exports ]; then
+    source ~/.exports
+fi
 
 #
 # Local configs

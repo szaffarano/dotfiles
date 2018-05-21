@@ -3,19 +3,27 @@
       create: true
       relink: true
 
-- clean: ['~']
+- clean: ['~', '~/.config']
 
 - shell:
+    - [./scripts/install-software.sh, Installing aditional software]
     - [git submodule update --init --recursive, Installing submodules]
     - [./scripts/sdkman.sh, Installing SDKMAN!]
     - [vim +PlugInstall +qall, Installing vim plugins]
 
 - link:
-    ~/.gitconfig: gitconfig
-    ~/.ssh/config: ssh/config
+    # tmux
     ~/.tmux.conf: lib/tmux/.tmux.conf
-    ~/.tmux.conf.local: tmux.conf.local
+    ~/.tmux.conf.local: tmux/tmux.conf.local
+    # git
+    ~/.gitconfig: git/gitconfig
+    # ssh
+    ~/.ssh/config: ssh/config
+    # vim
     ~/.vim: vim
+    # zsh
     ~/.oh-my-zsh: lib/oh-my-zsh/
-    ~/.zshrc: zshrc
+    ~/.zshrc: zsh/zshrc
+    ~/.exports: zsh/exports
+    ~/.profile: zsh/profile
     ~/.config/base16-shell: lib/base16-shell
