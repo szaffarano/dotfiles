@@ -1,0 +1,34 @@
+#!/bin/bash
+
+if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    echo "Modo de uso $0 [url]"
+    echo "  Ejemplo $0 usuario/password@ip:puerto/SID"
+    exit 0
+fi
+
+if [ $# -eq 0 ]; then
+    echo -n "Usuario: "; read USER
+    echo -n "Password: "; read -s PASSWORD; echo
+    echo -n "IP: "; read IP
+    echo -n "Puerto: "; read PORT
+    echo -n "SID: "; read SID
+    URL="$USER/$PASSWORD@//$IP:$PORT/$SID"
+    URL_PRINT="$USER/$(echo $PASSWORD | sed s'/./*/g')@//$IP:$PORT/$SID"
+else
+    URL=$1
+    URL_PRINT=$URL
+fi
+
+echo "Conectando a: $URL_PRINT"
+
+shift
+
+docker run \
+    -e URL=$URL \
+    -ti \
+    -v $(pwd):/tmp/cur \
+    -v /tmp/:/tmp/sql \
+    --rm \
+    sflyr/sqlplus \
+    /instantclient_11_2/sqlplus ${URL} $@
+

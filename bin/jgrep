@@ -1,0 +1,31 @@
+#!/bin/bash
+
+function usage() {
+	echo "Modo de uso: $0 <patron de busqueda> | $0 -d <directorio de busqueda> <patron de busqueda>"
+	exit 1
+}
+
+if [ $# -eq 1 ];then
+	SEARCH_DIR="."
+	PATTERN="$1"
+elif [ $# -eq 3 ]; then
+	SEARCH_DIR="$2"
+	PATTERN="$3"
+else
+	usage;
+fi
+
+echo "Buscando en $SEARCH_DIR/*.jar archivos con el patron: \"$PATTERN\""
+
+for i in $(find $SEARCH_DIR -name '*.jar')
+do
+	jar tf $i 2>/dev/null 1>&2
+	if [ $? -ne 0 ]; then
+		echo "Error leyendo archivo $i"
+	else
+		I=$(jar tvf $i | grep $PATTERN | wc -l)
+		if [ $I -ne 0 ]; then
+			echo $i
+		fi
+	fi
+done
