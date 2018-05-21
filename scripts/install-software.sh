@@ -18,6 +18,8 @@ function addPipIfNotInstalled {
 addAptIfNotInstalled "taskwarrior"
 addAptIfNotInstalled "vim"
 addAptIfNotInstalled "git"
+addAptIfNotInstalled "exuberant-ctags"
+addAptIfNotInstalled "texlive-xetex"
 
 if [ -n "$APT_PKGS" ]; then
   sudo apt-get update && \
