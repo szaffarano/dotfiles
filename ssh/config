@@ -3,6 +3,8 @@ ControlPath /tmp/ssh_mux_%h_%p_%r
 ControlPersist 1h
 #ForwardX11 yes
 
+Include config.d/local
+
 Host beaglebone alcibiades*
 	User debian
 
