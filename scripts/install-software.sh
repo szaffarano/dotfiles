@@ -23,7 +23,7 @@ addAptIfNotInstalled "texlive-xetex"
 
 if [ -n "$APT_PKGS" ]; then
   sudo apt-get update && \
-    sudo apt-get install -y ${PKGS}
+    sudo apt-get install -y ${APT_PKGS}
 fi
 
 # anaconda
