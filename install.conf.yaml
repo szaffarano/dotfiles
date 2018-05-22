@@ -31,3 +31,5 @@
     ~/.pam_environment: ssh/pam_environment
     # X
     ~/.xsessionrc: X/xsessionrc
+    # Taskwarrior
+    ~/.taskrc: taskwarrior/taskrc
