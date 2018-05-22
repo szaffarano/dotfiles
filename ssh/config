@@ -4,6 +4,8 @@ ControlPersist  1h
 AddKeysToAgent  yes
 #ForwardX11     yes
 
+Include config.d/local
+
 Host beaglebone alcibiades*
 	User debian
 

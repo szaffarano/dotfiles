@@ -1,0 +1,56 @@
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+NVM_NO_USE="true"
+
+ZSH_THEME="steeef"
+
+plugins=(git colorize github yum docker systemd) 
+plugins+=(zsh-nvm)
+
+#
+# Avoids gtk3 warnings (https://bbs.archlinux.org/viewtopic.php?id=176663)
+#
+export NO_AT_BRIDGE=1
+
+source $ZSH/oh-my-zsh.sh
+
+zstyle ':completion:*' special-dirs true
+
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+
+#
+# Exports
+#
+if [ -f ~/.exports ]; then
+    source ~/.exports
+fi
+
+#
+# Local configs
+#
+if [ -f ~/.zshrc_local ]; then
+    source ~/.zshrc_local
+fi
+
+#
+# NVM config
+#
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+
+#
+# base16 config
+#
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && \
+  eval "$($BASE16_SHELL/profile_helper.sh)"
+base16_atelier-forest
+
+# gitignore.io
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/sebas/.sdkman"
+[[ -s "/home/sebas/.sdkman/bin/sdkman-init.sh" ]] && \
+  source "/home/sebas/.sdkman/bin/sdkman-init.sh"
