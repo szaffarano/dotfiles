@@ -24,6 +24,8 @@ Plug 'blindFS/vim-taskwarrior'
 Plug 'Shougo/unite.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'cespare/vim-toml'
+Plug 'scrooloose/nerdcommenter'
 
 call plug#end()
 
@@ -49,14 +51,21 @@ set colorcolumn=+1
 set splitbelow
 set splitright
 
-nnoremap th  :tabfirst<CR>
-nnoremap tj  :tabnext<CR>
-nnoremap tk  :tabprev<CR>
-nnoremap tl  :tablast<CR>
-nnoremap tt  :tabedit<Space>
-nnoremap tn  :tabnext<Space>
-nnoremap tm  :tabm<Space>
-nnoremap td  :tabclose<CR>
+set relativenumber
+set ignorecase
+set smartcase
+set incsearch
+set showmatch
+
+nnoremap <leader><space>  :noh<CR>
+nnoremap <leader>ev       <C-w><C-v><C-l>:e $MYVIMRC<cr>
+nnoremap <leader>w        <C-w>v<C-w>l
+nnoremap <C-h>            <C-w>h
+nnoremap <C-j>            <C-w>j
+nnoremap <C-k>            <C-w>k
+nnoremap <C-l>            <C-w>l
+
+inoremap jj <ESC>
 
 " vimwiki config
 let g:vimwiki_list = [{ 'path': '~/.wiki/', 'syntax': 'markdown', 'ext': '.md'}]
@@ -65,6 +74,7 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 set complete+=kspell
 
 au FileType vimwiki set syntax=pandoc
+au FocusLost * :wa
 
 let g:pandoc#spell#default_langs = ['en', 'es']
 let g:pandoc#filetypes#handled = ["pandoc", "markdown", "textile", "rst"]
