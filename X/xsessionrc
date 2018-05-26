@@ -1,12 +1,10 @@
 #!/bin/bash
 
-DOTFILES=(
-  /etc/profile
-  ${HOME}/.profile
-)
+dotfiles="
+/etc/profile
+${HOME}/.profile"
 
-for ((i = 1; i <= ${#DOTFILES[@]}; i++));do
-  dotfile="${DOTFILES[$i]}"
+for dotfile in ${dotfiles}; do
   if [ -e "${dotfile}" ]; then
     . ${dotfile}
   fi

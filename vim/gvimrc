@@ -4,3 +4,9 @@ vmap <C-v> c<ESC>"+p
 imap <C-v> <ESC>"+pa
 
 let g:airline#extensions#tabline#enabled = 0
+
+" Do not use modal alert dialogs
+set guioptions+=c
+
+" Do not use Aqua scrollbars
+set guioptions-=rL

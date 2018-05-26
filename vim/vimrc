@@ -21,9 +21,10 @@ Plug 'tbabej/taskwiki'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'majutsushi/tagbar'
 Plug 'blindFS/vim-taskwarrior'
-Plug 'Shougo/unite.vim'
+Plug 'Shougo/denite.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-unimpaired'
 Plug 'cespare/vim-toml'
 Plug 'scrooloose/nerdcommenter'
 
@@ -65,10 +66,25 @@ nnoremap <C-j>            <C-w>j
 nnoremap <C-k>            <C-w>k
 nnoremap <C-l>            <C-w>l
 
+nnoremap th  :tabfirst<CR>
+nnoremap tj  :tabnext<CR>
+nnoremap tk  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn  :tabnext<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
+
 inoremap jj <ESC>
 
 " vimwiki config
-let g:vimwiki_list = [{ 'path': '~/.wiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let wiki        = {}
+let wiki.path   = '~/.wiki/'
+let wiki.syntax = 'markdown'
+let wiki.ext    = '.md'
+
+let g:vimwiki_list          = [wiki]
+let g:vimwiki_conceallevel  = 0
 
 autocmd BufRead,BufNewFile *.md setlocal spell
 set complete+=kspell
@@ -84,3 +100,31 @@ let g:pandoc#syntax#codeblocks#embeds#langs = ["python","java","scala","sh", "c"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='base16'
+
+function! VimwikiLinkHandler(link)
+    " Use Vim to open external files with the 'vfile:' scheme.  E.g.:
+    "   1) [[vfile:~/Code/PythonProject/abc123.py]]
+    "   2) [[vfile:./|Wiki Home]]
+    let link = a:link
+    
+    let matched = matchstr(link, '<\ ref\ \(.*\)\ >')
+    echo "For link " link  " matched is " matched
+    let link_infos = vimwiki#base#resolve_link(link)
+    for [next_key, next_val] in items(link_infos)
+      echo "Result for " next_key " is " next_val
+    endfor
+    return 1
+
+    if link =~# '^vfile:'
+      let link = link[1:]
+    else
+      return 0
+    endif
+    if link_infos.filename == ''
+      echomsg 'Vimwiki Error: Unable to resolve link!'
+      return 0
+    else
+      exe 'tabnew ' . fnameescape(link_infos.filename)
+      return 1
+    endif
+endfunction
