@@ -6,9 +6,11 @@
 - clean: ['~', '~/.config']
 
 - shell:
-    - [./scripts/install-software.sh, Installing aditional software]
+    - [./scripts/install-apt-software.sh, Installing aditional software]
+    - [./scripts/install-anaconda.sh, Installing python support]
+    - [./scripts/install-nvm.sh, Installing nvm]
+    - [./scripts/install-sdkman.sh, Installing SDKMAN!]
     - [git submodule update --init --recursive, Installing submodules]
-    - [./scripts/sdkman.sh, Installing SDKMAN!]
     - [vim +PlugInstall +qall, Installing vim plugins]
 
 - link:
@@ -33,3 +35,5 @@
     ~/.xsessionrc: X/xsessionrc
     # Taskwarrior
     ~/.taskrc: taskwarrior/taskrc
+    # Taskwarrior
+    ~/.nvmrc: nvm/nvmrc
