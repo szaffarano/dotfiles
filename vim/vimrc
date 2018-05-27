@@ -39,8 +39,11 @@ nnoremap <C-l>            <C-w>l
 
 inoremap jj <ESC>
 
+set spelllang=es,en
+
 set textwidth=110
 set colorcolumn=+1
+set hlsearch
 
 autocmd BufRead,BufNewFile *.md setlocal spell
 set complete+=kspell
@@ -85,3 +88,8 @@ let g:vimwiki_conceallevel  = 0
 " ### ALE ###
 let g:ale_completion_enabled = 1
 
+" ### spellcheck highlights ###
+highlight clear SpellBad
+highlight clear SpellCap
+highlight SpellBad cterm=underline ctermfg=red
+highlight SpellCap cterm=underline ctermfg=green
