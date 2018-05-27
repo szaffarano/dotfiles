@@ -8,63 +8,18 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" install plugins
 call plug#begin('~/.vim/plugged')
-
-Plug 'chriskempson/base16-vim'
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-Plug 'junegunn/seoul256.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'tbabej/taskwiki'
-Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'majutsushi/tagbar'
-Plug 'blindFS/vim-taskwarrior'
-Plug 'Shougo/denite.nvim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-unimpaired'
-Plug 'cespare/vim-toml'
-Plug 'scrooloose/nerdcommenter'
-
+  source /home/sebas/.vim/plugins.vim
 call plug#end()
-
-set t_Co&
-set background=dark
-let base16colorspace = 256
-
-colorscheme base16-default-dark
-
-set noshowcmd
-set noshowmode
-
-set number
-
-set expandtab
-set shiftround
-set shiftwidth=2
-set tabstop=2
-
-set textwidth=110
-set colorcolumn=+1
 
 set splitbelow
 set splitright
-
 set relativenumber
 set ignorecase
 set smartcase
 set incsearch
 set showmatch
-
-nnoremap <leader><space>  :noh<CR>
-nnoremap <leader>ev       <C-w><C-v><C-l>:e $MYVIMRC<cr>
-nnoremap <leader>w        <C-w>v<C-w>l
-nnoremap <C-h>            <C-w>h
-nnoremap <C-j>            <C-w>j
-nnoremap <C-k>            <C-w>k
-nnoremap <C-l>            <C-w>l
 
 nnoremap th  :tabfirst<CR>
 nnoremap tj  :tabnext<CR>
@@ -74,17 +29,18 @@ nnoremap tt  :tabedit<Space>
 nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
+nnoremap <leader><space>  :noh<CR>
+nnoremap <leader>ev       <C-w><C-v><C-l>:e $MYVIMRC<cr>
+nnoremap <leader>w        <C-w>v<C-w>l
+nnoremap <C-h>            <C-w>h
+nnoremap <C-j>            <C-w>j
+nnoremap <C-k>            <C-w>k
+nnoremap <C-l>            <C-w>l
 
 inoremap jj <ESC>
 
-" vimwiki config
-let wiki        = {}
-let wiki.path   = '~/.wiki/'
-let wiki.syntax = 'markdown'
-let wiki.ext    = '.md'
-
-let g:vimwiki_list          = [wiki]
-let g:vimwiki_conceallevel  = 0
+set textwidth=110
+set colorcolumn=+1
 
 autocmd BufRead,BufNewFile *.md setlocal spell
 set complete+=kspell
@@ -92,39 +48,40 @@ set complete+=kspell
 au FileType vimwiki set syntax=pandoc
 au FocusLost * :wa
 
+" ### pandoc ###
 let g:pandoc#spell#default_langs = ['en', 'es']
 let g:pandoc#filetypes#handled = ["pandoc", "markdown", "textile", "rst"]
 let g:pandoc#syntax#conceal#urls = 1
 let g:pandoc#syntax#codeblocks#embeds#langs = ["python","java","scala","sh", "c", "sql"]
 
+" ### base16 ###
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
+" ### airline ###
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme='base16'
+let g:airline_powerline_fonts 		 = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme			 = 'base16'
 
-function! VimwikiLinkHandler(link)
-    " Use Vim to open external files with the 'vfile:' scheme.  E.g.:
-    "   1) [[vfile:~/Code/PythonProject/abc123.py]]
-    "   2) [[vfile:./|Wiki Home]]
-    let link = a:link
-    
-    let matched = matchstr(link, '<\ ref\ \(.*\)\ >')
-    echo "For link " link  " matched is " matched
-    let link_infos = vimwiki#base#resolve_link(link)
-    for [next_key, next_val] in items(link_infos)
-      echo "Result for " next_key " is " next_val
-    endfor
-    return 1
+" ### NERDTree ###
+map <C-n> :NERDTreeToggle<CR>
 
-    if link =~# '^vfile:'
-      let link = link[1:]
-    else
-      return 0
-    endif
-    if link_infos.filename == ''
-      echomsg 'Vimwiki Error: Unable to resolve link!'
-      return 0
-    else
-      exe 'tabnew ' . fnameescape(link_infos.filename)
-      return 1
-    endif
-endfunction
+" gnupg
+let g:GPGDefaultRecipients = ['sebas@zaffarano.com.ar']
+
+" ### Vimwiki config ###
+" 1. define wikis
+let wiki        = {}
+let wiki.path   = '~/.wiki/'
+let wiki.syntax = 'markdown'
+let wiki.ext    = '.md'
+" 2. 2. add wikis
+let g:vimwiki_list          = [wiki]
+let g:vimwiki_conceallevel  = 0
+
+" ### ALE ###
+let g:ale_completion_enabled = 1
+
