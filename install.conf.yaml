@@ -10,6 +10,7 @@
     - [./scripts/install-anaconda.sh, Installing python support]
     - [./scripts/install-nvm.sh, Installing nvm]
     - [./scripts/install-sdkman.sh, Installing SDKMAN!]
+    - [./scripts/install-scala.sh, Installing scala!]
     - [git submodule update --init --recursive, Installing submodules]
     - [vim +PlugInstall +qall, Installing vim plugins]
 
@@ -26,6 +27,7 @@
     # zsh
     ~/.oh-my-zsh: lib/oh-my-zsh/
     ~/.zshrc: zsh/zshrc
+    ~/.zshenv: zsh/zshenv
     ~/.exports: zsh/exports
     ~/.profile: zsh/profile
     ~/.config/base16-shell: lib/base16-shell
@@ -37,3 +39,5 @@
     ~/.taskrc: taskwarrior/taskrc
     # Taskwarrior
     ~/.nvmrc: nvm/nvmrc
+    # Scala
+    ~/.scalastyle-config.xml: scala/scalastyle-config.xml
