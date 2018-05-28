@@ -7,7 +7,7 @@ function addPipIfNotInstalled {
   fi
 }
 
-export PATH="$PATH:/home/sebas/.local/anaconda3/bin"
+export PATH="/home/sebas/.local/anaconda3/bin:$PATH"
 if ! $(which conda 2> /dev/null 1>&2); then
   echo "Installing miniconda"
   curl -LO https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
@@ -16,9 +16,13 @@ if ! $(which conda 2> /dev/null 1>&2); then
   trap "{ rm -f ./Miniconda3-latest-Linux-x86_64.sh; }" EXIT
 fi
 
+echo "Pip: $(which pip)"
 addPipIfNotInstalled "tasklib"
 addPipIfNotInstalled "proselint"
+addPipIfNotInstalled "black"
+addPipIfNotInstalled "flake8"
 
 if [ -n "$PIP_PKGS" ]; then
+  echo "installing packages $PIP_PKGS"
   pip install $PIP_PKGS
 fi
