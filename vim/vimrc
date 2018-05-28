@@ -10,7 +10,7 @@ endif
 
 " install plugins
 call plug#begin('~/.vim/plugged')
-  source /home/sebas/.vim/plugins.vim
+  source ~/.vim/plugins.vim
 call plug#end()
 
 set splitbelow
@@ -53,12 +53,12 @@ au FocusLost * :wa
 
 " ### pandoc ###
 let g:pandoc#spell#default_langs = ['en', 'es']
-let g:pandoc#filetypes#handled = ["pandoc", "markdown", "textile", "rst"]
+let g:pandoc#filetypes#handled = ['pandoc', 'markdown', 'textile', 'rst']
 let g:pandoc#syntax#conceal#urls = 1
-let g:pandoc#syntax#codeblocks#embeds#langs = ["python","java","scala","sh", "c", "sql"]
+let g:pandoc#syntax#codeblocks#embeds#langs = ['python','java','scala','sh', 'c', 'sql']
 
 " ### base16 ###
-if filereadable(expand("~/.vimrc_background"))
+if filereadable(expand('~/.vimrc_background'))
   let base16colorspace=256
   source ~/.vimrc_background
 endif
@@ -93,3 +93,10 @@ highlight clear SpellBad
 highlight clear SpellCap
 highlight SpellBad cterm=underline ctermfg=red
 highlight SpellCap cterm=underline ctermfg=green
+
+" ### Lint ###
+let g:ale_vim_vint_executable = expand('~/.local/anaconda3/bin/vint')
+let g:ale_vim_vint_use_global = 1
+
+" ### scalastyle ###
+let g:ale_scalastyle_config_loc = expand('~/.scalastyle-config.xml')
