@@ -12,6 +12,8 @@ addAptIfNotInstalled "vim"
 addAptIfNotInstalled "git"
 addAptIfNotInstalled "exuberant-ctags"
 addAptIfNotInstalled "texlive-xetex"
+addAptIfNotInstalled "libxml2-utils"
+addAptIfNotInstalled "jq"
 
 if [ -n "$APT_PKGS" ]; then
   sudo apt-get update && \

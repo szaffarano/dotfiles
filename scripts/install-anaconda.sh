@@ -21,6 +21,8 @@ addPipIfNotInstalled "tasklib"
 addPipIfNotInstalled "proselint"
 addPipIfNotInstalled "black"
 addPipIfNotInstalled "flake8"
+addPipIfNotInstalled "vim-vint"
+addPipIfNotInstalled "yamllint"
 
 if [ -n "$PIP_PKGS" ]; then
   echo "installing packages $PIP_PKGS"
