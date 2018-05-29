@@ -5,7 +5,10 @@ syntax on
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+
+  augroup vimplug_installed
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  augroup END
 endif
 
 " install plugins
@@ -13,43 +16,104 @@ call plug#begin('~/.vim/plugged')
   source ~/.vim/plugins.vim
 call plug#end()
 
-set splitbelow
-set splitright
-set relativenumber
+" edit and reload vimrc
+nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <silent> <leader>ep :vsplit ~/.vim/plugins.vim<CR>
+nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" set hidden: can switch between buffers without save first the current one
+set hidden
+
+" tabs are two spaces
+set tabstop=2 
+
+" only ignore case when the search pattern is all lowercase 
 set ignorecase
 set smartcase
-set incsearch
-set showmatch
 
-nnoremap th  :tabfirst<CR>
-nnoremap tj  :tabnext<CR>
-nnoremap tk  :tabprev<CR>
-nnoremap tl  :tablast<CR>
-nnoremap tt  :tabedit<Space>
-nnoremap tn  :tabnext<Space>
-nnoremap tm  :tabm<Space>
-nnoremap td  :tabclose<CR>
-nnoremap <leader><space>  :noh<CR>
-nnoremap <leader>ev       <C-w><C-v><C-l>:e $MYVIMRC<cr>
-nnoremap <leader>w        <C-w>v<C-w>l
-nnoremap <C-h>            <C-w>h
-nnoremap <C-j>            <C-w>j
-nnoremap <C-k>            <C-w>k
-nnoremap <C-l>            <C-w>l
-
-inoremap jj <ESC>
-
-set spelllang=es,en
-
-set textwidth=110
-set colorcolumn=+1
+" highlight search matches
 set hlsearch
 
-autocmd BufRead,BufNewFile *.md setlocal spell
+" incremental searchs
+set incsearch
+
+" show matching parenthesis, brackets, curly brackets, etc.
+set showmatch
+
+" english and spanish spelling
+set spelllang=es,en
+
+" ruler at 110 chars 
+set textwidth=110
+set colorcolumn=+1
+
+" autocomplete with ctrl-P in insert mode 
 set complete+=kspell
 
-au FileType vimwiki set syntax=pandoc
-au FocusLost * :wa
+" print line numbers relative to current line
+set relativenumber
+
+" toggle paste mode
+set pastetoggle=<leader>p
+
+set splitbelow
+set splitright
+set visualbell
+set noerrorbells
+
+" save me of pressing the shift key 
+nnoremap ; :
+
+" more natural to move around long lines
+noremap j gj
+noremap k gk
+
+" clear matched search
+nnoremap <leader><space>  :noh<CR>
+
+" open the same file in another window
+nnoremap <leader>w        <C-w>v<C-w>l
+
+" move between tabs
+noremap th  :tabfirst<CR>
+noremap tj  :tabnext<CR>
+noremap tk  :tabprev<CR>
+noremap tl  :tablast<CR>
+noremap tt  :tabedit<Space>
+noremap tn  :tabnext<Space>
+noremap tm  :tabm<Space>
+noremap td  :tabclose<CR>
+
+" move between windows without use <C-w>
+noremap <C-h>            <C-w>h
+noremap <C-j>            <C-w>j
+noremap <C-k>            <C-w>k
+noremap <C-l>            <C-w>l
+
+" switch to normal mode 
+inoremap jk <ESC>l
+
+" spellcheck highlights
+highlight clear SpellBad
+highlight clear SpellCap
+highlight SpellBad cterm=underline ctermfg=red
+highlight SpellCap cterm=underline ctermfg=green
+
+inoremap <silent> <C-d> <esc>ddi
+
+" uppercase the current world
+inoremap <silent> <C-u> <esc>viwUi
+noremap  <silent> <C-u> viwUn
+
+" go to the beggining and the end of the current line
+nnoremap <silent> H 0
+nnoremap <silent> L $
+
+augroup files_customization
+  autocmd FileType vimwiki set syntax=pandoc
+  autocmd FocusLost * :wa
+  autocmd BufRead,BufNewFile *.md setlocal spell
+augroup END
 
 " ### pandoc ###
 let g:pandoc#spell#default_langs = ['en', 'es']
@@ -59,7 +123,7 @@ let g:pandoc#syntax#codeblocks#embeds#langs = ['python','java','scala','sh', 'c'
 
 " ### base16 ###
 if filereadable(expand('~/.vimrc_background'))
-  let base16colorspace=256
+  let g:base16colorspace=256
   source ~/.vimrc_background
 endif
 
@@ -70,29 +134,21 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme			 = 'base16'
 
 " ### NERDTree ###
-map <C-n> :NERDTreeToggle<CR>
+noremap <C-n> :NERDTreeToggle<CR>
 
-" gnupg
+" ### gnupg
 let g:GPGDefaultRecipients = ['sebas@zaffarano.com.ar']
 
 " ### Vimwiki config ###
-" 1. define wikis
-let wiki        = {}
-let wiki.path   = '~/.wiki/'
-let wiki.syntax = 'markdown'
-let wiki.ext    = '.md'
-" 2. 2. add wikis
-let g:vimwiki_list          = [wiki]
+let g:wiki        = {}
+let g:wiki.path   = '~/.wiki/'
+let g:wiki.syntax = 'markdown'
+let g:wiki.ext    = '.md'
+let g:vimwiki_list          = [g:wiki]
 let g:vimwiki_conceallevel  = 0
 
 " ### ALE ###
 let g:ale_completion_enabled = 1
-
-" ### spellcheck highlights ###
-highlight clear SpellBad
-highlight clear SpellCap
-highlight SpellBad cterm=underline ctermfg=red
-highlight SpellCap cterm=underline ctermfg=green
 
 " ### Lint ###
 let g:ale_vim_vint_executable = expand('~/.local/anaconda3/bin/vint')
