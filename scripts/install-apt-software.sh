@@ -14,6 +14,8 @@ addAptIfNotInstalled "exuberant-ctags"
 addAptIfNotInstalled "texlive-xetex"
 addAptIfNotInstalled "libxml2-utils"
 addAptIfNotInstalled "jq"
+addAptIfNotInstalled "fontconfig"
+addAptIfNotInstalled "fonts-powerline"
 
 if [ -n "$APT_PKGS" ]; then
   sudo apt-get update && \
