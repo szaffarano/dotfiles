@@ -24,6 +24,7 @@
     ~/.ssh/config: ssh/config
     # vim
     ~/.vim: vim
+    ~/.vintrc.yaml: vim/vintrc.yaml
     # zsh
     ~/.oh-my-zsh: lib/oh-my-zsh/
     ~/.zshrc: zsh/zshrc
