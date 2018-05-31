@@ -6,5 +6,7 @@ cmdargs:
     neovim: false
 
 policies:
+  ProhibitImplicitScopeVariable:
+    enabled: false
   ProhibitSetNoCompatible:
     enabled: false

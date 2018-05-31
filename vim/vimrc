@@ -4,16 +4,17 @@ syntax on
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   augroup vimplug_installed
+    autocmd!
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   augroup END
 endif
 
 " install plugins
 call plug#begin('~/.vim/plugged')
-  source ~/.vim/plugins.vim
+source ~/.vim/plugins.vim
 call plug#end()
 
 " edit and reload vimrc
@@ -25,9 +26,12 @@ nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 set hidden
 
 " tabs are two spaces
-set tabstop=2 
+set tabstop=2
+set expandtab
+set shiftwidth=2
+set softtabstop=2
 
-" only ignore case when the search pattern is all lowercase 
+" only ignore case when the search pattern is all lowercase
 set ignorecase
 set smartcase
 
@@ -43,11 +47,11 @@ set showmatch
 " english and spanish spelling
 set spelllang=es,en
 
-" ruler at 110 chars 
+" ruler at 110 chars
 set textwidth=110
 set colorcolumn=+1
 
-" autocomplete with ctrl-P in insert mode 
+" autocomplete with ctrl-P in insert mode
 set complete+=kspell
 
 " print line numbers relative to current line
@@ -61,7 +65,7 @@ set splitright
 set visualbell
 set noerrorbells
 
-" save me of pressing the shift key 
+" save me of pressing the shift key
 nnoremap ; :
 
 " more natural to move around long lines
@@ -90,14 +94,8 @@ noremap <C-j>            <C-w>j
 noremap <C-k>            <C-w>k
 noremap <C-l>            <C-w>l
 
-" switch to normal mode 
+" switch to normal mode
 inoremap jk <ESC>l
-
-" spellcheck highlights
-highlight clear SpellBad
-highlight clear SpellCap
-highlight SpellBad cterm=underline ctermfg=red
-highlight SpellCap cterm=underline ctermfg=green
 
 inoremap <silent> <C-d> <esc>ddi
 
@@ -110,6 +108,7 @@ nnoremap <silent> H 0
 nnoremap <silent> L $
 
 augroup files_customization
+  autocmd!
   autocmd FileType vimwiki set syntax=pandoc
   autocmd FocusLost * :wa
   autocmd BufRead,BufNewFile *.md setlocal spell
@@ -118,7 +117,7 @@ augroup END
 " ### pandoc ###
 let g:pandoc#spell#default_langs = ['en', 'es']
 let g:pandoc#filetypes#handled = ['pandoc', 'markdown', 'textile', 'rst']
-let g:pandoc#syntax#conceal#urls = 1
+let g:pandoc#syntax#conceal#urls = 0
 let g:pandoc#syntax#codeblocks#embeds#langs = ['python','java','scala','sh', 'c', 'sql']
 
 " ### base16 ###
@@ -129,9 +128,9 @@ endif
 
 " ### airline ###
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts 		 = 1
+let g:airline_powerline_fonts      = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme			 = 'base16'
+let g:airline_theme      = 'base16'
 
 " ### NERDTree ###
 noremap <C-n> :NERDTreeToggle<CR>
@@ -140,12 +139,15 @@ noremap <C-n> :NERDTreeToggle<CR>
 let g:GPGDefaultRecipients = ['sebas@zaffarano.com.ar']
 
 " ### Vimwiki config ###
-let g:wiki        = {}
-let g:wiki.path   = '~/.wiki/'
-let g:wiki.syntax = 'markdown'
-let g:wiki.ext    = '.md'
+let g:wiki           = {}
+let g:wiki.path      = '~/.wiki/'
+let g:wiki.syntax    = 'markdown'
+let g:wiki.ext       = '.md'
+let g:wiki.auto_tags = 1
 let g:vimwiki_list          = [g:wiki]
 let g:vimwiki_conceallevel  = 0
+" let g:vimwiki_menu = 'Vimwiki'
+let g:vimwiki_use_calendar = 1
 
 " ### ALE ###
 let g:ale_completion_enabled = 1
@@ -156,3 +158,31 @@ let g:ale_vim_vint_use_global = 1
 
 " ### scalastyle ###
 let g:ale_scalastyle_config_loc = expand('~/.scalastyle-config.xml')
+
+" ### nerdcomment ###
+let g:NERDSpaceDelims = 1
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+
+" ### vim-autoformat ###
+noremap <silent> <C-f> :Autoformat<cr>:RemoveTrailingSpaces<cr>
+
+" ### tagbar ###
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_vimwiki = {
+          \   'ctagstype':'vimwiki'
+          \ , 'kinds':['h:header']
+          \ , 'sro':'&&&'
+          \ , 'kind2scope':{'h':'header'}
+          \ , 'sort':0
+          \ , 'ctagsbin':'~/.dotfiles/bin/vwtags.py'
+          \ , 'ctagsargs': 'markdown'
+          \ }
+
+" spellcheck highlights
+highlight clear SpellBad
+highlight clear SpellCap
+highlight SpellBad cterm=underline ctermfg=red
+highlight SpellCap cterm=underline ctermfg=green
+
+
