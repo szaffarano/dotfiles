@@ -21,7 +21,9 @@ nvm use node
 
 if ! $(which yarn 2> /dev/null 1>&2); then
   echo "Installing yarn"
-  npm -g install yarn 
+  npm -g install yarn
 fi
 
 yarn global add prettier
+yarn global add js-beautify
+yarn global add eslint

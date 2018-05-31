@@ -10,7 +10,7 @@ function addAptIfNotInstalled {
 addAptIfNotInstalled "taskwarrior"
 addAptIfNotInstalled "vim"
 addAptIfNotInstalled "git"
-addAptIfNotInstalled "exuberant-ctags"
+addAptIfNotInstalled "universal-ctags"
 addAptIfNotInstalled "texlive-xetex"
 addAptIfNotInstalled "libxml2-utils"
 addAptIfNotInstalled "jq"
