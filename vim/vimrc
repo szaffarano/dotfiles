@@ -111,7 +111,8 @@ augroup files_customization
   autocmd!
   autocmd FileType vimwiki set syntax=pandoc
   autocmd FocusLost * :wa
-  autocmd BufRead,BufNewFile *.md setlocal spell
+  autocmd BufRead,BufNewFile *.md     setlocal spell
+  autocmd User GnuPG set syntax=pandoc
 augroup END
 
 " ### pandoc ###
@@ -119,6 +120,9 @@ let g:pandoc#spell#default_langs = ['en', 'es']
 let g:pandoc#filetypes#handled = ['pandoc', 'markdown', 'textile', 'rst']
 let g:pandoc#syntax#conceal#urls = 0
 let g:pandoc#syntax#codeblocks#embeds#langs = ['python','java','scala','sh', 'c', 'sql']
+
+" ### GPG ###
+let g:GPGPreferArmor = 1
 
 " ### base16 ###
 if filereadable(expand('~/.vimrc_background'))
