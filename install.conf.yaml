@@ -6,7 +6,7 @@
 - clean: ['~', '~/.config']
 
 - shell:
-    - [./scripts/install-apt-software.sh, Installing aditional software]
+    - [./scripts/install-packages.sh, Installing aditional software]
     - [./scripts/install-anaconda.sh, Installing python support]
     - [./scripts/install-nvm.sh, Installing nvm]
     - [./scripts/install-sdkman.sh, Installing SDKMAN!]
