@@ -4,13 +4,14 @@ declare -A PACKAGES
 PACKAGES[taskwarrior]="app-misc/task"
 PACKAGES[vim]="app-editors/vim"
 PACKAGES[git]="dev-vcs/git"
-PACKAGES[universal-ctags]="dev-util/ctags"
+PACKAGES[exuberant-ctags]="dev-util/ctags"
 PACKAGES[texlive-xetex]="dev-texlive/texlive-xetex"
 PACKAGES[libxml2-utils]="dev-libs/libxml2"
 PACKAGES[jq]="app-misc/jq"
 PACKAGES[fontconfig]="media-libs/fontconfig"
 PACKAGES[fonts-powerline]="media-fonts/powerline-symbols"
 PACKAGES[zip]="app-arch/zip"
+PACKAGES[curl]="curl"
 PACKAGES[silversearcher-ag]="sys-apps/the_silver_searcher"
 
 PKGS=
@@ -40,13 +41,14 @@ function addIfNotInstalled {
 addIfNotInstalled "taskwarrior"
 addIfNotInstalled "vim"
 addIfNotInstalled "git"
-addIfNotInstalled "universal-ctags"
+addIfNotInstalled "exuberant-ctags"
 addIfNotInstalled "texlive-xetex"
 addIfNotInstalled "libxml2-utils"
 addIfNotInstalled "jq"
 addIfNotInstalled "fontconfig"
 addIfNotInstalled "fonts-powerline"
 addIfNotInstalled "zip"
+addIfNotInstalled "curl"
 addIfNotInstalled "silversearcher-ag"
 
 if [ -n "$PKGS" ]; then
