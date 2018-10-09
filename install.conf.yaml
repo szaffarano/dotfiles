@@ -42,3 +42,5 @@
     ~/.nvmrc: nvm/nvmrc
     # Scala
     ~/.scalastyle-config.xml: scala/scalastyle-config.xml
+    # flake8
+    ~/.config/flake8: python/flake8
