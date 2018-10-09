@@ -75,6 +75,10 @@ noremap k gk
 " clear matched search
 nnoremap <leader><space>  :noh<CR>
 
+" jump to next/prev error
+nnoremap ]l :lnext<CR>
+nnoremap [l :lprev<CR>
+
 " open the same file in another window
 nnoremap <leader>w        <C-w>v<C-w>l
 
