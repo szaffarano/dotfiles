@@ -12,6 +12,7 @@
     - [./scripts/install-nvm.sh, Installing nvm]
     - [./scripts/install-sdkman.sh, Installing SDKMAN!]
     - [./scripts/install-scala.sh, Installing scala!]
+    - [./scripts/install-golang.sh, Installing GoLang!]
     - [git submodule update --init --recursive, Installing submodules]
     - [vim +PlugInstall +qall, Installing vim plugins]
 
