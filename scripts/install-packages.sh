@@ -1,8 +1,7 @@
 #!/bin/bash
 
 declare -A PACKAGES
-PACKAGES[taskwarrior]="app-misc/task"
-PACKAGES[vim]="app-editors/vim"
+PACKAGES[neovim]="app-editors/neovim"
 PACKAGES[git]="dev-vcs/git"
 PACKAGES[exuberant-ctags]="dev-util/ctags"
 PACKAGES[texlive-xetex]="dev-texlive/texlive-xetex"
@@ -13,6 +12,17 @@ PACKAGES[fonts-powerline]="media-fonts/powerline-symbols"
 PACKAGES[zip]="app-arch/zip"
 PACKAGES[curl]="curl"
 PACKAGES[silversearcher-ag]="sys-apps/the_silver_searcher"
+PACKAGES[google-chrome-stable]="google-chrome-stable"
+PACKAGES[python3-distutils]="python3-distutils"
+PACKAGES[htop]="htop"
+PACKAGES[secure-delete]="secure-delete"
+PACKAGES[net-tools]="net-tools"
+PACKAGES[speedcrunch]="speedcrunch"
+PACKAGES[rar]="rar"
+PACKAGES[unrar]="unrar"
+PACKAGES[git-flow]="git-flow"
+PACKAGES[fonts-powerline]="fonts-powerline"
+PACKAGES[git-secret]="git-secret"
 
 PKGS=
 
@@ -29,7 +39,7 @@ function addIfNotInstalled {
     grep "${pkg}" /var/lib/portage/world > /dev/null && found=1
   else
     pkg=$1
-    if [ $(dpkg -l $1 2>/dev/null 1>&2) ]; then
+    if $(dpkg -l $pkg 2>/dev/null 1>&2); then
       found=1
     fi
   fi
@@ -38,18 +48,10 @@ function addIfNotInstalled {
   fi
 }
 
-addIfNotInstalled "taskwarrior"
-addIfNotInstalled "vim"
-addIfNotInstalled "git"
-addIfNotInstalled "exuberant-ctags"
-addIfNotInstalled "texlive-xetex"
-addIfNotInstalled "libxml2-utils"
-addIfNotInstalled "jq"
-addIfNotInstalled "fontconfig"
-addIfNotInstalled "fonts-powerline"
-addIfNotInstalled "zip"
-addIfNotInstalled "curl"
-addIfNotInstalled "silversearcher-ag"
+for i in "${!PACKAGES[@]}"
+do
+    addIfNotInstalled $i
+done
 
 if [ -n "$PKGS" ]; then
   if [ ${IS_GENTOO} -eq 1 ]; then

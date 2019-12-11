@@ -6,6 +6,7 @@
 - clean: ['~', '~/.config']
 
 - shell:
+    - [./scripts/preconditions.sh, Checking preconditions]
     - [./scripts/install-packages.sh, Installing aditional software]
     - [./scripts/install-anaconda.sh, Installing python support]
     - [./scripts/install-nvm.sh, Installing nvm]
@@ -18,29 +19,25 @@
     # tmux
     ~/.tmux.conf: lib/tmux/.tmux.conf
     ~/.tmux.conf.local: tmux/tmux.conf.local
+
     # git
     ~/.gitconfig: git/gitconfig
+
     # ssh
     ~/.ssh/config: ssh/config
+
     # vim
-    ~/.vim: vim
-    ~/.vintrc.yaml: vim/vintrc.yaml
+    ~/.config/nvim: vim
+
     # zsh
     ~/.oh-my-zsh: lib/oh-my-zsh/
     ~/.zshrc: zsh/zshrc
-    ~/.zshenv: zsh/zshenv
     ~/.exports: zsh/exports
-    ~/.profile: zsh/profile
+
     ~/.config/base16-shell: lib/base16-shell
-    ~/.config/systemd/user/ssh-agent.service: systemd/ssh-agent.service
-    ~/.pam_environment: ssh/pam_environment
-    # X
-    ~/.xsessionrc: X/xsessionrc
-    # Taskwarrior
-    ~/.taskrc: taskwarrior/taskrc
-    # Taskwarrior
-    ~/.nvmrc: nvm/nvmrc
+
     # Scala
     ~/.scalastyle-config.xml: scala/scalastyle-config.xml
+
     # flake8
     ~/.config/flake8: python/flake8

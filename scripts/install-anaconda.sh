@@ -7,12 +7,12 @@ function addPipIfNotInstalled {
   fi
 }
 
-export PATH="/home/sebas/.local/anaconda3/bin:$PATH"
+export PATH="$HOME/.local/anaconda3/bin:$PATH"
 if ! $(which conda 2> /dev/null 1>&2); then
   echo "Installing miniconda"
   curl -LO https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
     chmod 775 ./Miniconda3-latest-Linux-x86_64.sh && \
-    ./Miniconda3-latest-Linux-x86_64.sh -b -p /home/sebas/.local/anaconda3
+    ./Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/.local/anaconda3
   trap "{ rm -f ./Miniconda3-latest-Linux-x86_64.sh; }" EXIT
 fi
 
