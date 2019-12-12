@@ -15,3 +15,5 @@ asdf plugin-add nodejs \
 asdf install nodejs latest
 
 asdf global nodejs $(asdf list nodejs | tail -n 1)
+
+npm install -g yarn
