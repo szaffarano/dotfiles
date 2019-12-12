@@ -3,13 +3,15 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo "linux"
 
-    mkdir -p $HOME/.ssh/local
+    [ -e $HOME/.ssh/local ] || mkdir -p $HOME/.ssh/local
 
     # neovim ppa
-    sudo add-apt-repository ppa:neovim-ppa/stable -y
+    $(grep neovim /etc/apt/sources.list.d/* >/dev/null 2>&1) \
+        || sudo add-apt-repository ppa:neovim-ppa/stable -y
 
     # uninstall legacy nodejs
-    sudo apt-get purge nodejs -y
+    ! $(dpkg -l | grep nodejs > /dev/null 2>&1) \
+        || (sudo apt-get purge nodejs -y && sudo apt-get autoremove --purge -y)
 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     echo "darwin"

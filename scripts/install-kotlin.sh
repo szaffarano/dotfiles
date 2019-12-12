@@ -9,8 +9,8 @@ if ! $(which asdf 2> /dev/null 1>&2); then
 	exit 1
 fi
 
-asdf plugin-add golang
+asdf plugin-add kotlin
 
-asdf install golang latest
+asdf install kotlin latest
 
-asdf global golang $(asdf list golang | tail -n 1)
+asdf global kotlin $(asdf list kotlin | tail -n 1)

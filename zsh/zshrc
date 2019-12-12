@@ -36,8 +36,8 @@ if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
 
-# NVM
-[ -e $HOME/.dotfiles/zsh/nvm.sh ] && source $HOME/.dotfiles/zsh/nvm.sh
+# asdf
+[ -e $HOME/.dotfiles/zsh/asdf.sh ] && source $HOME/.dotfiles/zsh/asdf.sh
 
 # SDKMAN!
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
