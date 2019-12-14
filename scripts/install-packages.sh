@@ -24,6 +24,7 @@ PACKAGES[git-flow]="git-flow"
 PACKAGES[fonts-powerline]="fonts-powerline"
 PACKAGES[git-secret]="git-secret"
 PACKAGES[youtube-dl]="youtube-dl"
+PACKAGES[brave-browser]="brave-browser"
 
 PKGS=
 
