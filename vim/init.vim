@@ -18,6 +18,7 @@ filetype plugin indent on   " allows auto-indenting depending on file type
 
 syntax on                   " syntax highlighting
 
+set guicursor=
 
 " Install Plug plugin manager
 if empty(glob('~/.vim/autoload/plug.vim'))
