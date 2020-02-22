@@ -1,6 +1,7 @@
-#!/bin/zsh
+#!/bin/bash
 
-source $(dirname $(readlink -f $0))/asdf-utils.sh
+# shellcheck disable=SC1090
+source "$(dirname "$(readlink -f "$0")")/asdf-utils.sh"
 
 declare -a JAVA_VERSIONS=(\
     "adopt-openjdk-8u242-b08" \
@@ -14,7 +15,7 @@ installOrUpdateAsdfPlugin gradle
 
 for JAVA_VER in "${JAVA_VERSIONS[@]}"
 do 
-    installAsdfPackage java $JAVA_VER
+    installAsdfPackage java "$JAVA_VER"
 done
 
 installAsdfPackage maven latest

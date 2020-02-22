@@ -46,3 +46,6 @@
 
     # flake8
     ~/.config/flake8: python/flake8
+
+    # bin
+    ~/bin: bin

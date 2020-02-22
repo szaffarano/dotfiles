@@ -50,7 +50,3 @@ fi
 
 # asdf
 [ -e $HOME/.dotfiles/zsh/asdf.sh ] && source $HOME/.dotfiles/zsh/asdf.sh
-
-# SDKMAN!
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-[ -e $HOME/.dotfiles/zsh/sdkman.sh ] && source $HOME/.dotfiles/zsh/sdkman.sh

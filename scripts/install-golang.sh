@@ -1,6 +1,7 @@
-#!/bin/zsh
+#!/bin/bash
 
-source $(dirname $(readlink -f $0))/asdf-utils.sh
+# shellcheck disable=SC1090
+source "$(dirname "$(readlink -f "$0")")/asdf-utils.sh"
 
 installOrUpdateAsdfPlugin golang
 

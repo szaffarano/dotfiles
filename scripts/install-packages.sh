@@ -24,11 +24,10 @@ PACKAGES[git-flow]="git-flow"
 PACKAGES[fonts-powerline]="fonts-powerline"
 PACKAGES[git-secret]="git-secret"
 PACKAGES[youtube-dl]="youtube-dl"
-PACKAGES[brave-browser]="brave-browser"
 
 PKGS=
 
-if [ $(which emerge) ]; then
+if command -v emerge; then
   IS_GENTOO=1
 else
   IS_GENTOO=0
@@ -41,10 +40,11 @@ function addIfNotInstalled {
     grep "${pkg}" /var/lib/portage/world > /dev/null && found=1
   else
     pkg=$1
-    if $(dpkg -l $pkg 2>/dev/null 1>&2); then
+    if dpkg -l "$pkg"  2>/dev/null 1>&2; then
       found=1
     fi
   fi
+  echo $pkg: $found
   if [ ${found} -eq 0 ]; then
     PKGS="${PKGS} ${pkg}"
   fi
@@ -58,10 +58,10 @@ done
 if [ -n "$PKGS" ]; then
   if [ ${IS_GENTOO} -eq 1 ]; then
     sudo emerge --sync && \
-      sudo emerge ${PKGS}
+      sudo emerge "${PKGS}"
   else
     sudo apt-get update && \
-      sudo apt-get install -y ${PKGS}
+      sudo apt-get install -y "${PKGS}"
   fi
 fi
 
