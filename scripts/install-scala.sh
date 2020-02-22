@@ -1,19 +1,9 @@
 #!/bin/zsh
 
-source $HOME/.asdf/asdf.sh
+source $(dirname $(readlink -f $0))/asdf-utils.sh
 
-. ~/.dotfiles/zsh/sdkman.sh
+installOrUpdateAsdfPlugin scala
+installOrUpdateAsdfPlugin sbt
 
-if ! $(which asdf 2> /dev/null 1>&2); then
-	echo "asdf not found!"
-	exit 1
-fi
-
-asdf plugin-add scala
-asdf plugin-add sbt
-
-asdf install scala latest
-asdf install sbt latest
-
-asdf global scala $(asdf list scala | tail -n 1)
-asdf global sbt $(asdf list sbt | tail -n 1)
+installAsdfPackage scala latest
+installAsdfPackage sbt latest

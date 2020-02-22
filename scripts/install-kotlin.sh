@@ -1,16 +1,7 @@
 #!/bin/zsh
 
-source $HOME/.asdf/asdf.sh
+source $(dirname $(readlink -f $0))/asdf-utils.sh
 
-. ~/.dotfiles/zsh/sdkman.sh
+installOrUpdateAsdfPlugin kotlin
 
-if ! $(which asdf 2> /dev/null 1>&2); then
-	echo "asdf not found!"
-	exit 1
-fi
-
-asdf plugin-add kotlin
-
-asdf install kotlin latest
-
-asdf global kotlin $(asdf list kotlin | tail -n 1)
+installAsdfPackage kotlin latest
