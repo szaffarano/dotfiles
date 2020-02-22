@@ -1,24 +1,31 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-NVM_NO_USE="true"
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="steeef"
 
-plugins=(git colorize github yum docker systemd) 
-plugins+=(zsh-nvm)
+# Uncomment the following line to use case-sensitive completion.
+#CASE_SENSITIVE="true"
 
-#
-# Avoids gtk3 warnings (https://bbs.archlinux.org/viewtopic.php?id=176663)
-#
-export NO_AT_BRIDGE=1
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to automatically update without prompting.
+DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+DISABLE_MAGIC_FUNCTIONS=true
+
+plugins=(git)
+plugins+=(colorize) 
+plugins+=(github) 
+plugins+=(docker) 
+plugins+=(systemd) 
+plugins+=(vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
-zstyle ':completion:*' special-dirs true
-
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
+# User configuration
 
 #
 # Exports
@@ -28,34 +35,18 @@ if [ -f ~/.exports ]; then
 fi
 
 #
+# Aliases
+#
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
+fi
+
+#
 # Local configs
 #
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
 
-#
-# NVM config
-#
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion # loads auto completion
-
-#
-# base16 config
-#
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && \
-  eval "$($BASE16_SHELL/profile_helper.sh)"
-base16_atelier-forest
-
-# gitignore.io
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
-
-# alias for getmail
-alias lm=/usr/bin/getmail
-
-# SDKMAN!
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-. ~/.dotfiles/zsh/sdkman.sh
+# asdf
+[ -e $HOME/.dotfiles/zsh/asdf.sh ] && source $HOME/.dotfiles/zsh/asdf.sh

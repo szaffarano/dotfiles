@@ -32,11 +32,3 @@ fi
 if [ -e ~/.exports ]; then
     . ~/.exports
 fi
-
-#
-# SDKMAN!
-#
-if [ -e ~/.dotfiles/zsh/sdkman.sh ]; then
-    #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-    . ~/.dotfiles/zsh/sdkman.sh
-fi

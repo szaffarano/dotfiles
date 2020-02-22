@@ -2,19 +2,3 @@ ControlMaster   no
 ControlPath     /tmp/ssh_mux_%h_%p_%r
 ControlPersist  1h
 AddKeysToAgent  yes
-#ForwardX11     yes
-
-Include config.d/local
-
-Host beaglebone alcibiades*
-	User debian
-
-Host euripides*
-	User pi
-
-Host midas.zaffarano.com.ar
-	Port 9922
-	User root
-
-Host raspi3 raspi3.zaffarano.com.ar
-	User pi
