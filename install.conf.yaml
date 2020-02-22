@@ -36,6 +36,7 @@
     ~/.oh-my-zsh: lib/oh-my-zsh/
     ~/.zshrc: zsh/zshrc
     ~/.exports: zsh/exports
+    ~/.aliases: zsh/aliases
 
     ~/.config/base16-shell: lib/base16-shell
 

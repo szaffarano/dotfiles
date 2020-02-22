@@ -16,7 +16,12 @@ DISABLE_UPDATE_PROMPT="true"
 # Uncomment the following line if pasting URLs and other text is messed up.
 DISABLE_MAGIC_FUNCTIONS=true
 
-plugins=(git colorize github docker systemd) 
+plugins=(git)
+plugins+=(colorize) 
+plugins+=(github) 
+plugins+=(docker) 
+plugins+=(systemd) 
+plugins+=(vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -27,6 +32,13 @@ source $ZSH/oh-my-zsh.sh
 #
 if [ -f ~/.exports ]; then
     source ~/.exports
+fi
+
+#
+# Aliases
+#
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
 fi
 
 #
