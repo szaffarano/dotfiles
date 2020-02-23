@@ -1,7 +1,5 @@
-[user]
-	name = Sebastián Zaffarano
-	email = sebas@zaffarano.com.ar
-	signingkey = sebas@zaffarano.com.ar
+[include]
+    path = ~/.gitconfig.local
 
 [color]
 	ui = auto
