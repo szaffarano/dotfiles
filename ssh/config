@@ -1,4 +1,10 @@
+Include config.d/local
+
 ControlMaster   no
 ControlPath     /tmp/ssh_mux_%h_%p_%r
 ControlPersist  1h
 AddKeysToAgent  yes
+
+Host *
+  ForwardX11   no
+  ForwardAgent no
