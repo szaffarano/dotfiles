@@ -16,6 +16,7 @@
     - [./scripts/install-nodejs.sh, Installing nodejs!]
     - [./scripts/install-scala.sh, Installing scala!]
     - [./scripts/install-shellcheck.sh, Installing shellcheck!]
+    - [./scripts/install-fzf.sh, Installing zfz!]
     - [git submodule update --init --recursive, Installing submodules]
     - [vim +PlugInstall +qall, Installing vim plugins]
 

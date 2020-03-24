@@ -50,3 +50,5 @@ fi
 
 # asdf
 [ -e $HOME/.dotfiles/zsh/asdf.sh ] && source $HOME/.dotfiles/zsh/asdf.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
