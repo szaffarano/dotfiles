@@ -1,3 +1,5 @@
 Plug 'jamessan/vim-gnupg'
 Plug 'vimwiki/vimwiki'
 Plug 'fatih/vim-go'
+Plug 'tpope/vim-sensible'
+Plug 'dense-analysis/ale'
