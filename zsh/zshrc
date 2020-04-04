@@ -1,54 +1,69 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+####  zplug setup
+[ -f ~/.zplug/init.zsh ] && source ~/.zplug/init.zsh
 
-ZSH_THEME="steeef"
+zplug 'zplug/zplug',						hook-build:'zplug --self-manage'
 
-# Uncomment the following line to use case-sensitive completion.
-#CASE_SENSITIVE="true"
+# perform tasks asynchronously
+zplug "mafredri/zsh-async",					defer:0
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# syntax highlight in the terminal
+zplug "zsh-users/zsh-syntax-highlighting",	defer:3
 
-# Uncomment the following line to automatically update without prompting.
-DISABLE_UPDATE_PROMPT="true"
+# package manager for go, java, etc.
+zplug "kiurchv/asdf.plugin.zsh",			defer:2
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-DISABLE_MAGIC_FUNCTIONS=true
+# flexible clipboard use from CLI
+zplug "zpm-zsh/clipboard"
 
-plugins=(git)
-plugins+=(colorize) 
-plugins+=(github) 
-plugins+=(docker) 
-plugins+=(systemd) 
-plugins+=(vi-mode)
+# fish like auto suggestions
+zplug "zsh-users/zsh-autosuggestions"
 
-source $ZSH/oh-my-zsh.sh
+# interactive CLI git
+zplug "wfxr/forgit",						defer:1
 
-# User configuration
+# autostart tmux
+zplug "zpm-zsh/tmux"
+
+# auto closes delimiters
+zplug 'hlissner/zsh-autopair',				defer:2
+
+# my favourite zsh theme
+zplug "themes/steeef",						from:oh-my-zsh
+
+# useful git aliases
+zplug "plugins/git",						from:oh-my-zsh
+
+# vi mode plug-in
+zplug "plugins/vi-mode",					from:oh-my-zsh
+
+# some oh-my-zsh useful plug-ins
+zplug "lib/completion",						from:oh-my-zsh
+zplug "lib/grep",							from:oh-my-zsh
+zplug "lib/history",						from:oh-my-zsh
+zplug "lib/directories",					from:oh-my-zsh
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load
+####  end zplug setup
 
 #
+# Custom configurations
+#
+
 # Exports
-#
-if [ -f ~/.exports ]; then
-    source ~/.exports
-fi
+[[ -f ~/.exports ]] && source ~/.exports
 
-#
 # Aliases
-#
-if [ -f ~/.aliases ]; then
-    source ~/.aliases
-fi
+[[ -f ~/.aliases ]] && source ~/.aliases
 
-#
-# Local configs
-#
-if [ -f ~/.zshrc_local ]; then
-    source ~/.zshrc_local
-fi
+# Local configurations
+[[ -f ~/.zshrc_local ]] && source ~/.zshrc_local
 
-# asdf
-[ -e $HOME/.dotfiles/zsh/asdf.sh ] && source $HOME/.dotfiles/zsh/asdf.sh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# FZF
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh

@@ -1,3 +1,6 @@
 alias v='nvim'
 alias f='v `fzf -i`'
 alias -g Z='| fzf' # change Z to whatever you like
+
+alias ls='ls --color=tty'
+
