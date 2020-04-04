@@ -6,6 +6,7 @@
 - clean: ['~', '~/.config']
 
 - shell:
+    - [./scripts/install-bat.sh, Installing bat!]
     - [./scripts/preconditions.sh, Checking preconditions]
     - [./scripts/install-packages.sh, Installing aditional software]
     - [./scripts/install-anaconda.sh, Installing python support]
