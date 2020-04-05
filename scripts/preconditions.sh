@@ -7,7 +7,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
     # neovim ppa
     grep neovim /etc/apt/sources.list.d/* >/dev/null 2>&1 \
-        || sudo add-apt-repository ppa:neovim-ppa/stable -y
+        || sudo add-apt-repository ppa:neovim-ppa/unstable -y
 
     # uninstall legacy nodejs
     ! dpkg -l | grep nodejs > /dev/null 2>&1 \
