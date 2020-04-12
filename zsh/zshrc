@@ -56,6 +56,15 @@ zplug load
 # Custom configurations
 #
 
+# mac keybindings
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	bindkey -e
+	bindkey "[D" backward-word
+	bindkey "[C" forward-word
+	bindkey "^[a" beginning-of-line
+	bindkey "^[e" end-of-line
+fi
+
 # Exports
 [[ -f ~/.exports ]] && source ~/.exports
 
