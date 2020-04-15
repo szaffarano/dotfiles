@@ -56,13 +56,17 @@ zplug load
 # Custom configurations
 #
 
+setopt rmstarsilent
+
 # mac keybindings
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	bindkey -e
-	bindkey "[D" backward-word
-	bindkey "[C" forward-word
+	bindkey "^[^[[D" backward-word
+	bindkey "^[^[[C" forward-word
+
 	bindkey "^[a" beginning-of-line
 	bindkey "^[e" end-of-line
+
+	bindkey "ç" fzf-cd-widget
 fi
 
 # Exports
