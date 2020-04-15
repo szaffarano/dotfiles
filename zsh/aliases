@@ -1,4 +1,7 @@
 alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
+
 alias f='v `fzf -i`'
 alias -g Z='| fzf' # change Z to whatever you like
 
