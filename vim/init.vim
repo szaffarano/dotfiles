@@ -58,9 +58,9 @@ augroup pandoc_syntax
 augroup END
 
 " Install Plug plug-in manager
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   augroup vimplug_installed
     autocmd!
@@ -69,7 +69,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 " install plug-ins
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 source ~/.config/nvim/plugins.vim
 call plug#end()
 
