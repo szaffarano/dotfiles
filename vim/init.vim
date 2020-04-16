@@ -18,7 +18,6 @@ set nowritebackup			" No backups
 set nowritebackup			" No backups
 set noswapfile				" No backups
 
-set spell
 set spelllang=en,es,de_de
 
 nnoremap <silent> <F12> :set spell!<cr>
