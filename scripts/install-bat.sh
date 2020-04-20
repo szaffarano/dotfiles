@@ -23,7 +23,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	fi
 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	brew install bac
+	brew install bat
 else
     echo >&2 "Unsupported OS"
     exit 1
