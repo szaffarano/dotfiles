@@ -1,3 +1,8 @@
+" install plug-ins
+call plug#begin('~/.local/share/nvim/plugged')
+source ~/.config/nvim/plugins.vim
+call plug#end()
+
 set showmatch               " show matching brackets.
 set ignorecase              " case insensitive matching
 set mouse=v                 " middle-click paste with mouse
@@ -23,7 +28,7 @@ set spelllang=en,es,de_de
 nnoremap <silent> <F12> :set spell!<cr>
 inoremap <silent> <F12> <C-O>:set spell!<cr>
 
-colorscheme desert
+colorscheme gruvbox
 
 set undolevels=1000
 
@@ -32,6 +37,8 @@ filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting
 
 set guicursor=
+
+set autowrite
 
 " Remap escape
 inoremap jk <Esc>
@@ -66,9 +73,4 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   augroup END
 endif
-
-" install plug-ins
-call plug#begin('~/.local/share/nvim/plugged')
-source ~/.config/nvim/plugins.vim
-call plug#end()
 
