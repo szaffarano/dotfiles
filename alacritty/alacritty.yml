@@ -22,63 +22,46 @@ scrolling:
 
 font:
   normal:
-    family: Ubuntu Mono
+    family: Source Code Pro for Powerline
     style: Regular
 
-  size: 8
+  size: 10
 
   use_thin_strokes: true
 
 draw_bold_text_with_bright_colors: true
 
+# color_start
+# blood_moon.yaml
+# Colors (Blood Moon)
 colors:
+  # Default colors
   primary:
-    background: '#000000'
-    foreground: '#eaeaea'
-    dim_foreground: '#9a9a9a'
-    bright_foreground: '#ffffff'
+    background: '0x10100E'
+    foreground: '0xC6C6C4'
 
-  cursor:
-    text: '#000000'
-    cursor: '#ffffff'
-
-  vi_mode_cursor:
-    text: '#000000'
-    cursor: '#ffffff'
-
-  selection:
-    text: '#eaeaea'
-    background: '#404040'
-
+  # Normal colors
   normal:
-    black: '#000000'
-    red: '#d54e53'
-    green: '#b9ca4a'
-    yellow: '#e6c547'
-    blue: '#7aa6da'
-    magenta: '#c397d8'
-    cyan: '#70c0ba'
-    white: '#eaeaea'
+    black:   '0x10100E'
+    red:     '0xC40233'
+    green:   '0x009F6B'
+    yellow:  '0xFFD700'
+    blue:    '0x0087BD'
+    magenta: '0x9A4EAE'
+    cyan:    '0x20B2AA'
+    white:   '0xC6C6C4'
 
+  # Bright colors
   bright:
-    black: '#666666'
-    red: '#ff3334'
-    green: '#9ec400'
-    yellow: '#e7c547'
-    blue: '#7aa6da'
-    magenta: '#b77ee0'
-    cyan: '#54ced6'
-    white: '#ffffff'
-
-  dim:
-    black: '#000000'
-    red: '#8c3336'
-    green: '#7a8530'
-    yellow: '#97822e'
-    blue: '#506d8f'
-    magenta: '#80638e'
-    cyan: '#497e7a'
-    white: '#9a9a9a'
+    black:   '0x696969'
+    red:     '0xFF2400'
+    green:   '0x03C03C'
+    yellow:  '0xFDFF00'
+    blue:    '0x007FFF'
+    magenta: '0xFF1493'
+    cyan:    '0x00CCCC'
+    white:   '0xFFFAFA'
+# color_end
 
 background_opacity: 1.0
 
