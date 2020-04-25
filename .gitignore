@@ -2,3 +2,4 @@ vim/plugged
 vim/view
 **/.gitconfig.local
 vim/spell
+vim/.netrwhist
