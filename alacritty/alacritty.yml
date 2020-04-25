@@ -22,10 +22,10 @@ scrolling:
 
 font:
   normal:
-    family: Source Code Pro
+    family: Ubuntu Mono
     style: Regular
 
-  size: 7.5
+  size: 8
 
   use_thin_strokes: true
 

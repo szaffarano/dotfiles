@@ -43,6 +43,8 @@
 
     ~/.config/base16-shell: lib/base16-shell
 
+    ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yml
+
     # Scala
     ~/.scalastyle-config.xml: scala/scalastyle-config.xml
 
