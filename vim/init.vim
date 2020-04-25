@@ -27,9 +27,9 @@ set spelllang=en,es,de_de
 
 nnoremap <silent> <F12> :set spell!<cr>
 inoremap <silent> <F12> <C-O>:set spell!<cr>
-set nospell
 
-"colorscheme gruvbox
+set nospell					" spell off by default
+
 colorscheme onedark
 let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
