@@ -23,8 +23,8 @@
 
 - link:
     # tmux
-    ~/.tmux.conf: lib/tmux/tmux.conf
-    ~/.tmux/plugins/tpm:lib/tpm
+    ~/.tmux.conf: tmux/tmux.conf
+    ~/.tmux/plugins/tpm: lib/tpm
 
     # git
     ~/.gitconfig: git/gitconfig
@@ -36,13 +36,10 @@
     ~/.config/nvim: vim
 
     # zsh
-    ~/.oh-my-zsh: lib/oh-my-zsh/
     ~/.zshrc: zsh/zshrc
     ~/.exports: zsh/exports
     ~/.aliases: zsh/aliases
     ~/.p10k.zsh: zsh/p10k.zsh
-
-    ~/.config/base16-shell: lib/base16-shell
 
     ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yml
 

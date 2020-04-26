@@ -26,3 +26,5 @@ FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-a:select-all'"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-y:execute-silent(echo {+} | $CLIPBOARD)'"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-v:execute(code {+})'"
+
+POWERLINE_HOME="$(pip show powerline-status | grep Location | cut -d" " -f2)/powerline"
