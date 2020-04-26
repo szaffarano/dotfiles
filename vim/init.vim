@@ -77,3 +77,6 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   augroup END
 endif
+
+let g:sh_fold_enabled=1
+set foldlevelstart=1
