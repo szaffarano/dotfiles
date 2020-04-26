@@ -23,8 +23,8 @@
 
 - link:
     # tmux
-    ~/.tmux.conf: lib/tmux/.tmux.conf
-    ~/.tmux.conf.local: tmux/tmux.conf.local
+    ~/.tmux.conf: lib/tmux/tmux.conf
+    ~/.tmux/plugins/tpm:lib/tpm
 
     # git
     ~/.gitconfig: git/gitconfig
