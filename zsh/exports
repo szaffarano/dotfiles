@@ -1,17 +1,20 @@
 
-EDITOR=vim
-GOPATH=$HOME/projects/go
+export EDITOR=nvim
+export GOPATH=$HOME/projects/go
+
 PATH="${HOME}/bin:$PATH"
 PATH="${HOME}/.local/anaconda3/bin:$PATH"
 PATH="${HOME}/.local/bin:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
+export PATH
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   CLIPBOARD="xclip -in -selection clipboard"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   CLIPBOARD="pbcopy"
 fi
+export CLIPBOARD
 
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --layout=reverse"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --info=inline"
@@ -26,5 +29,6 @@ FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-a:select-all'"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-y:execute-silent(echo {+} | $CLIPBOARD)'"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-v:execute(code {+})'"
+export FZF_DEFAULT_OPTS
 
-POWERLINE_HOME="$(pip show powerline-status | grep Location | cut -d" " -f2)/powerline"
+export POWERLINE_HOME="$(pip show powerline-status | grep Location | cut -d" " -f2)/powerline"
