@@ -25,6 +25,7 @@ PACKAGES[fonts-powerline]="fonts-powerline"
 PACKAGES[git-secret]="git-secret"
 PACKAGES[youtube-dl]="youtube-dl"
 PACKAGES[sysstat]="sysstat"
+PACKAGES[xsel]="xsel"
 
 PKGS=
 
@@ -45,7 +46,6 @@ function addIfNotInstalled {
       found=1
     fi
   fi
-  echo $pkg: $found
   if [ ${found} -eq 0 ]; then
     PKGS="${PKGS} ${pkg}"
   fi
@@ -56,6 +56,8 @@ do
     addIfNotInstalled $i
 done
 
+PKGS=$(echo $PKGS | sed 's/ *$//g')
+echo "PKGS: >$PKGS<"
 if [ -n "$PKGS" ]; then
   if [ ${IS_GENTOO} -eq 1 ]; then
     sudo emerge --sync && \
