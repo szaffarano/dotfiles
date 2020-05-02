@@ -30,5 +30,3 @@ FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-y:execute-silent(echo {+} | $CL
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-v:execute(code {+})'"
 export FZF_DEFAULT_OPTS
-
-export POWERLINE_HOME="$(pip show powerline-status | grep Location | cut -d" " -f2)/powerline"
