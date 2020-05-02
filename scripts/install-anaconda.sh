@@ -23,7 +23,6 @@ addPipIfNotInstalled "black"
 addPipIfNotInstalled "flake8"
 addPipIfNotInstalled "vim-vint"
 addPipIfNotInstalled "yamllint"
-addPipIfNotInstalled "powerline-status"
 
 if [ -n "$PIP_PKGS" ]; then
   echo "installing packages $PIP_PKGS"
