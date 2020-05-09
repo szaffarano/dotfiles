@@ -6,20 +6,23 @@
 - clean: ['~', '~/.config']
 
 - shell:
+  # @TODO
+  # - [./scripts/preconditions.sh, Checking preconditions]
+  # @TODO
+  # - [./scripts/install-fonts.sh, Installing fonts!]
     - [./scripts/install-bat.sh, Installing bat!]
-    - [./scripts/preconditions.sh, Checking preconditions]
-    - [./scripts/install-packages.sh, Installing aditional software]
-    - [./scripts/install-anaconda.sh, Installing python support]
+    - [./scripts/install-zplug.sh, Installing zplug!]
     - [./scripts/install-asdf.sh, Installing asdf]
     - [./scripts/install-golang.sh, Installing go!]
     - [./scripts/install-java.sh, Installing java!]
-    - [./scripts/install-kotlin.sh, Installing kotlin!]
-    - [./scripts/install-nodejs.sh, Installing nodejs!]
-    - [./scripts/install-scala.sh, Installing scala!]
     - [./scripts/install-shellcheck.sh, Installing shellcheck!]
     - [./scripts/install-fzf.sh, Installing zfz!]
     - [git submodule update --init --recursive, Installing submodules]
     - [vim +PlugInstall +qall, Installing vim plugins]
+  # @TODO
+    #- [./scripts/install-packages.sh, Installing aditional software]
+    #- [./scripts/install-anaconda.sh, Installing python support]
+    #- [./scripts/install-nodejs.sh, Installing nodejs!]
 
 - link:
     # tmux
@@ -35,6 +38,9 @@
     # vim
     ~/.config/nvim: vim
 
+    # i3
+    ~/.config/i3: i3
+
     # zsh
     ~/.zshrc: zsh/zshrc
     ~/.exports: zsh/exports
@@ -43,11 +49,5 @@
 
     ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yml
 
-    # Scala
-    ~/.scalastyle-config.xml: scala/scalastyle-config.xml
-
-    # flake8
-    ~/.config/flake8: python/flake8
-
     # bin
-    ~/bin: bin
+    ~/.local/bin: bin
