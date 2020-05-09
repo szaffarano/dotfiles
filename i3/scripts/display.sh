@@ -10,11 +10,13 @@ function die {
 }
 
 read -r -d '' USAGE << EOM
-You must specify either the 'mirror' parameter or the primary display and the layout. Examples:
+You must specify either the 'mirror' parameter or the primary display and the action. Examples:
 
 	$0 mirror
-	$0 HDMI left
-	$0 LAPTOP right
+	$0 hdmi left
+	$0 laptop right
+	$0 hdmi off
+	$0 laptop off
 
 EOM
 
@@ -22,11 +24,11 @@ if [[ $# -eq 1 ]]; then
 	if [[ "$1" != "mirror" ]]; then
 		die "$USAGE"
 	else
-		layout=$1
+		action=$1
 	fi
 elif [[ $# -eq 2 ]]; then
 	primary="$1"
-	layout="$2"
+	action="$2"
 else
 	die "$USAGE"
 fi
@@ -56,13 +58,15 @@ if [[ "$primary" = "laptop" ]]; then
 elif [[ "$primary" = "hdmi" ]]; then
 	primary="$HDMI"
 	other="$LAPTOP"
-elif [[ "$layout" != "mirror" ]]; then
+elif [[ "$action" != "mirror" ]]; then
 	die "$USAGE"
 fi
 
-case "$layout" in
+opts="--output $primary --auto --output $other --auto"
+case "$action" in
 	"mirror")
-		xrandr --output "$HDMI" --same-as "$LAPTOP"
+		xrandr --output "$HDMI" --auto --output "$LAPTOP" --auto --output "$HDMI" --same-as "$LAPTOP"
+		exit
 		;;
 	"left")
 		side="--left-of"
@@ -70,9 +74,13 @@ case "$layout" in
 	"right")
 		side="--right-of"
 		;;
+	"off")
+		opts="--output $primary --off --output $other --auto"
+		side="--right-of"
+		;;
 	*)
-		die "$layout: unsupported layout"
+		die "$action: unsupported action"
 		;;
 esac
 
-xrandr --output "$primary" --primary --output "$primary" $side  "$other"
+xrandr $opts --output $primary --primary --output $primary $side $other
