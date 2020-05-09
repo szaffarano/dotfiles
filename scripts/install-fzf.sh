@@ -6,7 +6,7 @@ if [ -e "$FZF_SRC" ]; then
 	cd "$FZF_SRC" && git pull
 else	
 	git clone --depth 1 https://github.com/junegunn/fzf.git "$FZF_SRC"
-	cd "$FZF_SRC" || exit
+	cd "$FZF_SRC" || exit 1
 fi
 
-"$FZF_SRC"/install --all
+"$FZF_SRC"/install --bin
