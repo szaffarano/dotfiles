@@ -195,12 +195,14 @@ mode "$mode_display" {
     bindsym 2 exec --no-startup-id $scripts/display.sh hdmi   right, mode "default"
     bindsym 3 exec --no-startup-id $scripts/display.sh laptop left,  mode "default"
     bindsym 4 exec --no-startup-id $scripts/display.sh laptop right, mode "default"
+    bindsym 5 exec --no-startup-id $scripts/display.sh hdmi	  off,   mode "default"
+    bindsym 6 exec --no-startup-id $scripts/display.sh laptop off,   mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-set $mode_display Monitor Layout: m) Mirror, 1) HDMI left  2) HDMI right 3) Laptop left 4) Laptop right
+set $mode_display Display: m) Mirror 1) Mon left 2) Mon right 3) Lap left 4) Lap right 5) Mon off 6) Lap off
 exec --no-startup-id $scripts/display.sh hdmi left
 
 
