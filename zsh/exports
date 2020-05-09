@@ -2,7 +2,7 @@
 export EDITOR=nvim
 export GOPATH=$HOME/projects/go
 
-PATH="${HOME}/bin:$PATH"
+PATH="${HOME}/.local/bin:$PATH"
 PATH="${HOME}/.local/anaconda3/bin:$PATH"
 PATH="${HOME}/.local/bin:$PATH"
 PATH="/usr/local/bin:$PATH"
