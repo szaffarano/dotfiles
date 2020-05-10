@@ -75,7 +75,7 @@ case "$action" in
 		side="--right-of"
 		;;
 	"off")
-		opts="--output $primary --off --output $other --auto"
+		opts="--output $primary --off --output $other --auto --output $other --primary"
 		side="--right-of"
 		;;
 	*)
@@ -83,4 +83,4 @@ case "$action" in
 		;;
 esac
 
-xrandr $opts --output $primary --primary --output $primary $side $other
+xrandr $opts --output "$primary" --primary --output "$primary" "$side" "$other"
