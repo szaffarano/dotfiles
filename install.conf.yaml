@@ -41,6 +41,10 @@
     # i3
     ~/.config/i3: i3
 
+    # gpg
+    ~/.gnupg/gpg.conf: gnupg/gpg.conf
+    ~/.gnupg/gpg-agent.conf: gnupg/gpg-agent.conf
+
     # zsh
     ~/.zshrc: zsh/zshrc
     ~/.exports: zsh/exports
@@ -48,6 +52,11 @@
     ~/.p10k.zsh: zsh/p10k.zsh
 
     ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yml
+
+    ~/.config/dunst/dunstrc: dunst/dunstrc
+
+    ~/.config/copyq/copyq.conf: copyq/copyq.conf 
+    ~/.config/copyq/copyq-commands.ini: copyq/copyq-commands.ini
 
     # bin
     ~/.local/bin: bin

@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-IMG="$HOME/.cache/locked.png"
+BASE="$HOME/.cache/lock"
+IMG="$BASE/locked.png"
+
+[[ -e "$BASE" ]] || mkdir -p "$BASE"
+[[ -e "$IMG" ]] && rm "$IMG"
 
 # Take a screenshot
 scrot "$IMG"

@@ -4,11 +4,75 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 #############################################################################
 
+##########
+# colors #
+##########
+
+# get color from xressource configuration - variable_name xressource_color fallback
+
+# special
+set_from_resource $foreground foreground #C6C6C6
+set_from_resource $background background #1C1C1C
+set_from_resource $cursorColor cursorColor #C6C6C6
+
+# black
+set_from_resource $black1 color0 #303030
+set_from_resource $black2 color8 #444444
+set $trueblack #000000
+
+# red
+set_from_resource $red1 color1 #d75f5f
+set_from_resource $red2 color9 #d75f5f
+
+# green
+set_from_resource $green1 color2 #87AF87
+set_from_resource $green2 color10 #87AF87
+
+# yellow
+set_from_resource $yellow1 color3 #ffd75f
+set_from_resource $yellow2 color11 #ffd75f
+
+# blue
+set_from_resource $blue1 color4 #87afd7
+set_from_resource $blue2 color12 #87afd7
+
+# magenta
+set_from_resource $cyan1 color5 #afafd7
+set_from_resource $cyan2 color13 #afafd7
+
+# cyan
+set_from_resource $cyan1 color6 #afd7ff
+set_from_resource $cyan2 color14 #afd7ff
+
+# white
+set_from_resource $white1 color7 #4E4E4E
+set_from_resource $white2 color15 #ffffff
+
+##########
+# DESIGN #
+##########
+
+# hide borders
+hide_edge_borders both
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #333333 $white1 $white2 #285577
+client.focused_inactive #333333 $background $foreground #484e50
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           $red1   $red1   $white2 $red1     $red1
+client.placeholder      #000000 #0c0c0c $white2 #000000   #0c0c0c
+
+title_align	center
+
 set $mod		Mod4
 set $config		~/.config/i3/
 set $scripts	~/.config/i3/scripts
 
-font pango:DejaVu Sans Mono 10
+font pango:DejaVuSans, FontAwesome 10
+
+# fix unsupported XEmbedded trayicons on electron and similar engines
+# see: https://git.sr.ht/~steef/snixembed
+exec --no-startup-id snixembed --fork > /tmp/snixembed.log 2>&1 
 
 # lock the screen after 5 minutes
 exec --no-startup-id xset s on; xset 120
@@ -16,17 +80,26 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- $scripts/lock-screen.sh
 exec --no-startup-id pasystray
 exec --no-startup-id copyq
 exec --no-startup-id dropbox start
-exec --no-startup-id ~/.local/jetbrains-toolbox-1.17.6856/jetbrains-toolbox
+exec --no-startup-id run_keybase -a
+exec --no-startup-id alacritty -t Work 
+exec_always --no-startup-id $scripts/wallpaper.sh
+exec --no-startup-id ~/.joplin/Joplin.AppImage
 
 # keyboard layout us international
 exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option nodeadkeys
 
-# Use pactl to adjust volume in PulseAudio.
+# Volume Controls
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute			exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute		exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume	exec pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume	exec pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute			exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute		exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Media player controls
+bindsym XF86AudioPlay			exec playerctl play
+bindsym XF86AudioPause			exec playerctl stop
+bindsym XF86AudioNext			exec playerctl next
+bindsym XF86AudioPrev			exec playerctl previous
 
 # Use xbacklight to adjust display backlight
 bindsym XF86MonBrightnessUp     exec xbacklight -inc 20
@@ -35,14 +108,16 @@ bindsym XF86MonBrightnessDown   exec xbacklight -dec 20
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+focus_follows_mouse no
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# start rofi instead of dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # change focus
 bindsym $mod+h				focus left
@@ -93,40 +168,45 @@ bindsym $mod+a				focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $terms      "1: terms"
-set $web        "2: web"
-set $multimedia "3: multi"
-set $mail       "4: mails"
-set $office     "5: office"
-set $mindmap    "6: mindmap"
+set $web        "1: web"
+set $dev		"2:  dev"
+set $terms      "3: terms"
+set $multimedia "4: multi"
+set $mail       "5: mails"
+set $office     "6: office"
+set $mindmap    "7: mindmap"
+set $ws8		"8"
+set $ws9		"9"
+set $ws0		"0"
 
 # switch to workspace
-bindsym $mod+1 workspace number $terms
-bindsym $mod+2 workspace number $web
-bindsym $mod+3 workspace number $multimedia
-bindsym $mod+4 workspace number $mail
-bindsym $mod+5 workspace number $office
-bindsym $mod+6 workspace number $mindmap
-bindsym $mod+7 workspace number $ws7
+bindsym $mod+1 workspace number $web
+bindsym $mod+2 workspace number $dev
+bindsym $mod+3 workspace number $terms
+bindsym $mod+4 workspace number $multimedia
+bindsym $mod+5 workspace number $mail
+bindsym $mod+6 workspace number $office
+bindsym $mod+7 workspace number $mindmap
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $terms
-bindsym $mod+Shift+2 move container to workspace number $web
-bindsym $mod+Shift+3 move container to workspace number $multimedia
-bindsym $mod+Shift+4 move container to workspace number $mail
-bindsym $mod+Shift+5 move container to workspace number $office
-bindsym $mod+Shift+6 move container to workspace number $mindmap
-bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+1 move container to workspace number $web
+bindsym $mod+Shift+2 move container to workspace number $dev
+bindsym $mod+Shift+3 move container to workspace number $terms
+bindsym $mod+Shift+4 move container to workspace number $multimedia
+bindsym $mod+Shift+5 move container to workspace number $mail
+bindsym $mod+Shift+6 move container to workspace number $office
+bindsym $mod+Shift+7 move container to workspace number $mindmap
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # default workspaces output
-workspace $terms		output HDMI1
 workspace $web			output HDMI1
+workspace $dev			output HDMI1
+workspace $terms		output HDMI1
 workspace $multimedia	output eDP1
 workspace $mail			output eDP1
 workspace $office		output eDP1
@@ -205,17 +285,50 @@ mode "$mode_display" {
 set $mode_display Display: m) Mirror 1) Mon left 2) Mon right 3) Lap left 4) Lap right 5) Mon off 6) Lap off
 exec --no-startup-id $scripts/display.sh hdmi left
 
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+    i3bar_command i3bar --transparency
+
+	position top
 	tray_output primary
+
 	status_command i3status --config $config/i3status.conf
+	colors {
+		background			$black2
+		statusline			$white2
+        separator			$white2 
+
+        focused_workspace  $black2		$black2		$cyan2
+        active_workspace   $black2		$black1		$white2
+        inactive_workspace $black2		$black2		$foreground
+        urgent_workspace   $red1		$red1		$white2
+        binding_mode       $black1		$black1		$red2
+    }
 }
+
+# assign windows to an specific workspace
+assign		[class="Google-chrome"]				→	$web
+assign		[class="jetbrains-.*"]				→	$dev
+assign		[class="Code"]						→	$office
+assign		[class="Alacritty" title="Work"]	→	$terms
+assign		[class="Joplin" instance="joplin"]	→ $office
+assign		[class="libreoffice"]				→ $office
+for_window	[class="Spotify"] move to workspace		$multimedia
 
 # styles
 for_window [class="^Pavucontrol$"] floating enable
 for_window [class="^copyq$"] floating enable
+for_window [class="^Keybase$"] floating enable
 for_window [class="^JetBrains Toolbox$"] floating enable
+for_window [title="tracker - .*"] floating enable
+for_window [class="^.*"] border pixel 2
+for_window [class="jetbrains-idea" title="win0"] floating enable;
+for_window [class="jetbrains-goland" title="win0"] floating enable;
 
-#for_window [class="^.*"] border pixel 2
+# scratchpads
+for_window [class="Alacritty" title="htop_scratchpad"] move to scratchpad, border none
+bindsym $mod+Shift+p [class="Alacritty" title="htop_scratchpad"] scratchpad show
+exec alacritty -t htop_scratchpad -e htop
+
+bindsym $mod+Shift+minus move scratchpad
