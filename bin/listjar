@@ -6,24 +6,12 @@ $(basename "$0") list all files inside a jarfile.
 Usage:
 	$0 <jar file>
 EOM
+export USAGE
 
-function usage() {
-	#echo "Usage: $0 <jar file>"
-	echo "$USAGE"
-	exit 1
-}
+BASE=$( cd "$(dirname "$0")" || exit; pwd )
 
-function die() {
-	echo "$1"
-	exit "$2"
-}
-
-function checkParams() {
-	if [[ $1 -ne $2 ]]; then
-		usage
-		exit 1
-	fi
-}
+# shellcheck source=/dev/null
+source "$BASE/common.sh"
 
 checkParams $# 1
 

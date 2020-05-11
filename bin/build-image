@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+read -r -d '' USAGE << EOM
+$(basename "$0") builds a cloudhub image 
+
+Usage:
+	$0 <mule.family> <mule.version> <mule.extension.version>
+
+Example:
+	$0 4 4.2.1 4.2.1-5
+EOM
+export USAGE
+
+BASE=$( cd "$(dirname "$0")" || exit; pwd )
+
+# shellcheck source=/dev/null
+source "$BASE/common.sh"
+
+checkParams $# 3
+
+MULE_FAMILY=$1
+MULE_VERSION=$2
+MULE_EXT_VERSION=$3
+
+mvn clean install \
+	-Dmule.family="$MULE_FAMILY" \
+	-Dmule.version="$MULE_VERSION" \
+	-Dmule.extension.version="$MULE_EXT_VERSION"

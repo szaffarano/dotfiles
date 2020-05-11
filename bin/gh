@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+
+read -r -d '' USAGE << EOM
+$(basename "$0") gome git helpers commands
+
+Commands:
+ grep: list commits that match with the specified pattern
+ files: list files modified by commits that match with the specified pattern
+
+Usage:
+	$0 grep <tag> <pattern>
+	$0 files <tag> <pattern>
+EOM
+export USAGE
+
+BASE=$( cd "$(dirname "$0")" || exit; pwd )
+
+# shellcheck source=/dev/null
+source "$BASE/common.sh"
+
+checkParams $# 3
+
+command="$1"
+tag="$2"
+pattern="$3"
+
+case $command in
+	"grep")
+		git log "$tag" --pretty='format:%h %ad %s' --grep "$pattern"
+		;;
+	"files")
+		git log "$tag"  --grep "$pattern" --name-only
+		;;
+	*)
+		die "$command: unknown command" 1
+esac
