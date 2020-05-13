@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+read -r -d '' USAGE << EOM
+$(basename "$0") list all classes inside a file or directory
+
+Usage:
+	$0 <jar file or directory>
+EOM
+export USAGE
+
+BASE=$( cd "$(dirname "$0")" || exit; pwd )
+
+# shellcheck source=/dev/null
+source "$BASE/common.sh"
+
+checkParams $# 1
+
+file=$1
+
+if [[ -f $file ]]; then
+	jar tf "$file" | grep class$ | grep -v "\\$"
+elif [[ -d $file ]]; then
+	find "$file" | grep class$ | grep -v "\\$"
+else
+	die "$file is neither a file or directory" 2
+fi

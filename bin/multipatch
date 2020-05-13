@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+
+read -r -d '' USAGE << EOM
+$(basename "$0") crate a multimodule patch
+
+Usage:
+	$0 <tag> <name> <num of commits to include>
+EOM
+export USAGE
+
+BASE=$( cd "$(dirname "$0")" || exit; pwd )
+
+# shellcheck source=/dev/null
+source "$BASE/common.sh"
+
+patch_handling=~/Projects/tools/mule-runtime-dev-tools/patch_handling.sh
+
+[[ -f "$patch_handling" ]] || die "$patch_handling: not found" 1
+
+checkParams $# 3
+
+tag="$1"
+name="$2"
+n_commits="$3"
+
+source $patch_handling 
+
+echo createMultiModulePatch "$tag" "$name" "$(git log HEAD~"$n_commits"..HEAD --oneline  --reverse | cut -d" " -f 1 | tr "\n" " ")"
