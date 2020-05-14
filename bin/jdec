@@ -1,6 +1,12 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 DIRNAME=$(dirname "$0")
 JAR="cfr-0.149.jar"
 
-java -jar "$DIRNAME/$JAR" "$@" 
+if [[ "$1" = "d" ]]; then
+	ARGS=( "--outputdir"  "${@:2}" )
+else
+	ARGS=( "${@}" )
+fi
+
+java -jar "$DIRNAME/$JAR" "${ARGS[@]}"

@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+read -r -d '' USAGE << EOM
+$(basename "$0") switch uber project to specific branch
+
+$0 <file>
+
+Where <file> is a property-like file with the format
+
+submodule1=branch1
+submodule2=branch2
+...
+EOM
+export USAGE
+
+BASE=$( cd "$(dirname "$0")" || exit; pwd )
+
+# shellcheck source=/dev/null
+source "$BASE/common.sh"
+
+checkParams $# 1
+
+file="$1"
+
+while read -r p; do
+	if echo "$p$" | grep "=" > /dev/null; then
+		project=$(echo "$p" | cut -d"=" -f 1 | sed s"/_/-/"g)
+		branch=$(echo "$p" | cut -d"=" -f 2- | sed s"/\"//"g)
+		echo "Switching $project"
+		if cd "$project"; then
+			if ! git switch "$branch"; then
+				echo "Error switching to $branch in $project"
+				read -r < /dev/tty
+			fi
+			cd ..
+		else
+			echo "Error accessing to $project from $(pwd)"
+			read -r < /dev/tty
+		fi
+	fi
+done < "$file"

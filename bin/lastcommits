@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+
+read -r -d '' USAGE << EOM
+$(basename "$0") list the last N commits
+
+Usage:
+	$0 <num of commits>
+EOM
+export USAGE
+
+BASE=$( cd "$(dirname "$0")" || exit; pwd )
+
+# shellcheck source=/dev/null
+source "$BASE/common.sh"
+
+checkParams $# 1
+
+n_commits="$1"
+
+commits="$(git log HEAD~"$n_commits"..HEAD --oneline  --reverse | cut -d" " -f 1 | tr "\n" " ")"
+
+echo "$commits"

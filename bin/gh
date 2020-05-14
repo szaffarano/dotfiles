@@ -2,7 +2,7 @@
 
 
 read -r -d '' USAGE << EOM
-$(basename "$0") gome git helpers commands
+$(basename "$0") some git helpers commands
 
 Commands:
  grep: list commits that match with the specified pattern
@@ -14,20 +14,39 @@ Usage:
 EOM
 export USAGE
 
+function grepAndLog {
+	tag=$1
+	pattern=$2
+	git log "$tag" --pretty='format:%h %ad %s' --grep "$pattern"
+}
+
 BASE=$( cd "$(dirname "$0")" || exit; pwd )
 
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
 
-checkParams $# 3
+checkParamsAtLeast $# 2
 
 command="$1"
 tag="$2"
-pattern="$3"
+patterns=( "${@:3}" )
 
 case $command in
 	"grep")
-		git log "$tag" --pretty='format:%h %ad %s' --grep "$pattern"
+		if [[ ${#patterns[@]} -gt 1 ]]; then
+			for pattern in "${patterns[@]}"; do
+				echo "### $pattern"
+				grepAndLog "$tag" "$pattern"
+			done
+		else
+			grepAndLog "$tag" "${patterns[@]}"
+		fi
+		;;
+	"classes")
+		git show --oneline --name-only "${@:2}" | tail -n +2 | grep -v test | sed -E -e s"/.*main\/java\/(.*)\.java/\1.class \1\$*.class/"g | tr "\n" " "
+		;;
+	"modules")
+		git show --oneline --name-only "${@:2}" | tail -n +2 | sed -E s"/^(.*)\/src\/.*/\1/"g | sort -u
 		;;
 	"files")
 		git log "$tag"  --grep "$pattern" --name-only

@@ -11,6 +11,14 @@ function die() {
 	exit "$2"
 }
 
+function checkParamsAtLeast() {
+	if [[ $1 -lt $2 ]]; then
+		usage
+		exit 1
+	fi
+}
+
+
 function checkParams() {
 	if [[ $1 -ne $2 ]]; then
 		usage

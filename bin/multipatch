@@ -14,16 +14,16 @@ BASE=$( cd "$(dirname "$0")" || exit; pwd )
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
 
-patch_handling=~/Projects/tools/mule-runtime-dev-tools/patch_handling.sh
-
-[[ -f "$patch_handling" ]] || die "$patch_handling: not found" 1
-
 checkParams $# 3
+
+lastcommits="$BASE/lastcommits"
+
+[[ -e $lastcommits ]] || die "$lastcommits: not found" 2
 
 tag="$1"
 name="$2"
 n_commits="$3"
 
-source $patch_handling 
+commits=$(lastcommits "$n_commits")
 
-echo createMultiModulePatch "$tag" "$name" "$(git log HEAD~"$n_commits"..HEAD --oneline  --reverse | cut -d" " -f 1 | tr "\n" " ")"
+echo "createMultiModulePatch $tag $name $commits"

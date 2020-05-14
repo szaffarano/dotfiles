@@ -11,8 +11,8 @@ if [ $# -eq 1 ];then
 	SEARCH_DIR="."
 	PATTERN="$1"
 elif [ $# -eq 2 ]; then
-	SEARCH_DIR="$1"
-	PATTERN="$2"
+	SEARCH_DIR="$2"
+	PATTERN="$1"
 else
 	usage;
 fi
