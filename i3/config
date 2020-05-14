@@ -270,20 +270,19 @@ set		$mode_system		System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) 
 
 # display configuration
 mode "$mode_display" {
-    bindsym m exec --no-startup-id $scripts/display.sh mirror,		 mode "default"
-    bindsym 1 exec --no-startup-id $scripts/display.sh hdmi   left,  mode "default"
-    bindsym 2 exec --no-startup-id $scripts/display.sh hdmi   right, mode "default"
-    bindsym 3 exec --no-startup-id $scripts/display.sh laptop left,  mode "default"
-    bindsym 4 exec --no-startup-id $scripts/display.sh laptop right, mode "default"
-    bindsym 5 exec --no-startup-id $scripts/display.sh hdmi	  off,   mode "default"
-    bindsym 6 exec --no-startup-id $scripts/display.sh laptop off,   mode "default"
+    bindsym 1 exec --no-startup-id autorandr mirror,		mode "default"
+    bindsym 2 exec --no-startup-id autorandr mon-only,		mode "default"
+    bindsym 3 exec --no-startup-id autorandr lap-only,		mode "default"
+    bindsym 4 exec --no-startup-id autorandr pri_mon-lap,	mode "default"
+    bindsym 5 exec --no-startup-id autorandr mon-pri_lap,	mode "default"
+    bindsym 6 exec --no-startup-id autorandr pri_lap-mon,	mode "default"
+    bindsym 7 exec --no-startup-id autorandr lap-pri_mon,	mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-set $mode_display Display: m) Mirror 1) Mon left 2) Mon right 3) Lap left 4) Lap right 5) Mon off 6) Lap off
-exec --no-startup-id $scripts/display.sh hdmi left
+set $mode_display Display: 1. Mirror - 2. Mon Only - 3. Lap Only - 4. [Mon]->Lap - 5. Mon->[Lap] - 6. [Lap]->Mon - 7. Lap->[Mon]
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
