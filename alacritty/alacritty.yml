@@ -22,7 +22,7 @@ scrolling:
 
 font:
   normal:
-    family: Source Code Pro for Powerline
+    family: DejaVuSans Mono
     style: Regular
 
   size: 10
