@@ -121,6 +121,7 @@ bindsym $mod+Shift+q kill
 
 # start rofi instead of dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+F2 exec --no-startup-id rofi -show combi
 
 # change focus
 bindsym $mod+h				focus left
@@ -318,6 +319,7 @@ for_window	[class="Spotify"] move to workspace		$multimedia
 
 # styles
 for_window [class="^Pavucontrol$"] floating enable
+for_window [class="^Arandr$"] floating enable
 for_window [class="^copyq$"] floating enable
 for_window [class="^Keybase$"] floating enable
 for_window [class="^JetBrains Toolbox$"] floating enable
