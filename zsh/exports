@@ -5,6 +5,7 @@ export GOPATH=$HOME/projects/go
 PATH="${HOME}/.local/bin:$PATH"
 PATH="${HOME}/.local/anaconda3/bin:$PATH"
 PATH="${HOME}/.local/bin:$PATH"
+PATH="${HOME}/.local/Goneovim:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
 export PATH
