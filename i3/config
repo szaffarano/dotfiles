@@ -74,6 +74,9 @@ font pango:DejaVuSans, FontAwesome 10
 # see: https://git.sr.ht/~steef/snixembed
 exec --no-startup-id snixembed --fork > /tmp/snixembed.log 2>&1 
 
+# configure touchpad
+exec --no-startup-id $scripts/touchpad.sh
+
 # lock the screen after 5 minutes
 exec --no-startup-id xset s on; xset 120
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $scripts/lock-screen.sh
