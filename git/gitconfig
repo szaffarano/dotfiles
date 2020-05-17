@@ -45,16 +45,16 @@
 	whitespace = nowarn
 
 [diff]
-	tool = meld
+	tool = vimdiff
 
 [merge]
-	tool = meld
+	tool = vimdiff
+
+[difftool]
+	prompt = false
 
 [mergetool]
 	prompt = false
-
-[difftool]
-	prompt = no
 
 [push]
 	default = simple
