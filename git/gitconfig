@@ -18,7 +18,7 @@
 [color "status"]
 	added = yellow
 	changed = red
-	untracked = blue
+	untracked = cyan
 
 [alias]
 	st = status
@@ -30,9 +30,16 @@
 	lg = log -p
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	logo = log --pretty='format:%h %ad %s'
 	ls = ls-files
+	parent = log --pretty=%P -n 1 
 
 	ign = ls-files -o -i --exclude-standard
+
+	sho = show --name-only
+	cpx = cherry-pick -x
+	cpa = cherry-pick --abort
+	cpc = cherry-pick --continue
 
 [apply]
 	whitespace = nowarn
@@ -44,10 +51,14 @@
 	tool = meld
 
 [mergetool]
-	prompt = no
+	prompt = false
 
 [difftool]
 	prompt = no
 
 [push]
 	default = simple
+
+[log]
+	date = iso
+	abbrevCommit = true
