@@ -3,6 +3,41 @@ call plug#begin('~/.local/share/nvim/plugged')
 source ~/.config/nvim/plugins.vim
 call plug#end()
 
+let mapleader = ","
+
+" clear matched search
+nnoremap <leader><space>  :noh<CR>
+
+" go config
+source ~/.config/nvim/vim-go.vim
+
+"
+" Buffers
+"
+nnoremap <silent> <M-F12> :BufExplorer<CR>
+nnoremap <silent> <F12> :bn<CR>
+nnoremap <silent> <S-F12> :bp<CR>
+nnoremap <Leader>l :ls<CR>
+nnoremap <Leader>b :bp<CR>
+nnoremap <Leader>f :bn<CR>
+nnoremap <Leader>g :e#<CR>
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
+
+" Edit vimr configuration file
+nnoremap <Leader>ve :tabe $MYVIMRC<CR>
+
+" Reload vimr configuration file
+nnoremap <Leader>vr :source $MYVIMRC<CR>
+
 set showmatch               " show matching brackets.
 set ignorecase              " case insensitive matching
 set mouse=v                 " middle-click paste with mouse
@@ -25,14 +60,21 @@ set noswapfile				" No backups
 
 set spelllang=en,es,de_de
 
-nnoremap <silent> <F12> :set spell!<cr>
-inoremap <silent> <F12> <C-O>:set spell!<cr>
+nnoremap <silent> <F11> :set spell!<cr>
+inoremap <silent> <F11> <C-O>:set spell!<cr>
 
 set nospell					" spell off by default
 
-colorscheme onedark
-let g:airline_theme='onedark'
-let g:airline_powerline_fonts = 1
+" airline
+"colorscheme onedark
+colorscheme molokai
+let g:airline_theme                        = 'onedark'
+let g:airline_powerline_fonts              = 0
+let g:airline#extensions#tabline#enabled   = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:rehash256                            = 1
+let g:molokai_original                     = 1
+
 
 set undolevels=1000
 
@@ -42,24 +84,22 @@ syntax on                   " syntax highlighting
 
 set guicursor=
 
-set autowrite
-
 " Remap escape
 inoremap jk <Esc>
 
 " disable header folding
 let g:vim_markdown_folding_disabled = 1
-let g:pandoc#folding#level = 10
+let g:pandoc#folding#level          = 10
 
 " do not use conceal feature, the implementation is not so good
 let g:vim_markdown_conceal = 0
 
 " disable math tex conceal feature
-let g:tex_conceal = ''
+let g:tex_conceal       = ''
 let g:vim_markdown_math = 1
 
 " support front matter of various format
-let g:vim_markdown_frontmatter = 1  " for YAML format
+let g:vim_markdown_frontmatter      = 1  " for YAML format
 let g:vim_markdown_toml_frontmatter = 1  " for TOML format
 let g:vim_markdown_json_frontmatter = 1  " for JSON format
 
@@ -78,5 +118,22 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   augroup END
 endif
 
-let g:sh_fold_enabled=1
+" Tabularize
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
+let g:GPGPreferArmor = 1
+
+let g:sh_fold_enabled = 1
+
 set foldlevelstart=1
+
+" Use OR clipboard instead of vim's default
+set clipboard=unnamedplus
+
+" Nerdtree
+map <C-n> :NERDTreeToggleVCS<CR>
