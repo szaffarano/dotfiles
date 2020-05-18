@@ -48,13 +48,16 @@
 	tool = vimdiff
 
 [merge]
-	tool = vimdiff
+	tool = fugitive
 
-[difftool]
+[mergetool "fugitive"]
 	prompt = false
+	trustExitCode = true
+    cmd = nvim -f -c "Gdiff" "$MERGED"
 
-[mergetool]
-	prompt = false
+[difftool "vimdiff"]
+	trustExitCode = true
+    cmd = nvim -d $LOCAL $REMOTE
 
 [push]
 	default = simple

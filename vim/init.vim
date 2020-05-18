@@ -137,3 +137,6 @@ set clipboard=unnamedplus
 
 " Nerdtree
 map <C-n> :NERDTreeToggleVCS<CR>
+
+" Fugitive
+set diffopt+=vertical
