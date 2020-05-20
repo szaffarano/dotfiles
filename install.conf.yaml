@@ -22,7 +22,7 @@
   # @TODO
     #- [./scripts/install-packages.sh, Installing aditional software]
     #- [./scripts/install-anaconda.sh, Installing python support]
-    #- [./scripts/install-nodejs.sh, Installing nodejs!]
+    - [./scripts/install-nodejs.sh, Installing nodejs!]
 
 - link:
     # tmux
