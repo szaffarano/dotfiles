@@ -1,7 +1,7 @@
 set autowrite
 
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
+"map <C-n> :cnext<CR>
+"map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
@@ -9,6 +9,8 @@ autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 let g:go_list_type                   = "quickfix"
 let g:go_fmt_command                 = "goimports"
 let g:go_highlight_types             = 1
@@ -20,6 +22,9 @@ let g:go_highlight_extra_types       = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags     = 1
 
+" disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient [LC]
+let g:go_def_mapping_enabled = 0
 
 
 " run :GoBuild or :GoTestCompile based on the go file

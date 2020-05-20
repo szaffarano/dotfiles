@@ -19,3 +19,17 @@ Plug 'SirVer/ultisnips'
 Plug 'fatih/molokai'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+
+" colors for i3 config file
+Plug 'PotatoesMaster/i3-vim-syntax'
+
+" systemd unit file syntax highlighting
+Plug 'wgwoods/vim-systemd-syntax'
+
+" toml syntax highlighting
+Plug 'cespare/vim-toml'
+
+" LSP
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install() }, 'branch': 'release'}, 
+
+
