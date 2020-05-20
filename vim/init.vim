@@ -20,7 +20,6 @@ endfor
 " }}}
 
 " General Configs ---------------------- {{{
-
 " Remap escape
 inoremap jk <Esc>
 
@@ -112,6 +111,7 @@ inoremap <silent> <F11> <C-O>:set spell!<cr>
 " Fold related
 set foldlevelstart=0 " Start with all folds closed
 set foldtext=general#FoldText()
+set foldmethod=marker
 
 let g:sh_fold_enabled = 1
 
@@ -122,9 +122,6 @@ set noswapfile				" No backups
 
 " avoid delay
 set updatetime=300
-
-" no swap file! This is just annoying
-set noswapfile
 
 " write automatically when quitting buffer
 set autowrite

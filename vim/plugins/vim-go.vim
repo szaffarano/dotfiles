@@ -2,7 +2,7 @@ set autowrite
 
 "map <C-n> :cnext<CR>
 "map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
+"nnoremap <leader>a :cclose<CR>
 
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
