@@ -84,6 +84,7 @@ exec --no-startup-id pasystray
 exec --no-startup-id copyq
 exec --no-startup-id dropbox start
 exec --no-startup-id run_keybase -a
+exec --no-startup-id insync-headless start
 exec --no-startup-id alacritty -t Work 
 exec_always --no-startup-id $scripts/wallpaper.sh
 exec --no-startup-id ~/.joplin/Joplin.AppImage
