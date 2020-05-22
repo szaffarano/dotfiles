@@ -323,6 +323,7 @@ for_window [class="^Pavucontrol$"] floating enable
 for_window [class="^Arandr$"] floating enable
 for_window [class="^copyq$"] floating enable
 for_window [class="^Keybase$"] floating enable
+for_window [class="^Keybase$"] floating enable
 for_window [class="^JetBrains Toolbox$"] floating enable
 for_window [title="tracker - .*"] floating enable
 for_window [class="^.*"] border pixel 2
