@@ -43,6 +43,7 @@ Plug 'dracula/vim'
 Plug 'fatih/molokai'
 Plug 'joshdick/onedark.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }

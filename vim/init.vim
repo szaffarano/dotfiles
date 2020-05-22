@@ -72,7 +72,7 @@ nnoremap <c-k> :call OpenTerminal()<CR>
 " }}}
 
 " Set Options ---------------------- {{{
-colorscheme dracula
+colorscheme nord
 
 set nospell					" spell off by default
 set showmatch               " show matching brackets.
