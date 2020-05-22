@@ -7,7 +7,6 @@ Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -16,9 +15,11 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'preservim/nerdtree'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
-Plug 'fatih/molokai'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " colors for i3 config file
 Plug 'PotatoesMaster/i3-vim-syntax'
@@ -32,4 +33,12 @@ Plug 'cespare/vim-toml'
 " LSP
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install() }, 'branch': 'release'}, 
 
+" Themes
+Plug 'dracula/vim'
+Plug 'fatih/molokai'
+Plug 'joshdick/onedark.vim'
+Plug 'ryanoasis/vim-devicons'
 
+" FZF
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'

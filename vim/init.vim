@@ -46,11 +46,6 @@ nnoremap <Right> :vertical resize +10<CR>
 nnoremap <Up> :resize -10<CR>
 nnoremap <Down> :resize +10<CR>
 
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-
 " Disable anoying ex mode
 nnoremap Q <Nop>
 
@@ -61,11 +56,23 @@ nnoremap <Leader>ve :tabe $MYVIMRC<CR>
 nnoremap <Leader>vr :source $MYVIMRC<CR>
 
 filetype plugin indent on   " allows auto-indenting depending on file type
+
+" exit terminal
+tnoremap <C-\> <C-\><C-n>
+
+" start terminal in insert mode
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+
+function! OpenTerminal()
+   below split term://zsh
+   resize 10
+endfunction
+
+nnoremap <c-k> :call OpenTerminal()<CR>
 " }}}
 
 " Set Options ---------------------- {{{
-"colorscheme onedark
-colorscheme molokai
+colorscheme dracula
 
 set nospell					" spell off by default
 set showmatch               " show matching brackets.
