@@ -1,0 +1,32 @@
+[Editor]
+FontFamily = "RobotoMono Nerd Font"
+FontSize = 14
+Linespace = 6
+
+ExtCmdline   = true
+ExtPopupmenu = true
+ExtTabline   = true
+ExtMessages  = true
+
+Clipboard = true
+
+StartMaximizedWindow = true
+
+Transparent = 0.95
+
+DrawBorder = true
+
+IndentGuide = true
+
+DrawBorderForFloatWindow = true
+
+DrawShadowForFloatWindow = true
+
+DesktopNotifications = true
+
+ClickEffect = true
+
+[MiniMap]
+Disable = true
+
+RestoreSession = true

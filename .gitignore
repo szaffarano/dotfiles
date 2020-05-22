@@ -3,3 +3,4 @@ vim/view
 **/.gitconfig.local
 vim/spell
 vim/.netrwhist
+goneovim/sessions
