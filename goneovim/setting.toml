@@ -10,11 +10,7 @@ ExtMessages  = true
 
 Clipboard = true
 
-StartMaximizedWindow = true
-
-Transparent = 0.95
-
-DrawBorder = true
+StartMaximizedWindow = false
 
 IndentGuide = true
 
