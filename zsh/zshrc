@@ -87,9 +87,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	bindkey "ç" fzf-cd-widget
 fi
 
-# Exports
-[[ -f ~/.exports ]] && source ~/.exports
-
 # Aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 

@@ -8,6 +8,7 @@ PATH="${HOME}/.local/bin:$PATH"
 PATH="${HOME}/.local/Goneovim:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
+PATH="$HOME/.local/exercism/:$PATH"
 export PATH
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
