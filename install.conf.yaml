@@ -37,6 +37,7 @@
 
     # vim
     ~/.config/nvim: vim
+    ~/.goneovim/setting.toml: goneovim/setting.toml
     ~/.local/share/applications/goneovim.desktop: vim/goneovim.desktop
 
     # i3
@@ -53,6 +54,7 @@
     ~/.exports: zsh/exports
     ~/.aliases: zsh/aliases
     ~/.p10k.zsh: zsh/p10k.zsh
+    ~/.profile: zsh/profile
 
     ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yml
 
@@ -63,3 +65,6 @@
 
     # bin
     ~/.local/bin: bin
+
+    # zathura
+    ~/.config/zathura/zathurarc: zathura/zathurarc
