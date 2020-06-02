@@ -219,9 +219,6 @@ workspace $mindmap		output eDP1
 bindsym $mod+Shift+c		reload
 bindsym $mod+Shift+r		restart
 
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e		exec i3-msg exit
-
 # lock wall
 bindsym $mod+Ctrl+l		exec --no-startup-id $scripts/lock-screen.sh
 
