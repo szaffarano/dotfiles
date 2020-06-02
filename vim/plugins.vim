@@ -6,7 +6,6 @@ Plug 'dense-analysis/ale'
 Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -44,6 +43,7 @@ Plug 'fatih/molokai'
 Plug 'joshdick/onedark.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
+Plug 'morhetz/gruvbox'
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
