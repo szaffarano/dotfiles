@@ -80,29 +80,49 @@ exec --no-startup-id $scripts/touchpad.sh
 # lock the screen after 5 minutes
 exec --no-startup-id xset s on; xset 120
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $scripts/lock-screen.sh
+
+# Pulseaudio
 exec --no-startup-id pasystray
+
+# CopyQ clipboard manager
 exec --no-startup-id copyq
+
+# Dropbox
 exec --no-startup-id dropbox start
+
+# Keybase
 exec --no-startup-id run_keybase -a
+
+# Insync
 exec --no-startup-id insync start
+
+# Start a terminal
 exec --no-startup-id alacritty -t Work 
+
+# Configure wallpaper
 exec_always --no-startup-id $scripts/wallpaper.sh
 
 # keyboard layout us international
 exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option nodeadkeys
 
+# Networkmanager Applet
+exec --no-startup-id nm-applet
+
+# Bluetooth applet
+exec --no-startup-id blueman-applet
+
 # Volume Controls
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume	exec pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume	exec pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute			exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute		exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume	exec pactl set-sink-volume @DEFAULT_SINK@   +5%    && $refresh_i3status
+bindsym XF86AudioLowerVolume	exec pactl set-sink-volume @DEFAULT_SINK@   -5%    && $refresh_i3status
+bindsym XF86AudioMute			    exec pactl set-sink-mute   @DEFAULT_SINK@   toggle && $refresh_i3status
+bindsym XF86AudioMicMute		  exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Media player controls
-bindsym XF86AudioPlay			exec playerctl play
-bindsym XF86AudioPause			exec playerctl stop
-bindsym XF86AudioNext			exec playerctl next
-bindsym XF86AudioPrev			exec playerctl previous
+bindsym XF86AudioPlay			exec   playerctl play
+bindsym XF86AudioPause	  exec   playerctl stop
+bindsym XF86AudioNext			exec   playerctl next
+bindsym XF86AudioPrev			exec   playerctl previous
 
 # Use xbacklight to adjust display backlight
 bindsym XF86MonBrightnessUp     exec xbacklight -inc 20
@@ -121,7 +141,7 @@ bindsym $mod+Shift+q kill
 
 # start rofi instead of dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show drun
-bindsym $mod+F2 exec --no-startup-id rofi -show combi
+bindsym $mod+F2 exec --no-startup-id rofi -show run
 
 # change focus
 bindsym $mod+h				focus left
@@ -130,58 +150,58 @@ bindsym $mod+k				focus up
 bindsym $mod+l				focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left			focus left
-bindsym $mod+Down			focus down
-bindsym $mod+Up				focus up
-bindsym $mod+Right			focus right
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h		move left
-bindsym $mod+Shift+j		move down
-bindsym $mod+Shift+k		move up
-bindsym $mod+Shift+l		move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left		move left
-bindsym $mod+Shift+Down		move down
-bindsym $mod+Shift+Up		move up
-bindsym $mod+Shift+Right	move right
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+backslash		split h
+bindsym $mod+backslash split h
 
 # split in vertical orientation
-bindsym $mod+underscore		split v
+bindsym $mod+underscore	split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen	toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout		stacking
-bindsym $mod+w layout		tabbed
-bindsym $mod+e layout		toggle split
+bindsym $mod+s layout	stacking
+bindsym $mod+w layout	tabbed
+bindsym $mod+e layout	toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space	floating toggle
+bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space			focus mode_toggle
+bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a				focus parent
+bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $web        "1: web"
-set $dev		"2:  dev"
+set $dev        "2:  dev"
 set $terms      "3: terms"
 set $multimedia "4: multi"
 set $mail       "5: mails"
 set $office     "6: office"
 set $mindmap    "7: mindmap"
-set $ws8		"8"
-set $ws9		"9"
-set $ws0		"0"
+set $ws8        "8"
+set $ws9        "9"
+set $ws0        "0"
 
 # switch to workspace
 bindsym $mod+1 workspace number $web
@@ -208,40 +228,40 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # default workspaces output
-workspace $web			output HDMI1
-workspace $dev			output HDMI1
-workspace $terms		output HDMI1
+workspace $web               output HDMI1
+workspace $dev               output HDMI1
+workspace $terms             output HDMI1
 workspace $multimedia	output eDP1
-workspace $mail			output eDP1
-workspace $office		output eDP1
-workspace $mindmap		output eDP1
+workspace $mail              output eDP1
+workspace $office            output eDP1
+workspace $mindmap           output eDP1
 
-bindsym $mod+Shift+c		reload
-bindsym $mod+Shift+r		restart
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
 
 # lock wall
-bindsym $mod+Ctrl+l		exec --no-startup-id $scripts/lock-screen.sh
+bindsym $mod+Ctrl+l	exec --no-startup-id $scripts/lock-screen.sh
 
 # modes (see below)
-bindsym $mod+r			mode "resize"
-bindsym $mod+BackSpace	mode "$mode_system"
-bindsym $mod+x			mode "$mode_display"
+bindsym $mod+r         mode "resize"
+bindsym $mod+BackSpace mode "$mode_system"
+bindsym $mod+x         mode "$mode_display"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym h		resize shrink width 10 px or 10 ppt
-        bindsym j		resize shrink height 10 px or 10 ppt
-        bindsym k		resize grow height 10 px or 10 ppt
-        bindsym l		resize grow width 10 px or 10 ppt
+        bindsym h            resize shrink width  10 px or 10 ppt
+        bindsym j            resize shrink height 10 px or 10 ppt
+        bindsym k            resize grow   height 10 px or 10 ppt
+        bindsym l            resize grow   width  10 px or 10 ppt
 
-        bindsym Right	resize grow width 10 px or 10 ppt
-        bindsym Up		resize grow height 10 px or 10 ppt
-        bindsym Down	resize shrink height 10 px or 10 ppt
-        bindsym Left	resize shrink width 10 px or 10 ppt
+        bindsym Right	resize grow   width  10     px or 10 ppt
+        bindsym Up           resize grow   height 10 px or 10 ppt
+        bindsym Down         resize shrink height 10 px or 10 ppt
+        bindsym Left         resize shrink width  10 px or 10 ppt
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+        bindsym Return       mode   "default"
+        bindsym Escape       mode   "default"
+        bindsym $mod+r       mode   "default"
 }
 
 # lock and logout
@@ -250,28 +270,28 @@ mode "$mode_system" {
 	bindsym l       exec --no-startup-id $scripts/lock-screen.sh, mode "default"
 
 	# exit
-    bindsym e       exec --no-startup-id i3-msg exit, mode "default"
+  bindsym Ctrl+e  exec --no-startup-id i3-msg exit, mode "default"
 
 	# suspend
-    bindsym s       exec --no-startup-id $scripts/lock-screen.sh && systemctl suspend, mode "default"
+  bindsym Ctrl+s  exec --no-startup-id $scripts/lock-screen.sh && systemctl suspend, mode "default"
 
 	# hibernate
-    bindsym h       exec --no-startup-id $scripts/lock-screen.sh && systemctl hibernate, mode "default"
+  bindsym Ctrl+h  exec --no-startup-id $scripts/lock-screen.sh && systemctl hibernate, mode "default"
 
 	# reboot
-    bindsym r       exec --no-startup-id systemctl reboot, mode "default"
+  bindsym Ctrl+r  exec --no-startup-id systemctl reboot, mode "default"
 
 	# shutdown
-    bindsym Ctrl+s  exec --no-startup-id systemctl poweroff -i, mode "default"
+  bindsym Ctrl+S  exec --no-startup-id systemctl poweroff -i, mode "default"
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
-set		$mode_system		System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Ctrl+s) shutdown
+set		$mode_system		System (l) lock, (Ctrl-e) logout, (Ctrl-s) suspend, (Ctrl-h) hibernate, (Ctrl-r) reboot, (Ctrl+S) shutdown
 
 # display configuration
 mode "$mode_display" {
-    bindsym 1 exec --no-startup-id autorandr mirror,		mode "default"
+    bindsym 1 exec --no-startup-id autorandr mirror,		  mode "default"
     bindsym 2 exec --no-startup-id autorandr mon-only,		mode "default"
     bindsym 3 exec --no-startup-id autorandr lap-only,		mode "default"
     bindsym 4 exec --no-startup-id autorandr pri_mon-lap,	mode "default"
@@ -306,28 +326,30 @@ bar {
 }
 
 # assign windows to an specific workspace
-assign		[class="Google-chrome"]				→	$web
-assign		[class="jetbrains-.*"]				→	$dev
-assign		[class="Code"]						→	$office
-assign		[class="Alacritty" title="Work"]	→	$terms
-assign		[class="Joplin" instance="joplin"]	→ $office
-assign		[class="libreoffice"]				→ $office
+
+assign		  [class="Google-chrome"]				      →	$web
+assign		  [class="jetbrains-.*"]				      →	$dev
+assign		  [class="Code"]						          →	$office
+assign		  [class="Alacritty" title="Work"]	  →	$terms
+assign		  [class="Joplin" instance="joplin"]	→ $office
+assign		  [class="libreoffice"]				        → $office
 for_window	[class="Spotify"] move to workspace		$multimedia
 
 # styles
-for_window [class="^Pavucontrol$"] floating enable
-for_window [class="^Arandr$"] floating enable
-for_window [class="^copyq$"] floating enable
-for_window [class="^Keybase$"] floating enable
-for_window [class="^Keybase$"] floating enable
-for_window [class="^JetBrains Toolbox$"] floating enable
-for_window [title="tracker - .*"] floating enable
-for_window [class="^.*"] border pixel 2
-for_window [class="jetbrains-idea" title="win0"] floating enable;
-for_window [class="jetbrains-goland" title="win0"] floating enable;
-for_window [class="Anki" title="Profiles"] floating enable;
-for_window [class="Anki" title="Add"] floating enable;
-for_window [class="Anki" title="^Browse.*"] floating enable;
+for_window [class="^Pavucontrol$"]       floating           enable
+for_window [class="^Arandr$"]            floating           enable
+for_window [class="^copyq$"]             floating           enable
+for_window [class="^Keybase$"]           floating           enable
+for_window [class="^Keybase$"]           floating           enable
+for_window [class="^JetBrains Toolbox$"] floating           enable
+for_window [title="tracker - .*"]        floating           enable
+for_window [class="^.*"]                 border             pixel    2
+for_window [class="jetbrains-idea"       title="win0"]      floating enable;
+for_window [class="jetbrains-goland"     title="win0"]      floating enable;
+for_window [class="Anki"                 title="Profiles"]  floating enable;
+for_window [class="Anki"                 title="Add"]       floating enable;
+for_window [class="Anki"                 title="^Browse.*"] floating enable;
+for_window [class="Blueman-manager"      ] floating enable;
 
 # scratchpads
 for_window [class="Alacritty" title="htop_scratchpad"] move to scratchpad, border none
