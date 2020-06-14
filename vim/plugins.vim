@@ -13,3 +13,6 @@ Plug 'jamessan/vim-gnupg'
 
 " Useful mappings
 Plug 'tpope/vim-unimpaired'
+
+" Vim Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
