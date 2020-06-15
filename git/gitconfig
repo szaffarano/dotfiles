@@ -65,3 +65,6 @@
 [log]
 	date = iso
 	abbrevCommit = true
+
+[pull]
+	ff = only
