@@ -350,11 +350,20 @@ for_window [class="Anki"                 title="Profiles"]  floating enable;
 for_window [class="Anki"                 title="Add"]       floating enable;
 for_window [class="Anki"                 title="^Browse.*"] floating enable;
 for_window [class="Blueman-manager"      ] floating enable;
+for_window [class="TelegramDesktop"      ] floating enable;
 
+#
 # scratchpads
+#
+# htop
 for_window [class="Alacritty" title="htop_scratchpad"] move to scratchpad, border none
 bindsym $mod+Shift+p [class="Alacritty" title="htop_scratchpad"] scratchpad show
 exec alacritty -t htop_scratchpad -e htop
+
+# calculator
+for_window [class="SpeedCrunch"] move to scratchpad, border none
+bindsym $mod+Shift+s [class="SpeedCrunch"] scratchpad show
+exec speedcrunch
 
 bindsym $mod+Shift+minus move scratchpad
 
