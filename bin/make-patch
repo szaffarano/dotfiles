@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+
+read -r -d '' USAGE << EOM
+$(basename "$0") creates a patch based on a list of files that have changed and 
+modules where search this files.
+
+Usage:
+    $0 <modules> <files> <dest>
+
+Where <modules> is a file with the list of modules and <files> the list of java 
+files to include in the patch file. Finally, <dest> is a directory where will be 
+the files to create the patch.
+
+EOM
+export USAGE
+
+
+BASE=$( cd "$(dirname "$0")" || exit; pwd )
+
+# shellcheck source=/dev/null
+source "$BASE/common.sh"
+
+checkParams $# 3
+
+modules="$1"
+files="$2"
+output="$3"
+
+! [[ -e $output ]] || die "$output: exists" 1
+
+mkdir -p "$output" || die "Error creating $output" 2
+
+while read -r m; do
+    echo "collecting files in $m ..."
+
+    cd "$m/target/classes" || die "$m/target/classes not found" 3
+
+    while read -r f; do
+        d=$(dirname "$f")
+        p=$(basename "$f")
+        mkdir -p "$output/$d"
+        [[ -d "$d" ]] && find "$d" -name "$p.class" -exec cp {} "$output/$d" \;
+        [[ -d "$d" ]] && find "$d" -name "$p\$*.class" -exec cp {} "$output/$d" \;
+    done < "$files"
+
+    cd - || exit
+done < "$modules"
