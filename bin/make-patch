@@ -2,15 +2,10 @@
 
 
 read -r -d '' USAGE << EOM
-$(basename "$0") creates a patch based on a list of files that have changed and 
-modules where search this files.
+$(basename "$0") creates a patch file based on a list of commits
 
 Usage:
-    $0 <modules> <commits> <dest>
-
-Where <modules> is a file with the list of modules and <files> the list of java 
-files to include in the patch file. Finally, <dest> is a directory where will be 
-the files to create the patch.
+    $(basename $0) <dest> <commits>
 
 EOM
 export USAGE
@@ -53,7 +48,7 @@ while read -r m; do
 
     echo "collecting files in $m ..."
 
-    cd "$m/target/classes" || die "$m/target/classes not found" 3
+    pushd "$m/target/classes" || die "$m/target/classes not found" 3
 
     while read -r f; do
         d=$(dirname "$f")
@@ -63,7 +58,7 @@ while read -r m; do
         [[ -d "$d" ]] && find "$d" -name "$p\$*.class" -exec cp {} "$pivot/$d" \;
     done < "$files"
 
-    cd - || exit
+    popd || exit
 done < "$modules"
 
 pushd "$pivot" || die "Error entering into pivot directory"
