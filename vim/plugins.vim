@@ -16,3 +16,6 @@ Plug 'tpope/vim-unimpaired'
 
 " Vim Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" lint/autocompletion
+Plug 'dense-analysis/ale'
