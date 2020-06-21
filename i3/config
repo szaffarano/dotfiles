@@ -93,9 +93,6 @@ exec --no-startup-id dropbox start
 # Keybase
 exec --no-startup-id run_keybase -a
 
-# Insync
-exec --no-startup-id insync start
-
 # Start a terminal
 exec --no-startup-id alacritty -t Work 
 
