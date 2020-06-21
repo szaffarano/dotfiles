@@ -70,3 +70,6 @@
 
 [pull]
 	ff = only
+
+[credential]
+	helper = "!gopass git-credential $@"
