@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+
+read -r -d '' USAGE << EOM
+$(basename "$0") compares the files in two directories and list which ones that 
+don't exist in the second one
+
+Usage:
+    $(basename "$0") <dir-1> <dir-2>
+
+EOM
+export USAGE
+
+
+BASE=$( cd "$(dirname "$0")" || exit; pwd )
+
+# shellcheck source=/dev/null
+source "$BASE/common.sh"
+
+checkParams $# 2
+
+d1=$1
+d2=$2
+
+[[ -d  "$d1" ]] || die "$d1: must be a directory"
+[[ -d  "$d2" ]] || die "$d2: must be a directory"
+
+find "$d1" -type f | while read -r f
+do
+  [[ -e "$d2/$f"  ]] || echo "$f"
+done 
