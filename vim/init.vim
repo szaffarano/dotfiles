@@ -40,6 +40,9 @@ augroup END
 
 set number relativenumber
 
+" disable temporary files for gopass
+au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
+
 " set 80 and 120 column borders for good coding style
 set colorcolumn=80,120
 
