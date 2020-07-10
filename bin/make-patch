@@ -5,7 +5,7 @@ read -r -d '' USAGE << EOM
 $(basename "$0") creates a patch file based on a list of commits
 
 Usage:
-    $(basename $0) <dest> <commits>
+    $(basename "$0") <dest> <commits>
 
 EOM
 export USAGE
@@ -32,14 +32,14 @@ trap '{ rm -rf "$pivot"; }' EXIT
 
 git show --format="" --name-only "${commits[@]}" \
     | grep -v test \
-    | sed -E -e s'/^(.*)\/src\/main.*$/\1/g' \
+    | sed -E -e s'/^(.*)\/src\/main.*$/\1/g' -e s'/^src\/.*$/./g' \
     | sort -u > "$modules"
 
 git show --format="" --name-only "${commits[@]}" \
     | grep -v test \
     | sed -E -e s'/^.*\/src\/main\/java\/(.*)\.java$/\1/g' \
+    | sed -E -e s'/^src\/main\/java\/(.*)\.java$/\1/g' \
     | sort -u > "$files"
-
 
 while read -r m; do
     if ! [[ -d "$m" ]]; then
@@ -54,6 +54,7 @@ while read -r m; do
         d=$(dirname "$f")
         p=$(basename "$f")
         mkdir -p "$pivot/$d"
+        echo "--- $p.class"
         [[ -d "$d" ]] && find "$d" -name "$p.class" -exec cp {} "$pivot/$d" \;
         [[ -d "$d" ]] && find "$d" -name "$p\$*.class" -exec cp {} "$pivot/$d" \;
     done < "$files"

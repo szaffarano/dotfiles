@@ -1,0 +1,64 @@
+#!/usr/bin/env zsh
+
+
+read -r -d '' USAGE << EOM
+$(basename "$0") run tests using maven
+
+Usage:
+    $(basename "$0") <test> <output dir>
+
+    For example, the following sentence
+
+      $(basename "$0") SomeTestSuite#someTest /tmp/logs
+
+    runs "someTest" on "SomeTestSuite.java", searching the submodule where
+    the class is located, writing the output in /tmp/logs.
+EOM
+export USAGE
+
+BASE=$( cd "$(dirname "$0")" || exit; pwd )
+
+# shellcheck source=/dev/null
+source "$BASE/common.sh"
+
+checkParams $# 2
+
+test_expression=$1
+output=$2
+log_file="$output/errors.log"
+
+test_expression=$(echo $test_expression | sed -E s'/\[.*\]$/*/g')
+
+IFS="." 
+test_parts=(${=test_expression})
+IFS=" "
+
+test_suite=${test_parts[-2]}
+method=${test_parts[-1]}
+file_name=${test_parts[-2]}.java
+
+[[ -d "$output" ]] || die "$output: should be a directory!" 2
+
+files=$(find . -name "$file_name")
+
+[[ $#files -gt 0 ]] || logAndDie "$file_name: malformed" "$log_file" 5
+
+files=(${=$(echo $files | tr "\n" " ")})
+
+for file in $files; do
+  module=$(echo "$file" | sed -E -e s"/^(.*)\/src\/.*$/\1/g")
+
+  [[ -d $module ]] || logAndDie "ERROR: $module: not found ($file) - ($test_suite)" "$output/errors.log" 2
+
+  if ag "$method" "$file" > /dev/null 2>&1 ; then
+    pushd "$module" || logAndDie "error pushing $module" "$log_file" 3
+
+    log=$(echo "$output/$test_suite-$method.log" | sed s'/\*/_/g')
+
+    mvn clean test -Dtest="$test_suite#$method" | tee -a "$log"
+
+    popd || logAndDie "error popping $module" "$log_file" 4
+
+    count=$(( count + 1 ))
+  fi
+done

@@ -1,0 +1,154 @@
+#!/usr/bin/env bash
+
+DEC_JAR="cfr-0.150.jar"
+DEC_URL="https://www.benf.org/other/cfr/$DEC_JAR"
+
+read -r -d '' USAGE << EOM
+$(basename "$0") compares a patched mule distribution against a base one and one or more patches.
+
+Usage:
+    $(basename "$0") <patched mule> <mule base> <patch 1> [<patch 2> ... ]
+
+    For example, the following sentence
+
+      $(basename "$0") mule-ee-4.3.0-202007.zip mule-ee-4.3.0.zip big-patch-1.jar
+
+    Will compare if mule-ee-4.3.0.zip with big-patch-1.jar applied is equals to mule-ee-4.3.0-202007.zip
+EOM
+export USAGE
+
+BASE=$( cd "$(dirname "$0")" || exit; pwd )
+DEC_PATH="$BASE/$DEC_JAR"
+
+# shellcheck source=/dev/null
+source "$BASE/common.sh"
+
+#
+# utils
+#
+function decompressMule() {
+  mule=$1
+  output=$2
+
+  echo -n "Expanding $mule..."
+
+  unzip -qd "$output/exploded" "$mule" || die "Error unpacking $mule" 2
+
+  for libdir in mule boot
+  do
+    find "$output"/exploded/**/lib/"$libdir"/*.jar -type f | while read -r f
+    do
+      unzip -qod "$output"/libs "$f"
+    done
+  done
+
+  echo " done!"
+}
+
+function collectJars() {
+  output=$1
+
+  pushd "$output" > /dev/null || die "Error when pushd to $output"
+  jar cf libs.jar libs
+  popd > /dev/null || die "Error when popd from $output"
+}
+
+function decompile() {
+  name=$1
+  output=$2
+
+  echo -n "Decompiling $name mule..."
+  java -jar "$DEC_PATH" \
+      "$output/libs.jar" \
+      --outputdir "$output/src" 2> /dev/null \
+        || die "Error decompiling $name mule"
+  echo " done!"
+
+  rm "$output/src/summary.txt"
+}
+
+function collectResources() {
+  name=$1
+  mule=$2
+
+  echo -n "Collecting $name mule resources..."
+  cp -R "$mule/libs" "$mule/resources" \
+      && find "$mule/resources" \
+          \( \
+            -type f \
+               -name '*.class' \
+            -o -name 'MANIFEST.MF' \
+            -o -name 'pom.*' \
+          \) \
+        -exec rm {} \;
+  echo " done!"
+}
+
+function compareDirs() {
+  a=$1
+  b=$2
+
+  diff -rq "$a" "$b" | while read -r d
+  do
+    echo "$d" | sed -E \
+        -e s'/^Only\ in\ .*\/(base|patched\/.*)/Only in \1/g' \
+        -e s'/^Files\ .*(patched\/.*)\ and\ .*(base\/.*)\ (.*)/Files \1 and \2 \3/g'
+  done
+}
+
+
+# end utils
+
+checkParamsAtLeast $# 3
+
+patched_mule="$1"
+base_mule="$2"
+patches="${*:3}"
+
+# validate preconditions and parameters
+isValidFile "$patched_mule"
+isValidFile "$base_mule"
+
+[[ -f "$DEC_PATH" ]] || curl -L "$DEC_URL" -o "$DEC_PATH"
+
+for patch in $patches; do
+  isValidFile "$patch"
+done
+
+# temp dirs
+temp=$(mktemp -d)
+trap '{ rm -rf "$temp"; }' EXIT
+
+patched_mule_dir="$temp/patched"
+base_mule_dir="$temp/base"
+
+mkdir -p "$patched_mule_dir"
+mkdir -p "$base_mule_dir"
+
+decompressMule "$patched_mule" "$patched_mule_dir"
+decompressMule "$base_mule" "$base_mule_dir"
+
+echo -n "Applying patches..."
+for patch in $patches; do
+    unzip -qod "$base_mule_dir"/libs "$patch"
+done
+echo " done!"
+
+collectJars "$base_mule_dir"
+collectJars "$patched_mule_dir"
+
+decompile "base" "$base_mule_dir"
+decompile "patched" "$patched_mule_dir"
+
+collectResources "base" "$base_mule_dir"
+collectResources "patched" "$patched_mule_dir"
+
+echo
+echo "### Differences ###"
+echo " base:    $base_mule + $patches"
+echo " patched: $patched_mule"
+echo "### ########### ###"
+echo
+
+compareDirs "$patched_mule_dir/src" "$base_mule_dir/src"
+compareDirs "$patched_mule_dir/resources" "$base_mule_dir/resources"

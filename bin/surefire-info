@@ -1,0 +1,4 @@
+ag "Failures:" $1/**/surefire-reports/*txt  \
+  | sed -E \
+    -e s'/^.*\ run:\ ([0-9]*),.*Failures:\ ([0-9]*),.*Errors:\ ([0-9]*),.*Skipped:\ ([0-9]*),.*/\1 \2 \3 \4/g' \
+  | awk '{r+=$1; f+=$2; e+=$3; s+=$4} END {printf("run: %d, Failures: %d, Errors: %d, Skipped: %d\n", r, f, e, s)}'
