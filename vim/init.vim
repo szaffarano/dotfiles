@@ -1,152 +1,137 @@
-" Skip initialization for vim-tiny or vim-small.
-if !1 | finish | endif
-
-" Declare group for autocmd for whole init.vim, and clear it
-" Otherwise every autocmd will be added to group each time vimrc sourced!
-augroup vimrc
-  autocmd!
-augroup END
+let $data            = stdpath('data')
+let $config          = stdpath('config')
+let $plugged_data    = $data . '/plugged'
+let $plugged_config  = $config . '/plugged'
 
 " Install Plugins ---------------------- {{{
-call plug#begin('~/.local/share/nvim/plugged')
-source ~/.config/nvim/plugins.vim
+
+call plug#begin($plugged_data)
+  source $config/plugins.vim
 call plug#end()
+
 " }}}
 
-" Plugins Configs ---------------------- {{{
-for file in split(glob("~/.config/nvim/plugins/*.vim"), '\n')
-    execute 'source' file
-endfor
+" Set Options ---------------------- {{{
+
+" enable vim/neovim features
+set nocompatible
+
+filetype plugin on
+
+" set syntax highlight
+syntax on
+
+" spell check disabled by default
+set nospell
+
+" use 2 spaces instead of tab (to replace existing tab use :retab)
+" copy indent from current line when starting a new line
+set autoindent
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+
+" relative / hybrid line number switch
+augroup toggle_relative_numbers
+  autocmd InsertEnter * :setlocal norelativenumber
+  autocmd InsertLeave * :setlocal relativenumber
+augroup END
+
+set number relativenumber
+
+" disable temporary files for gopass
+au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
+
+" autowrap markdown files
+au BufRead,BufNewFile *.md setlocal textwidth=80 formatoptions+=wa
+
+" set 80 and 120 column borders for good coding style
+set colorcolumn=80,120
+
+" set the title of the window to "filename [+=-] (path) - NVIM"
+set title
+
+" number of undo saved in memory
+set undolevels=10000
+set undoreload=10000
+
+" set backupd, swap and undo locations 
+set backupdir=$data/backup//
+set directory=$data/swap//
+set undodir=$data/undo//
+
+" save undo trees in files
+set undofile
+
+" configure spell check
+set spelllang=en,es,de_de
+
+" use OS clipboard instead of vim's default
+set clipboard+=unnamedplus
+
+" write automatically when quitting buffer
+set autowrite
+
+" folding setup
+set foldenable
+set foldmethod=syntax
+set foldlevelstart=1
+let vimsyn_folding='af'
+set foldnestmax=10
+set foldcolumn=2
+
 " }}}
 
-" General Configs ---------------------- {{{
-" Remap escape
+" Mappings ---------------------- {{{
+
+" jk leaves insert mode (same as <esc> key)
 inoremap jk <Esc>
 
-" weird hack for nerdtree to work
-let mapleader = "\\"
-let maplocalleader = "\\"
-map <space> <leader>
-map <space> <localleader>
+" redefine leader key
+map , <leader>
+map , <localleader>
+
+" clear matched search
+map <silent><esc> :noh<cr>
 
 " search with very magic mode on
 nnoremap <leader>/ /\v
 " search with no magic
 nnoremap <leader>? /\M
 
-" clear matched search
-map <silent><esc> :noh<cr>
-
-"toggle between absolute -> relative line number
-nnoremap <A-a> :let [&nu, &rnu] = [&nu, &nu+&rnu==1]<CR>
-
-" arrow keys resize windows
-nnoremap <Left> :vertical resize -10<CR>
-nnoremap <Right> :vertical resize +10<CR>
-nnoremap <Up> :resize -10<CR>
-nnoremap <Down> :resize +10<CR>
-
-" Disable anoying ex mode
+" disable anoying ex mode
 nnoremap Q <Nop>
 
-" Edit vimr configuration file
+" edit vimrc configuration file
 nnoremap <Leader>ve :tabe $MYVIMRC<CR>
 
-" Reload vimr configuration file
+" reload vimrc configuration file
 nnoremap <Leader>vr :source $MYVIMRC<CR>
 
-filetype plugin indent on   " allows auto-indenting depending on file type
-
-" exit terminal
-tnoremap <C-\> <C-\><C-n>
-
-" start terminal in insert mode
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-
-function! OpenTerminal()
-   below split term://zsh
-   resize 10
-endfunction
-
-nnoremap <c-k> :call OpenTerminal()<CR>
-" }}}
-
-" Set Options ---------------------- {{{
-colorscheme gruvbox
-
-set nospell					" spell off by default
-set showmatch               " show matching brackets.
-set ignorecase              " case insensitive matching
-set mouse=v                 " middle-click paste with mouse
-set hlsearch                " highlight search results
-
-" use 4 spaces instead of tab (to replace existing tab use :retab)
-" copy indent from current line when starting a new line
-set autoindent
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-
-" Save session
-nnoremap <leader>ss :mksession! ~/.local/share/nvim/sessions/*.vim<C-D><BS><BS><BS><BS><BS>
-
-" Reload session
-nnoremap <leader>sl :so ~/nvim/sessions/*.vim<C-D><BS><BS><BS><BS><BS>
-
-set number                  " add line numbers
-set wildmode=longest,list   " get bash-like tab completions
-set colorcolumn=80,120               " set an 80 column border for good coding style
-set title
-
-" number of undo saved in memory
-set undolevels=10000 " How many undos
-set undoreload=10000 " number of lines to save for undo
-
-" set the directory where the swap file will be saved
-set backupdir=~/.local/share/nvim/backup//
-set directory=~/.local/share/nvim/swap//
-
-" save undo trees in files
-set undofile
-set undodir=~/.local/share/nvim/undo//
-
-set spelllang=en,es,de_de
 nnoremap <silent> <F11> :set spell!<cr>
 inoremap <silent> <F11> <C-O>:set spell!<cr>
 
-" Fold related
-set foldlevelstart=0 " Start with all folds closed
-set foldtext=general#FoldText()
-set foldmethod=marker
-
-let g:sh_fold_enabled = 1
-
-" Use OR clipboard instead of vim's default
-set clipboard+=unnamedplus
-
-set noswapfile				" No backups
-
-" avoid delay
-set updatetime=300
-
-" write automatically when quitting buffer
-set autowrite
-
-" Show the substitution LIVE
-set inccommand=nosplit
-
-" Better ex autocompletion
-set wildmenu
-set wildmode=list:longest,full
-
-" relative / hybrid line number switch
-set number relativenumber
-
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
+" moves through lines when wrapping
+vmap <M-j> gj
+vmap <M-k> gk
+vmap <M-4> g$
+vmap <M-6> g^
+vmap <M-0> g^
+nmap <M-j> gj
+nmap <M-k> gk
+nmap <M-4> g$
+nmap <M-6> g^
+nmap <M-0> g^
 
 " }}}
+
+" Plugins Configs ---------------------- {{{
+
+for $file in split(glob($plugged_config . '/*.vim'), '\n')
+    source $file
+endfor
+
+" }}}
+
+" vim: filetype=vim foldmethod=marker foldlevel=0 foldcolumn=3
