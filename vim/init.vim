@@ -43,6 +43,9 @@ set number relativenumber
 " disable temporary files for gopass
 au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
 
+" autowrap markdown files
+au BufRead,BufNewFile *.md setlocal textwidth=80 formatoptions+=wa
+
 " set 80 and 120 column borders for good coding style
 set colorcolumn=80,120
 
@@ -108,6 +111,18 @@ nnoremap <Leader>vr :source $MYVIMRC<CR>
 
 nnoremap <silent> <F11> :set spell!<cr>
 inoremap <silent> <F11> <C-O>:set spell!<cr>
+
+" moves through lines when wrapping
+vmap <M-j> gj
+vmap <M-k> gk
+vmap <M-4> g$
+vmap <M-6> g^
+vmap <M-0> g^
+nmap <M-j> gj
+nmap <M-k> gk
+nmap <M-4> g$
+nmap <M-6> g^
+nmap <M-0> g^
 
 " }}}
 
