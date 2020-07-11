@@ -1,0 +1,11 @@
+package asdf
+package config
+package fzf
+package hub
+package pisces
+package plug
+package spark
+package vcs
+package weather
+theme clearance
+theme default

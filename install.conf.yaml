@@ -55,6 +55,10 @@
     ~/.p10k.zsh: zsh/p10k.zsh
     ~/.profile: zsh/profile
 
+    # fish
+    ~/.config/fish: fish/fish
+    ~/.config/omf: fish/omf
+
     ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yml
 
     ~/.config/dunst/dunstrc: dunst/dunstrc
