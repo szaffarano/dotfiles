@@ -14,6 +14,7 @@
     - [./scripts/install-zplug.sh, Installing zplug!]
     - [./scripts/install-asdf.sh, Installing asdf]
     - [./scripts/install-golang.sh, Installing go!]
+    - [./scripts/install-rust.sh, Installing rust!]
     - [./scripts/install-java.sh, Installing java!]
     - [./scripts/install-shellcheck.sh, Installing shellcheck!]
     - [./scripts/install-fzf.sh, Installing zfz!]
