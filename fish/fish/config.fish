@@ -1,3 +1,7 @@
+. ~/.config/fish/aliases.fish
+
 fish_vi_key_bindings
 
-source ~/.config/fish/path.fish
+if status --is-login
+    . ~/.config/fish/env.fish
+end
