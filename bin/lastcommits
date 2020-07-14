@@ -18,6 +18,4 @@ checkParams $# 1
 
 n_commits="$1"
 
-commits="$(git log HEAD~"$n_commits"..HEAD --oneline  --reverse | cut -d" " -f 1 | tr "\n" " ")"
-
-echo "$commits"
+git log HEAD~"$n_commits"..HEAD --oneline  --reverse | cut -d" " -f 1
