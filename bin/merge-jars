@@ -2,49 +2,42 @@
 
 
 read -r -d '' USAGE << EOM
-$(basename "$0") merges two jars in a new one
+$(basename "$0") merges two or more jars in a new one
 
 Usage:
-    $(basename "$0") <jar 1> <jar 2> <final jar>
+    $(basename "$0") <final jar> <jar 1> <jar 2> [<jar 3> ... <jar n>]
 
 EOM
 export USAGE
-
 
 BASE=$( cd "$(dirname "$0")" || exit; pwd )
 
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
 
-checkParams $# 3
+checkParamsAtLeast $# 3
 
-jar1="$1"
-jar2="$2"
-final="$3"
+final=$(realpath "$1")
+jars=( "${@:2}" )
 
 pivot=$(mktemp -d)
-temp_final_jar=$(mktemp)
-temp_jar1=$(mktemp)
-temp_jar2=$(mktemp)
+trap '{ rm -rf "$pivot"; }' EXIT
 
-trap '{ rm -rf "$pivot";      }' EXIT
-trap '{ rm "$temp_final_jar"; }' EXIT
-trap '{ rm "$temp_jar1";      }' EXIT
-trap '{ rm "$temp_jar2";      }' EXIT
-
-isValidFile "$jar1"
-isValidFile "$jar2"
-
-cp "$jar1" "$temp_jar1"
-cp "$jar2" "$temp_jar2"
+list=()
+for jar in "${jars[@]}"; do
+  isValidFile "$jar"
+  list+=("$(realpath "$jar")")
+done
 
 pushd > /dev/null "$pivot" || die "Error entering in temp dir"
 
-jar xf "$temp_jar1"
-jar xf "$temp_jar2"
+for jar in "${list[@]}"; do
+  echo -n "."
+  jar xf "$jar"
+done
 
-jar cf "$temp_final_jar" .
+jar cf "$final" .
+echo "done!"
 
 popd > /dev/null || die "Error returning to original dir"
 
-cp "$temp_final_jar" "$final"
