@@ -72,3 +72,6 @@
 
     # zathura
     ~/.config/zathura/zathurarc: zathura/zathurarc
+
+    # keepassxc
+    ~/.config/keepassxc: keepassxc

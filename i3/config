@@ -138,6 +138,7 @@ bindsym $mod+Shift+q kill
 
 # start rofi instead of dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+q exec --no-startup-id rofi -show window
 bindsym $mod+F2 exec --no-startup-id rofi -show run
 
 bindsym $mod+z exec $scripts/zathura-history.sh
@@ -331,6 +332,7 @@ bar {
 # assign windows to an specific workspace
 
 assign		  [class="Google-chrome"]				      →	$web
+assign		  [class="Firefox"]	      			      →	$web
 assign		  [class="jetbrains-.*"]				      →	$dev
 assign		  [class="Code"]						          →	$dev
 assign		  [class="Alacritty" title="Work"]	  →	$terms
@@ -352,8 +354,9 @@ for_window [class="jetbrains-goland"     title="win0"]      floating enable;
 for_window [class="Anki"                 title="Profiles"]  floating enable;
 for_window [class="Anki"                 title="Add"]       floating enable;
 for_window [class="Anki"                 title="^Browse.*"] floating enable;
-for_window [class="Blueman-manager"      ] floating enable;
-for_window [class="TelegramDesktop"      ] floating enable;
+for_window [class="KeePassXC"]                              floating enable;
+for_window [class="Blueman-manager"      ]                  floating enable;
+for_window [class="TelegramDesktop"      ]                  floating enable;
 
 #
 # scratchpads
@@ -367,6 +370,11 @@ exec alacritty -t htop_scratchpad -e htop
 for_window [class="SpeedCrunch"] move to scratchpad, border none
 bindsym $mod+Shift+s [class="SpeedCrunch"] scratchpad show
 exec speedcrunch
+
+# keepassxc password manager
+for_window [class="KeePassXC"] move to scratchpad, border none
+bindsym $mod+Shift+w [class="KeePassXC"] scratchpad show
+exec --no-startup-id /usr/bin/keepassxc
 
 bindsym $mod+Shift+minus move scratchpad
 

@@ -72,4 +72,4 @@
 	ff = only
 
 [credential]
-	helper = "!gopass git-credential $@"
+	helper = keepassxc
