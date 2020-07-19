@@ -2,8 +2,9 @@ set -x EDITOR nvim
 set -x RUST_VERSION (asdf current rust | cut -d" " -f 1)
 
 append-to-path ~/.local/bin
+append-to-path ~/projects/git-toolbelt/
 
-string match -q ".*" $RUST_VERSION; \
+set -q RUST_VERSION; \
   and append-to-path ~/.asdf/installs/rust/$RUST_VERSION/bin
 
 # Java versions, run:
