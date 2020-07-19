@@ -45,7 +45,7 @@ alias v   'nvim'
 alias vi  'nvim'
 alias vim 'nvim'
 
-# fzf find files in current directory and edit the selected one
+# fzf find files in current directory and edit the selected ones
 alias f 'v (fzf -i)'
 
 switch (uname)
