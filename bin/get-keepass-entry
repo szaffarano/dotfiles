@@ -3,7 +3,7 @@
 set username  $argv[1]
 set url       $argv[2]
 
-if [ (count $argv) -eq 2 ]; and set -q KEEPASS_DB
+if [ (count $argv) -eq 2 ]
   printf "url=%s\nusername=%s\n" $url $username \
     | git-credential-keepassxc get \
     | sed -n 's/^password=//p'
