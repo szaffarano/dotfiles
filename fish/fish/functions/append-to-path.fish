@@ -7,7 +7,7 @@ function append-to-path -d 'Adds the given directory to the end of the PATH'
     if test -d $dir
         set dir (abspath $dir)
         if not contains $dir $PATH
-            set PATH $PATH $dir
+            set -a PATH $dir
         end
     else
         echo "Dir $dir does not exist?"
