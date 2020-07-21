@@ -3,12 +3,10 @@
 read -r -d '' USAGE << EOM
 $(basename "$0") switch uber project to specific branch
 
-$0 <file>
+$0 <mule-runtime-releases path> <branch>
 
-Where <file> is a property-like file with the format
-
-submodule1=branch1
-submodule2=branch2
+Example
+  $0 /patch/to/mule-runtime-releases support/4.2.2
 ...
 EOM
 export USAGE
@@ -18,17 +16,22 @@ BASE=$( cd "$(dirname "$0")" || exit; pwd )
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
 
-checkParams $# 1
+checkParams $# 2
 
-file="$1"
+releases="$1"
+branch="$2"
 
-while read -r p; do
-	if echo "$p$" | grep "=" > /dev/null; then
+git -C "$releases" fetch
+git -C "$releases" show \
+  origin/"$branch":ConfigReleaseBranches.groovy | while read -r p
+do
+  if echo "$p" | grep "=" > /dev/null; then
 		project=$(echo "$p" | cut -d"=" -f 1 | sed s"/_/-/"g)
 		branch=$(echo "$p" | cut -d"=" -f 2- | sed s"/\"//"g)
+
 		echo "Switching $project"
 		if cd "$project"; then
-			if ! git switch "$branch"; then
+			if ! git checkout "$branch"; then
 				echo "Error switching to $branch in $project"
 				read -r < /dev/tty
 			fi
@@ -37,5 +40,5 @@ while read -r p; do
 			echo "Error accessing to $project from $(pwd)"
 			read -r < /dev/tty
 		fi
-	fi
-done < "$file"
+  fi
+done
