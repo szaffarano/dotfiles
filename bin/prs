@@ -42,7 +42,7 @@ echo "$result" \
 echo "$result" | jq "[.[] | select(.user.login == $username) | \
     { \
       pr: (\"#\" + (.number | tostring) + \": \" + .title), \
-      url: .url, \
+      url: ._links.html.href, \
       state: .state, \
       base: (.base.repo.full_name + \":\" + .base.ref), \
       head: (.head.repo.full_name + \":\" + .head.ref), \
