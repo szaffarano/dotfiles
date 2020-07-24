@@ -23,7 +23,7 @@ function usage {
 [[ -n "$GITHUB_TOKEN" ]] || die "GITHUB_TOKEN is not defined"
 
 # validate dependencies
-which jq > /dev/null || die "jq not found.  Visit https://stedolan.github.io/jq/"
+which dw > /dev/null || die "dw not found.  Please visit https://github.com/mulesoft-labs/data-weave-native"
 
 ORG="mulesoft"
 HEADER="Authorization: token $GITHUB_TOKEN"
@@ -31,20 +31,18 @@ REPO="$1"
 
 URL="https://api.github.com/repos/$ORG/$REPO/pulls?state=open&per_page=100"
 
-username=$(curl -s -H"$HEADER" "https://api.github.com/user" | jq '.login')
+username=$(curl -s -H"$HEADER" "https://api.github.com/user" | dw 'payload.login')
 
 result=$(curl -s -H"$HEADER" "$URL")
 
-echo "$result" \
-    | jq '.message | contains("Not Found")' > /dev/null 2>&1 \
-  && die "$result"
+[[ $(echo "$result" | dw 'payload.message == "Not Found"') = "false" ]] \
+  || die "$result"
 
-echo "$result" | jq "[.[] | select(.user.login == $username) | \
-    { \
-      pr: (\"#\" + (.number | tostring) + \": \" + .title), \
-      url: ._links.html.href, \
-      state: .state, \
-      base: (.base.repo.full_name + \":\" + .base.ref), \
-      head: (.head.repo.full_name + \":\" + .head.ref), \
-    }]"
-
+echo "$result" | dw "payload[?($.user.login == $username)] \
+  map ( (e) -> { \
+    pr: '#' ++ e.number ++ ': ' ++ e.title,  \
+    url: e['_links'].html.href, \
+    state: e.state, \
+    base: e.base.repo.full_name ++ ':' ++ e.base.ref, \
+    head: e.head.repo.full_name ++ ':' ++ e.head.ref\
+  })"
