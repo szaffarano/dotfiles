@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+DIRNAME=$(dirname "$0")
+FLD_VERSION="1.13"
+FLD_JAR="file-leak-detector-$FLD_VERSION-jar-with-dependencies.jar"
+FLD_PATH="$DIRNAME/$FLD_JAR"
+FLD_URL="http://search.maven.org/remotecontent?filepath=org/kohsuke/file-leak-detector/$FLD_VERSION/$FLD_JAR"
+
+[[ -f "$FLD_PATH" ]] || curl -L "$FLD_URL" -o "$FLD_PATH"
+
+java -jar "$FLD_PATH" "$@"

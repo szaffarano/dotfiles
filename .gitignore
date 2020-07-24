@@ -7,3 +7,4 @@ cfr-*.jar
 fish/omf/weather/api-key
 fish/fish/fish_variables
 fish/fish/env.local.fish
+file-leak-detector-1.13-jar-with-dependencies.jar
