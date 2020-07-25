@@ -7,16 +7,21 @@ inspired in [vsund dotfiles](https://github.com/vsund/dotfiles).
 
 ### Adapt following scripts to profiles approach
 
-  - scripts/preconditions.sh
-  - scripts/install-fonts.sh
-  - scripts/install-bat.sh
-  - scripts/install-zplug.sh
-  - scripts/install-asdf.sh
-  - scripts/install-golang.sh
-  - scripts/install-rust.sh
-  - scripts/install-java.sh
-  - scripts/install-shellcheck.sh
-  - scripts/install-fzf.sh
-  - scripts/install-packages.sh
+  - scripts/asdf-utils.sh (**DONE**)
   - scripts/install-anaconda.sh
-  - scripts/install-nodejs.sh
+  - scripts/install-asdf.sh (**DONE**)
+  - scripts/install-bat.sh
+  - scripts/install-fonts.sh
+  - scripts/install-fzf.sh (**DONE**)
+  - scripts/install-golang.sh (**DONE**)
+  - scripts/install-java.sh (**DONE**)
+  - scripts/install-kotlin.sh (**DONE**)
+  - scripts/install-nodejs.sh (**DONE**)
+  - scripts/install-packages.sh
+  - scripts/install-rust.sh (**DONE**)
+  - scripts/install-rust.sh (**DONE**)
+  - scripts/install-scala.sh (**DONE**)
+  - scripts/install-shellcheck.sh (**DONE**)
+  - scripts/install-shellcheck.sh (**DONE**)
+  - scripts/install-zplug.sh
+  - scripts/preconditions.sh

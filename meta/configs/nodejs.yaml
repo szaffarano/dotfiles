@@ -1,0 +1,8 @@
+- asdf:
+  - plugin: nodejs
+    versions:
+      - latest
+  - plugin: yarn
+    versions:
+      - latest
+

@@ -1,0 +1,4 @@
+- asdf:
+  - plugin: golang
+    versions:
+      - latest

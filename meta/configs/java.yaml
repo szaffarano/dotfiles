@@ -1,0 +1,7 @@
+- asdf:
+  - plugin: java
+    versions:
+      - latest
+      - adoptopenjdk-13.0.2+8.1
+      - adoptopenjdk-11.0.8+10
+      - adoptopenjdk-8.0.262+10

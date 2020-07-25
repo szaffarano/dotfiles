@@ -1,0 +1,7 @@
+- asdf:
+  - plugin: sbt
+    versions:
+      - latest
+  - plugin: scala
+    versions:
+      - latest
