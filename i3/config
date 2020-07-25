@@ -108,6 +108,10 @@ exec --no-startup-id nm-applet
 # Bluetooth applet
 exec --no-startup-id blueman-applet
 
+# keepassxc password manager
+bindsym $mod+Shift+w exec /usr/bin/keepassxc
+exec --no-startup-id /usr/bin/keepassxc
+
 # Volume Controls
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume	exec pactl set-sink-volume @DEFAULT_SINK@   +5%    && $refresh_i3status
@@ -370,11 +374,6 @@ exec alacritty -t htop_scratchpad -e htop
 for_window [class="SpeedCrunch"] move to scratchpad, border none
 bindsym $mod+Shift+s [class="SpeedCrunch"] scratchpad show
 exec speedcrunch
-
-# keepassxc password manager
-for_window [class="KeePassXC"] move to scratchpad, border none
-bindsym $mod+Shift+w [class="KeePassXC"] scratchpad show
-exec --no-startup-id /usr/bin/keepassxc
 
 bindsym $mod+Shift+minus move scratchpad
 
