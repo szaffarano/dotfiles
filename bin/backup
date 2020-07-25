@@ -1,0 +1,11 @@
+#!/usr/bin/env fish
+
+. ~/.config/fish/env.local.fish
+
+restic backup \
+  --files-from "$RESTIC_FILE_LIST" \
+  --verbose
+
+cat "$BKP_FILE_LIST" | while entry file
+  rclone sync $entry "$BKP_REPO":Backup/$entry
+end
