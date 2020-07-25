@@ -1,6 +1,6 @@
 [submodule "meta/dotbot"]
 	path = meta/dotbot
 	url = https://github.com/anishathalye/dotbot
-[submodule "tmux/tpm"]
-	path = tmux/tpm
+[submodule "terminals/tmux/tpm"]
+	path = terminals/tmux/tpm
 	url = https://github.com/tmux-plugins/tpm

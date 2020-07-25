@@ -27,51 +27,51 @@
 
 - link:
     # tmux
-    ~/.tmux.conf: tmux/tmux.conf
-    ~/.tmux/plugins/tpm: tmux/tpm
+    ~/.tmux.conf: terminals/tmux/tmux.conf
+    ~/.tmux/plugins/tpm: terminals/tmux/tpm
 
     # git
-    ~/.gitconfig: git/gitconfig
+    ~/.gitconfig: tools/git/gitconfig
 
     # ssh
-    ~/.ssh/config: ssh/config
+    ~/.ssh/config: tools/ssh/config
 
     # vim
-    ~/.config/nvim: vim
-    ~/.goneovim/setting.toml: goneovim/setting.toml
+    ~/.config/nvim: editors/vim
+    ~/.goneovim/setting.toml: editors/goneovim/setting.toml
 
     # i3
-    ~/.config/i3: i3
+    ~/.config/i3: gui/i3
 
-    ~/.config/autorandr: autorandr
+    ~/.config/autorandr: gui/autorandr
 
     # gpg
-    ~/.gnupg/gpg.conf: gnupg/gpg.conf
-    ~/.gnupg/gpg-agent.conf: gnupg/gpg-agent.conf
+    ~/.gnupg/gpg.conf: tools/gnupg/gpg.conf
+    ~/.gnupg/gpg-agent.conf: tools/gnupg/gpg-agent.conf
 
     # zsh
-    ~/.zshrc: zsh/zshrc
-    ~/.exports: zsh/exports
-    ~/.aliases: zsh/aliases
-    ~/.p10k.zsh: zsh/p10k.zsh
-    ~/.profile: zsh/profile
+    ~/.zshrc: shells/zsh/zshrc
+    ~/.exports: shells/zsh/exports
+    ~/.aliases: shells/zsh/aliases
+    ~/.p10k.zsh: shells/zsh/p10k.zsh
+    ~/.profile: shells/zsh/profile
 
     # fish
-    ~/.config/fish: fish/fish
-    ~/.config/omf: fish/omf
+    ~/.config/fish: shells/fish/fish
+    ~/.config/omf: shells/fish/omf
 
-    ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yml
+    ~/.config/alacritty/alacritty.yml: terminals/alacritty/alacritty.yml
 
-    ~/.config/dunst/dunstrc: dunst/dunstrc
+    ~/.config/dunst/dunstrc: gui/dunst/dunstrc
 
-    ~/.config/copyq/copyq.conf: copyq/copyq.conf 
-    ~/.config/copyq/copyq-commands.ini: copyq/copyq-commands.ini
+    ~/.config/copyq/copyq.conf: gui/copyq/copyq.conf 
+    ~/.config/copyq/copyq-commands.ini: gui/copyq/copyq-commands.ini
 
     # bin
     ~/.local/bin: bin
 
     # zathura
-    ~/.config/zathura/zathurarc: zathura/zathurarc
+    ~/.config/zathura/zathurarc: gui/zathura/zathurarc
 
     # keepassxc
-    ~/.config/keepassxc: keepassxc
+    ~/.config/keepassxc: gui/keepassxc
