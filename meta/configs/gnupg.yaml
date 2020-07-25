@@ -1,4 +1,6 @@
+- shell:
+    - [mkdir -p ~/.gnupg, Creating gnupg config directory]
+
 - link:
-    # gpg
     ~/.gnupg/gpg.conf: tools/gnupg/gpg.conf
     ~/.gnupg/gpg-agent.conf: tools/gnupg/gpg-agent.conf
