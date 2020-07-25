@@ -6,6 +6,6 @@ restic backup \
   --files-from "$RESTIC_FILE_LIST" \
   --verbose
 
-cat "$BKP_FILE_LIST" | while entry file
+cat "$BKP_FILE_LIST" | while read entry
   rclone sync $entry "$BKP_REPO":Backup/$entry
 end
