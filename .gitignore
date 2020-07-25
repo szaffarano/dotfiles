@@ -1,10 +1,8 @@
-vim/view
-**/.gitconfig.local
-vim/spell
-vim/.netrwhist
-goneovim/sessions
 cfr-*.jar
-fish/omf/weather/api-key
-fish/fish/fish_variables
-fish/fish/env.local.fish
+editors/goneovim/sessions
+editors/vim/.netrwhist
 file-leak-detector-1.13-jar-with-dependencies.jar
+**/.gitconfig.local
+shells/fish/fish/env.local.fish
+shells/fish/fish/fish_variables
+shells/fish/omf/weather/api-key

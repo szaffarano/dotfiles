@@ -1,0 +1,4 @@
+- link:
+    # fish
+    ~/.config/fish: shells/fish/fish
+    ~/.config/omf: shells/fish/omf
