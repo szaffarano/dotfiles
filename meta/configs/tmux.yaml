@@ -1,0 +1,5 @@
+- link:
+    ~/.tmux.conf: terminals/tmux/tmux.conf
+    ~/.tmux/plugins/tpm: terminals/tmux/tpm
+
+

@@ -1,0 +1,5 @@
+- link:
+    ~/.config/nvim: editors/vim
+    ~/.goneovim/setting.toml: editors/goneovim/setting.toml
+
+

@@ -1,0 +1,4 @@
+- asdf:
+  - plugin: rust
+    versions:
+      - latest
