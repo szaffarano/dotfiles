@@ -28,7 +28,7 @@
 - link:
     # tmux
     ~/.tmux.conf: tmux/tmux.conf
-    ~/.tmux/plugins/tpm: lib/tpm
+    ~/.tmux/plugins/tpm: tmux/tpm
 
     # git
     ~/.gitconfig: git/gitconfig
