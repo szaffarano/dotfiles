@@ -10,17 +10,8 @@ ENV="$BASE_DIR/install.env"
 # shellcheck source=/dev/null
 . "$ENV"
 
-pushd "$BASE_DIR" > /dev/null
-
-git -C "$BASE_DIR" submodule update --init --recursive --remote
+updateSubmodules
 
 for config in "${@}"; do
-    PROFILE_CONFIG_PATH=$BASE_DIR/$META_DIR/$CONFIG_DIR/$config$CONFIG_SUFFIX
-
-    configContent="$(<"$BASE_CONFIG_PATH")\n$(<"$PROFILE_CONFIG_PATH")"
-
-    $DOTBOT_CMD \
-      -d "$BASE_DIR" \
-      --plugin-dir "$DOTBOT_PLUGINS/dotbot-asdf" \
-      -c <(echo -e "$configContent")
+  applyConfig "$config"
 done

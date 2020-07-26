@@ -10,26 +10,20 @@ ENV="$BASE_DIR/install.env"
 # shellcheck source=/dev/null
 . "$ENV"
 
-pushd "$BASE_DIR" > /dev/null
+PROFILE="$META_DIR/$PROFILES_DIR/$1"
 
-git -C "$BASE_DIR" submodule update --init --recursive --remote
+[[ -f "$PROFILE" ]] || (echo "$PROFILE: not found" && exit 1)
+
+updateSubmodules
+
+echo -e "\nApplying profile $(basename "$PROFILE")..."
 
 while IFS= read -r config; do
-    CONFIGS+=" ${config}"
-done < "$META_DIR/$PROFILES_DIR/$1"
+    CONFIGS+=" $config"
+done < "$PROFILE"
 
 shift
 
-for config in ${CONFIGS} "${@}"; do
-    echo -e "\nConfigure $config"
-
-    PROFILE_CONFIG_PATH=$BASE_DIR/$META_DIR/$CONFIG_DIR/$config$CONFIG_SUFFIX
-
-    configContent="$(<"$BASE_CONFIG_PATH")\n$(<"$PROFILE_CONFIG_PATH")"
-    $DOTBOT_CMD \
-      -d "$BASE_DIR" \
-      --plugin-dir "$DOTBOT_PLUGINS/dotbot-asdf" \
-      -c <(echo -e "$configContent")
+for config in $CONFIGS "${@}"; do
+  applyConfig "$config"
 done
-
-popd > /dev/null
