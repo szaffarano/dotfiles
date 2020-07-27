@@ -1,8 +1,14 @@
 - asdf:
   - plugin: nodejs
-    versions:
-      - latest
-  - plugin: yarn
+
+- shell:
+    - [$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring]
+
+- asdf:
+  - plugin: nodejs
     versions:
       - latest
 
+  - plugin: yarn
+    versions:
+      - latest
