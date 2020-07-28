@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ag "Failures:" $1/**/surefire-reports/*txt  \
   | sed -E \
     -e s'/^.*\ run:\ ([0-9]*),.*Failures:\ ([0-9]*),.*Errors:\ ([0-9]*),.*Skipped:\ ([0-9]*),.*/\1 \2 \3 \4/g' \
