@@ -4,63 +4,52 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 #############################################################################
 
-##########
-# colors #
-##########
+################
+# srcery theme #
+################
+set $black #1C1B19
+set $bright_black #918175
 
-# get color from xressource configuration - variable_name xressource_color fallback
+set $red #EF2F27
+set $bright_red #F75341
 
-# special
-set_from_resource $foreground foreground #C6C6C6
-set_from_resource $background background #1C1C1C
-set_from_resource $cursorColor cursorColor #C6C6C6
+set $green #519F50
+set $bright_green #98BC37
 
-# black
-set_from_resource $black1 color0 #303030
-set_from_resource $black2 color8 #444444
-set $trueblack #000000
+set $yellow #FBB829
+set $bright_yellow #FED06E
 
-# red
-set_from_resource $red1 color1 #d75f5f
-set_from_resource $red2 color9 #d75f5f
+set $blue #2C78BF
+set $bright_blue #68A8E4
 
-# green
-set_from_resource $green1 color2 #87AF87
-set_from_resource $green2 color10 #87AF87
+set $magenta #E02C6D
+set $bright_magenta #FF5C8F
 
-# yellow
-set_from_resource $yellow1 color3 #ffd75f
-set_from_resource $yellow2 color11 #ffd75f
+set $cyan #0AAEB3
+set $bright_cyan #53FDE9
 
-# blue
-set_from_resource $blue1 color4 #87afd7
-set_from_resource $blue2 color12 #87afd7
+set $white #D0BFA1
+set $bright_white #FCE8C3
 
-# magenta
-set_from_resource $cyan1 color5 #afafd7
-set_from_resource $cyan2 color13 #afafd7
+set $orange #D75F00
+set $bright_orange #FF8700
 
-# cyan
-set_from_resource $cyan1 color6 #afd7ff
-set_from_resource $cyan2 color14 #afd7ff
+set $xgray1 #262626
+set $xgray2 #303030
+set $xgray3 #3A3A3A
+set $xgray4 #444444
+set $xgray5 #4E4E4E
 
-# white
-set_from_resource $white1 color7 #4E4E4E
-set_from_resource $white2 color15 #ffffff
+set $hard_black #121212
 
-##########
-# DESIGN #
-##########
 
-# hide borders
-hide_edge_borders both
-
-# class                 border  backgr. text    indicator child_border
-client.focused          #333333 $white1 $white2 #285577
-client.focused_inactive #333333 $background $foreground #484e50
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           $red1   $red1   $white2 $red1     $red1
-client.placeholder      #000000 #0c0c0c $white2 #000000   #0c0c0c
+# Colors                border        background  text          indicator child_border
+client.focused          $bright_black $xgray3     $yellow       $yellow   $bright_black
+client.focused_inactive $xgray3       $xgray3     $bright_black $xgray3   $xgray3
+client.unfocused        $xgray1       $xgray1     $bright_black $xgray1   $xgray1
+client.urgent           $red          $xgray1     $red          $red      $red
+client.placeholder      $xgray3       $hard_black $bright_black $xgray3   $xgray3
+client.background       $black
 
 title_align	center
 
@@ -320,17 +309,18 @@ bar {
 	tray_output primary
 
 	status_command i3status --config $config/i3status.conf
-	colors {
-		background			$black2
-		statusline			$white2
-        separator			$white2 
+  colors {
+    background $black
+    statusline $white
+    separator  $white
 
-        focused_workspace  $black2		$black2		$cyan2
-        active_workspace   $black2		$black1		$white2
-        inactive_workspace $black2		$black2		$foreground
-        urgent_workspace   $red1		$red1		$white2
-        binding_mode       $black1		$black1		$red2
-    }
+    # Colors           border        background   text
+    focused_workspace  $bright_black $xgray3      $yellow
+    active_workspace   $xgray3       $xgray3      $bright_black
+    inactive_workspace $xgray3       $xgray1      $bright_black
+    urgent_workspace   $red          $red         $black
+    binding_mode       $magenta      $magenta     $bright_white
+  }
 }
 
 # assign windows to an specific workspace

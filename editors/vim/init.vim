@@ -13,6 +13,9 @@ call plug#end()
 
 " Set Options ---------------------- {{{
 
+" theme
+colorscheme srcery
+
 " enable vim/neovim features
 set nocompatible
 

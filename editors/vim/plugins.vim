@@ -19,3 +19,6 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " lint/autocompletion
 Plug 'dense-analysis/ale'
+
+" srcery theme
+Plug 'srcery-colors/srcery-vim'
