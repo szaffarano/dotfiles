@@ -25,3 +25,9 @@ Plug 'srcery-colors/srcery-vim'
 
 " vim-clap: interactive finder and dispatcher
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+
+" vim-fugitive: git support
+Plug 'tpope/vim-fugitive'
+
+" vim-rhubarb: integrates github with vim-fugitive
+Plug 'tpope/vim-rhubarb'

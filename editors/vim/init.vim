@@ -35,6 +35,9 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 
+" buffers become hidden when they are abandoned
+set hidden
+
 " relative / hybrid line number switch
 augroup toggle_relative_numbers
   autocmd InsertEnter * :setlocal norelativenumber
@@ -92,8 +95,8 @@ set foldcolumn=2
 inoremap jk <Esc>
 
 " redefine leader key
-map , <leader>
-map , <localleader>
+map <space> <leader>
+map <space> <localleader>
 
 " clear matched search
 map <silent><esc> :noh<cr>
@@ -114,6 +117,10 @@ nnoremap <Leader>vr :source $MYVIMRC<CR>
 
 nnoremap <silent> <F11> :set spell!<cr>
 inoremap <silent> <F11> <C-O>:set spell!<cr>
+
+nnoremap <silent> <leader><Leader> <C-^>
+
+nnoremap <silent> <leader>d :bdel<CR>
 
 " moves through lines when wrapping
 vmap <M-j> gj
