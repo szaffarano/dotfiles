@@ -72,4 +72,4 @@
 	ff = only
 
 [credential]
-	helper = keepassxc
+	helper = keepassxc --unlock 0
