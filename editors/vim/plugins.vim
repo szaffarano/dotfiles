@@ -22,3 +22,6 @@ Plug 'dense-analysis/ale'
 
 " srcery theme
 Plug 'srcery-colors/srcery-vim'
+
+" vim-clap: interactive finder and dispatcher
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
