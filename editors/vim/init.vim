@@ -73,9 +73,6 @@ set undofile
 " configure spell check
 set spelllang=en,es,de_de
 
-" use OS clipboard instead of vim's default
-set clipboard+=unnamedplus
-
 " write automatically when quitting buffer
 set autowrite
 

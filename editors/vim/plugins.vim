@@ -31,3 +31,6 @@ Plug 'tpope/vim-fugitive'
 
 " vim-rhubarb: integrates github with vim-fugitive
 Plug 'tpope/vim-rhubarb'
+
+" start screen
+Plug 'mhinz/vim-startify'
