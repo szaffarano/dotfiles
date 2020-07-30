@@ -1,5 +1,8 @@
-[include]
-    path = ~/.gitconfig.local
+[user]
+	username = szaffarano
+	name = Sebastián Zaffarano
+	email = sebas@zaffarano.com.ar
+	signingkey = sebas@zaffarano.com.ar
 
 [color]
 	ui = auto
@@ -73,3 +76,5 @@
 
 [credential]
 	helper = keepassxc --unlock 0
+[commit]
+	gpgsign = true
