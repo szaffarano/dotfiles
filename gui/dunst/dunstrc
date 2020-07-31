@@ -21,7 +21,7 @@
     horizontal_padding = 8
     separator_color = frame
     startup_notification = true
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/rofi -dmenu -p dunst:
     browser = /usr/bin/firefox -new-tab
 
 [frame]
