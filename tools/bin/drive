@@ -1,0 +1,26 @@
+#!/usr/bin/env fish
+
+function usage
+  echo "Usage: drive <command> <repo>"
+  echo "  eg: drive mount my-repo"
+  exit 1
+end
+
+if [ (count $argv) -ne 2 ]
+  usage
+end
+
+set  cmd $argv[1]
+set name $argv[2]
+set   mp ~/drive/$name
+
+[ -e $mp ]; or mkdir -p $mp
+
+. ~/.config/fish/env.local.fish
+
+switch $cmd
+  case "mount"
+    rclone mount "drive-$name": $mp --daemon
+  case "unmount"
+    fusermount -u $mp
+end
