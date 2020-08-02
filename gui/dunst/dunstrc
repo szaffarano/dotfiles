@@ -22,7 +22,9 @@
     separator_color = frame
     startup_notification = true
     dmenu = /usr/bin/rofi -dmenu -p dunst:
-    browser = /usr/bin/firefox -new-tab
+    browser = /usr/bin/brave-browser -new-tab
+    icon_position = left
+    max_icon_size = 32x32
 
 [frame]
     width = 0
