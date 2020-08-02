@@ -23,4 +23,6 @@ switch $cmd
     rclone mount "drive-$name": $mp --daemon
   case "unmount"
     fusermount -u $mp
+  case '*'
+    echo "$cmd: Unknown command"
 end
