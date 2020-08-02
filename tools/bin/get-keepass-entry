@@ -5,7 +5,7 @@ set url       $argv[2]
 
 if [ (count $argv) -eq 2 ]
   printf "url=%s\nusername=%s\n" $url $username \
-    | git-credential-keepassxc get \
+    | git-credential-keepassxc --unlock 0 get \
     | sed -n 's/^password=//p'
 else
   exit 1
