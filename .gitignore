@@ -8,3 +8,5 @@ shells/fish/fish/fish_variables
 shells/fish/omf/weather/api-key
 tools/bin/bin
 editors/vim/spell/
+tools/bin/greenclip
+tools/bin/pyls
