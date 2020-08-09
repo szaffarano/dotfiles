@@ -30,10 +30,22 @@ set nospell
 " use 2 spaces instead of tab (to replace existing tab use :retab)
 " copy indent from current line when starting a new line
 set autoindent
+set smartindent
 set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+
+" Wrap text
+set showbreak=...
+set linebreak
+set formatoptions=qrn1
+
+" set 80 and 120 column borders for good coding style
+set colorcolumn=80,120
+
+" No extra space when join lines
+set nojoinspaces
 
 " buffers become hidden when they are abandoned
 set hidden
@@ -51,9 +63,6 @@ au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
 
 " autowrap markdown files
 au BufRead,BufNewFile *.md setlocal textwidth=80 formatoptions+=wa
-
-" set 80 and 120 column borders for good coding style
-set colorcolumn=80,120
 
 " set the title of the window to "filename [+=-] (path) - NVIM"
 set title
@@ -77,12 +86,22 @@ set spelllang=en,es,de_de
 set autowrite
 
 " folding setup
-set foldenable
-set foldmethod=syntax
-set foldlevelstart=1
-let vimsyn_folding='af'
-set foldnestmax=10
-set foldcolumn=2
+set nofoldenable
+"set foldmethod=syntax
+"set foldlevelstart=1
+"let vimsyn_folding='af'
+"set foldnestmax=10
+"set foldcolumn=2
+
+" set search ignorecase
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+""Minimal number of screen lines to keep above and below the cursor.
+set scrolloff=3
+
 
 " }}}
 
@@ -118,6 +137,9 @@ inoremap <silent> <F12> <C-O>:set spell!<cr>
 nnoremap <silent> <leader><Leader> <C-^>
 
 nnoremap <silent> <leader>d :bdel<CR>
+
+" Closes buffer
+nmap <C-x> :Bclose<CR>
 
 " moves through lines when wrapping
 vmap <M-j> gj

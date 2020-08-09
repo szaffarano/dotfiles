@@ -28,9 +28,14 @@ Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 
 " vim-fugitive: git support
 Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog'
 
 " vim-rhubarb: integrates github with vim-fugitive
 Plug 'tpope/vim-rhubarb'
 
 " start screen
 Plug 'mhinz/vim-startify'
+
+" airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
