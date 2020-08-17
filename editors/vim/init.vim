@@ -13,11 +13,11 @@ call plug#end()
 
 " Set Options ---------------------- {{{
 
-" theme
-colorscheme srcery
-
 " enable vim/neovim features
 set nocompatible
+
+" theme
+colorscheme gruvbox
 
 filetype plugin on
 
@@ -35,11 +35,6 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-
-" Wrap text
-set showbreak=...
-set linebreak
-set formatoptions=qrn1
 
 " set 80 and 120 column borders for good coding style
 set colorcolumn=80,120
@@ -87,11 +82,6 @@ set autowrite
 
 " folding setup
 set nofoldenable
-"set foldmethod=syntax
-"set foldlevelstart=1
-"let vimsyn_folding='af'
-"set foldnestmax=10
-"set foldcolumn=2
 
 " set search ignorecase
 set ignorecase
@@ -109,6 +99,7 @@ set scrolloff=3
 
 " jk leaves insert mode (same as <esc> key)
 inoremap jk <Esc>
+inoremap kj <Esc>
 
 " redefine leader key
 map <space> <leader>
@@ -128,30 +119,23 @@ nnoremap Q <Nop>
 " edit vimrc configuration file
 nnoremap <Leader>ve :tabe $MYVIMRC<CR>
 
+" edit plugins.vim configuration file
+nnoremap <Leader>vp :tabe $config/plugins.vim<CR>
+
 " reload vimrc configuration file
 nnoremap <Leader>vr :source $MYVIMRC<CR>
 
+" toggle spelling
 nnoremap <silent> <F12> :set spell!<cr>
 inoremap <silent> <F12> <C-O>:set spell!<cr>
 
+" go to previous buffer
 nnoremap <silent> <leader><Leader> <C-^>
 
 nnoremap <silent> <leader>d :bdel<CR>
 
 " Closes buffer
-nmap <C-x> :Bclose<CR>
-
-" moves through lines when wrapping
-vmap <M-j> gj
-vmap <M-k> gk
-vmap <M-4> g$
-vmap <M-6> g^
-vmap <M-0> g^
-nmap <M-j> gj
-nmap <M-k> gk
-nmap <M-4> g$
-nmap <M-6> g^
-nmap <M-0> g^
+nmap <C-x> :bdelete<CR>
 
 " }}}
 

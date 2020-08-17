@@ -20,8 +20,8 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " lint/autocompletion
 Plug 'dense-analysis/ale'
 
-" srcery theme
-Plug 'srcery-colors/srcery-vim'
+" gruvbox theme
+Plug 'morhetz/gruvbox'
 
 " vim-clap: interactive finder and dispatcher
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
@@ -39,3 +39,9 @@ Plug 'mhinz/vim-startify'
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" A collection of language packs for Vim.
+Plug 'sheerun/vim-polyglot'
