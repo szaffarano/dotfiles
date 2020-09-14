@@ -10,3 +10,4 @@ tools/bin/bin
 editors/vim/spell/
 tools/bin/greenclip
 tools/bin/pyls
+tools/bin/youtube-dl
