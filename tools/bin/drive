@@ -20,7 +20,9 @@ set   mp ~/drive/$name
 
 switch $cmd
   case "mount"
-    rclone mount "drive-$name": $mp --daemon
+    rclone mount "drive-$name": $mp \
+      --vfs-cache-mode writes \
+      --daemon
   case "unmount"
     fusermount -u $mp
   case '*'
