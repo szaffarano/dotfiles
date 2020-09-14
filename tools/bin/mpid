@@ -15,5 +15,5 @@ elif [[ $M_INSTANCES -gt 1 ]]; then
 	echo "$M_INSTANCES instances of mule runtime found, expected 1: $PIDS"
 	exit 2
 else
-	echo "$PIDS"
+	echo "$PIDS" | sed s'/\ //g'
 fi
