@@ -21,6 +21,10 @@ checkParams $# 2
 releases="$1"
 branch="$2"
 
+git pull
+git submodule init
+git submodule update
+
 git -C "$releases" fetch
 git -C "$releases" show \
   origin/"$branch":ConfigReleaseBranches.groovy | while read -r p
