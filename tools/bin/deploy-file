@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+MVN="mvn"
+
+read -r -d '' USAGE << EOM
+$(basename "$0") deploy an artifact in a maven local repo.
+
+Usage:
+    $(basename "$0") <artifact> <groupId> <artifactId> <version> <package-type> [<classifier>]
+
+EOM
+export USAGE
+
+BASE=$( cd "$(dirname "$0")" || exit; pwd )
+
+# shellcheck source=/dev/null
+source "$BASE/common.sh"
+
+checkParamsAtLeast $# 5
+
+whereis $MVN > /dev/null 2>&1 || die "MVN not found" 1
+
+
+ART="$1"
+GID="$2"
+AID="$3"
+VER="$4"
+PKG="$5"
+CLA=$([[ $# -eq 5 ]] && echo "-Dclassifier=" || echo "-Dclassifier=$6")
+
+$MVN install:install-file \
+   -Dfile="$ART" \
+   -DgroupId="$GID" \
+   "$CLA" \
+   -DartifactId="$AID" \
+   -Dversion="$VER" \
+   -Dpackaging="$PKG" \
+   -DgeneratePom=true
