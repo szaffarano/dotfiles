@@ -6,3 +6,5 @@ file-leak-detector-1.13-jar-with-dependencies.jar
 shells/fish/fish/env.local.fish
 shells/fish/fish/fish_variables
 shells/fish/omf/weather/api-key
+tools/bin/bin
+editors/vim/spell/
