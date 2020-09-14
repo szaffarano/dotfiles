@@ -119,6 +119,9 @@ bindsym XF86AudioPrev			exec   playerctl previous
 bindsym XF86MonBrightnessUp     exec xbacklight -inc 20
 bindsym XF86MonBrightnessDown   exec xbacklight -dec 20
 
+# Show a simple calendar
+bindsym $mod+c exec zenity --calendar
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -336,19 +339,20 @@ assign		  [class="libreoffice"]				        → $office
 for_window	[class="Spotify"] move to workspace		$multimedia
 
 # styles
-for_window [class="^Pavucontrol$"]       floating           enable
-for_window [class="^Arandr$"]            floating           enable
-for_window [class="^copyq$"]             floating           enable
-for_window [class="^Keybase$"]           floating           enable
-for_window [class="^Keybase$"]           floating           enable
-for_window [class="^JetBrains Toolbox$"] floating           enable
-for_window [title="tracker - .*"]        floating           enable
-for_window [class="^.*"]                 border             pixel    2
+for_window [class="^.*"]                                    border   pixel 2
+for_window [class="^Pavucontrol$"]                          floating enable
+for_window [class="^Arandr$"]                               floating enable
+for_window [class="^copyq$"]                                floating enable
+for_window [class="^Keybase$"]                              floating enable
+for_window [class="^Keybase$"]                              floating enable
+for_window [class="^JetBrains Toolbox$"]                    floating enable
+for_window [title="tracker - .*"]                           floating enable
 for_window [class="jetbrains-idea"       title="win0"]      floating enable;
 for_window [class="jetbrains-goland"     title="win0"]      floating enable;
 for_window [class="Anki"                 title="Profiles"]  floating enable;
 for_window [class="Anki"                 title="Add"]       floating enable;
 for_window [class="Anki"                 title="^Browse.*"] floating enable;
+for_window [class="Navigator"            title="^Cloud.Player.*Audible.com.*"] floating enable;
 for_window [class="KeePassXC"]                              floating enable;
 for_window [class="Blueman-manager"      ]                  floating enable;
 for_window [class="TelegramDesktop"      ]                  floating enable;
