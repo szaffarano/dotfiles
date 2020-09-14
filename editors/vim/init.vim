@@ -112,8 +112,8 @@ nnoremap <Leader>ve :tabe $MYVIMRC<CR>
 " reload vimrc configuration file
 nnoremap <Leader>vr :source $MYVIMRC<CR>
 
-nnoremap <silent> <F11> :set spell!<cr>
-inoremap <silent> <F11> <C-O>:set spell!<cr>
+nnoremap <silent> <F12> :set spell!<cr>
+inoremap <silent> <F12> <C-O>:set spell!<cr>
 
 nnoremap <silent> <leader><Leader> <C-^>
 
