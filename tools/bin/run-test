@@ -21,10 +21,14 @@ BASE=$( cd "$(dirname "$0")" || exit; pwd )
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
 
-checkParams $# 2
+checkParamsAtLeast $# 1
 
 test_expression=$1
 output=$2
+
+if [ $# -eq 1 ]; then
+  output=/tmp
+fi
 log_file="$output/errors.log"
 
 test_expression=$(echo $test_expression | sed -E s'/\[.*\]$/*/g')
