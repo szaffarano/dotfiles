@@ -1,0 +1,44 @@
+#!/usr/bin/env zsh
+
+
+read -r -d '' USAGE << EOM
+$(basename "$0") find which module belongs to a given test
+
+Usage:
+    $(basename "$0") <test>
+
+EOM
+export USAGE
+
+BASE=$( cd "$(dirname "$0")" || exit; pwd )
+
+# shellcheck source=/dev/null
+source "$BASE/common.sh"
+
+checkParams $# 1
+
+test_expression=$1
+
+test_expression=$(echo $test_expression | sed -E s'/\[.*\]$/*/g')
+
+IFS="." 
+test_parts=(${=test_expression})
+IFS=" "
+
+test_suite=${test_parts[-2]}
+method=${test_parts[-1]}
+file_name=${test_parts[-2]}.java
+
+files=$(find . -name "$file_name")
+
+[[ $#files -gt 0 ]] || die "$file_name: malformed"
+
+files=(${=$(echo $files | tr "\n" " ")})
+
+for file in $files; do
+  module=$(echo "$file" | sed -E -e s"/^(.*)\/src\/.*$/\1/g")
+
+  [[ -d $module ]] || log "ERROR: $module: not found ($file) - ($test_suite)"
+
+  echo "$module: $test_suite"
+done
