@@ -1,0 +1,4 @@
+- asdf:
+  - plugin: github-cli
+    versions:
+      - latest
