@@ -11,3 +11,6 @@ editors/vim/spell/
 tools/bin/greenclip
 tools/bin/pyls
 tools/bin/youtube-dl
+tools/bin/protoc
+tools/bin/swagger
+tools/bin/micro
