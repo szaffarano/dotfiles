@@ -1,0 +1,4 @@
+- asdf:
+  - plugin: python
+    versions:
+      - latest

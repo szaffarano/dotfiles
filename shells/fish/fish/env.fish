@@ -1,11 +1,15 @@
 set -x EDITOR nvim
 set -x RUST_VERSION (asdf current rust | cut -d" " -f 1)
+set -x PYTHON_VERSION (asdf current python | awk '{print $1}')
 
 append-to-path ~/.local/bin
 append-to-path ~/projects/git-toolbelt/
 
 set -q RUST_VERSION; \
   and append-to-path ~/.asdf/installs/rust/$RUST_VERSION/bin
+
+set -q PYTHON_VERSION; \
+  and append-to-path ~/.asdf/installs/python/$PYTHON_VERSION/bin
 
 # Java versions, run:
 #   /usr/libexec/java_home -V 2>&1  | grep "^\s.*" | sed -E s'/\ +(.*),.*/\1/g' | sort -u
