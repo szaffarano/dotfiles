@@ -12,7 +12,7 @@ function usage() {
 # $3: exit code
 #
 function logAndDie() {
-	echo "$1" | tee -a "$2"
+	echo >&2 "$1" | tee -a "$2"
 	exit "$3"
 }
 
@@ -21,7 +21,7 @@ function logAndDie() {
 # $2: exit code
 #
 function die() {
-	echo "$1"
+	echo >&2 "$1"
 	exit "$2"
 }
 
