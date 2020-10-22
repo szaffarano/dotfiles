@@ -8,7 +8,7 @@ ExtPopupmenu = true
 ExtTabline   = true
 ExtMessages  = true
 
-Clipboard = true
+Clipboard = false
 
 StartMaximizedWindow = false
 
