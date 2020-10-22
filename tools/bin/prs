@@ -1,48 +1,57 @@
 #!/usr/bin/env bash
 
+# #########################################################################
+# This script prints information about the PRs created by the authenticated user
+# in a given list of modules or the full list of git modules, eg:
+# 
+# $ export GITHUB_TOKEN="...."
+# 
+# $ prs  # PR for every git module relative to current working directory
+#
+# $ prs mule mule-ee mule-api # PRs only for these three modules
+#
+# #########################################################################
+
 function die {
   echo "$1"
   exit 1
 }
 
-function usage {
-  local prog
-
-  prog=$(basename "$0")
-  echo 
-  echo "Usage: $prog <repo>"
-  echo "  for example $prog <mule>"
-
-  exit 1
-}
-
-# validate parameters
-[[ $# -eq 1 ]] || usage
-
-# validate credentials
 [[ -n "$GITHUB_TOKEN" ]] || die "GITHUB_TOKEN is not defined"
+[[ -d ".git" ]] || die "$(pwd): invalid git repository"
 
-# validate dependencies
-which dw > /dev/null || die "dw not found.  Please visit https://github.com/mulesoft-labs/data-weave-native"
+which dw > /dev/null \
+  || die "DW not found.  Please visit https://github.com/mulesoft-labs/data-weave-native"
 
-ORG="mulesoft"
-HEADER="Authorization: token $GITHUB_TOKEN"
-REPO="$1"
+# only works with mulesoft organization
+org="mulesoft"
 
-URL="https://api.github.com/repos/$ORG/$REPO/pulls?state=open&per_page=100"
+header="Authorization: token $GITHUB_TOKEN"
 
-username=$(curl -s -H"$HEADER" "https://api.github.com/user" | dw 'payload.login')
+username=$(curl -s -H"$header" "https://api.github.com/user" | dw 'payload.login')
 
-result=$(curl -s -H"$HEADER" "$URL")
+if [[ $# -eq 0 ]]; then
+  modules=$(git submodule | awk '{print $2}')
+else
+  modules=$*
+fi
 
-[[ $(echo "$result" | dw 'payload.message == "Not Found"') = "false" ]] \
-  || die "$result"
+for repo in $modules
+do
+  url="https://api.github.com/repos/$org/$repo/pulls?state=open&per_page=100"
+  result=$(curl -s -H"$header" "$url")
 
-echo "$result" | dw "payload[?($.user.login == $username)] \
-  map ( (e) -> { \
-    pr: '#' ++ e.number ++ ': ' ++ e.title,  \
-    url: e['_links'].html.href, \
-    state: e.state, \
-    base: e.base.repo.full_name ++ ':' ++ e.base.ref, \
-    head: e.head.repo.full_name ++ ':' ++ e.head.ref\
-  })"
+  if [[ $(echo "$result" | dw 'payload.message == "Not Found"') = "true" ]]
+  then
+    echo "$result"
+  else
+    echo "$result" | dw "payload[?($.user.login == $username)] \
+      map ( (e) -> { \
+        pr:    e.title,  \
+        url:   e['_links'].html.href, \
+        state: e.state, \
+        base:  e.base.repo.full_name ++ ':' ++ e.base.ref, \
+        head:  e.head.repo.full_name ++ ':' ++ e.head.ref\
+      })" | grep -vE "^null$"
+  fi
+done
