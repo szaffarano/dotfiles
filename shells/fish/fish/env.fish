@@ -35,11 +35,12 @@ set -a FZF_DEFAULT_OPTS --preview \
   "'begin [ -f {} ]; and bat --style=numbers --color=always {}; or cat {}; end; \
   or begin [ -d {} ]; and tree -C {} | less; or echo {} 2> /dev/null | head -200; end'"
 
+# OS specific environment
 switch (uname)
     case Linux
       set -a FZF_DEFAULT_OPTS --bind '"ctrl-y:execute-silent(echo {+} | xclip -in -selection clipboard)"'
+      set -x MESA_LOADER_DRIVER_OVERRIDE i965
     case Darwin
       set -a FZF_DEFAULT_OPTS --bind '"ctrl-y:execute-silent(echo {+} | pbcopy)"'
 end
-
 
