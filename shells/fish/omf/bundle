@@ -9,3 +9,4 @@ package vcs
 package weather
 theme clearance
 theme default
+theme solarfish
