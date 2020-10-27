@@ -1,1 +1,1 @@
-/home/sebas/.local/share/omf/themes/solarfish/fish_prompt.fish
+/home/sebas/.local/share/omf/themes/kawasaki/fish_prompt.fish

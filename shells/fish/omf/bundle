@@ -9,4 +9,5 @@ package vcs
 package weather
 theme clearance
 theme default
+theme kawasaki
 theme solarfish
