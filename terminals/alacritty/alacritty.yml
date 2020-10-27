@@ -89,5 +89,8 @@ mouse:
   double_click: {threshold: 300}
   triple_click: {threshold: 300}
 
+key_bindings:
+  - { key: V,         mods: Alt,       chars: "\x1bv"                       }
+
 mouse_bindings:
   - {mouse: Middle, action: PasteSelection}
