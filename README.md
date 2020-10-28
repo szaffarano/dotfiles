@@ -1,27 +1,41 @@
-## dotfiles
+## Sebas's dotfiles
 
 My personal dotfiles using [dotbot](https://github.com/anishathalye/dotbot) and
 inspired in [vsund dotfiles](https://github.com/vsund/dotfiles).
 
-## TODO
+## Usage
 
-### Adapt following scripts to profiles approach
+### Install a complete profile
 
-  - scripts/asdf-utils.sh (**DONE**)
-  - scripts/install-anaconda.sh
-  - scripts/install-asdf.sh (**DONE**)
-  - scripts/install-bat.sh
-  - scripts/install-fonts.sh
-  - scripts/install-fzf.sh (**DONE**)
-  - scripts/install-golang.sh (**DONE**)
-  - scripts/install-java.sh (**DONE**)
-  - scripts/install-kotlin.sh (**DONE**)
-  - scripts/install-nodejs.sh (**DONE**)
-  - scripts/install-packages.sh
-  - scripts/install-rust.sh (**DONE**)
-  - scripts/install-rust.sh (**DONE**)
-  - scripts/install-scala.sh (**DONE**)
-  - scripts/install-shellcheck.sh (**DONE**)
-  - scripts/install-shellcheck.sh (**DONE**)
-  - scripts/install-zplug.sh
-  - scripts/preconditions.sh
+```sh
+$ ./install-profile <profile-name>
+```
+Where `<profile-name>` is one [of these](./meta/profiles) files.
+
+### Install an specific config
+
+```sh
+$ ./install-standalone <config-name-1> [<config-name-2> ... ]
+```
+Where `<config-name-n>` is one [of these](./meta/config) files.  You can use
+many config at the same time.
+
+
+## What does it include?
+
+Some packages that are installed and/or configured according my preferences are
+
+- CopyQ
+- [Fish shell](https://fishshell.com/)
+- [Git](https://git-scm.com/)
+- GoLang
+- [i3 Window Manager](https://i3wm.org/)
+- Java
+- NodeJS
+- Python
+- Rust
+- Scala
+- ssh
+- [Tmux](https://github.com/tmux/tmux/wiki)
+- [Z Shell](https://www.zsh.org/) (outdated)
+- ...
