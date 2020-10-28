@@ -21,3 +21,21 @@ Where `<config-name-n>` is one [of these](./meta/config) files.  You can use
 many config at the same time.
 
 
+## What does it include?
+
+Some packages that are installed and/or configured according my preferences are
+
+- CopyQ
+- [Fish shell](https://fishshell.com/)
+- [Git](https://git-scm.com/)
+- GoLang
+- [i3 Window Manager](https://i3wm.org/)
+- Java
+- NodeJS
+- Python
+- Rust
+- Scala
+- ssh
+- [Tmux](https://github.com/tmux/tmux/wiki)
+- [Z Shell](https://www.zsh.org/) (outdated)
+- ...
