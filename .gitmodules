@@ -1,9 +1,11 @@
 [submodule "meta/dotbot"]
 	path = meta/dotbot
 	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
 [submodule "terminals/tmux/tpm"]
 	path = terminals/tmux/tpm
 	url = https://github.com/tmux-plugins/tpm
+	ignore = dirty
 [submodule "meta/dotbot-plugins/dotbot-asdf"]
 	path = meta/dotbot-plugins/dotbot-asdf
 	url = https://github.com/sobolevn/dotbot-asdf.git
