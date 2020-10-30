@@ -38,6 +38,10 @@ alias bmn \
     -T0.5C \
     -Drevapi.skip"
 
+alias mvnf 'mvn formatter:format'
+alias mvni 'mvn clean install -DskipTests -Dskip.revapi '
+alias mvnp 'mvn clean package -DskipTests -Dskip.revapi '
+
 alias reset_license 'rm conf/muleLicenseKey.lic && touch conf/.lic-mule'
 
 # vim aliases
@@ -53,4 +57,12 @@ switch (uname)
       alias ls "ls --color=tty"
     case Darwin
       alias ls "ls -G"
+end
+
+function mvnt
+  if [ (count $argv) -ne 1 ]
+    echo "Usage mvnt <test>"
+    return 1
+  end
+  mvn test -Dtest="$argv[1]"
 end
