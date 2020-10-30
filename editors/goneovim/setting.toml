@@ -20,7 +20,7 @@ DrawShadowForFloatWindow = true
 
 DesktopNotifications = true
 
-ClickEffect = true
+ClickEffect = false
 
 [MiniMap]
 Disable = true
