@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -e
+
+usage () {
+    echo "usage: git cps [-nh] <branch> <pattern>" >&2
+    echo >&2
+    echo "Applies a cherry-pick based on the commits that matches a given grep pattern" >&2
+    echo "on a given branch." >&2
+    echo >&2
+    echo "Options:" >&2
+    echo "-n    Dry-run" >&2
+    echo "-h    Show this help" >&2
+}
+
+dryrun=0
+while getopts nh flag; do
+    case "$flag" in
+        n) dryrun=1;;
+        h) usage; exit 2;;
+    esac
+done
+shift $(($OPTIND - 1))
+
+branch="$1"
+pattern="$2"
+
+[ -z "$branch" ] || [ -z "$pattern" ] && (usage ; exit 3)
+
+if [ "$dryrun" -eq 1 ]; then
+    echo "About to apply the following commits: "
+    git log --oneline --reverse -E --grep "$pattern" "$branch"
+else
+    git cherry-pick -x $(git log --oneline --format="%h" --reverse -E --grep "$pattern" "$branch")
+fi
