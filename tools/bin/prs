@@ -18,7 +18,6 @@ function die {
 }
 
 [[ -n "$GITHUB_TOKEN" ]] || die "GITHUB_TOKEN is not defined"
-[[ -d ".git" ]] || die "$(pwd): invalid git repository"
 
 which dw > /dev/null \
   || die "DW not found.  Please visit https://github.com/mulesoft-labs/data-weave-native"
