@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+usage () {
+    echo "usage: git files <commit>" >&2
+    echo >&2
+    echo "List files modified by a given commit" >&2
+    echo >&2
+}
+
+commit="$1"
+
+[ -z "$commit" ] && (usage ; exit 3)
+
+git show --name-only --format="" $commit
