@@ -3,7 +3,6 @@ set -x RUST_VERSION (asdf current rust | cut -d" " -f 1)
 set -x PYTHON_VERSION (asdf current python | awk '{print $1}')
 
 append-to-path ~/.local/bin
-append-to-path ~/projects/git-toolbelt/
 
 set -q RUST_VERSION; \
   and append-to-path ~/.asdf/installs/rust/$RUST_VERSION/bin
@@ -41,6 +40,8 @@ switch (uname)
       set -a FZF_DEFAULT_OPTS --bind '"ctrl-y:execute-silent(echo {+} | xclip -in -selection clipboard)"'
       set -x MESA_LOADER_DRIVER_OVERRIDE i965
       set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+      append-to-path ~/projects/git-toolbelt/
     case Darwin
       set -a FZF_DEFAULT_OPTS --bind '"ctrl-y:execute-silent(echo {+} | pbcopy)"'
 end
