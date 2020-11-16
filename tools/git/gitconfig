@@ -78,3 +78,5 @@
 	helper = keepassxc --unlock 0
 [commit]
 	gpgsign = true
+[help]
+	autocorrect = 1
