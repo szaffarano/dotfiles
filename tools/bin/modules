@@ -1,0 +1,20 @@
+#!/usr/bin/env fish
+
+function usage
+  echo "modules: list the modules to whom belongs a list of files inside a multimodule java project"
+  echo
+  echo " Examples:"
+  echo "   \$ find . -name <some pattern> | modules"
+  echo "   \$ git show --name-only HEAD --format='' | modules"
+  exit 1
+end
+
+if [ (count $argv) -ne 0 ]
+  usage
+end
+
+[ -p /dev/stdin ]; or usage
+
+while read line
+  echo $line 
+end | sed -E -e s'/^(.*)\/src.*$/\1/g' | sort -u
