@@ -17,18 +17,19 @@ Where `<profile-name>` is one [of these](./meta/profiles) files.
 ```sh
 $ ./install-standalone <config-name-1> [<config-name-2> ... ]
 ```
-Where `<config-name-n>` is one [of these](./meta/config) files.  You can use
+Where `<config-name-n>` is one [of these](./meta/configs) files.  You can use
 many config at the same time.
 
 
 ## What does it include?
 
-Some packages that are installed and/or configured according my preferences are
+Some packages that are installed and/or configured (many of them using
+[asdf](https://github.com/asdf-vm/asdf])) according to my preferences are:
 
-- CopyQ
+- [CopyQ](https://github.com/hluk/CopyQ) clipboard manager
 - [Fish shell](https://fishshell.com/)
 - [Git](https://git-scm.com/)
-- GoLang
+- [GoLang](https://golang.org/)
 - [i3 Window Manager](https://i3wm.org/)
 - Java
 - NodeJS
