@@ -9,8 +9,8 @@ usage () {
     echo >&2
 }
 
-commit="$1"
+commit="$@"
 
 [ -z "$commit" ] && (usage ; exit 3)
 
-git show --name-only --format="" $commit
+git show --name-only --format="" $commit | sort -u
