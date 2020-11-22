@@ -77,6 +77,10 @@ exec --no-startup-id pasystray
 # CopyQ clipboard manager
 exec --no-startup-id copyq
 
+# Since I sopped using a display manager, dunst doesn't work
+# anymore as a service.
+exec --no-startup-id dunst
+
 # Dropbox
 exec --no-startup-id dropbox start
 
