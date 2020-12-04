@@ -7,7 +7,5 @@ package plug
 package spark
 package vcs
 package weather
-theme clearance
 theme default
-theme kawasaki
-theme solarfish
+theme pure
