@@ -43,7 +43,7 @@ file_name=${test_parts[-2]}.java
 
 [[ -d "$output" ]] || die "$output: should be a directory!" 2
 
-files=$(find . -name "$file_name")
+files=$(fd "$file_name")
 
 [[ $#files -gt 0 ]] || logAndDie "$file_name: malformed" "$log_file" 5
 

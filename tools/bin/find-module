@@ -29,7 +29,7 @@ test_suite=${test_parts[-2]}
 method=${test_parts[-1]}
 file_name=${test_parts[-2]}.java
 
-files=$(find . -name "$file_name")
+files=$(fd "$file_name")
 
 [[ $#files -gt 0 ]] || die "$file_name: malformed"
 

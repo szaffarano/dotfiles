@@ -25,7 +25,8 @@ d2=$2
 [[ -d  "$d1" ]] || die "$d1: must be a directory"
 [[ -d  "$d2" ]] || die "$d2: must be a directory"
 
-find "$d1" -type f | while read -r f
+fd -t f -g '*' "$d1" | while read -r f
 do
-  [[ -e "$d2/$f"  ]] || echo "$f"
+  s=$(basename $f)
+  [[ -e "$d2/$s"  ]] || echo "$f"
 done 

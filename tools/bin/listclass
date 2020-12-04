@@ -20,7 +20,7 @@ file=$1
 if [[ -f $file ]]; then
 	jar tf "$file" | grep class$ | grep -v "\\$"
 elif [[ -d $file ]]; then
-	find "$file" | grep class$ | grep -v "\\$"
+	fd -u -g '*' "$file" -e class | grep -v "\\$"
 else
 	die "$file is neither a file or directory" 2
 fi

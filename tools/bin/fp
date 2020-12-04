@@ -28,4 +28,4 @@ fi
 
 [[ -d $dir ]] || die "$dir: must be a valid path" 1
 
-find "$dir" -name pom.xml -exec ag -l "$pattern" {} \;
+fd pom.xml "$dir" -x ag -l "$pattern" {} 

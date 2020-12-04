@@ -2,12 +2,10 @@
 
 [ (count $argv) -eq 1 ]; and set base "$argv[1]"; or set base "."
 
-[ (find "$base" -type d -name surefire-reports -exec ls {} \; | grep "txt\$" | wc -l) -ne 0 ]; \
+[ (fd -u surefire-reports -p -e txt "$base" | wc -l) -ne 0 ]; \
   or begin; echo "Not surefire reports found in '$base'"; and exit 1; end
 
-find "$base" -type d -name surefire-reports | while read sr
-  ls $sr/*txt  
-end | while read report
+fd -u surefire-reports -p -e txt | while read report
   grep "Failures:" $report
 end | sed -E -e s'/^.*\ run:\ ([0-9]*),.*Failures:\ ([0-9]*),.*Errors:\ ([0-9]*),.*Skipped:\ ([0-9]*),.*/\1 \2 \3 \4/g' \
     | awk '{r+=$1; f+=$2; e+=$3; s+=$4} END {printf("run: %d, Failures: %d, Errors: %d, Skipped: %d\n", r, f, e, s)}'
