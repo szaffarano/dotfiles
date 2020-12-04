@@ -19,9 +19,11 @@ set JAVA8_VERSION        1.8.0_242
 set JAVA11_VERSION       11.0.2
 set JAVA13_VERSION       13.0.2
 
+set -x FZF_DEFAULT_COMMAND 'fd --type f'
+
 set -x FZF_DEFAULT_OPTS
-set FZF_DEFAULT_OPTS --layout=reverse
-set -a FZF_DEFAULT_OPTS --info=inline
+set -a FZF_DEFAULT_OPTS --layout=reverse
+set -a FZF_DEFAULT_OPTS --inline-info
 set -a FZF_DEFAULT_OPTS --height=80%
 set -a FZF_DEFAULT_OPTS --multi
 set -a FZF_DEFAULT_OPTS --preview-window=:hidden
