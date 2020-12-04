@@ -17,4 +17,4 @@ end
 
 while read line
   echo $line 
-end | sed -E -e s'/^(.*)\/src.*$/\1/g' | sort -u
+end | grep src | grep -v target | sed -E -e s'/^(.*)\/src.*$/\1/g' | sort -u
