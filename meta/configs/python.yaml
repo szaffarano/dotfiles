@@ -1,4 +1,5 @@
 - asdf:
   - plugin: python
+    global: latest
     versions:
       - latest

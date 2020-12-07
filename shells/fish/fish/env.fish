@@ -1,6 +1,7 @@
 set -x EDITOR nvim
-set -x RUST_VERSION (asdf current rust | cut -d" " -f 1)
-set -x PYTHON_VERSION (asdf current python | awk '{print $1}')
+
+set -x RUST_VERSION   (asdf current rust | awk '{ print $2 }')
+set -x PYTHON_VERSION (asdf current python | awk '{print $2}')
 
 append-to-path ~/.local/bin
 

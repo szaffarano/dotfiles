@@ -1,4 +1,5 @@
 - asdf:
   - plugin: rust
+    global: latest
     versions:
       - latest

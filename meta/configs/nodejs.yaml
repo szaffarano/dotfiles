@@ -6,9 +6,11 @@
 
 - asdf:
   - plugin: nodejs
+    global: latest
     versions:
       - latest
 
   - plugin: yarn
+    global: latest
     versions:
       - latest

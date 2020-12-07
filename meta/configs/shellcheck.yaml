@@ -1,4 +1,5 @@
 - asdf:
   - plugin: shellcheck
+    global: latest
     versions:
       - latest

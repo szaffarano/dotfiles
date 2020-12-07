@@ -1,4 +1,5 @@
 - asdf:
   - plugin: kotlin
+    global: latest
     versions:
       - latest

@@ -1,7 +1,9 @@
 - asdf:
   - plugin: sbt
+    global: latest
     versions:
       - latest
   - plugin: scala
+    global: latest
     versions:
       - latest
