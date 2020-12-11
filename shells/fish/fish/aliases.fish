@@ -44,6 +44,9 @@ alias mvnp 'mvn clean package -DskipTests -Dskip.revapi '
 
 alias reset_license 'rm conf/muleLicenseKey.lic && touch conf/.lic-mule'
 
+alias agn 'ag --nonumbers'
+alias ags 'ag -s'
+
 # vim aliases
 alias v   'nvim'
 alias vi  'nvim'
