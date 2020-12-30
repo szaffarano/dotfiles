@@ -4,6 +4,7 @@ set -x RUST_VERSION   (asdf current rust | awk '{ print $2 }')
 set -x PYTHON_VERSION (asdf current python | awk '{print $2}')
 
 append-to-path ~/.local/bin
+append-to-path /usr/local/sbin
 
 set -q RUST_VERSION; \
   and append-to-path ~/.asdf/installs/rust/$RUST_VERSION/bin
@@ -47,5 +48,6 @@ switch (uname)
       append-to-path ~/projects/git-toolbelt/
     case Darwin
       set -a FZF_DEFAULT_OPTS --bind '"ctrl-y:execute-silent(echo {+} | pbcopy)"'
+      set -gx PKG_CONFIG_PATH "/usr/local/opt/icu4c/lib/pkgconfig"
 end
 
