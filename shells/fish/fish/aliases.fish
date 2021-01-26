@@ -1,11 +1,3 @@
-alias getjh "/usr/libexec/java_home -v$1"
-
-alias setJDK7        'set -g JAVA_HOME (getjh $JAVA7_VERSION)'
-alias setJDK8        'set -g JAVA_HOME (getjh $JAVA8_VERSION)'
-alias setJDK8_Oracle 'set -g JAVA_HOME (getjh $JAVA8_ORACLE_VERSION)'
-alias setJDK11       'set -g JAVA_HOME (getjh $JAVA11_VERSION)'
-alias setJDK13       'set -g JAVA_HOME (getjh $JAVA13_VERSION)'
-
 # cleans mule runtime temp files and apps
 alias cm " \
   rm ./logs/**/*.log 2>/dev/null; \
@@ -41,6 +33,7 @@ alias bmn \
 alias mvnf 'mvn formatter:format'
 alias mvni 'mvn clean install -DskipTests -Dskip.revapi '
 alias mvnp 'mvn clean package -DskipTests -Dskip.revapi '
+alias mvnd 'mvn -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 -Xnoagent -Djava.compiler=NONE" '
 
 alias reset_license 'rm conf/muleLicenseKey.lic && touch conf/.lic-mule'
 
