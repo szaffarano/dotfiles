@@ -35,6 +35,7 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+set paste
 
 " set 80 and 120 column borders for good coding style
 set colorcolumn=80,120
@@ -90,7 +91,7 @@ set incsearch
 set hlsearch
 
 ""Minimal number of screen lines to keep above and below the cursor.
-set scrolloff=3
+set scrolloff=5
 
 
 " }}}
@@ -132,10 +133,8 @@ inoremap <silent> <F12> <C-O>:set spell!<cr>
 " go to previous buffer
 nnoremap <silent> <leader><Leader> <C-^>
 
+" close current buffer
 nnoremap <silent> <leader>d :bdel<CR>
-
-" Closes buffer
-nmap <C-x> :bdelete<CR>
 
 " }}}
 
