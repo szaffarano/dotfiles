@@ -1,7 +1,7 @@
 - link:
     # zsh
     ~/.zshrc: shells/zsh/zshrc
-    ~/.exports: shells/zsh/exports
-    ~/.aliases: shells/zsh/aliases
+    ~/.exports.zsh: shells/zsh/exports.zsh
+    ~/.aliases.zsh: shells/zsh/aliases.zsh
     ~/.p10k.zsh: shells/zsh/p10k.zsh
     ~/.profile: shells/zsh/profile

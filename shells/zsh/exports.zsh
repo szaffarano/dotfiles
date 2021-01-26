@@ -1,28 +1,19 @@
 export EDITOR=nvim
 
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  # Java versions, run:
-  #   /usr/libexec/java_home -V 2>&1  | grep "^\s.*" | sed -E s'/\ +(.*),.*/\1/g' | sort -u
-
-  JAVA7_VERSION=1.7.0_242-zulu-7.34.0.5
-  JAVA8_ORACLE_VERSION=1.8.0_231
-  JAVA8_VERSION=1.8.0_242
-  JAVA11_VERSION=11.0.2
-  JAVA13_VERSION=13.0.2
-
-  export JAVA_HOME=$(/usr/libexec/java_home -v${JAVA8_VERSION})
-fi
-
 export GOPATH=$HOME/projects/go
 
-PATH="${HOME}/.local/bin:$PATH"
-PATH="${HOME}/.local/anaconda3/bin:$PATH"
-PATH="${HOME}/.local/bin:$PATH"
-PATH="${HOME}/.local/Goneovim:$PATH"
+export RUST_VERSION=$(asdf current rust | awk '{ print $2 }')
+export PYTHON_VERSION=$(asdf current python | awk '{print $2}')
+
+PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.local/anaconda3/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.local/Goneovim:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
 PATH="$HOME/.local/exercism/:$PATH"
+PATH="$HOME/.asdf/installs/rust/$RUST_VERSION/bin:$PATH"
+PATH="$HOME/.asdf/installs/python/$PYTHON_VERSION/bin:$PATH"
 export PATH
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -31,6 +22,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   CLIPBOARD="pbcopy"
 fi
 export CLIPBOARD
+
+export FZF_DEFAULT_COMMAND='fd --type f'
 
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --layout=reverse"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --info=inline"
@@ -46,3 +39,21 @@ FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-y:execute-silent(echo {+} | $CL
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-v:execute(code {+})'"
 export FZF_DEFAULT_OPTS
+
+# OS specific environment
+case $(uname) in
+    Linux)
+      export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-y:execute-silent(echo {+} | xclip -in -selection clipboard)'"
+      export MESA_LOADER_DRIVER_OVERRIDE=i965
+      export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+      append-to-path ~/projects/git-toolbelt/
+      PATH="$HOME/projects/git-toolbelt:$PATH"
+      export $PATH
+    ;;
+    Darwin)
+      export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'"
+      export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
+    ;;
+esac
+

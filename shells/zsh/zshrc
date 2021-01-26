@@ -90,8 +90,8 @@ fi
 #
 # Exports
 #
-if [ -e ~/.exports ]; then
-    . ~/.exports
+if [ -e ~/.exports.zsh ]; then
+    . ~/.exports.zsh
 fi
 
 #
@@ -102,7 +102,7 @@ if [ -e ~/.exports.local ]; then
 fi
 
 # Aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/.aliases.zsh ]] && source ~/.aliases.zsh
 
 # Local configurations
 [[ -f ~/.zshrc_local ]] && source ~/.zshrc_local
