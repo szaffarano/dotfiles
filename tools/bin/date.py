@@ -19,8 +19,8 @@ if __name__ == '__main__':
     if not os.path.isfile(name):
         print(f'{name}: not found')
 
-    downloading_re = re.compile('.*\[(2020.*Z)\].*Downloading.*(http.*)')
-    downloaded_re = re.compile('.*\[(2020.*Z)\].*Downloaded.*(http.*)\ \(.*')
+    downloading_re = re.compile('.*\[(202..*Z)\].*Downloading.*(http.*)')
+    downloaded_re = re.compile('.*\[(202..*Z)\].*Downloaded.*(http.*)\ \(.*')
     date_mask = '%Y-%m-%dT%H:%M:%S.%fZ'
 
     total = 0
