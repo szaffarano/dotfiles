@@ -12,7 +12,7 @@ set $config		~/.config/i3/
 set $scripts	~/.config/i3/scripts
 set $bin	    ~/.local/bin/
 
-font pango:DejaVu Sans Mono, FontAwesome 10
+font pango:DejaVu Sans Mono, FontAwesome 11
 
 # fix unsupported XEmbedded trayicons on electron and similar engines
 # see: https://git.sr.ht/~steef/snixembed
