@@ -38,10 +38,6 @@ zplug 'hlissner/zsh-autopair',				defer:2
 zplug romkatv/powerlevel10k,				as:theme, depth:1
 #zplug "themes/steeef",                                         from:oh-my-zsh
 
-
-# useful git aliases
-zplug "plugins/git",						from:oh-my-zsh
-
 # vi mode plug-in
 zplug "plugins/vi-mode",					from:oh-my-zsh
 
@@ -90,30 +86,43 @@ fi
 #
 # Exports
 #
-if [ -e ~/.exports.zsh ]; then
-    . ~/.exports.zsh
-fi
+[ -f ~/.exports.zsh ] && . ~/.exports.zsh
 
 #
-# Exports
+# Local exports
 #
-if [ -e ~/.exports.local ]; then
-    . ~/.exports.local
-fi
+[ -f ~/.exports.local ] && . ~/.exports.local
 
 # Aliases
-[[ -f ~/.aliases.zsh ]] && source ~/.aliases.zsh
+[ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
 
 # Local configurations
-[[ -f ~/.zshrc_local ]] && source ~/.zshrc_local
+[ -f ~/.zshrc_local ] && source ~/.zshrc_local
 
 # FZF
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# autosuggestions config
+ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
+
+# forgit config
+FORGIT_FZF_DEFAULT_OPTS="
+  --exact
+  --border
+  --cycle
+  --reverse
+  --height '80%'
+"
+# vi-mode config
+VI_MODE_SET_CURSOR=true
+VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
 # gopass
 source /dev/stdin <<<"$(gopass completion bash)"
 
 gpg-connect-agent updatestartuptty /bye >/dev/null
+
+[ -f ~/.asdf/plugins/java/set-java-home.zsh ] && . ~/.asdf/plugins/java/set-java-home.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
