@@ -11,6 +11,7 @@ set $mod		Mod4
 set $config		~/.config/i3/
 set $scripts	~/.config/i3/scripts
 set $bin	    ~/.local/bin/
+set $cargo	  ~/.cargo/bin/
 
 font pango:DejaVu Sans Mono, FontAwesome 11
 
@@ -269,7 +270,7 @@ set $mode_display Display: 1. Mirror - 2. Mon Only - 3. Lap Only - 4. [Mon]->Lap
 bar {
     font pango:DejaVu Sans Mono, FontAwesome 10
     position top
-    status_command i3status-rs $config/config.toml
+    status_command $cargo/i3status-rs $config/config.toml
 }
 
 # assign windows to an specific workspace
@@ -299,6 +300,7 @@ for_window [class="Anki"                 title="Add"]       floating enable;
 for_window [class="Anki"                 title="^Browse.*"] floating enable;
 for_window [class="Navigator"            title="^Cloud.Player.*Audible.com.*"] floating enable;
 for_window [class="KeePassXC"]                              floating enable;
+for_window [class="keepassxc"]                              floating enable;
 for_window [class="Blueman-manager"      ]                  floating enable;
 for_window [class="TelegramDesktop"      ]                  floating enable;
 
