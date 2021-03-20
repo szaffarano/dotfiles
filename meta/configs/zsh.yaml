@@ -1,3 +1,6 @@
+- shell:
+    - [~/.dotfiles/scripts/install-zplug.sh, Installing zplug]
+
 - link:
     # zsh
     ~/.zshrc: shells/zsh/zshrc
