@@ -47,9 +47,8 @@ case $(uname) in
       export MESA_LOADER_DRIVER_OVERRIDE=i965
       export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-      append-to-path ~/projects/git-toolbelt/
       PATH="$HOME/projects/git-toolbelt:$PATH"
-      export $PATH
+      export PATH
     ;;
     Darwin)
       export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'"
