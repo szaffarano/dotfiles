@@ -5,6 +5,11 @@ inspired in [vsund dotfiles](https://github.com/vsund/dotfiles).
 
 ## Usage
 
+### Prerequisites
+
+- Some packages need [asdf](https://github.com/asdf-vm/asdf) to be installed.
+- Python packages need some specific [prerequisites](https://github.com/pyenv/pyenv/wiki/Common-build-problems#prerequisites)
+
 ### Install a complete profile
 
 ```sh
@@ -40,3 +45,7 @@ Some packages that are installed and/or configured (many of them using
 - [Tmux](https://github.com/tmux/tmux/wiki)
 - [Z Shell](https://www.zsh.org/) (outdated)
 - ...
+
+## TODO
+
+Improve [vim-plug](https://github.com/junegunn/vim-plug) setup (currently it has to be installed manually)
