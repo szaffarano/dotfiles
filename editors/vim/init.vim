@@ -54,9 +54,6 @@ augroup END
 
 set number relativenumber
 
-" disable temporary files for gopass
-au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
-
 " autowrap markdown files
 au BufRead,BufNewFile *.md setlocal textwidth=80 formatoptions+=wa
 

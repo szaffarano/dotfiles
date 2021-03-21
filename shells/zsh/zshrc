@@ -117,9 +117,6 @@ FORGIT_FZF_DEFAULT_OPTS="
 VI_MODE_SET_CURSOR=true
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
-# gopass
-source /dev/stdin <<<"$(gopass completion bash)"
-
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
 [ -f ~/.asdf/plugins/java/set-java-home.zsh ] && . ~/.asdf/plugins/java/set-java-home.zsh
