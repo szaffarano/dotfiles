@@ -15,10 +15,6 @@ set $cargo	  ~/.cargo/bin/
 
 font pango:DejaVu Sans Mono, FontAwesome 11
 
-# fix unsupported XEmbedded trayicons on electron and similar engines
-# see: https://git.sr.ht/~steef/snixembed
-exec --no-startup-id $bin/snixembed --fork
-
 # configure touchpad
 exec --no-startup-id $scripts/touchpad.sh
 
