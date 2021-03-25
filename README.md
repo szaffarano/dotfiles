@@ -44,6 +44,7 @@ Some packages that are installed and/or configured (many of them using
 - ssh
 - [Tmux](https://github.com/tmux/tmux/wiki)
 - [Z Shell](https://www.zsh.org/) (outdated)
+- Gradle
 - ...
 
 ## TODO

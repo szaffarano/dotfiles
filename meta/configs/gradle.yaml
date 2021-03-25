@@ -1,0 +1,6 @@
+- asdf:
+  - plugin: gradle
+    global: 6.8
+    versions:
+      - latest
+      - 6.8
