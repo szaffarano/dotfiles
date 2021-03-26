@@ -8,10 +8,11 @@ title_align	center
 
 set $mod		Mod4
 
-set $config		~/.config/i3/
-set $scripts	~/.config/i3/scripts
-set $bin	    ~/.local/bin/
-set $cargo	  ~/.cargo/bin/
+set $config		   ~/.config/i3/
+set $scripts	   ~/.config/i3/scripts
+set $bin         ~/.local/bin/
+set $cargo       ~/.cargo/bin/
+set $screenshots ~/Pictures/Screenshots
 
 font pango: FontAwesome 11
 
@@ -63,6 +64,10 @@ bindsym XF86AudioRaiseVolume	exec pactl set-sink-volume @DEFAULT_SINK@   +5%    
 bindsym XF86AudioLowerVolume	exec pactl set-sink-volume @DEFAULT_SINK@   -5%    && $refresh_i3status
 bindsym XF86AudioMute			    exec pactl set-sink-mute   @DEFAULT_SINK@   toggle && $refresh_i3status
 bindsym XF86AudioMicMute		  exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Screenshots
+bindsym --release Shift+Print exec "$bin/screenshot.sh -s --output $screenshots"
+bindsym --release Print exec "$bin/screenshot.sh --output $screenshots"
 
 # Media player controls
 bindsym XF86AudioPlay			exec   playerctl play
