@@ -13,7 +13,6 @@ PATH="/usr/local/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
 PATH="$HOME/.local/exercism/:$PATH"
 PATH="$HOME/.asdf/installs/rust/$RUST_VERSION/bin:$PATH"
-PATH="$HOME/.cargo/bin:$PATH"
 PATH="$HOME/.asdf/installs/python/$PYTHON_VERSION/bin:$PATH"
 export PATH
 
