@@ -279,7 +279,6 @@ assign		  [class="Code"]						          →	$dev
 assign		  [class="Alacritty" title="Work"]	  →	$terms
 assign		  [class="Joplin" instance="joplin"]	→ $office
 assign		  [class="libreoffice"]				        → $office
-for_window	[class="Spotify"] move to workspace		$multimedia
 
 # styles
 for_window [class="^.*"]                                    border   pixel 2
@@ -313,5 +312,10 @@ exec alacritty -t htop_scratchpad -e htop
 for_window [class="SpeedCrunch"] move to scratchpad, border none
 bindsym $mod+Shift+s [class="SpeedCrunch"] scratchpad show
 exec speedcrunch
+
+# spotify
+for_window [class="Spotify"] move to scratchpad, border none
+bindsym $mod+Shift+m [class="Spotify"] scratchpad show
+exec spotify
 
 bindsym $mod+Shift+minus move scratchpad
