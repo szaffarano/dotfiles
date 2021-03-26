@@ -13,7 +13,7 @@ set $scripts	~/.config/i3/scripts
 set $bin	    ~/.local/bin/
 set $cargo	  ~/.cargo/bin/
 
-font pango:DejaVu Sans Mono, FontAwesome 11
+font pango: FontAwesome 11
 
 # configure touchpad
 exec --no-startup-id $scripts/touchpad.sh
@@ -144,13 +144,13 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $web        "1: web"
-set $dev        "2:  dev"
-set $terms      "3: terms"
-set $slack      "4: slack"
-set $mail       "5: mails"
-set $office     "6: office"
-set $multimedia "7: multi"
+set $web        "1:   web"
+set $dev        "2:   dev"
+set $terms      "3:   terms"
+set $slack      "4:   slack"
+set $mail       "5:   mails"
+set $office     "6:   office"
+set $multimedia "7:   multi"
 set $ws8        "8"
 set $ws9        "9"
 set $ws0        "0"
@@ -264,7 +264,7 @@ set $mode_display Display: 1. Mirror - 2. Mon Only - 3. Lap Only - 4. [Mon]->Lap
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    font pango:DejaVu Sans Mono, FontAwesome 10
+    font pango: FontAwesome 12
     position top
     status_command $cargo/i3status-rs $config/config.toml
 }
@@ -308,6 +308,11 @@ for_window [class="Alacritty" title="htop_scratchpad"] move to scratchpad, borde
 bindsym $mod+Shift+p [class="Alacritty" title="htop_scratchpad"] scratchpad show
 exec alacritty -t htop_scratchpad -e htop
 
+# vim
+for_window [class="Alacritty" title="vim_scratchpad"] move to scratchpad, border none
+bindsym $mod+Shift+v [class="Alacritty" title="vim_scratchpad"] scratchpad show
+exec alacritty -t vim_scratchpad -e vim
+
 # calculator
 for_window [class="SpeedCrunch"] move to scratchpad, border none
 bindsym $mod+Shift+s [class="SpeedCrunch"] scratchpad show
@@ -316,6 +321,6 @@ exec speedcrunch
 # spotify
 for_window [class="Spotify"] move to scratchpad, border none
 bindsym $mod+Shift+m [class="Spotify"] scratchpad show
-exec spotify
+exec /usr/bin/spotify
 
 bindsym $mod+Shift+minus move scratchpad
