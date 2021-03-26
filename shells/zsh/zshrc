@@ -104,6 +104,7 @@ fi
 
 # autosuggestions config
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
+ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # forgit config
 FORGIT_FZF_DEFAULT_OPTS="
