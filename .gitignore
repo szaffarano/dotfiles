@@ -17,3 +17,4 @@ tools/bin/micro
 tools/bin/kubectl
 tools/bin/istioctl
 
+tools/bin/idea
