@@ -80,3 +80,5 @@
 	gpgsign = true
 [help]
 	autocorrect = 1
+[init]
+	defaultBranch = main
