@@ -41,6 +41,7 @@ alias reset_license='rm conf/muleLicenseKey.lic && touch conf/.lic-mule'
 
 alias agn='ag --nonumbers'
 alias ags='ag -s'
+alias fdi='fd -I'
 
 # vim aliases
 alias v='nvim'
