@@ -281,7 +281,7 @@ bar {
 assign [class="Google-chrome"]            →	$web
 assign [class="Firefox"]                  →	$web
 assign [class="Slack"]                    →	$slack
-assign [class="jetbrains-.*"]             →	$dev
+assign [class="jetbrains-idea-ce"]        →	$dev
 assign [class="Code"]                     →	$dev
 assign [class="Alacritty" title="Work"]   →	$terms
 assign [class="Joplin" instance="joplin"]	→ $office
@@ -295,6 +295,8 @@ for_window [class="^copyq$"]                           floating enable
 for_window [class="^Keybase$"]                         floating enable
 for_window [class="^JetBrains Toolbox$"]               floating enable
 for_window [title="tracker - .*"]                      floating enable
+for_window [class="jetbrains-idea-ce" \
+            title="Welcome to IntelliJ IDEA" ]         floating enable
 for_window [class="jetbrains-idea" title="win0"]       floating enable
 for_window [class="jetbrains-goland" title="win0"]     floating enable
 for_window [class="Anki" title="Profiles"]             floating enable
