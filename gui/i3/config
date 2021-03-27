@@ -330,3 +330,6 @@ bindsym $mod+Shift+m [class="Spotify"] scratchpad show
 exec /usr/bin/spotify
 
 bindsym $mod+Shift+minus move scratchpad
+
+# rename parent conainer
+bindsym $mod+n exec $scripts/rename-parent-container.sh
