@@ -2,6 +2,11 @@ theme = "plain"
 icons = "awesome"
 
 [[block]]
+block = "music"
+player = "ncspot"
+buttons = ["play", "next"]
+
+[[block]]
 block     = "disk_space"
 path      = "/"
 info_type = "available"

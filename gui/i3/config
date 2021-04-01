@@ -282,6 +282,7 @@ assign [class="Google-chrome"]            →	$web
 assign [class="Firefox"]                  →	$web
 assign [class="Slack"]                    →	$slack
 assign [class="jetbrains-idea-ce"]        →	$dev
+assign [class="jetbrains-idea"]           →	$dev
 assign [class="Code"]                     →	$dev
 assign [class="Alacritty" title="Work"]   →	$terms
 assign [class="Joplin" instance="joplin"]	→ $office
@@ -327,9 +328,9 @@ bindsym $mod+Shift+s [class="SpeedCrunch"] scratchpad show
 exec speedcrunch
 
 # spotify
-for_window [class="Spotify"] move to scratchpad, border none
-bindsym $mod+Shift+m [class="Spotify"] scratchpad show
-exec /usr/bin/spotify
+for_window [class="Alacritty" title="ncspot_scratchpad"] move to scratchpad, border none
+bindsym $mod+Shift+m [class="Alacritty" title="ncspot_scratchpad"] scratchpad show
+exec alacritty -t ncspot_scratchpad -e ncspot
 
 bindsym $mod+Shift+minus move scratchpad
 
