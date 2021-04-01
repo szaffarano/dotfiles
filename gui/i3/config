@@ -158,7 +158,7 @@ bindsym $mod+c focus child
 set $web        "1:   web"
 set $dev        "2:   dev"
 set $terms      "3:   terms"
-set $slack      "4:   slack"
+set $home       "4:   home"
 set $mail       "5:   mails"
 set $office     "6:   office"
 set $multimedia "7:   multi"
@@ -170,7 +170,7 @@ set $ws0        "0"
 bindsym $mod+1 workspace number $web
 bindsym $mod+2 workspace number $dev
 bindsym $mod+3 workspace number $terms
-bindsym $mod+4 workspace number $slack
+bindsym $mod+4 workspace number $home
 bindsym $mod+5 workspace number $mail
 bindsym $mod+6 workspace number $office
 bindsym $mod+7 workspace number $multimedia
@@ -182,7 +182,7 @@ bindsym $mod+0 workspace number $ws10
 bindsym $mod+Shift+1 move container to workspace number $web
 bindsym $mod+Shift+2 move container to workspace number $dev
 bindsym $mod+Shift+3 move container to workspace number $terms
-bindsym $mod+Shift+4 move container to workspace number $slack
+bindsym $mod+Shift+4 move container to workspace number $home
 bindsym $mod+Shift+5 move container to workspace number $mail
 bindsym $mod+Shift+6 move container to workspace number $office
 bindsym $mod+Shift+7 move container to workspace number $multimedia
@@ -201,7 +201,7 @@ workspace $terms             output HDMI1
 workspace $multimedia	output eDP1
 workspace $mail              output eDP1
 workspace $office            output eDP1
-workspace $slack             output eDP1
+workspace $home             output eDP1
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -283,7 +283,7 @@ bar {
 # assign windows to an specific workspace
 assign [class="Google-chrome"]            →	$web
 assign [class="Firefox"]                  →	$web
-assign [class="Slack"]                    →	$slack
+#assign [class="Slack"]                    →	$slack
 assign [class="jetbrains-idea-ce"]        →	$dev
 assign [class="jetbrains-idea"]           →	$dev
 assign [class="Code"]                     →	$dev
@@ -310,7 +310,6 @@ for_window [class="Navigator" title=".*Audible.com.*"] floating enable
 for_window [class="KeePassXC"]                         floating enable
 for_window [class="keepassxc"]                         floating enable
 for_window [class="Blueman-manager"]                   floating enable
-for_window [class="TelegramDesktop" ]                  floating enable
 
 #
 # scratchpads
@@ -331,9 +330,19 @@ bindsym $mod+Shift+s [class="SpeedCrunch"] scratchpad show
 exec speedcrunch
 
 # spotify
-for_window [class="Alacritty" title="ncspot_scratchpad"] move to scratchpad, border none
+for_window [class="Alacritty" title="ncspot_scratchpad" window_type="normal"] move to scratchpad, border none
 bindsym $mod+Shift+m [class="Alacritty" title="ncspot_scratchpad"] scratchpad show
 exec alacritty -t ncspot_scratchpad -e ncspot
+
+# telegram
+for_window [class="Telegram" title="Telegram"] move to scratchpad, border none
+bindsym $mod+Shift+t [class="Telegram" ] scratchpad show
+exec telegram-desktop 
+
+# slack
+for_window [class="Slack" window_role="browser-window"] move to scratchpad, border none
+bindsym $mod+p [class="Slack" ] scratchpad show
+exec slack 
 
 bindsym $mod+Shift+minus move scratchpad
 
