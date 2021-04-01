@@ -18,3 +18,4 @@ tools/bin/kubectl
 tools/bin/istioctl
 
 tools/bin/idea
+tools/bin/datagrip
