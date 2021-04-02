@@ -2,6 +2,10 @@ theme = "plain"
 icons = "awesome"
 
 [[block]]
+block = "backlight"
+device = "intel_backlight"
+
+[[block]]
 block = "music"
 player = "ncspot"
 buttons = ["play", "next"]
