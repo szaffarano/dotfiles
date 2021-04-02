@@ -1,8 +1,5 @@
-[user]
-	username = szaffarano
-	name = Sebastián Zaffarano
-	email = sebas@zaffarano.com.ar
-	signingkey = sebas@zaffarano.com.ar
+[include]
+  path = ~/.gitconfig.local
 
 [color]
 	ui = auto
@@ -58,11 +55,11 @@
 [mergetool "fugitive"]
 	prompt = false
 	trustExitCode = true
-    cmd = nvim -f -c "Gdiff" "$MERGED"
+  cmd = nvim -f -c "Gdiff" "$MERGED"
 
 [difftool "vimdiff"]
 	trustExitCode = true
-    cmd = nvim -d $LOCAL $REMOTE
+  cmd = nvim -d $LOCAL $REMOTE
 
 [push]
 	default = simple
@@ -76,9 +73,12 @@
 
 [credential]
 	helper = keepassxc --unlock 0
+
 [commit]
 	gpgsign = true
+
 [help]
 	autocorrect = 1
+
 [init]
 	defaultBranch = main
