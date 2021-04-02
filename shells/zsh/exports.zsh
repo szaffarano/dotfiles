@@ -2,18 +2,9 @@ export EDITOR=nvim
 
 export GOPATH=$HOME/projects/go
 
-export RUST_VERSION=$(asdf current rust | awk '{ print $2 }')
-export PYTHON_VERSION=$(asdf current python | awk '{print $2}')
-
 PATH="$HOME/.local/bin:$PATH"
-PATH="$HOME/.local/anaconda3/bin:$PATH"
-PATH="$HOME/.local/bin:$PATH"
-PATH="$HOME/.local/Goneovim:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
-PATH="$HOME/.local/exercism/:$PATH"
-PATH="$HOME/.asdf/installs/rust/$RUST_VERSION/bin:$PATH"
-PATH="$HOME/.asdf/installs/python/$PYTHON_VERSION/bin:$PATH"
 export PATH
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
