@@ -1,0 +1,5 @@
+- asdf:
+  - plugin: gohugo
+    global: latest
+    versions:
+      - latest
