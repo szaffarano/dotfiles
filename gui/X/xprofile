@@ -1,2 +1,0 @@
-# workaround to configure PATH before zsh loads the full configuration
-PATH="$HOME/.cargo/bin:$PATH"

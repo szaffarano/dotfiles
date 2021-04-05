@@ -11,7 +11,7 @@ set $mod		Mod4
 set $config		   ~/.config/i3/
 set $scripts	   ~/.config/i3/scripts
 set $bin         ~/.local/bin/
-set $cargo       ~/.cargo/bin/
+set $shims       ~/.asdf/shims/
 set $screenshots ~/Pictures/Screenshots
 
 font pango: FontAwesome 11
@@ -277,7 +277,7 @@ set $mode_display Display: 1. Mirror - 2. Mon Only - 3. Lap Only - 4. [Mon]->Lap
 bar {
     font pango: FontAwesome 12
     position top
-    status_command i3status-rs $config/config.toml
+    status_command $shims/i3status-rs $config/config.toml
 }
 
 # assign windows to an specific workspace
