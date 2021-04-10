@@ -3,3 +3,6 @@
     global: latest
     versions:
       - latest
+
+- link:
+    ~/.default-cargo-crates: tools/rust/default-cargo-crates
