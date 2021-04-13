@@ -1,10 +1,10 @@
 output VIRTUAL1
 off
-output eDP1
+output eDP-1
 mode 1920x1080
 pos 0x0
 rate 60.01
-output HDMI1
+output HDMI-1
 mode 1920x1080
 pos 0x0
 primary
