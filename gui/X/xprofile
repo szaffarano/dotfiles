@@ -1,0 +1,2 @@
+# workaround to configure asdf before zsh loads the full configuration
+PATH="$HOME/.asdf/shims:$PATH"
