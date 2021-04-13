@@ -1,3 +1,5 @@
+- link:
+    ~/.default-python-packages: programming/python/default-python-packages
 - asdf:
   - plugin: python
     global: latest
