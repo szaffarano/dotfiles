@@ -317,12 +317,12 @@ for_window [class="Blueman-manager"]                   floating enable
 # htop
 for_window [class="Alacritty" title="htop_scratchpad"] move to scratchpad, border none
 bindsym $mod+Shift+p [class="Alacritty" title="htop_scratchpad"] scratchpad show
-exec alacritty -t htop_scratchpad -e htop
+exec htop-scratchpad.sh
 
 # vim
 for_window [class="Alacritty" title="vim_scratchpad"] move to scratchpad, border none
 bindsym $mod+Shift+v [class="Alacritty" title="vim_scratchpad"] scratchpad show
-exec alacritty -t vim_scratchpad -e vim
+exec vim-scratchpad.sh
 
 # calculator
 for_window [class="SpeedCrunch"] move to scratchpad, border none
@@ -332,7 +332,7 @@ exec speedcrunch
 # spotify
 for_window [class="Alacritty" title="ncspot_scratchpad" window_type="normal"] move to scratchpad, border none
 bindsym $mod+Shift+m [class="Alacritty" title="ncspot_scratchpad"] scratchpad show
-exec alacritty -t ncspot_scratchpad -e ncspot
+exec ncspot-scratchpad.sh
 
 # telegram
 for_window [class="Telegram" title="Telegram"] move to scratchpad, border none
