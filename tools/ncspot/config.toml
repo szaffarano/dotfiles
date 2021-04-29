@@ -1,4 +1,5 @@
 use_nerdfont    = true
+notify       = false
 
 [theme]
 background         = "black"
