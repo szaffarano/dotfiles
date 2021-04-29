@@ -46,6 +46,9 @@ format   = "{1m}"
 block = "sound"
 
 [[block]]
+block = "temperature"
+
+[[block]]
 block       = "battery"
 interval    = 10
 driver      = "upower"
