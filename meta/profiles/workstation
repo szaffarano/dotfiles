@@ -14,6 +14,7 @@ gradle
 gtk
 hugo
 i3
+idea
 java
 keepassxc
 kotlin
@@ -27,7 +28,7 @@ scala
 shellcheck
 ssh
 tmux
+X
 youtube-dl
 zathura
 zsh
-X
