@@ -159,7 +159,7 @@ set $web        "1:   web"
 set $dev        "2:   dev"
 set $terms      "3:   terms"
 set $home       "4:   home"
-set $mail       "5:   mails"
+set $anki       "5:   anki"
 set $office     "6:   office"
 set $multimedia "7:   multi"
 set $ws8        "8"
@@ -171,7 +171,7 @@ bindsym $mod+1 workspace number $web
 bindsym $mod+2 workspace number $dev
 bindsym $mod+3 workspace number $terms
 bindsym $mod+4 workspace number $home
-bindsym $mod+5 workspace number $mail
+bindsym $mod+5 workspace number $anki
 bindsym $mod+6 workspace number $office
 bindsym $mod+7 workspace number $multimedia
 bindsym $mod+8 workspace number $ws8
@@ -183,7 +183,7 @@ bindsym $mod+Shift+1 move container to workspace number $web
 bindsym $mod+Shift+2 move container to workspace number $dev
 bindsym $mod+Shift+3 move container to workspace number $terms
 bindsym $mod+Shift+4 move container to workspace number $home
-bindsym $mod+Shift+5 move container to workspace number $mail
+bindsym $mod+Shift+5 move container to workspace number $anki
 bindsym $mod+Shift+6 move container to workspace number $office
 bindsym $mod+Shift+7 move container to workspace number $multimedia
 bindsym $mod+Shift+8 move container to workspace number $ws8
@@ -199,7 +199,7 @@ workspace $web               output HDMI1
 workspace $dev               output HDMI1
 workspace $terms             output HDMI1
 workspace $multimedia	output eDP1
-workspace $mail              output eDP1
+workspace $anki              output eDP1
 workspace $office            output eDP1
 workspace $home             output eDP1
 
