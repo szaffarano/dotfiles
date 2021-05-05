@@ -45,3 +45,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " A collection of language packs for Vim.
 Plug 'sheerun/vim-polyglot'
+
+" Snippets
+Plug 'SirVer/ultisnips'

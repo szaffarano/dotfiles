@@ -35,7 +35,6 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-set paste
 
 " set 80 and 120 column borders for good coding style
 set colorcolumn=80,120
@@ -99,6 +98,23 @@ set scrolloff=5
 inoremap jk <Esc>
 inoremap kj <Esc>
 
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+
+" presentation mode
+noremap <Left> :silent bp<CR> :redraw!<CR>
+noremap <Right> :silent bn<CR> :redraw!<CR>
+nmap <F5> :set relativenumber! number! showmode! showcmd! hidden! ruler!<CR>
+nmap <F2> :call DisplayPresentationBoundaries()<CR>
+nmap <F3> :call FindExecuteCommand()<CR>
+
+" toggles the paste mode
+nmap <C-p> :set paste!<CR>
+
 " move lines with Ctrl + (Shift) +J/K
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
@@ -106,6 +122,12 @@ inoremap <C-j> <ESC>:m .+1<CR>==gi
 inoremap <C-k> <ESC>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
+
+" makes Ascii art font
+nmap <leader>F :.!toilet -w 200 -f standard<CR>
+nmap <leader>S :.!toilet -w 200 -f small<CR>
+" makes Ascii border
+nmap <leader>1 :.!toilet -w 200 -f term -F border<CR>
 
 " redefine leader key
 map <space> <leader>
