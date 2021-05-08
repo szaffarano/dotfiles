@@ -3,10 +3,17 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " tabularize
-Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/vim-easy-align'
+Plug 'godlygeek/tabular'
+
+" Markdown support
+Plug 'plasticboy/vim-markdown'
 
 " VimWiki
 Plug 'vimwiki/vimwiki'
+
+" Traskwarrior
+Plug 'tools-life/taskwiki'
 
 " GnuPG
 Plug 'jamessan/vim-gnupg'
@@ -48,3 +55,6 @@ Plug 'sheerun/vim-polyglot'
 
 " Snippets
 Plug 'SirVer/ultisnips'
+
+" Shows ansi sequences correctly
+Plug 'powerman/vim-plugin-AnsiEsc'

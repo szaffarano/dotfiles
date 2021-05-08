@@ -1,0 +1,17 @@
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/.task
+
+# Color theme
+include /usr/share/taskwarrior/dark-256.theme
+
+# Trello integration
+uda.trelloid.type        = string
+uda.trelloid.label       = Trello ID
+uda.trellolistname.type  = string
+uda.trellolistname.label = Trello List Name
