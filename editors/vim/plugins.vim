@@ -58,3 +58,6 @@ Plug 'SirVer/ultisnips'
 
 " Shows ansi sequences correctly
 Plug 'powerman/vim-plugin-AnsiEsc'
+
+" tag bar. Recommended by TaskWiki, 'provides taskwiki file navigation'
+Plug 'majutsushi/tagbar'
