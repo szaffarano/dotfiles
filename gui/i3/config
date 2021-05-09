@@ -195,7 +195,7 @@ workspace $web        output DP-1
 workspace $dev        output DP-1
 workspace $terms      output eDP-1
 workspace $multimedia	output eDP-1
-workspace $anki       output eDP-1
+workspace $anki       output DP-1
 workspace $office     output eDP-1
 workspace $home       output eDP-1
 
@@ -285,6 +285,7 @@ assign [class="Code"]                     →	$dev
 assign [class="Alacritty" title="Work"]   →	$terms
 assign [class="Joplin" instance="joplin"]	→ $office
 assign [class="libreoffice"]              → $office
+assign [class="Anki"]                     → $anki
 
 # styles
 for_window [class="^.*"]                               border   pixel 2
