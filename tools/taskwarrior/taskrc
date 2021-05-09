@@ -17,3 +17,38 @@ uda.trellolistname.type  = string
 uda.trellolistname.label = Trello List Name
 
 default.project = Inbox
+
+# Backlog
+report.bl.description=List all non-planned tasks in Inbox project
+report.bl.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.bl.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
+report.bl.filter=project:Inbox -today status:pending
+report.bl.sort=urgency-
+
+# In Progress
+report.ip.description=List all non-planned tasks in Inbox project
+report.ip.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.ip.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
+report.ip.filter=project:Inbox +today status:pending
+report.ip.sort=urgency-
+
+# Done Today
+report.dt.description=List all non-planned tasks in Inbox project
+report.dt.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.dt.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
+report.dt.filter=project:Inbox status:completed end:today
+report.dt.sort=urgency-
+
+# Done Yesterday
+report.dy.description=List all non-planned tasks in Inbox project
+report.dy.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.dy.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
+report.dy.filter=project:Inbox status:completed end:yesterday
+report.dy.sort=urgency-
+
+# Done 
+report.d.description=List all non-planned tasks in Inbox project
+report.d.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.d.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
+report.d.filter=project:Inbox status:completed 
+report.d.sort=urgency-
