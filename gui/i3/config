@@ -8,6 +8,7 @@ title_align	center
 
 set $mod		Mod4
 
+# some constants used below
 set $config		   ~/.config/i3/
 set $scripts	   ~/.config/i3/scripts
 set $bin         ~/.local/bin/
@@ -23,66 +24,59 @@ exec --no-startup-id $scripts/touchpad.sh
 exec --no-startup-id xset s on; xset 120
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $scripts/lock-screen.sh
 
-# Pulseaudio
+# start pulseaudio control
 exec --no-startup-id pasystray
 
-# CopyQ clipboard manager
+# start CopyQ clipboard manager
 exec --no-startup-id copyq
 
-# Since I sopped using a display manager, dunst doesn't work
-# anymore as a service.
-exec --no-startup-id dunst
-
-# Dropbox
+# start dropbox
 exec --no-startup-id dropbox start
 
-# Keybase
+# start keybase
 exec --no-startup-id run_keybase -a
 
-# Start a terminal
+# start a terminal
 exec --no-startup-id alacritty -t Work 
 
-# Start a terminal
-exec --no-startup-id firefox
-
-# Configure wallpaper
+# configure thel wallpaper
 exec_always --no-startup-id $scripts/wallpaper.sh
 
-# keyboard layout us international
+# set keyboard layout as "us international"
 exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option nodeadkeys
 
-# Networkmanager Applet
+# start Networkmanager Applet
 exec --no-startup-id nm-applet
 
-# Bluetooth applet
+# start Bluetooth applet
 exec --no-startup-id blueman-applet
 
-# keepassxc password manager
+# start Keepassxc password manager
 bindsym $mod+Shift+w exec /usr/bin/keepassxc
 exec --no-startup-id /usr/bin/keepassxc
 
-# Volume Controls
+# configure volume control keys
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume	exec pactl set-sink-volume @DEFAULT_SINK@   +5%    && $refresh_i3status
 bindsym XF86AudioLowerVolume	exec pactl set-sink-volume @DEFAULT_SINK@   -5%    && $refresh_i3status
 bindsym XF86AudioMute			    exec pactl set-sink-mute   @DEFAULT_SINK@   toggle && $refresh_i3status
 bindsym XF86AudioMicMute		  exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-# Screenshots
+# screenshots related bindings
 bindsym --release Shift+Print exec "$bin/screenshot.sh -s --output $screenshots"
 bindsym --release Print exec "$bin/screenshot.sh --output $screenshots"
 
-# Media player controls
+# configure media player control keys
 bindsym XF86AudioPlay			exec   playerctl play
 bindsym XF86AudioPause	  exec   playerctl stop
 bindsym XF86AudioNext			exec   playerctl next
 bindsym XF86AudioPrev			exec   playerctl previous
 
-# Use xbacklight to adjust display backlight
+# configure backlight control keys using xbacklight
 bindsym XF86MonBrightnessUp     exec xbacklight -inc 20
 bindsym XF86MonBrightnessDown   exec xbacklight -dec 20
 
-# Show a simple calendar
+# shows a simple calendar
 bindsym $mod+t exec zenity --calendar
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -197,13 +191,13 @@ bindsym $mod+Ctrl+Up  move workspace to output up
 bindsym $mod+Ctrl+Down move workspace to output down
 
 # default workspaces output
-workspace $web               output HDMI1
-workspace $dev               output HDMI1
-workspace $terms             output HDMI1
-workspace $multimedia	output eDP1
-workspace $anki              output eDP1
-workspace $office            output eDP1
-workspace $home             output eDP1
+workspace $web        output DP-1
+workspace $dev        output DP-1
+workspace $terms      output eDP-1
+workspace $multimedia	output eDP-1
+workspace $anki       output eDP-1
+workspace $office     output eDP-1
+workspace $home       output eDP-1
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -285,7 +279,6 @@ bar {
 # assign windows to an specific workspace
 assign [class="Google-chrome"]            →	$web
 assign [class="Firefox"]                  →	$web
-#assign [class="Slack"]                    →	$slack
 assign [class="jetbrains-idea-ce"]        →	$dev
 assign [class="jetbrains-idea"]           →	$dev
 assign [class="Code"]                     →	$dev
