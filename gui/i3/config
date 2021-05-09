@@ -193,6 +193,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # Move workspace between screens
 bindsym $mod+Ctrl+Left  move workspace to output left
 bindsym $mod+Ctrl+Right move workspace to output right
+bindsym $mod+Ctrl+Up  move workspace to output up
+bindsym $mod+Ctrl+Down move workspace to output down
 
 # default workspaces output
 workspace $web               output HDMI1
@@ -258,13 +260,13 @@ set		$mode_system		System (l) lock, (Ctrl-e) logout, (Ctrl-s) suspend, (Ctrl-h) 
 
 # display configuration
 mode "$mode_display" {
-    bindsym 1 exec --no-startup-id autorandr mirror,		  mode "default"
-    bindsym 2 exec --no-startup-id autorandr mon-only,		mode "default"
-    bindsym 3 exec --no-startup-id autorandr lap-only,		mode "default"
-    bindsym 4 exec --no-startup-id autorandr pri_mon-lap,	mode "default"
-    bindsym 5 exec --no-startup-id autorandr mon-pri_lap,	mode "default"
-    bindsym 6 exec --no-startup-id autorandr pri_lap-mon,	mode "default"
-    bindsym 7 exec --no-startup-id autorandr lap-pri_mon,	mode "default"
+    bindsym 1 exec --no-startup-id autorandr mirror,          mode "default"
+    bindsym 2 exec --no-startup-id autorandr mon-only,        mode "default"
+    bindsym 3 exec --no-startup-id autorandr lap-only,        mode "default"
+    bindsym 4 exec --no-startup-id autorandr pri_sm-mon-lap,	mode "default"
+    bindsym 5 exec --no-startup-id autorandr mon-pri_lap,     mode "default"
+    bindsym 6 exec --no-startup-id autorandr pri_lap-mon,     mode "default"
+    bindsym 7 exec --no-startup-id autorandr lap-pri_mon,     mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
