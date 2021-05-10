@@ -53,9 +53,6 @@ augroup END
 
 set number relativenumber
 
-" autowrap markdown files
-au BufRead,BufNewFile *.md setlocal textwidth=80 formatoptions+=wa
-
 " set the title of the window to "filename [+=-] (path) - NVIM"
 set title
 
