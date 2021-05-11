@@ -22,14 +22,14 @@ default.project = Inbox
 report.bl.description=List all non-planned tasks in Inbox project
 report.bl.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
 report.bl.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
-report.bl.filter=project:Inbox -today status:pending
+report.bl.filter=project:Inbox status:pending
 report.bl.sort=urgency-
 
 # In Progress
 report.ip.description=List all non-planned tasks in Inbox project
 report.ip.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
 report.ip.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
-report.ip.filter=project:Inbox +today status:pending
+report.ip.filter=project:Inbox and status:pending and +ACTIVE
 report.ip.sort=urgency-
 
 # Done Today
