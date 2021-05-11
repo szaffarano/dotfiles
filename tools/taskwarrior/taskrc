@@ -41,8 +41,8 @@ report.dt.sort=urgency-
 
 # Done Yesterday
 report.dy.description=List all non-planned tasks in Inbox project
-report.dy.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
-report.dy.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
+report.dy.columns=uuid.short,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,until.remaining,description,urgency
+report.dy.labels=UUID,Active,Age,Deps,P,Project,Tag,Recur,S,Until,Description,Urg
 report.dy.filter=project:Inbox status:completed end:yesterday
 report.dy.sort=urgency-
 
