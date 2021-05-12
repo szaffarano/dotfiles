@@ -34,6 +34,8 @@ def main():
             if cmd == 'done':
                 if new_task['status'] == 'completed' and 'today' in new_task['tags']:
                     new_task['tags'].remove('today')
+            if 'recur' in new_task and 'today' not in new_task['tags']:
+                new_task['tags'].append('today')
 
     # Generate output as task expects it.
     print(json.dumps(new_task))
