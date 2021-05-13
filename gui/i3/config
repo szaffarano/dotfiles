@@ -95,7 +95,7 @@ bindsym $mod+d  exec --no-startup-id rofi -show drun
 bindsym $mod+q  exec --no-startup-id rofi -show window
 bindsym $mod+F2 exec --no-startup-id rofi -show run
 
-bindsym $mod+z exec $scripts/zathura-history.sh
+bindsym $mod+z exec $scripts/zathura-history.zsh
 
 # change focus
 bindsym $mod+h focus left
@@ -205,10 +205,14 @@ bindsym $mod+Shift+r restart
 # lock wall
 bindsym $mod+Ctrl+l	exec --no-startup-id $scripts/lock-screen.sh
 
+# launch power options menu
+bindsym $mod+BackSpace exec $scripts/power-menu.zsh
+
+# launch display options menu
+bindsym $mod+x         exec $scripts/screen-mode-menu.zsh
+
 # modes (see below)
 bindsym $mod+r         mode "resize"
-bindsym $mod+BackSpace mode "$mode_system"
-bindsym $mod+x         mode "$mode_display"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -226,47 +230,6 @@ mode "resize" {
    bindsym Escape mode "default"
    bindsym $mod+r mode "default"
 }
-
-# lock and logout
-mode "$mode_system" {
-	# lock screen
-	bindsym l       exec --no-startup-id $scripts/lock-screen.sh, mode "default"
-
-	# exit
-  bindsym Ctrl+e  exec --no-startup-id i3-msg exit, mode "default"
-
-	# suspend
-  bindsym Ctrl+s  exec --no-startup-id $scripts/lock-screen.sh && systemctl suspend, mode "default"
-
-	# hibernate
-  bindsym Ctrl+h  exec --no-startup-id $scripts/lock-screen.sh && systemctl hibernate, mode "default"
-
-	# reboot
-  bindsym Ctrl+r  exec --no-startup-id systemctl reboot, mode "default"
-
-	# shutdown
-  bindsym Ctrl+S  exec --no-startup-id systemctl poweroff -i, mode "default"
-
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-set		$mode_system		System (l) lock, (Ctrl-e) logout, (Ctrl-s) suspend, (Ctrl-h) hibernate, (Ctrl-r) reboot, (Ctrl+S) shutdown
-
-# display configuration
-mode "$mode_display" {
-    bindsym 1 exec --no-startup-id autorandr mirror,          mode "default"
-    bindsym 2 exec --no-startup-id autorandr mon-only,        mode "default"
-    bindsym 3 exec --no-startup-id autorandr lap-only,        mode "default"
-    bindsym 4 exec --no-startup-id autorandr pri_sm-mon-lap,	mode "default"
-    bindsym 5 exec --no-startup-id autorandr mon-pri_lap,     mode "default"
-    bindsym 6 exec --no-startup-id autorandr pri_lap-mon,     mode "default"
-    bindsym 7 exec --no-startup-id autorandr lap-pri_mon,     mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-set $mode_display Display: 1. Mirror - 2. Mon Only - 3. Lap Only - 4. [Mon]->Lap - 5. Mon->[Lap] - 6. [Lap]->Mon - 7. Lap->[Mon]
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
