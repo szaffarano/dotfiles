@@ -1,2 +1,3 @@
 - link:
     ~/.taskrc: ./tools/taskwarrior/taskrc
+    ~/.task/hooks: ./tools/taskwarrior/hooks
