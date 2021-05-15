@@ -75,7 +75,7 @@ set spelllang=en,es,de_de
 set autowrite
 
 " folding setup
-set nofoldenable
+set foldlevelstart=20
 
 " set search ignorecase
 set ignorecase
@@ -179,4 +179,4 @@ endfor
 
 " }}}
 
-" vim: filetype=vim foldmethod=marker foldlevel=0 foldcolumn=3
+" vim: filetype=vim foldmethod=marker foldcolumn=3

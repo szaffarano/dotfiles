@@ -6,9 +6,6 @@ Plug 'junegunn/fzf.vim'
 " Plug 'junegunn/vim-easy-align'
 Plug 'godlygeek/tabular'
 
-" Markdown support
-Plug 'plasticboy/vim-markdown'
-
 " VimWiki
 Plug 'vimwiki/vimwiki'
 

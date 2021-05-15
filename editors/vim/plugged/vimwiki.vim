@@ -1,6 +1,7 @@
 let g:vimwiki_key_mappings = {}
 let g:vimwiki_key_mappings.table_mappings = 0
 
+" let g:vimwiki_global_ext = 0
 let g:vimwiki_markdown_link_ext = 1
 let g:vimwiki_auto_header = 1
 let g:vimwiki_list = [
@@ -11,3 +12,10 @@ let g:vimwiki_list = [
     \         'path_html': '~/projects/vimwikiwiki//docs',
     \         'auto_toc': 1}
 \ ]
+
+let g:vimwiki_folding='custom'
+
+set foldmethod=syntax
+set foldlevelstart=1
+set foldlevelstart=20
+set foldtext=VimwikiFold
