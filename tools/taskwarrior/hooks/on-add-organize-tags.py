@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 '''
-Hook to manipulate task when are modified
+Hook to manipulate task when are added
 Inspired on timewarrior
 '''
 import json
@@ -10,22 +10,20 @@ import hooks
 
 def main():
     '''Main function of this module.'''
-    old_task = json.loads(sys.stdin.readline())
-    new_task = json.loads(sys.stdin.readline())
+    task = json.loads(sys.stdin.readline())
     args = hooks.retrieve_args_dict()
 
     # Do something.
     feedback = None
     if 'api' in args: # Only do something for known API.
         if args['api'] in ['2']: # APIs that give us a 'command' key.
-            cmd = args['command']
-            tags = new_task.setdefault('tags', [])
-            if cmd == 'done':
-                if new_task['status'] == 'completed' and 'today' in tags:
-                   tags.remove('today')
+            tags = task.setdefault('tags', [])
+            if 'recur' in task and 'today' not in tags \
+                    and task['status'] == 'pending':
+                tags.append('today')
 
     # Generate output as task expects it.
-    print(json.dumps(new_task))
+    print(json.dumps(task))
     if feedback is not None:
         print(feedback)
     sys.exit(0)
