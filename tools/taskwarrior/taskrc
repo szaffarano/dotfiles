@@ -34,8 +34,8 @@ report.ip.sort=urgency-
 
 # Done Today
 report.dt.description=List all non-planned tasks in Inbox project
-report.dt.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
-report.dt.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
+report.dt.columns=uuid.short,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.dt.labels=UUID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
 report.dt.filter=project:Inbox status:completed end:today
 report.dt.sort=urgency-
 
@@ -48,7 +48,7 @@ report.dy.sort=urgency-
 
 # Done 
 report.d.description=List all non-planned tasks in Inbox project
-report.d.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
-report.d.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
+report.d.columns=uuid.short,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.d.labels=UUID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
 report.d.filter=project:Inbox status:completed 
 report.d.sort=urgency-
