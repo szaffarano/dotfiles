@@ -8,7 +8,7 @@
 data.location=~/.task
 
 # Color theme
-include /usr/share/taskwarrior/dark-256.theme
+include /usr/local/share/doc/task/rc/dark-256.theme
 
 # Trello integration
 uda.trelloid.type        = string
@@ -17,6 +17,8 @@ uda.trellolistname.type  = string
 uda.trellolistname.label = Trello List Name
 
 default.project = Inbox
+defaultwidth=120
+search.case.sensitive=0
 
 # Backlog
 report.bl.description=List all non-planned tasks in Inbox project
@@ -52,3 +54,9 @@ report.d.columns=uuid.short,start.age,entry.age,depends,priority,project,tags,re
 report.d.labels=UUID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
 report.d.filter=project:Inbox status:completed 
 report.d.sort=urgency-
+
+# Historic Tasks
+report.h.columns=id,uuid.short,start.age,entry.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
+report.h.description=Most details of tasks
+report.h.labels=ID,uuid,Active,Age,D,P,Project,Tags,R,Sch,Due,Until,Description,Urg
+report.h.sort=start-,due+,project+,urgency-
