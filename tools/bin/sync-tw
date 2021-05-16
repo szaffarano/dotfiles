@@ -1,0 +1,20 @@
+#!/usr/bin/zsh
+
+function die {
+  echo $1
+  exit 1
+}
+
+[ -n "$TASK_REPO" ] || die "TASK_REPO variable not defined"
+[ -d $TASK_REPO/.git ] || die "$TASK_REPO is not a git repository"
+
+ARGS=(-C $TASK_REPO)
+
+git $ARGS pull \
+  && git $ARGS add \
+    backlog.data \
+    completed.data \
+    pending.data \
+    undo.data \
+  && git $ARGS commit -m "Update task planning" \
+  && git $ARGS push
