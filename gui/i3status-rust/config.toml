@@ -53,8 +53,7 @@ block       = "battery"
 interval    = 10
 driver      = "upower"
 device      = "DisplayDevice"
-format      = "{percentage}% {time}"
-full_format = "{percentage} "
+format      = "{percentage} {time}"
 
 [[block]]
 block         = "pomodoro"

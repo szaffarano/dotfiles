@@ -236,7 +236,7 @@ mode "resize" {
 bar {
     font pango: FontAwesome 12
     position top
-    status_command $shims/i3status-rs $config/config.toml
+    status_command $shims/i3status-rs
 }
 
 # assign windows to an specific workspace
