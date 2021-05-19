@@ -5,10 +5,12 @@ function die {
   exit 1
 }
 
-[ -n "$TASK_REPO" ] || die "TASK_REPO variable not defined"
-[ -d $TASK_REPO/.git ] || die "$TASK_REPO is not a git repository"
+[ -n "$TASK_REPO" ] || die "TASK_REPO environment variable not defined"
 
 ARGS=(-C $TASK_REPO)
+
+git $ARGS status > /dev/null 2>&1 \
+  || die "$TASK_REPO is not a git repository"
 
 git $ARGS pull \
   && git $ARGS add \
