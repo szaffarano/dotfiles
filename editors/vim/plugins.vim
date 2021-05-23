@@ -2,8 +2,10 @@
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" similar to tabularize but with different features
+ Plug 'junegunn/vim-easy-align'
+ 
 " tabularize
-" Plug 'junegunn/vim-easy-align'
 Plug 'godlygeek/tabular'
 
 " VimWiki
