@@ -1,1 +1,4 @@
+export PATH="$HOME/.asdf/shims:$HOME/.local/bin:$PATH"
 setxkbmap -option caps:escape
+
+# vi: ft=bash
