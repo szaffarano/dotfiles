@@ -25,7 +25,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'dense-analysis/ale'
 
 " gruvbox theme
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 
 " vim-clap: interactive finder and dispatcher
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
