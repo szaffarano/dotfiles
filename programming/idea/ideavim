@@ -70,4 +70,11 @@ set scrolloff=5
 
 map Q gq
 
+" extensions
+set surround
+
+set NERDTree
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapJumpParent='h'
+
 # vim: ft=vim
