@@ -36,6 +36,8 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 
+set nowrap
+
 " set 80 and 120 column borders for good coding style
 set colorcolumn=80,120
 
