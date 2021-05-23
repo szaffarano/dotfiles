@@ -20,6 +20,18 @@ default.project = Inbox
 defaultwidth=120
 search.case.sensitive=0
 
+# Contexts
+context.readings       = project:Readings
+context.readings.read  = project:Readings
+context.readings.write = project:Readings
+context.inbox          = project:Inbox
+context.inbox.read     = project:Inbox
+context.inbox.write    = project:Inbox
+
+# #############
+# Reports
+# #############
+
 # Backlog
 report.bl.description=List all non-planned tasks in Inbox project
 report.bl.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
@@ -60,3 +72,4 @@ report.h.columns=id,uuid.short,start.age,entry.age,depends.indicator,priority,pr
 report.h.description=Most details of tasks
 report.h.labels=ID,uuid,Active,Age,D,P,Project,Tags,R,Sch,Due,Until,Description,Urg
 report.h.sort=start-,due+,project+,urgency-
+
