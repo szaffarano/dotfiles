@@ -1,0 +1,29 @@
+#!/usr/bin/env zsh
+
+
+# Based on The Primeagen idea
+# see: https://github.com/awesome-streamers/awesome-streamerrc/tree/master/ThePrimeagen
+#
+
+basedirs=( ~/projects ~/Documents  )
+items=()
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    for d in $basedirs
+    do
+        items+=$(find $d -maxdepth 1 -mindepth 1 -type d)
+    done
+    selected=$(print -l $items | fzf)
+fi
+
+[ -z "$selected" ] && exit 1
+
+dirname=$(basename $selected)
+
+tmux switch-client -t $dirname 2> /dev/null \
+    || tmux new-session -d -c $selected -s $dirname \
+        && tmux switch-client -t $dirname \
+    || tmux new -c $selected -A -s $dirname
+

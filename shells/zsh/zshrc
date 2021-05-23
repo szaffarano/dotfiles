@@ -113,3 +113,14 @@ VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
 [ -f ~/.asdf/plugins/java/set-java-home.zsh ] && . ~/.asdf/plugins/java/set-java-home.zsh
+
+## bindkeys
+
+if which tmux_sessions >/dev/null 2>&1; then
+  function new_tmux_session() {
+    tmux_sessions
+  }
+
+  zle -N new_tmux_session{,}
+  bindkey  new_tmux_session
+fi
