@@ -30,6 +30,12 @@ zplug 'hlissner/zsh-autopair', defer:2
 # zsh theme
 zplug "themes/ys", from:oh-my-zsh
 
+# timewarrior autocomplete
+zplug "svenXY/timewarrior"
+
+# taskwarrior autocomplete
+zplug "plugins/taskwarrior", from:oh-my-zsh
+
 # vi mode plug-in
 zplug "plugins/vi-mode", from:oh-my-zsh
 
