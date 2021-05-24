@@ -21,8 +21,8 @@ def main():
             cmd = args['command']
             tags = new_task.setdefault('tags', [])
             if cmd == 'done':
-                if new_task['status'] == 'completed' and 'today' in tags:
-                   tags.remove('today')
+                if new_task['status'] == 'completed' and 'scheduled' in tags:
+                   tags.remove('scheduled')
 
     # Generate output as task expects it.
     print(json.dumps(new_task))
