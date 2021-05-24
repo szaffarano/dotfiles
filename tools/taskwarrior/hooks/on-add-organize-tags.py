@@ -18,9 +18,9 @@ def main():
     if 'api' in args: # Only do something for known API.
         if args['api'] in ['2']: # APIs that give us a 'command' key.
             tags = task.setdefault('tags', [])
-            if 'recur' in task and 'scheduled' not in tags \
+            if 'recur' in task and 'heute' not in tags \
                     and task['status'] == 'pending':
-                tags.append('scheduled')
+                tags.append('heute')
 
     # Generate output as task expects it.
     print(json.dumps(task))

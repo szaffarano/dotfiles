@@ -21,12 +21,18 @@ defaultwidth=120
 search.case.sensitive=0
 
 # Contexts
-context.readings       = project:Readings
-context.readings.read  = project:Readings
-context.readings.write = project:Readings
-context.inbox          = project:Inbox
-context.inbox.read     = project:Inbox
-context.inbox.write    = project:Inbox
+context.readings                = project:Readings
+context.readings.read           = project:Readings
+context.readings.write          = project:Readings
+context.inbox                   = project:Inbox
+context.inbox.read              = project:Inbox
+context.inbox.write             = project:Inbox
+context.work_schedule           = project:Inbox +heute +work
+context.work_schedule.read      = project:Inbox +heute +work
+context.work_schedule.write     = project:Inbox +heute +work
+context.personal_schedule       = project:Inbox +heute +personal
+context.personal_schedule.read  = project:Inbox +heute +personal
+context.personal_schedule.write = project:Inbox +heute +personal
 
 # #############
 # Reports
