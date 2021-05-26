@@ -1,0 +1,12 @@
+bin
+fd
+fzf
+git
+gnupg
+golang
+neovim
+python
+shellcheck
+ssh
+tmux
+zsh
