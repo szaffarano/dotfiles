@@ -10,6 +10,8 @@ data.location=~/.task
 # Color theme
 include /usr/local/share/doc/task/rc/dark-256.theme
 
+include ~/.taskrc.local
+
 # Trello integration
 uda.trelloid.type        = string
 uda.trelloid.label       = Trello ID
@@ -78,4 +80,3 @@ report.h.columns=id,uuid.short,start.age,entry.age,depends.indicator,priority,pr
 report.h.description=Most details of tasks
 report.h.labels=ID,uuid,Active,Age,D,P,Project,Tags,R,Sch,Due,Until,Description,Urg
 report.h.sort=start-,due+,project+,urgency-
-
