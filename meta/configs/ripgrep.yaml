@@ -1,0 +1,5 @@
+- asdf:
+  - plugin: ripgrep
+    global: latest
+    versions:
+      - latest

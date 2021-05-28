@@ -6,6 +6,7 @@ gnupg
 golang
 neovim
 python
+ripgrep
 shellcheck
 ssh
 tmux
