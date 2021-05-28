@@ -19,6 +19,6 @@ tools/bin/istioctl
 
 tools/bin/idea
 tools/bin/datagrip
-tools/bin/login-aws
+tools/bin/aws-login.sh
 
 __pycache__

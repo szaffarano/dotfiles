@@ -60,3 +60,5 @@ case $(uname) in
       alias ls="ls -G"
     ;;
 esac
+
+alias aws-login=". aws-login.sh"
