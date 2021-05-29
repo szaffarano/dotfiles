@@ -80,3 +80,5 @@ report.h.columns=id,uuid.short,start.age,entry.age,depends.indicator,priority,pr
 report.h.description=Most details of tasks
 report.h.labels=ID,uuid,Active,Age,D,P,Project,Tags,R,Sch,Due,Until,Description,Urg
 report.h.sort=start-,due+,project+,urgency-
+
+urgency.user.tag.review.coefficient=99
