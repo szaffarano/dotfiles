@@ -25,6 +25,7 @@
     browser = /usr/bin/brave-browser -new-tab
     icon_position = left
     max_icon_size = 32x32
+    icon_path = /usr/share/icons/Yaru/16x16/status/:/usr/share/icons/Yaru/16x16/devices/:/usr/share/icons/Yaru/16x16/legacy/
 
 [frame]
     width = 0
