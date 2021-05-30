@@ -1,3 +1,6 @@
 - link:
     ~/.taskrc: ./tools/taskwarrior/taskrc
     ~/.task/hooks: ./tools/taskwarrior/hooks
+    ~/.config/systemd/user/bugwarrior-pull.timer: tools/taskwarrior/systemd/bugwarrior-pull.timer
+    ~/.config/systemd/user/bugwarrior-pull.service: tools/taskwarrior/systemd/bugwarrior-pull.service
+
