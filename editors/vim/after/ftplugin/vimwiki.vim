@@ -4,6 +4,7 @@ let g:vimwiki_header_type = '#'     " set to '=' for wiki syntax
 setlocal foldmethod=expr 
 setlocal foldenable 
 setlocal foldlevel=3
+setlocal foldcolumn=3
 
 setlocal foldexpr=Fold(v:lnum)
 setlocal foldtext=VimwikiFoldTextCustom()
