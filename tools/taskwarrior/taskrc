@@ -4,85 +4,48 @@
 
 # Use the command 'task show' to see all defaults and overrides
 
-# Files
-data.location=~/.task
-
-# Color theme
 include /usr/local/share/doc/task/rc/dark-256.theme
-
 include ~/.taskrc.local
 
-# Trello integration
-uda.trelloid.type        = string
-uda.trelloid.label       = Trello ID
-uda.trellolistname.type  = string
-uda.trellolistname.label = Trello List Name
+data.location         = ~/.task
+default.project       = Inbox
+defaultwidth          = 120
+search.case.sensitive = 0
 
-default.project = Inbox
-defaultwidth=120
-search.case.sensitive=0
+# Reports {
 
-# Contexts
+## In Progress
+report.triage.description=List all task that have to be triaged
+report.triage.columns=id,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.triage.labels=ID,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
+report.triage.filter=project:Inbox 
+report.triage.sort=urgency-
+
+# }
+
+# Contexts {
+
 context.readings                = project:Readings
 context.readings.read           = project:Readings
 context.readings.write          = project:Readings
+
 context.inbox                   = project:Inbox
 context.inbox.read              = project:Inbox
 context.inbox.write             = project:Inbox
-context.work_schedule           = project:Inbox +heute +work
-context.work_schedule.read      = project:Inbox +heute +work
-context.work_schedule.write     = project:Inbox +heute +work
-context.personal_schedule       = project:Inbox +heute +personal
-context.personal_schedule.read  = project:Inbox +heute +personal
-context.personal_schedule.write = project:Inbox +heute +personal
 
-# #############
-# Reports
-# #############
+context.work           = project:Work
+context.work.read      = project:Work
+context.work.write     = project:Work
 
-# Backlog
-report.bl.description=List all non-planned tasks in Inbox project
-report.bl.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
-report.bl.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
-report.bl.filter=project:Inbox status:pending
-report.bl.sort=urgency-
+context.personal       = project:Personal
+context.personal.read  = project:Personal
+context.personal.write = project:Personal
 
-# In Progress
-report.ip.description=List all non-planned tasks in Inbox project
-report.ip.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
-report.ip.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
-report.ip.filter=project:Inbox and status:pending and +ACTIVE
-report.ip.sort=urgency-
+# }
 
-# Done Today
-report.dt.description=List all non-planned tasks in Inbox project
-report.dt.columns=uuid.short,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
-report.dt.labels=UUID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
-report.dt.filter=project:Inbox status:completed end:today
-report.dt.sort=urgency-
+# UDAs {
 
-# Done Yesterday
-report.dy.description=List all non-planned tasks in Inbox project
-report.dy.columns=uuid.short,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,until.remaining,description,urgency
-report.dy.labels=UUID,Active,Age,Deps,P,Project,Tag,Recur,S,Until,Description,Urg
-report.dy.filter=project:Inbox status:completed end:yesterday
-report.dy.sort=urgency-
-
-# Done 
-report.d.description=List all non-planned tasks in Inbox project
-report.d.columns=uuid.short,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
-report.d.labels=UUID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
-report.d.filter=project:Inbox status:completed 
-report.d.sort=urgency-
-
-# Historic Tasks
-report.h.columns=id,uuid.short,start.age,entry.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
-report.h.description=Most details of tasks
-report.h.labels=ID,uuid,Active,Age,D,P,Project,Tags,R,Sch,Due,Until,Description,Urg
-report.h.sort=start-,due+,project+,urgency-
-
-urgency.user.tag.review.coefficient=99
-# Bugwarrior UDAs
+# bugwarrior UDAs
 uda.jiraissuetype.type=string
 uda.jiraissuetype.label=Issue Type
 uda.jirasummary.type=string
@@ -103,4 +66,21 @@ uda.jirastatus.type=string
 uda.jirastatus.label=Jira Status
 uda.jirasubtasks.type=string
 uda.jirasubtasks.label=Jira Subtasks
-# END Bugwarrior UDAs
+
+# inthe.am UDAs
+uda.intheamoriginalemailid.type=string
+uda.intheamoriginalemailid.label=inthe.am e-mail id
+uda.intheamoriginalemailsubject.type=string
+uda.intheamoriginalemailsubject.label=inthe.am e-mail Subject
+uda.intheammergedfrom.type=string
+uda.intheammergedfrom.label=inthe.am merged from task
+
+# }
+
+# Priorities {
+urgency.user.tag.problem.coefficient=4.5
+urgency.user.tag.later.coefficient=-6.0
+urgency.user.tag.review.coefficient=6
+
+# }
+

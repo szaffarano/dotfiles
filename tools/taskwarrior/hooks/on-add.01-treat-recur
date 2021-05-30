@@ -1,26 +1,23 @@
 #!/usr/bin/env python3
 
 '''
-Hook to manipulate task when are added
-Inspired on timewarrior
+If a task is recurring, move it to "in progress" by default.
 '''
 import json
 import sys
 import hooks
 
 def main():
-    '''Main function of this module.'''
     task = json.loads(sys.stdin.readline())
     args = hooks.retrieve_args_dict()
 
-    # Do something.
     feedback = None
     if 'api' in args: # Only do something for known API.
         if args['api'] in ['2']: # APIs that give us a 'command' key.
             tags = task.setdefault('tags', [])
-            if 'recur' in task and 'heute' not in tags \
+            if 'recur' in task and 'in_progress' not in tags \
                     and task['status'] == 'pending':
-                tags.append('heute')
+                tags.append('in_progress')
 
     # Generate output as task expects it.
     print(json.dumps(task))

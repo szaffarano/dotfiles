@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
 '''
-Hook to manipulate task when are modified
-Inspired on timewarrior
+Removes the in_progress tag when a task is completed
 '''
 import json
 import sys
@@ -14,15 +13,14 @@ def main():
     new_task = json.loads(sys.stdin.readline())
     args = hooks.retrieve_args_dict()
 
-    # Do something.
     feedback = None
     if 'api' in args: # Only do something for known API.
         if args['api'] in ['2']: # APIs that give us a 'command' key.
             cmd = args['command']
             tags = new_task.setdefault('tags', [])
             if cmd == 'done':
-                if new_task['status'] == 'completed' and 'heute' in tags:
-                   tags.remove('heute')
+                if new_task['status'] == 'completed' and 'in_progress' in tags:
+                   tags.remove('in_progress')
 
     # Generate output as task expects it.
     print(json.dumps(new_task))
