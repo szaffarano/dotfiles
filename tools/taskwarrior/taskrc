@@ -74,6 +74,8 @@ uda.intheamoriginalemailsubject.type=string
 uda.intheamoriginalemailsubject.label=inthe.am e-mail Subject
 uda.intheammergedfrom.type=string
 uda.intheammergedfrom.label=inthe.am merged from task
+uda.intheamduplicateof.type=string
+uda.intheamduplicateof.label=inthe.am duplicated of
 
 # }
 
