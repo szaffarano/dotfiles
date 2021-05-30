@@ -1,0 +1,9 @@
+[Unit]
+Description=tw-sync
+
+[Service]
+ExecStart=/usr/local/bin/task sync
+Type=oneshot
+
+[Install]
+WantedBy=default.target

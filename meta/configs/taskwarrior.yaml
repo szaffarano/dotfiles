@@ -3,4 +3,6 @@
     ~/.task/hooks: ./tools/taskwarrior/hooks
     ~/.config/systemd/user/bugwarrior-pull.timer: tools/taskwarrior/systemd/bugwarrior-pull.timer
     ~/.config/systemd/user/bugwarrior-pull.service: tools/taskwarrior/systemd/bugwarrior-pull.service
+    ~/.config/systemd/user/tw-sync.timer: tools/taskwarrior/systemd/tw-sync.timer
+    ~/.config/systemd/user/tw-sync.service: tools/taskwarrior/systemd/tw-sync.service
 
