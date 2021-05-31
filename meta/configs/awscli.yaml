@@ -1,0 +1,5 @@
+- asdf:
+  - plugin: awscli
+    global: latest
+    versions:
+      - latest
