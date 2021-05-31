@@ -77,6 +77,10 @@ uda.intheammergedfrom.label=inthe.am merged from task
 uda.intheamduplicateof.type=string
 uda.intheamduplicateof.label=inthe.am duplicated of
 
+# custom worklow UDAs
+uda.state.type=string
+uda.state.label=Task state
+uda.state.values=new,planned,in-progress,done
 # }
 
 # Priorities {

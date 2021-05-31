@@ -17,10 +17,13 @@ def main():
     if 'api' in args: # Only do something for known API.
         if args['api'] in ['2']: # APIs that give us a 'command' key.
             cmd = args['command']
-            tags = new_task.setdefault('tags', [])
             if cmd == 'done':
-                if new_task['status'] == 'completed' and 'in_progress' in tags:
-                   tags.remove('in_progress')
+                if new_task['status'] == 'completed':
+                    new_task['state'] = 'done'
+            elif cmd == 'start':
+                new_task['state'] = 'in-progress'
+            elif cmd == 'stop':
+                new_task['state'] = 'planned'
 
     # Generate output as task expects it.
     print(json.dumps(new_task))

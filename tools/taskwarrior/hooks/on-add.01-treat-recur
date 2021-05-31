@@ -14,10 +14,7 @@ def main():
     feedback = None
     if 'api' in args: # Only do something for known API.
         if args['api'] in ['2']: # APIs that give us a 'command' key.
-            tags = task.setdefault('tags', [])
-            if 'recur' in task and 'in_progress' not in tags \
-                    and task['status'] == 'pending':
-                tags.append('in_progress')
+            task['state'] = 'new'
 
     # Generate output as task expects it.
     print(json.dumps(task))
