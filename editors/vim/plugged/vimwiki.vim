@@ -1,4 +1,5 @@
 let g:vimwiki_key_mappings = {}
+
 let g:vimwiki_key_mappings.table_mappings = 0
 
 " let g:vimwiki_global_ext = 0
@@ -19,3 +20,10 @@ set foldmethod=syntax
 set foldlevelstart=1
 set foldlevelstart=20
 set foldtext=VimwikiFold
+
+" inserts a templet when create a new diary buffer
+augroup vimwiki_diary
+  autocmd!
+  autocmd BufNewFile */wiki/*/diary/*.md :silent 
+    \ 0r !~/.local/bin/tasks-status-template.py '%'
+augroup END
