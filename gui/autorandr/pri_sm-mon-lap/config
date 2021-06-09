@@ -6,12 +6,12 @@ output HDMI-2
 off
 output DP-1
 crtc 0
-mode 1280x1024
-pos 320x0
+mode 2560x1440
+pos 0x0
 primary
-rate 60.02
+rate 59.95
 output eDP-1
 crtc 1
 mode 1920x1080
-pos 0x1024
+pos 2560x0
 rate 60.00
