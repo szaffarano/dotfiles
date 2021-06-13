@@ -1,0 +1,10 @@
+[Unit]
+Description=Run timewsync periodically and on boot
+
+[Timer]
+OnBootSec=15m
+OnUnitActiveSec=1h
+
+[Install]
+WantedBy=timers.target
+

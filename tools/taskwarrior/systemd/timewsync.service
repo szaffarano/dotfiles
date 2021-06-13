@@ -1,0 +1,9 @@
+[Unit]
+Description=timewsync
+
+[Service]
+ExecStart=/home/sebas/.asdf/shims/timewsync
+Type=oneshot
+
+[Install]
+WantedBy=default.target

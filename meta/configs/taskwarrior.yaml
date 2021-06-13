@@ -5,4 +5,5 @@
     ~/.config/systemd/user/bugwarrior-pull.service: tools/taskwarrior/systemd/bugwarrior-pull.service
     ~/.config/systemd/user/tw-sync.timer: tools/taskwarrior/systemd/tw-sync.timer
     ~/.config/systemd/user/tw-sync.service: tools/taskwarrior/systemd/tw-sync.service
-
+    ~/.config/systemd/user/timewsync.timer: tools/taskwarrior/systemd/timewsync.timer
+    ~/.config/systemd/user/timewsync.service: tools/taskwarrior/systemd/timewsync.service
