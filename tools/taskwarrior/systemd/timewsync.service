@@ -2,7 +2,7 @@
 Description=timewsync
 
 [Service]
-ExecStart=/home/sebas/.asdf/shims/timewsync
+ExecStart="%h/.asdf/shims/timewsync"
 Type=oneshot
 
 [Install]
