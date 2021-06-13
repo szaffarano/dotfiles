@@ -20,10 +20,11 @@ fi
 
 [ -z "$selected" ] && exit 1
 
-dirname=$(basename $selected)
+name=$(basename $selected)
 
-tmux switch-client -t $dirname 2> /dev/null \
-    || tmux new-session -d -c $selected -s $dirname \
-        && tmux switch-client -t $dirname \
-    || tmux new -c $selected -A -s $dirname
+# create a new session if it does not exist
+tmux ls -F "#{session_name}" 2>/dev/null | grep -q $name \
+  || tmux new-session -d -c $selected -s $name 
 
+# switch to the newly created session, or attach to it in case we are outside tmux
+tmux switch-client -t $name 2> /dev/null || tmux attach-session -t $name
