@@ -14,7 +14,6 @@ git $ARGS status > /dev/null 2>&1 \
 
 git $ARGS pull \
   && git $ARGS add \
-    backlog.data \
     completed.data \
     pending.data \
     undo.data \
