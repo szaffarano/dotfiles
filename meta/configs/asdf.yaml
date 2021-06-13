@@ -1,0 +1,5 @@
+- shell:
+    - [test -d ~/.asdf || git clone https://github.com/asdf-vm/asdf.git ~/.asdf, Cloning asdf]
+    - [cd ~/.asdf, Accessing to asdf home]
+    - [git checkout "$(git describe --abbrev=0 --tags)", Selecting the latest asdf version]
+    - [~/.asdf/bin/asdf update, Updating asdf]
