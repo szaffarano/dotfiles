@@ -114,6 +114,8 @@ vmap <leader>p "+p
 vmap <leader>P "+P
 
 " presentation mode
+noremap <C-Left> :silent tabprev<CR> :redraw!<CR>
+noremap <C-Right> :silent tabnext<CR> :redraw!<CR>
 noremap <Left> :silent bp<CR> :redraw!<CR>
 noremap <Right> :silent bn<CR> :redraw!<CR>
 nmap <F5> :set relativenumber! number! showmode! showcmd! hidden! ruler!<CR>
