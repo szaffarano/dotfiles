@@ -37,6 +37,8 @@ return require('packer').startup(function(use)
   -- LSP and completion
   use 'neovim/nvim-lspconfig'
   use 'nvim-lua/completion-nvim'
+  use 'ray-x/lsp_signature.nvim'
+
 
   -- Lua development
   use 'tjdevries/nlua.nvim'
