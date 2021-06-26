@@ -17,7 +17,7 @@ opt.softtabstop=2
 opt.shiftwidth=2
 opt.wrap=false
 
-opt.spelllang="en,es,de_de"
+opt.spelllang="en,es,de"
 
 -- set 80 and 120 column borders for good coding style
 opt.colorcolumn="80,120"
