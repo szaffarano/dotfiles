@@ -3,6 +3,9 @@ return require('packer').startup(function(use)
   -- VimWiki
   use 'vimwiki/vimwiki'
 
+  -- Zettelkasten method using Vimwiki
+  use 'michal-h21/vim-zettel'
+
   -- Traskwarrior
   use 'tools-life/taskwiki'
 
@@ -15,9 +18,6 @@ return require('packer').startup(function(use)
   -- fzf
   use "junegunn/fzf"
   use "junegunn/fzf.vim"
-
-  -- Zettelkasten method using Vimwiki
-  use { 'michal-h21/vim-zettel' }
 
   use 'godlygeek/tabular'
   use 'junegunn/vim-easy-align'
