@@ -1,4 +1,9 @@
-export PATH="$HOME/.asdf/shims:$HOME/.local/bin:$PATH"
+PATH="$HOME/.asdf/shims:$PATH"
+PATH="$HOME/.local/bin:$PATH"
+export PATH
+
+[ -f ~/.nix-profile/etc/profile.d/nix.sh ] && source ~/.nix-profile/etc/profile.d/nix.sh
+
 setxkbmap -option caps:escape
 
 # vi: ft=bash

@@ -22,3 +22,5 @@ tools/bin/datagrip
 tools/bin/aws-login.sh
 
 __pycache__
+
+editors/vim/plugin/packer_compiled.vim

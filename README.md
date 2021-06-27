@@ -9,6 +9,7 @@ inspired in [vsund dotfiles](https://github.com/vsund/dotfiles).
 
 - Some packages need [asdf](https://github.com/asdf-vm/asdf) to be installed.
 - Python packages need some specific [prerequisites](https://github.com/pyenv/pyenv/wiki/Common-build-problems#prerequisites)
+- LSP servers: [LUA](https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)), [go](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#gopls), [java](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#java_language_server), [python](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#pylsp)
 
 ### Install a complete profile
 
@@ -45,8 +46,5 @@ Some packages that are installed and/or configured (many of them using
 - [Tmux](https://github.com/tmux/tmux/wiki)
 - [Z Shell](https://www.zsh.org/) (outdated)
 - Gradle
+- Neovim 0.5
 - ...
-
-## TODO
-
-Improve [vim-plug](https://github.com/junegunn/vim-plug) setup (currently it has to be installed manually)

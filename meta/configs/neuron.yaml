@@ -1,0 +1,3 @@
+- shell:
+    - [nix-env -iA cachix -f https://cachix.org/api/v1/install && cachix use srid, Configuring cachix]
+    - [nix-env -if https://github.com/srid/neuron/archive/master.tar.gz, Installing latest neuron]
