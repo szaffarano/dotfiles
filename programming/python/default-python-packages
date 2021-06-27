@@ -1,6 +1,7 @@
 autorandr
 aws-login-tool
 bugwarrior
+docker-compose
 pygobject
 pynvim
 six
