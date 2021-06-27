@@ -3,6 +3,9 @@ return require('packer').startup(function(use)
   -- VimWiki
   use 'vimwiki/vimwiki'
 
+  -- neuron zettelkasten
+  use { 'oberblastmeister/neuron.nvim', branch = 'unstable' }
+
   -- Zettelkasten method using Vimwiki
   use 'michal-h21/vim-zettel'
 
@@ -62,5 +65,7 @@ return require('packer').startup(function(use)
 
   -- Snippets
   use 'SirVer/ultisnips'
+
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
 end)
