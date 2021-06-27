@@ -14,6 +14,7 @@ execute 'autocmd BufWritePost plugins.lua PackerCompile'
 
 require('plugins')
 require('config')
+require('statusline')
 
 require('lsp')
 
