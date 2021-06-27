@@ -122,6 +122,8 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 
 [ -f ~/.asdf/plugins/java/set-java-home.zsh ] && . ~/.asdf/plugins/java/set-java-home.zsh
 
+[ -f ~/.nix-profile/etc/profile.d/nix.sh ] && source ~/.nix-profile/etc/profile.d/nix.sh
+
 ## bindkeys
 
 if which tmux_sessions >/dev/null 2>&1; then
@@ -132,4 +134,3 @@ if which tmux_sessions >/dev/null 2>&1; then
   zle -N new_tmux_session{,}
   bindkey  new_tmux_session
 fi
-
