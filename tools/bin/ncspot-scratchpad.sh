@@ -2,6 +2,5 @@
 
 NCSPOT_BIN="$HOME/.asdf/shims/ncspot"
 
-alacritty -t ncspot_scratchpad -e "$NCSPOT_BIN"
-
-
+pkill ncspot
+pgrep ncspot || alacritty -t ncspot_scratchpad -e "$NCSPOT_BIN"

@@ -290,7 +290,8 @@ exec speedcrunch
 
 # spotify
 for_window [class="Alacritty" title="ncspot_scratchpad" window_type="normal"] move to scratchpad, border none
-bindsym $mod+Shift+m [class="Alacritty" title="ncspot_scratchpad"] scratchpad show
+bindsym $mod+m [class="Alacritty" title="ncspot_scratchpad"] scratchpad show
+bindsym $mod+Shift+m exec ncspot-scratchpad.sh
 exec ncspot-scratchpad.sh
 
 # telegram
