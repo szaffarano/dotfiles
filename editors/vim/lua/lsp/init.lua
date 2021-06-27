@@ -116,7 +116,7 @@ nvim_lsp.rust_analyzer.setup{
 -- Lua LSP
 local sumneko_root_path = HOME .. '/projects/lua-language-server'
 local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
-require'lspconfig'.sumneko_lua.setup {
+nvim_lsp.sumneko_lua.setup {
   on_attach = custom_attach,
   on_init = custom_init,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
