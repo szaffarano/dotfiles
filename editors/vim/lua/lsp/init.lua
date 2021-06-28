@@ -141,3 +141,8 @@ nvim_lsp.sumneko_lua.setup {
     },
   },
 }
+
+nvim_lsp.jsonls.setup{
+  on_attach = custom_attach,
+  on_init = custom_init,
+}
