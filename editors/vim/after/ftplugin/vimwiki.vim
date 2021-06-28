@@ -45,3 +45,5 @@ function! VimwikiFoldTextCustom() abort
     return main_text.len_text.content_text
   endif
 endfunction
+
+nnoremap <silent><buffer> <Leader>tbl :TaskWikiBufferLoad<CR>
