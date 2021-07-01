@@ -18,10 +18,6 @@ return require('packer').startup(function(use)
   -- Useful mappings
   use 'tpope/vim-unimpaired'
 
-  -- fzf
-  use "junegunn/fzf"
-  use "junegunn/fzf.vim"
-
   use 'godlygeek/tabular'
   use 'junegunn/vim-easy-align'
 
@@ -42,10 +38,6 @@ return require('packer').startup(function(use)
   use 'nvim-lua/completion-nvim'
   use 'ray-x/lsp_signature.nvim'
 
-
-  -- Lua development
-  use 'tjdevries/nlua.nvim'
-
   -- Fugitive for Git
   use 'tpope/vim-fugitive'
   use 'rbong/vim-flog'
@@ -59,6 +51,7 @@ return require('packer').startup(function(use)
       requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
 
+  -- startup screen
   use "mhinz/vim-startify"
 
   use 'monaqa/dial.nvim'
@@ -66,8 +59,10 @@ return require('packer').startup(function(use)
   -- Snippets
   use 'SirVer/ultisnips'
 
+  -- tree-sitter support
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
+  -- dhall syntax highlight
   use 'vmchale/dhall-vim'
 
 end)
