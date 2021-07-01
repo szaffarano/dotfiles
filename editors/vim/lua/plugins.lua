@@ -32,6 +32,11 @@ return require('packer').startup(function(use)
       'nvim-telescope/telescope.nvim',
       requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
+  -- intelligent prioritization when selecting files
+  use {
+    'nvim-telescope/telescope-frecency.nvim',
+    requires = {'tami5/sql.nvim'}
+  }
 
   -- LSP and completion
   use 'neovim/nvim-lspconfig'
