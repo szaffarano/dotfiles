@@ -70,15 +70,18 @@ local custom_attach = function(client, bufnr)
         hi LspReferenceText cterm=bold ctermbg=red guibg=#596e7f
         hi LspReferenceWrite cterm=bold ctermbg=red guibg=#596e7f
         augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+          autocmd! * <buffer>
+          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
         augroup END
         ]], false)
     end
 end
 
-nvim_lsp.gopls.setup{}
+nvim_lsp.gopls.setup{
+  on_attach = custom_attach,
+  on_init = custom_init,
+}
 
 nvim_lsp.java_language_server.setup{
   on_attach = custom_attach,
