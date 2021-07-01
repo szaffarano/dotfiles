@@ -108,6 +108,7 @@ nvim_lsp.vimls.setup{
 nvim_lsp.bashls.setup{
   on_attach = custom_attach,
   on_init = custom_init,
+  filetypes = { 'sh', 'zsh' }
 }
 
 nvim_lsp.rust_analyzer.setup{
