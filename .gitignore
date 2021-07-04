@@ -24,3 +24,4 @@ tools/bin/aws-login.sh
 __pycache__
 
 editors/vim/plugin/packer_compiled.vim
+editors/vim/plugin/packer_compiled.lua
