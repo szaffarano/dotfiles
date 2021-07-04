@@ -3,21 +3,19 @@ return require('packer').startup(function(use)
   -- VimWiki
   use 'vimwiki/vimwiki'
 
-  -- neuron zettelkasten
+  -- Neuron zettelkasten support
   use { 'oberblastmeister/neuron.nvim', branch = 'unstable' }
-
-  -- Zettelkasten method using Vimwiki
-  use 'michal-h21/vim-zettel'
 
   -- Traskwarrior
   use 'tools-life/taskwiki'
 
-  -- GnuPG
+  -- GnuPG transparent encryption
   use 'jamessan/vim-gnupg'
 
   -- Useful mappings
   use 'tpope/vim-unimpaired'
 
+  -- alignment stuff
   use 'godlygeek/tabular'
   use 'junegunn/vim-easy-align'
 
@@ -27,12 +25,13 @@ return require('packer').startup(function(use)
   -- Color scheme
   use 'sainnhe/gruvbox-material'
 
-  -- Fuzzy finder
+  -- TJ Fuzzy finder
   use {
       'nvim-telescope/telescope.nvim',
       requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
-  -- intelligent prioritization when selecting files
+
+  -- Intelligent prioritization when selecting files
   use {
     'nvim-telescope/telescope-frecency.nvim',
     requires = {'tami5/sql.nvim'}
@@ -48,7 +47,7 @@ return require('packer').startup(function(use)
   use 'rbong/vim-flog'
   use 'tpope/vim-rhubarb'
 
-  -- status bar
+  -- Fancy status bar XD
   use {
       'glepnir/galaxyline.nvim',
       branch = 'main',
@@ -56,9 +55,10 @@ return require('packer').startup(function(use)
       requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
 
-  -- startup screen
+  -- Startup screen
   use "mhinz/vim-startify"
 
+  -- Auto-increment/decrement numbers
   use 'monaqa/dial.nvim'
 
   -- Snippets
@@ -67,10 +67,10 @@ return require('packer').startup(function(use)
   -- tree-sitter support
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
-  -- dhall syntax highlight
+  -- Syntax highlight for haskell dhall files
   use 'vmchale/dhall-vim'
 
-  -- displays a popup with key bindings
+  -- Displays a pop-up showing key bindings
   use {
     'folke/which-key.nvim',
     config = function()
