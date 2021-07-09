@@ -279,9 +279,9 @@ bindsym $mod+Shift+p [class="Alacritty" title="htop_scratchpad"] scratchpad show
 exec htop-scratchpad.sh
 
 # vim
-for_window [class="Alacritty" title="vim_scratchpad"] move to scratchpad, border none
-bindsym $mod+Shift+v [class="Alacritty" title="vim_scratchpad"] scratchpad show
-exec vim-scratchpad.sh
+for_window [class="neovide" title="Neovide"] move to scratchpad, border none
+bindsym $mod+v [class="neovide" title="Neovide"] scratchpad show
+exec neovide
 
 # calculator
 for_window [class="SpeedCrunch"] move to scratchpad, border none
