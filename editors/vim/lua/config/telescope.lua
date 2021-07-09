@@ -1,5 +1,7 @@
 require('settings')
 
+local trouble = require("trouble.providers.telescope")
+
 require('telescope').setup {
   defaults = {
  		prompt_prefix = "❯ ",
@@ -13,6 +15,11 @@ require('telescope').setup {
     color_devicons = true,
 
     file_ignore_patterns = { "parser.c" },
+
+    mappings = {
+      i = { ["<c-t>"] = trouble.open_with_trouble },
+      n = { ["<c-t>"] = trouble.open_with_trouble },
+    },
   },
 
   extensions = {

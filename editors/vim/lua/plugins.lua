@@ -111,4 +111,16 @@ return require('packer').startup(function(use)
       }
     end,
   }
+
+  -- A pretty list for showing diagnostics
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+      }
+    end
+  }
+
+  use { "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && yarn install" }
 end)
