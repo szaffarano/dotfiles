@@ -47,6 +47,10 @@ return require('packer').startup(function(use)
   use 'rbong/vim-flog'
   use 'tpope/vim-rhubarb'
 
+  -- Git decorations
+  use "lewis6991/gitsigns.nvim"
+
+
   -- Fancy status bar XD
   use {
       'glepnir/galaxyline.nvim',
