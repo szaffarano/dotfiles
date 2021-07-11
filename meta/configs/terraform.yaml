@@ -3,3 +3,7 @@
     global: latest
     versions:
       - latest
+  - plugin: terraform-ls
+    global: latest
+    versions:
+      - latest

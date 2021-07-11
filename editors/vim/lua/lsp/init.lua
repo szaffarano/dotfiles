@@ -121,6 +121,13 @@ nvim_lsp.rust_analyzer.setup{
   cmd = { HOME .. '/projects/rust-analyzer/target/debug/rust-analyzer' }
 }
 
+nvim_lsp.terraformls.setup{
+  on_attach = custom_attach,
+  on_init = custom_init,
+  filetypes = { "terraform", "hcl", "tf" }
+}
+
+
 -- Lua LSP
 local sumneko_root_path = HOME .. '/projects/lua-language-server'
 local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
