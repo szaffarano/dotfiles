@@ -7,3 +7,4 @@ pynvim
 six
 tasklib
 taskw
+python-language-server[all]
