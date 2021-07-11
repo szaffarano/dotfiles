@@ -57,6 +57,8 @@ fi
 zplug load
 ####  end zplug setup
 
+which aws_completer > /dev/null 2>&1 && complete -C aws_completer aws
+
 #
 # Custom configurations
 #
@@ -134,3 +136,6 @@ if which tmux_sessions >/dev/null 2>&1; then
   zle -N new_tmux_session{,}
   bindkey  new_tmux_session
 fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/sebas/.asdf/installs/terraform/1.0.2/bin/terraform terraform
