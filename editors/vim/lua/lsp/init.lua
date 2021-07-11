@@ -8,8 +8,12 @@ end
 local nvim_lsp = require('lspconfig')
 
 local custom_attach = function(client, bufnr)
-    require('completion').on_attach()
-    require'lsp_signature'.on_attach(client)
+    require'lsp_signature'.on_attach({
+      bind = true,
+      handler_opts = {
+        border = "single"
+      }
+    })
 
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)

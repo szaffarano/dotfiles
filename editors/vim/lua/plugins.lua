@@ -39,7 +39,7 @@ return require('packer').startup(function(use)
 
   -- LSP and completion
   use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/completion-nvim'
+  use "hrsh7th/nvim-compe"
   use 'ray-x/lsp_signature.nvim'
 
   -- Fugitive for Git
