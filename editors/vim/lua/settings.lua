@@ -9,7 +9,6 @@ HOME           = fn.expand("$HOME")
 
 -- use 2 spaces instead of tab (to replace existing tab use :retab)
 -- copy indent from current line when starting a new line
-opt.autoindent  = true
 opt.smartindent = true
 opt.expandtab   = true
 opt.tabstop     = 2
@@ -32,8 +31,6 @@ opt.number         = true
 
 opt.ignorecase = true
 opt.smartcase  = true
-opt.incsearch  = true
-opt.hlsearch   = true
 
 opt.mouse = 'a'
 
