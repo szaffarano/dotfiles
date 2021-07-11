@@ -37,6 +37,8 @@ return require('packer').startup(function(use)
     requires = {'tami5/sql.nvim'}
   }
 
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+
   -- LSP and completion
   use 'neovim/nvim-lspconfig'
   use "hrsh7th/nvim-compe"

@@ -1,7 +1,5 @@
 require('settings')
 
-local trouble = require("trouble.providers.telescope")
-
 require('telescope').setup {
   defaults = {
  		prompt_prefix = "❯ ",
@@ -13,19 +11,17 @@ require('telescope').setup {
     sorting_strategy = "descending",
     scroll_strategy = "cycle",
     color_devicons = true,
-
-    file_ignore_patterns = { "parser.c" },
-
-    mappings = {
-      i = { ["<c-t>"] = trouble.open_with_trouble },
-      n = { ["<c-t>"] = trouble.open_with_trouble },
-    },
   },
 
   extensions = {
+    fzf = {
+      override_generic_sorter = true,
+      override_file_sorter = true,
+    },
+
     frecency = {
       workspaces = {
-        ["conf"] = HOME..'/.config/nvim',
+        ["nvim"] = HOME..'/.config/nvim',
         ["projects"] = HOME..'/projects',
         ["wiki"] = HOME..'/Documents/wiki',
       },
@@ -34,7 +30,8 @@ require('telescope').setup {
 
 }
 
-require"telescope".load_extension("frecency")
+require'telescope'.load_extension("frecency")
+require'telescope'.load_extension('fzf')
 
 local M = {}
 
