@@ -21,8 +21,8 @@ keepassxc
 kotlin
 ncspot
 neovim
-nix
 neuron
+nix
 nodejs
 python
 ripgrep
@@ -32,6 +32,7 @@ scala
 shellcheck
 ssh
 taskwarrior
+terraform
 tmux
 X
 youtube-dl

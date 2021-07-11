@@ -10,5 +10,6 @@ python
 ripgrep
 shellcheck
 ssh
+terraform
 tmux
 zsh

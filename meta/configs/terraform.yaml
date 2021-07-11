@@ -1,0 +1,5 @@
+- asdf:
+  - plugin: terraform
+    global: latest
+    versions:
+      - latest
