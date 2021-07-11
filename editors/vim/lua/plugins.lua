@@ -128,5 +128,10 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- Preview Markdown files in a hosted HTML server
   use { "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && yarn install" }
+
+
+  -- Format code
+  use "sbdchd/neoformat"
 end)
