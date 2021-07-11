@@ -3,7 +3,7 @@
 DEC_JAR="cfr-0.150.jar"
 DEC_URL="https://www.benf.org/other/cfr/$DEC_JAR"
 
-read -r -d '' USAGE << EOM
+read -r -d '' USAGE <<EOM
 $(basename "$0") compares a patched mule distribution against a base one and one or more patches.
 
 Usage:
@@ -17,7 +17,10 @@ Usage:
 EOM
 export USAGE
 
-BASE=$( cd "$(dirname "$0")" || exit; pwd )
+BASE=$(
+	cd "$(dirname "$0")" || exit
+	pwd
+)
 DEC_PATH="$BASE/$DEC_JAR"
 
 # shellcheck source=/dev/null
@@ -27,75 +30,71 @@ source "$BASE/common.sh"
 # utils
 #
 function decompressMule() {
-  mule=$1
-  output=$2
+	mule=$1
+	output=$2
 
-  echo -n "Expanding $mule..."
+	echo -n "Expanding $mule..."
 
-  unzip -qd "$output/exploded" "$mule" || die "Error unpacking $mule" 2
+	unzip -qd "$output/exploded" "$mule" || die "Error unpacking $mule" 2
 
-  for libdir in mule boot
-  do
-    find "$output"/exploded/**/lib/"$libdir"/*.jar -type f | while read -r f
-    do
-      unzip -qod "$output"/libs "$f"
-    done
-  done
+	for libdir in mule boot; do
+		find "$output"/exploded/**/lib/"$libdir"/*.jar -type f | while read -r f; do
+			unzip -qod "$output"/libs "$f"
+		done
+	done
 
-  echo " done!"
+	echo " done!"
 }
 
 function collectJars() {
-  output=$1
+	output=$1
 
-  pushd "$output" > /dev/null || die "Error when pushd to $output"
-  jar cf libs.jar libs
-  popd > /dev/null || die "Error when popd from $output"
+	pushd "$output" >/dev/null || die "Error when pushd to $output"
+	jar cf libs.jar libs
+	popd >/dev/null || die "Error when popd from $output"
 }
 
 function decompile() {
-  name=$1
-  output=$2
+	name=$1
+	output=$2
 
-  echo -n "Decompiling $name mule..."
-  java -jar "$DEC_PATH" \
-      "$output/libs.jar" \
-      --outputdir "$output/src" 2> /dev/null \
-        || die "Error decompiling $name mule"
-  echo " done!"
+	echo -n "Decompiling $name mule..."
+	java -jar "$DEC_PATH" \
+		"$output/libs.jar" \
+		--outputdir "$output/src" 2>/dev/null ||
+		die "Error decompiling $name mule"
+	echo " done!"
 
-  rm "$output/src/summary.txt"
+	rm "$output/src/summary.txt"
 }
 
 function collectResources() {
-  name=$1
-  mule=$2
+	name=$1
+	mule=$2
 
-  echo -n "Collecting $name mule resources..."
-  cp -R "$mule/libs" "$mule/resources" \
-      && find "$mule/resources" \
-          \( \
-            -type f \
-               -name '*.class' \
-            -o -name 'MANIFEST.MF' \
-            -o -name 'pom.*' \
-          \) \
-        -exec rm {} \;
-  echo " done!"
+	echo -n "Collecting $name mule resources..."
+	cp -R "$mule/libs" "$mule/resources" &&
+		find "$mule/resources" \
+			\( \
+			-type f \
+			-name '*.class' \
+			-o -name 'MANIFEST.MF' \
+			-o -name 'pom.*' \
+			\) \
+			-exec rm {} \;
+	echo " done!"
 }
 
 function compareDirs() {
-  a=$1
-  b=$2
+	a=$1
+	b=$2
 
-  diff -rq "$a" "$b" | while read -r d
-  do
-    echo "$d" | sed -E \
-        -e s'/^Only\ in\ .*\/(base|patched\/.*)/Only in \1/g' \
-        -e s'/^Files\ .*(patched\/.*)\ and\ .*(base\/.*)\ (.*)/Files \1 and \2 \3/g'
-  done
+	diff -rq "$a" "$b" | while read -r d; do
+		echo "$d" | sed -E \
+			-e s'/^Only\ in\ .*\/(base|patched\/.*)/Only in \1/g' \
+			-e s'/^Files\ .*(patched\/.*)\ and\ .*(base\/.*)\ (.*)/Files \1 and \2 \3/g'
+	done
 }
-
 
 # end utils
 
@@ -112,7 +111,7 @@ isValidFile "$base_mule"
 [[ -f "$DEC_PATH" ]] || curl -L "$DEC_URL" -o "$DEC_PATH"
 
 for patch in $patches; do
-  isValidFile "$patch"
+	isValidFile "$patch"
 done
 
 # temp dirs
@@ -130,7 +129,7 @@ decompressMule "$base_mule" "$base_mule_dir"
 
 echo -n "Applying patches..."
 for patch in $patches; do
-    unzip -qod "$base_mule_dir"/libs "$patch"
+	unzip -qod "$base_mule_dir"/libs "$patch"
 done
 echo " done!"
 

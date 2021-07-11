@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-read -r -d '' USAGE << EOM
+read -r -d '' USAGE <<EOM
 $(basename "$0") list all files inside a jarfile.
 
 Usage:
@@ -8,7 +8,10 @@ Usage:
 EOM
 export USAGE
 
-BASE=$( cd "$(dirname "$0")" || exit; pwd )
+BASE=$(
+	cd "$(dirname "$0")" || exit
+	pwd
+)
 
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
@@ -19,6 +22,6 @@ file=$1
 
 [[ -f $file ]] || die "\"$file\" is not a file or does not exists" 1
 
-file "$file" | grep -iE "zip|jar"  > /dev/null || die "\"$file\" has an unsupported format" 3
+file "$file" | grep -iE "zip|jar" >/dev/null || die "\"$file\" has an unsupported format" 3
 
 jar tf "$file" | sort | grep -v "\/$"

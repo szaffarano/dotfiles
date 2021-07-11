@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-
-read -r -d '' USAGE << EOM
+read -r -d '' USAGE <<EOM
 $(basename "$0") creates a jar file based on a list of classes
 
 Usage:
@@ -14,15 +13,17 @@ Usage:
 EOM
 export USAGE
 
-
-BASE=$( cd "$(dirname "$0")" || exit; pwd )
+BASE=$(
+	cd "$(dirname "$0")" || exit
+	pwd
+)
 
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
 
 checkParamsAtLeast $# 2
 
-classes=( "${@:2}" )
+classes=("${@:2}")
 
 output=$(realpath "$1")
 
@@ -32,34 +33,33 @@ pivot=$(mktemp -d)
 trap '{ rm "$modules";   }' EXIT
 trap '{ rm -rf "$pivot"; }' EXIT
 
-
 for c in "${classes[@]}"; do
-  find . -type f -name "$(basename "$c").class"
-done | grep -v test \
-     | sed -E -e s'/^(.*)\/target\/classes.*$/\1/g' -e s'/^src\/.*$/./g' \
-     | sort -u > "$modules"
+	find . -type f -name "$(basename "$c").class"
+done | grep -v test |
+	sed -E -e s'/^(.*)\/target\/classes.*$/\1/g' -e s'/^src\/.*$/./g' |
+	sort -u >"$modules"
 
 cat "$modules"
 
 while read -r m; do
-    if ! [[ -d "$m" ]]; then
-        continue
-    fi
+	if ! [[ -d "$m" ]]; then
+		continue
+	fi
 
-    echo "collecting files in $m ..."
+	echo "collecting files in $m ..."
 
-    pushd "$m/target/classes" || die "$m/target/classes not found" 3
+	pushd "$m/target/classes" || die "$m/target/classes not found" 3
 
-    for f in "${classes[@]}"; do
-        d=$(dirname "$f")
-        p=$(basename "$f")
-        mkdir -p "$pivot/$d"
-        [[ -d "$d" ]] && find "$d" -name "$p.class" -exec cp {} "$pivot/$d" \;
-        [[ -d "$d" ]] && find "$d" -name "$p\$*.class" -exec cp {} "$pivot/$d" \;
-    done 
+	for f in "${classes[@]}"; do
+		d=$(dirname "$f")
+		p=$(basename "$f")
+		mkdir -p "$pivot/$d"
+		[[ -d "$d" ]] && find "$d" -name "$p.class" -exec cp {} "$pivot/$d" \;
+		[[ -d "$d" ]] && find "$d" -name "$p\$*.class" -exec cp {} "$pivot/$d" \;
+	done
 
-    popd || exit
-done < "$modules"
+	popd || exit
+done <"$modules"
 
 pushd "$pivot" || die "Error entering into pivot directory"
 

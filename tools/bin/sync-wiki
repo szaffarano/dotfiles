@@ -1,18 +1,18 @@
 #!/usr/bin/zsh
 
 function die {
-  echo $1
-  exit 1
+	echo $1
+	exit 1
 }
 
 [ -n "$WIKI_REPO" ] || die "WIKI_REPO environment variable not defined"
 
 ARGS=(-C $WIKI_REPO)
 
-git $ARGS status > /dev/null 2>&1 \
-  || die "$WIKI_REPO is not a git repository"
+git $ARGS status >/dev/null 2>&1 ||
+	die "$WIKI_REPO is not a git repository"
 
-git $ARGS pull origin master \
-  && git $ARGS add **/*.md \
-  && git $ARGS commit -m "Update wiki" \
-  && git $ARGS push-current
+git $ARGS pull origin master &&
+	git $ARGS add **/*.md &&
+	git $ARGS commit -m "Update wiki" &&
+	git $ARGS push-current

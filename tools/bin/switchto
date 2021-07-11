@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-read -r -d '' USAGE << EOM
+read -r -d '' USAGE <<EOM
 $(basename "$0") switch uber project to specific branch
 
 $0 <mule-runtime-releases path> <branch>
@@ -11,7 +11,10 @@ Example
 EOM
 export USAGE
 
-BASE=$( cd "$(dirname "$0")" || exit; pwd )
+BASE=$(
+	cd "$(dirname "$0")" || exit
+	pwd
+)
 
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
@@ -27,9 +30,8 @@ git submodule update
 
 git -C "$releases" fetch
 git -C "$releases" show \
-  origin/"$branch":ConfigReleaseBranches.groovy | while read -r p
-do
-  if echo "$p" | grep "=" > /dev/null; then
+	origin/"$branch":ConfigReleaseBranches.groovy | while read -r p; do
+	if echo "$p" | grep "=" >/dev/null; then
 		project=$(echo "$p" | cut -d"=" -f 1 | sed s"/_/-/"g)
 		branch=$(echo "$p" | cut -d"=" -f 2- | sed s"/\"//"g)
 
@@ -37,12 +39,12 @@ do
 		if cd "$project"; then
 			if ! git checkout "$branch"; then
 				echo "Error switching to $branch in $project"
-				read -r < /dev/tty
+				read -r </dev/tty
 			fi
 			cd ..
 		else
 			echo "Error accessing to $project from $(pwd)"
-			read -r < /dev/tty
+			read -r </dev/tty
 		fi
-  fi
+	fi
 done

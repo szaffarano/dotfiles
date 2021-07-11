@@ -9,3 +9,5 @@ restic backup \
 cat "$BKP_FILE_LIST" | while read entry
   rclone sync $entry "$BKP_REPO":Backup/$entry
 end
+
+# vi: ft=fish

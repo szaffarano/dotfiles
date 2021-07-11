@@ -1,21 +1,19 @@
 #!/usr/bin/env zsh
 
-
 # Based on The Primeagen idea
 # see: https://github.com/awesome-streamers/awesome-streamerrc/tree/master/ThePrimeagen
 #
 
-basedirs=( ~/projects ~/Documents  )
+basedirs=(~/projects ~/Documents)
 items=()
 
 if [[ $# -eq 1 ]]; then
-    selected=$1
+	selected=$1
 else
-    for d in $basedirs
-    do
-        items+=$(find $d -maxdepth 1 -mindepth 1 -type d)
-    done
-    selected=$(print -l $items | fzf)
+	for d in $basedirs; do
+		items+=$(find $d -maxdepth 1 -mindepth 1 -type d)
+	done
+	selected=$(print -l $items | fzf)
 fi
 
 [ -z "$selected" ] && exit 1
@@ -23,8 +21,8 @@ fi
 name=$(basename $selected)
 
 # create a new session if it does not exist
-tmux ls -F "#{session_name}" 2>/dev/null | grep -q $name \
-  || tmux new-session -d -c $selected -s $name 
+tmux ls -F "#{session_name}" 2>/dev/null | grep -q $name ||
+	tmux new-session -d -c $selected -s $name
 
 # switch to the newly created session, or attach to it in case we are outside tmux
-tmux switch-client -t $name 2> /dev/null || tmux attach-session -t $name
+tmux switch-client -t $name 2>/dev/null || tmux attach-session -t $name

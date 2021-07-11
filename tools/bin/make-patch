@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-
-read -r -d '' USAGE << EOM
+read -r -d '' USAGE <<EOM
 $(basename "$0") creates a patch file based on a list of commits
 
 Usage:
@@ -10,15 +9,17 @@ Usage:
 EOM
 export USAGE
 
-
-BASE=$( cd "$(dirname "$0")" || exit; pwd )
+BASE=$(
+	cd "$(dirname "$0")" || exit
+	pwd
+)
 
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
 
 checkParamsAtLeast $# 2
 
-commits=( "${@:2}" )
+commits=("${@:2}")
 
 output=$(realpath "$1")
 
@@ -30,37 +31,37 @@ trap '{ rm "$modules";   }' EXIT
 trap '{ rm "$files";     }' EXIT
 trap '{ rm -rf "$pivot"; }' EXIT
 
-git show --format="" --name-only "${commits[@]}" \
-    | grep -v test \
-    | sed -E -e s'/^(.*)\/src\/main.*$/\1/g' -e s'/^src\/.*$/./g' \
-    | sort -u > "$modules"
+git show --format="" --name-only "${commits[@]}" |
+	grep -v test |
+	sed -E -e s'/^(.*)\/src\/main.*$/\1/g' -e s'/^src\/.*$/./g' |
+	sort -u >"$modules"
 
-git show --format="" --name-only "${commits[@]}" \
-    | grep -v test \
-    | sed -E -e s'/^.*\/src\/main\/java\/(.*)\.java$/\1/g' \
-    | sed -E -e s'/^src\/main\/java\/(.*)\.java$/\1/g' \
-    | sort -u > "$files"
+git show --format="" --name-only "${commits[@]}" |
+	grep -v test |
+	sed -E -e s'/^.*\/src\/main\/java\/(.*)\.java$/\1/g' |
+	sed -E -e s'/^src\/main\/java\/(.*)\.java$/\1/g' |
+	sort -u >"$files"
 
 while read -r m; do
-    if ! [[ -d "$m" ]]; then
-        continue
-    fi
+	if ! [[ -d "$m" ]]; then
+		continue
+	fi
 
-    echo "collecting files in $m ..."
+	echo "collecting files in $m ..."
 
-    pushd "$m/target/classes" || die "$m/target/classes not found" 3
+	pushd "$m/target/classes" || die "$m/target/classes not found" 3
 
-    while read -r f; do
-        d=$(dirname "$f")
-        p=$(basename "$f")
-        mkdir -p "$pivot/$d"
-        echo "--- $p.class"
-        [[ -d "$d" ]] && find "$d" -name "$p.class" -exec cp {} "$pivot/$d" \;
-        [[ -d "$d" ]] && find "$d" -name "$p\$*.class" -exec cp {} "$pivot/$d" \;
-    done < "$files"
+	while read -r f; do
+		d=$(dirname "$f")
+		p=$(basename "$f")
+		mkdir -p "$pivot/$d"
+		echo "--- $p.class"
+		[[ -d "$d" ]] && find "$d" -name "$p.class" -exec cp {} "$pivot/$d" \;
+		[[ -d "$d" ]] && find "$d" -name "$p\$*.class" -exec cp {} "$pivot/$d" \;
+	done <"$files"
 
-    popd || exit
-done < "$modules"
+	popd || exit
+done <"$modules"
 
 pushd "$pivot" || die "Error entering into pivot directory"
 
