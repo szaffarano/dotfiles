@@ -6,20 +6,7 @@ file-leak-detector-1.13-jar-with-dependencies.jar
 shells/fish/fish/env.local.fish
 shells/fish/fish/fish_variables
 shells/fish/omf/weather/api-key
-tools/bin/bin
 editors/vim/spell/
-tools/bin/greenclip
-tools/bin/pyls
-tools/bin/youtube-dl
-tools/bin/protoc
-tools/bin/swagger
-tools/bin/micro
-tools/bin/kubectl
-tools/bin/istioctl
-
-tools/bin/idea
-tools/bin/datagrip
-tools/bin/aws-login.sh
 
 __pycache__
 
