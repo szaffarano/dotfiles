@@ -99,7 +99,7 @@ nvim_lsp.kotlin_language_server.setup{
   cmd = {HOME .. '/projects/kotlin-language-server/server/build/install/server/bin/kotlin-language-server'}
 }
 
-nvim_lsp.pyls.setup{
+nvim_lsp.pylsp.setup{
   on_attach = custom_attach,
   on_init = custom_init,
 }
