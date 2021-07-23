@@ -32,8 +32,6 @@ opt.number         = true
 opt.ignorecase = true
 opt.smartcase  = true
 
-opt.mouse = 'a'
-
 opt.scrolloff = 10
 
 opt.splitbelow = true
