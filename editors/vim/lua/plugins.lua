@@ -140,4 +140,7 @@ return require('packer').startup(function(use)
 
   -- Format code
   use "sbdchd/neoformat"
+
+  -- Syntax highlight for i3
+  use "mboughaba/i3config.vim"
 end)

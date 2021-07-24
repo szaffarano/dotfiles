@@ -309,3 +309,5 @@ bindsym $mod+Shift+minus move scratchpad
 
 # rename parent conainer
 bindsym $mod+n exec $scripts/rename-parent-container.sh
+
+# vim: ft=i3config
