@@ -44,7 +44,7 @@
   cpx    = cherry-pick -x
   cpa    = cherry-pick --abort
   cpc    = cherry-pick --continue
-  cp     = commit -Ssebas@zaffarano.com.ar
+  cp     = commit -Ssebas@zaffarano.com.ar --author \"Sebastián Zaffarano <sebas@zaffarano.com.ar>\"
 
 [apply]
   whitespace = nowarn
