@@ -281,6 +281,7 @@ exec htop-scratchpad.sh
 # vim
 for_window [class="Alacritty" title="vim_scratchpad"] move to scratchpad, border none
 bindsym $mod+v [class="Alacritty" title="vim_scratchpad"] scratchpad show
+bindsym $mod+Shift+v exec vim-scratchpad.sh
 exec vim-scratchpad.sh
 
 # calculator
