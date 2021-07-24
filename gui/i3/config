@@ -278,6 +278,13 @@ for_window [class="Alacritty" title="htop_scratchpad"] move to scratchpad, borde
 bindsym $mod+Shift+p [class="Alacritty" title="htop_scratchpad"] scratchpad show
 exec htop-scratchpad.sh
 
+# dvorak layout helper
+for_window [class="feh" title="feh.*KB_P.*"] floating enable
+for_window [class="feh" title="feh.*KB_P.*"] move to scratchpad, border none
+bindsym $mod+o [class="feh" title="feh.*KB_P.*"] scratchpad show
+bindsym $mod+Shift+o exec show-dvorak
+exec show-dvorak
+
 # vim
 for_window [class="Alacritty" title="vim_scratchpad"] move to scratchpad, border none
 bindsym $mod+v [class="Alacritty" title="vim_scratchpad"] scratchpad show
