@@ -143,4 +143,7 @@ return require('packer').startup(function(use)
 
   -- Syntax highlight for i3
   use "mboughaba/i3config.vim"
+
+  -- Undotree helper
+  use "mbbill/undotree"
 end)
