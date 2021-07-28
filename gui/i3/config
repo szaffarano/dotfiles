@@ -37,7 +37,7 @@ exec --no-startup-id dropbox start
 exec --no-startup-id run_keybase -a
 
 # start a terminal
-exec --no-startup-id alacritty -t Work 
+exec --no-startup-id i3-sensible-terminal -T=Work
 
 # configure thel wallpaper
 exec_always --no-startup-id $scripts/wallpaper.sh
@@ -245,7 +245,7 @@ assign [class="Firefox"]                  →	$web
 assign [class="jetbrains-idea-ce"]        →	$dev
 assign [class="jetbrains-idea"]           →	$dev
 assign [class="Code"]                     →	$dev
-assign [class="Alacritty" title="Work"]   →	$terms
+assign [class="kitty" title="Work"]       →	$terms
 assign [class="Joplin" instance="joplin"]	→ $office
 assign [class="libreoffice"]              → $office
 assign [class="Anki"]                     → $anki
@@ -274,8 +274,8 @@ for_window [class="Blueman-manager"]                   floating enable
 # scratchpads
 #
 # htop
-for_window [class="Alacritty" title="htop_scratchpad"] move to scratchpad, border none
-bindsym $mod+Shift+p [class="Alacritty" title="htop_scratchpad"] scratchpad show
+for_window [class="kitty" title="htop_scratchpad"] move to scratchpad, border none
+bindsym $mod+Shift+p [class="kitty" title="htop_scratchpad"] scratchpad show
 exec htop-scratchpad.sh
 
 # dvorak layout helper
@@ -286,8 +286,8 @@ bindsym $mod+Shift+o exec show-dvorak
 exec show-dvorak
 
 # vim
-for_window [class="Alacritty" title="vim_scratchpad"] move to scratchpad, border none
-bindsym $mod+v [class="Alacritty" title="vim_scratchpad"] scratchpad show
+for_window [class="kitty" title="vim_scratchpad"] move to scratchpad, border none
+bindsym $mod+v [class="kitty" title="vim_scratchpad"] scratchpad show
 bindsym $mod+Shift+v exec vim-scratchpad.sh
 exec vim-scratchpad.sh
 
@@ -297,8 +297,8 @@ bindsym $mod+Shift+s [class="SpeedCrunch"] scratchpad show
 exec speedcrunch
 
 # spotify
-for_window [class="Alacritty" title="ncspot_scratchpad" window_type="normal"] move to scratchpad, border none
-bindsym $mod+m [class="Alacritty" title="ncspot_scratchpad"] scratchpad show
+for_window [class="kitty" title="ncspot_scratchpad" window_type="normal"] move to scratchpad, border none
+bindsym $mod+m [class="kitty" title="ncspot_scratchpad"] scratchpad show
 bindsym $mod+Shift+m exec ncspot-scratchpad.sh
 exec ncspot-scratchpad.sh
 

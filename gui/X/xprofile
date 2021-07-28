@@ -1,3 +1,7 @@
+TERMINAL="kitty"
+export TERMINAL
+
+PATH="$HOME/.bin:$PATH"
 PATH="$HOME/.asdf/shims:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 export PATH

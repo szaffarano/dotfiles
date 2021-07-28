@@ -1,3 +1,3 @@
 #!/usr/bin/env zsh
 
-alacritty -t vim_scratchpad -e vim
+kitty --title vim_scratchpad -e vim
