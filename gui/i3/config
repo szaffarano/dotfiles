@@ -79,6 +79,12 @@ bindsym XF86MonBrightnessDown   exec xbacklight -dec 20
 # shows a simple calendar
 bindsym $mod+t exec zenity --calendar
 
+# switch to querty layout
+bindsym $mod+Ctrl+q exec setxkbmap -layout us -variant altgr-intl -option nodeadkeys
+
+# switch to programmer dvorak layout
+bindsym $mod+Ctrl+d exec setxkbmap -layout us -variant dvorak-intl
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -279,9 +285,9 @@ bindsym $mod+Shift+p [class="kitty" title="htop_scratchpad"] scratchpad show
 exec htop-scratchpad.sh
 
 # dvorak layout helper
-for_window [class="feh" title="feh.*KB_P.*"] floating enable
-for_window [class="feh" title="feh.*KB_P.*"] move to scratchpad, border none
-bindsym $mod+o [class="feh" title="feh.*KB_P.*"] scratchpad show
+for_window [class="feh" title="kb-dvorak"] floating enable
+for_window [class="feh" title="kb-dvorak"] move to scratchpad, border none
+bindsym $mod+o [class="feh" title="kb-dvorak"] scratchpad show
 bindsym $mod+Shift+o exec show-dvorak
 exec show-dvorak
 
