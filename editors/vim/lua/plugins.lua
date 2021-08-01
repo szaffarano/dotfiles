@@ -146,4 +146,7 @@ return require('packer').startup(function(use)
 
   -- Undotree helper
   use "mbbill/undotree"
+
+  -- Avro syntax highlight
+  use 'gurpreetatwal/vim-avro'
 end)
