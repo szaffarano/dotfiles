@@ -19,7 +19,7 @@ opt.wrap        = false
 -- autosave when lost focus
 vim.cmd [[ autocmd BufLeave, FocusLost * silent! wall ]]
 
-opt.spelllang="en,es,de"
+opt.spelllang="en,es,de,sv"
 
 -- set 80 and 120 column borders for good coding style
 opt.colorcolumn="80,120"
