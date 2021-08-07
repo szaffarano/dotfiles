@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 '''
 Removes the in_progress tag when a task is completed
 '''
@@ -7,15 +6,15 @@ import json
 import sys
 import hooks
 
+
 def main():
     '''Main function of this module.'''
-    old_task = json.loads(sys.stdin.readline())
     new_task = json.loads(sys.stdin.readline())
     args = hooks.retrieve_args_dict()
 
     feedback = None
-    if 'api' in args: # Only do something for known API.
-        if args['api'] in ['2']: # APIs that give us a 'command' key.
+    if 'api' in args:  # Only do something for known API.
+        if args['api'] in ['2']:  # APIs that give us a 'command' key.
             cmd = args['command']
             if cmd == 'done':
                 if new_task['status'] == 'completed':
@@ -30,6 +29,7 @@ def main():
     if feedback is not None:
         print(feedback)
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
