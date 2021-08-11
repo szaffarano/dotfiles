@@ -9,6 +9,7 @@ import hooks
 
 def main():
     '''Main function of this module.'''
+    json.loads(sys.stdin.readline())  # read the old task and discard it
     new_task = json.loads(sys.stdin.readline())
     args = hooks.retrieve_args_dict()
 
