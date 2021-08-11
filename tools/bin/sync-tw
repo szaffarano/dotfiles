@@ -1,21 +1,37 @@
 #!/usr/bin/zsh
 
-function die {
-	echo $1
-	exit 1
-}
+. ~/.exports.local
 
-[ -n "$TASK_REPO" ] || die "TASK_REPO environment variable not defined"
+set -euo pipefail
+exec 2>&1
 
 ARGS=(-C $TASK_REPO)
 
-git $ARGS status >/dev/null 2>&1 ||
-	die "$TASK_REPO is not a git repository"
+function syncTW {
+  changes=$(git $ARGS status -s | wc -l)
 
-git $ARGS pull &&
-	git $ARGS add \
-		completed.data \
-		pending.data \
-		undo.data &&
-	git $ARGS commit -m "Update task planning" &&
-	git $ARGS push
+  if [ $changes -gt 0 ]; then
+    git $ARGS pull &&
+      git $ARGS add \
+        completed.data \
+        pending.data \
+        backlog.data \
+        undo.data &&
+      git $ARGS commit -m "Update task planning" &&
+      git $ARGS push
+  fi
+}
+
+[ -n "$TASK_REPO" ] || die "TASK_REPO environment variable not defined"
+[ -z "$TW_SYNC_IN_PROGRESS" ] && die "Variable TW_SYNC_IN_PROGRESS not defined"
+[ -f $TW_SYNC_IN_PROGRESS ] && die "Taskwarrior Sync already in progress"
+
+git $ARGS status >/dev/null 2>&1 ||
+  die "$TASK_REPO is not a git repository"
+
+touch $TW_SYNC_IN_PROGRESS
+trap "rm $TW_SYNC_IN_PROGRESS" EXIT
+
+syncTW
+task sync >>$LOG_FILE 2>&1
+syncTW

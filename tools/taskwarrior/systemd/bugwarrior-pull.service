@@ -3,7 +3,7 @@ Description=bugwarrior-pull
 
 [Service]
 Environment="DISPLAY=:0"
-ExecStart="%h/.asdf/shims/bugwarrior-pull"
+ExecStart="%h/.local/bin/sync-bw"
 Type=oneshot
 
 [Install]

@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+
+. ~/.exports.local
+
+set -euo pipefail
+exec 2>&1
+
+ARGS=(-C $TASK_REPO)
+
+changes=$(git $ARGS status -s | wc -l)
+
+[ -f $TW_SYNC_IN_PROGRESS ] && exit 0
+[ -f $BW_SYNC_IN_PROGRESS ] && exit 0
+
+if [ $changes -eq 0 ]; then
+  nohup git $ARGS pull >/dev/null 2>&1 &
+  exit 0
+fi
+
+die "Local changes, aborting!"

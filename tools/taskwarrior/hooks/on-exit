@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+
+. ~/.exports.local
+
+set -euo pipefail
+exec 2>&1
+
+[ -f $TW_SYNC_IN_PROGRESS ] && exit 0
+[ -f $BW_SYNC_IN_PROGRESS ] && exit 0
+
+modifiedTasks=0
+while read -r modified_task; do
+  modifiedTasks=$(($modifiedTasks + 1))
+done
+
+if [ "$modifiedTasks" -gt 0 ]; then
+  echo "[on exit] should sync because there are $modifiedTasks changes" >>$LOG_FILE
+
+  nohup sync-tw >>$LOG_FILE 2>&1 &
+fi
+
+exit 0

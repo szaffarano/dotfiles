@@ -1,0 +1,11 @@
+#!/usr/bin/zsh
+
+. ~/.exports.local
+
+set -euo pipefail
+exec 2>&1
+
+touch $BW_SYNC_IN_PROGRESS
+trap "rm $BW_SYNC_IN_PROGRESS" EXIT
+
+sync-tw && bugwarrior-pull && sync-tw
