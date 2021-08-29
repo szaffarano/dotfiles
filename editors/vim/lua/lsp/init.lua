@@ -162,6 +162,7 @@ nvim_lsp.jsonls.setup{
   on_init = custom_init,
 }
 
+nvim_lsp.yamlls.setup{}
 
 -- golang
 function goimports(timeout_ms)
