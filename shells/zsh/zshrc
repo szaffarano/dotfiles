@@ -136,6 +136,8 @@ if which tmux_sessions >/dev/null 2>&1; then
   bindkey  new_tmux_session
 fi
 
+[[ $commands[terraform] ]] && complete -o nospace -C $commands[terraform] terraform
+
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh) 
+
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /home/sebas/.asdf/installs/terraform/1.0.2/bin/terraform terraform
-[[ /home/sebas/.bin/kubectl ]] && source <(kubectl completion zsh) # add autocomplete permanently to your zsh shell
