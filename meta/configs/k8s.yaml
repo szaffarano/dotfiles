@@ -3,6 +3,10 @@
     global: latest
     versions:
       - latest
+  - plugin: helm
+    global: latest
+    versions:
+      - latest
   - plugin: kustomize
     global: latest
     versions:

@@ -21,7 +21,7 @@ java
 keepassxc
 kind
 kotlin
-kubectl
+k8s
 ncspot
 neovim
 neuron
