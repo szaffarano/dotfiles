@@ -250,6 +250,7 @@ assign [class="Google-chrome"]            →	$web
 assign [class="Firefox"]                  →	$web
 assign [class="jetbrains-idea-ce"]        →	$dev
 assign [class="jetbrains-idea"]           →	$dev
+assign [class="jetbrains-datagrip"]       →	$dev
 assign [class="Code"]                     →	$dev
 assign [class="kitty" title="Work"]       →	$terms
 assign [class="Joplin" instance="joplin"]	→ $office
@@ -266,6 +267,8 @@ for_window [class="^JetBrains Toolbox$"]               floating enable
 for_window [title="tracker - .*"]                      floating enable
 for_window [class="jetbrains-idea-ce" \
             title="Welcome to IntelliJ IDEA" ]         floating enable
+for_window [class="jetbrains-datagrip" \
+            title="Welcome to DataGrip" ]              floating enable
 for_window [class="jetbrains-idea" title="win0"]       floating enable
 for_window [class="jetbrains-goland" title="win0"]     floating enable
 for_window [class="Anki" title="Profiles"]             floating enable
