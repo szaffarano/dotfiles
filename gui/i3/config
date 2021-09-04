@@ -21,7 +21,7 @@ font pango: FontAwesome 11
 exec --no-startup-id $scripts/touchpad.sh
 
 # lock the screen after 2 minutes
-exec --no-startup-id xset s on; xset s 120
+exec --no-startup-id xset s on; xset s 300
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $scripts/lock-screen.sh
 
 # start pulseaudio control
