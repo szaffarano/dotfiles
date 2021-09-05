@@ -1,4 +1,6 @@
 bash-language-server
+gitbook
+gitbook-cli
 prettier
 vim-language-server
 vscode-langservers-extracted
