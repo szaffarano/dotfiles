@@ -5,3 +5,4 @@ prettier
 vim-language-server
 vscode-langservers-extracted
 yaml-language-server
+@terraform-visual/cli
