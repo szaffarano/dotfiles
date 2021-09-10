@@ -164,6 +164,10 @@ nvim_lsp.jsonls.setup{
 
 nvim_lsp.yamlls.setup{}
 
+nvim_lsp.dockerls.setup{}
+
+nvim_lsp.tsserver.setup{}
+
 -- golang
 function goimports(timeout_ms)
   local context = { source = { organizeImports = true } }
