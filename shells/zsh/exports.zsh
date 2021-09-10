@@ -6,6 +6,8 @@ export GOPATH=$HOME/projects/go
 
 export PYTHON_VERSION=$(asdf current python | awk '{print $2}')
 
+export AWS_CLI_AUTO_PROMPT=on-partial
+
 PATH="$HOME/.bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="/usr/local/bin:$PATH"
