@@ -63,8 +63,8 @@ bindsym XF86AudioMute			    exec pactl set-sink-mute   @DEFAULT_SINK@   toggle &
 bindsym XF86AudioMicMute		  exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # screenshots related bindings
-bindsym --release Shift+Print exec "$bin/screenshot.sh -s --output $screenshots"
-bindsym --release Print exec "$bin/screenshot.sh --output $screenshots"
+bindsym --release Shift+Print exec flameshot full -p $screenshots
+bindsym --release Print exec flameshot gui
 
 # configure media player control keys
 bindsym XF86AudioPlay			exec   playerctl play
@@ -278,6 +278,7 @@ for_window [class="Navigator" title=".*Audible.com.*"] floating enable
 for_window [class="KeePassXC"]                         floating enable
 for_window [class="keepassxc"]                         floating enable
 for_window [class="Blueman-manager"]                   floating enable
+for_window [class="flameshot"]                         floating enable
 
 #
 # scratchpads
