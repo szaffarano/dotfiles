@@ -1,0 +1,36 @@
+#!/usr/bin/env zsh
+
+set -euo pipefail
+
+function die {
+  echo $1
+  exit 1
+}
+
+declare -a ignore
+ignore=(
+  java
+  gradle
+)
+
+which asdf >/dev/null || die "asdf not found"
+
+asdf current | awk -v ignore="$ignore" '
+BEGIN {
+  split(ignore, splitted)
+
+  for (i in splitted) {
+    toIgnore[splitted[i]] = ""
+  }
+}
+{
+  tool=$1
+  version=$2
+
+  if (tool in toIgnore) {
+    printf("Ignoring %s\n", tool)
+  } else {
+    printf("Keeping %s %s\n", tool, version)
+    system(sprintf("asdf list %s | grep -v %s | xargs -I{} asdf uninstall %s {}", tool, version, tool))
+  }
+}'

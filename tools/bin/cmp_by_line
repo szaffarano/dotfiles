@@ -1,0 +1,33 @@
+#!/usr/bin/env zsh
+
+set -euo pipefail
+
+function die {
+  echo $1
+  exit 1
+}
+
+function cmpEq {
+  echo "Lines in both files"
+  cat $1 | while read -r l; do
+    grep -q $l $2 && echo $l
+  done
+}
+
+function cmpDiff {
+  echo "Lines not found in $2"
+  cat $1 | while read -r l; do
+    grep -q $l $2 || echo $l
+  done
+}
+
+file1=$1
+file2=$2
+
+for f in $file1 $file2; do
+  [ -f $f ] || die "$f: not found"
+done
+
+cmpDiff $file1 $file2
+cmpDiff $file2 $file1
+cmpEq $file1 $file2
