@@ -1,12 +1,13 @@
 autorandr
-pip
 aws-login-tool
 bugwarrior
 docker-compose
 jira
+pip
 pygobject
 pynvim
 'python-lsp-server[all]'
 six
 tasklib
 taskw
+ueberzug
