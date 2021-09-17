@@ -1,4 +1,5 @@
 bash-language-server
+dockerfile-language-server-nodejs
 gitbook
 gitbook-cli
 prettier
@@ -9,3 +10,6 @@ yaml-language-server
 dockerfile-language-server-nodejs
 typescript
 typescript-language-server
+vim-language-server
+vscode-langservers-extracted
+yaml-language-server
