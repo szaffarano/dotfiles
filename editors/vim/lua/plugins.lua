@@ -39,6 +39,8 @@ return require('packer').startup(function(use)
 
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
+  use { "tpope/vim-commentary" }
+
   -- LSP and completion
   use 'neovim/nvim-lspconfig'
   use "hrsh7th/nvim-compe"
