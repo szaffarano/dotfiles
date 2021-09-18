@@ -1,91 +1,85 @@
 require('settings')
 
+local nvim_lsp = require('lspconfig')
+
 local custom_init = function(client)
   client.config.flags = client.config.flags or {}
   client.config.flags.allow_incremental_sync = true
 end
 
-local nvim_lsp = require('lspconfig')
+-- diagnostic config
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        underline = false,
+        virtual_text = {spacing = 4, prefix = "■"},
+        signs = true,
+        update_in_insert = false,
+    }
+)
+
+-- signs
+vim.fn.sign_define("LspDiagnosticsSignError", {text="✗", texthl="LspDiagnosticsError"})
+vim.fn.sign_define("LspDiagnosticsSignWarning", {text="⚠", texthl="LspDiagnosticsWarning"})
+vim.fn.sign_define("LspDiagnosticsSignInformation", {text="ⓘ", texthl="LspDiagnosticsInformation"})
+vim.fn.sign_define("LspDiagnosticsSignHint", {text="✓", texthl="LspDiagnosticsHint"})
+
+local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
+updated_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local custom_attach = function(client, bufnr)
+    vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    local nmap = function(k, v)
+        local o = {noremap=true, silent=true}
+        vim.api.nvim_buf_set_keymap(0, 'n', k, v, o)
+    end
+    local imap = function(k, v)
+        local o = {noremap=true, silent=true}
+        vim.api.nvim_buf_set_keymap(0, 'i', k, v, o)
+    end
+    nmap('ca', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+    nmap('gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+    nmap('gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+    nmap('gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+    nmap('K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+    nmap('<c-K>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+    imap('<c-K>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+    nmap('<F2>', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
+    nmap('<S-F2>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
+
+    -- Set autocommands conditional on server capabilities
+    if client.resolved_capabilities.document_highlight then
+        vim.cmd [[
+            augroup lsp_document_highlight
+                autocmd! * <buffer>
+                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+        ]]
+    end
+
+    vim.api.nvim_set_current_dir(client.config.root_dir)
+
     require'lsp_signature'.on_attach({
       bind = true,
       handler_opts = {
         border = "single"
       }
     })
-
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
-
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
-    local opts = {noremap = true, silent = true}
-    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
-                   opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
-                   opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
-                   opts)
-    buf_set_keymap('n', '<leader>law',
-                   '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<leader>lrw',
-                   '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<leader>llw',
-                   '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-                   opts)
-    buf_set_keymap('n', '<leader>lt',
-                   '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    buf_set_keymap('n', '<leader>lrn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', '<leader>lrf', '<cmd>lua vim.lsp.buf.references()<CR>',
-                   opts)
-    buf_set_keymap('n', '<leader>ld',
-                   '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
-                   opts)
-    buf_set_keymap('n', '<leader>ll',
-                   '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-    buf_set_keymap('n', '<leader>lca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
-                   opts)
-    buf_set_keymap('n', '<leader>lss',
-                   '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
-
-    -- Set some keybinds conditional on server capabilities
-    if client.resolved_capabilities.document_formatting then
-        buf_set_keymap("n", "<leader>lf",
-                       "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    elseif client.resolved_capabilities.document_range_formatting then
-        buf_set_keymap("n", "<leader>lf",
-                       "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-    end
-
-    -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec([[
-        hi LspReferenceRead cterm=bold ctermbg=red guibg=#596e7f
-        hi LspReferenceText cterm=bold ctermbg=red guibg=#596e7f
-        hi LspReferenceWrite cterm=bold ctermbg=red guibg=#596e7f
-        augroup lsp_document_highlight
-          autocmd! * <buffer>
-          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-        ]], false)
-    end
 end
 
-nvim_lsp.gopls.setup{
-  on_attach = custom_attach,
-  on_init = custom_init,
-}
+nvim_lsp.gopls.setup({
+	on_attach = custom_attach,
+	on_init = custom_init,
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+			},
+			staticcheck = true,
+		},
+	},
+})
 
 nvim_lsp.java_language_server.setup{
   on_attach = custom_attach,
@@ -102,6 +96,15 @@ nvim_lsp.kotlin_language_server.setup{
 nvim_lsp.pylsp.setup{
   on_attach = custom_attach,
   on_init = custom_init,
+  settings = {
+    pylsp = {
+        plugins = {
+            yapf = {enabled = true};
+            isort = {enabled = true};
+            mypy = {enabled = true};
+        }
+    },
+  },
 }
 
 nvim_lsp.vimls.setup{
@@ -169,38 +172,25 @@ nvim_lsp.dockerls.setup{}
 nvim_lsp.tsserver.setup{}
 
 -- golang
-function goimports(timeout_ms)
-  local context = { source = { organizeImports = true } }
-  vim.validate { context = { context, "t", true } }
+function GoImports(timeoutms)
+    local params = vim.lsp.util.make_range_params()
+    params.context = {only = {"source.organizeImports"}}
 
-  local params = vim.lsp.util.make_range_params()
-  params.context = context
-
-  -- See the implementation of the textDocument/codeAction callback
-  -- (lua/vim/lsp/handler.lua) for how to do this properly.
-  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-  if not result or next(result) == nil then return end
-  local actions = result[1].result
-  if not actions then return end
-  local action = actions[1]
-
-  -- textDocument/codeAction can return either Command[] or CodeAction[]. If it
-  -- is a CodeAction, it can have either an edit, a command or both. Edits
-  -- should be executed first.
-  if action.edit or type(action.command) == "table" then
-    if action.edit then
-      vim.lsp.util.apply_workspace_edit(action.edit)
+    local method = "textDocument/codeAction"
+    local result = vim.lsp.buf_request_sync(0, method, params, timeoutms)
+    for _, res in pairs(result or {}) do
+        for _, r in pairs(res.result or {}) do
+            if r.edit then
+                vim.lsp.util.apply_workspace_edit(r.edit)
+            else
+                vim.lsp.buf.execute_command(r.command)
+            end
+        end
     end
-    if type(action.command) == "table" then
-      vim.lsp.buf.execute_command(action.command)
-    end
-  else
-    vim.lsp.buf.execute_command(action)
-  end
+
+    vim.lsp.buf.formatting_sync(nil, timeoutms)
 end
-
-vim.cmd [[ autocmd BufWritePre *.go lua goimports(1000) ]]
-vim.cmd [[ autocmd FileType go setlocal omnifunc=v:lua.vim.lsp.omnifunc ]]
+vim.api.nvim_command("au BufWritePre *.go lua GoImports(10000)")
 
 require('symbols-outline').setup({
     highlight_hovered_item = true,
