@@ -76,6 +76,7 @@ return require('packer').startup(function(use)
 
   -- Snippets
   use 'SirVer/ultisnips'
+  use("honza/vim-snippets")
 
   -- tree-sitter support
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
