@@ -49,7 +49,7 @@ alias vi='nvim'
 alias vim='nvim'
 
 # fzf find files in current directory and edit the selected ones
-alias f='v (fzf -i)'
+alias f='v $(fzf -i)'
 alias -g Z='| fzf'
 
 case $(uname) in
