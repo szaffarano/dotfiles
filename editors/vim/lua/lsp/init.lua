@@ -35,15 +35,16 @@ local custom_attach = function(client, bufnr)
 		local o = { noremap = true, silent = true }
 		vim.api.nvim_buf_set_keymap(0, "i", k, v, o)
 	end
-	nmap("ca", "<cmd>lua vim.lsp.buf.code_action()<cr>")
-	nmap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
-	nmap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
-	nmap("gr", "<cmd>lua vim.lsp.buf.references()<cr>")
-	nmap("K", "<cmd>lua vim.lsp.buf.hover()<cr>")
-	nmap("<c-K>", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
-	imap("<c-K>", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
-	nmap("<F2>", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>")
-	nmap("<S-F2>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>")
+	nmap("ca", "<cmd>lua   vim.lsp.buf.code_action()<cr>")
+	nmap("gd", "<cmd>lua   vim.lsp.buf.definition()<cr>")
+	nmap("gD", "<cmd>lua   vim.lsp.buf.declaration()<cr>")
+	nmap("gr", "<cmd>lua   vim.lsp.buf.references()<cr>")
+	nmap("K", "<cmd>lua   vim.lsp.buf.hover()<cr>")
+	nmap("<c-K>", "<cmd>lua   vim.lsp.buf.signature_help()<cr>")
+	imap("<c-K>", "<cmd>lua   vim.lsp.buf.signature_help()<cr>")
+	nmap("<F2>", "<cmd>lua   vim.lsp.diagnostic.goto_next()<cr>")
+	nmap("<S-F2>", "<cmd>lua   vim.lsp.diagnostic.goto_prev()<cr>")
+	nmap("<S-F6>", "<cmd>lua   vim.lsp.buf.rename()<CR>")
 
 	-- Set autocommands conditional on server capabilities
 	if client.resolved_capabilities.document_highlight then
