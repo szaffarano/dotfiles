@@ -58,13 +58,9 @@ return require("packer").startup(function(use)
 	-- Git decorations
 	use("lewis6991/gitsigns.nvim")
 
-	-- Fancy status bar XD
+  -- status bar
 	use({
-		"glepnir/galaxyline.nvim",
-		branch = "main",
-		config = function()
-			require("statusline")
-		end,
+		"shadmansaleh/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
 
