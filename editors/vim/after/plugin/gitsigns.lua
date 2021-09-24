@@ -1,6 +1,6 @@
 local ok, signs = pcall(require, "gitsigns")
 if not ok then
-	return
+  return
 end
 
-signs.setup({})
+signs.setup {}

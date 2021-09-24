@@ -1,11 +1,11 @@
 local opt = vim.opt
 local fn = vim.fn
 
-DATA = fn.stdpath("data")
-CONFIG = fn.stdpath("config")
+DATA = fn.stdpath "data"
+CONFIG = fn.stdpath "config"
 PLUGGED_DATA = DATA .. "/plugged"
 PLUGGED_CONFIG = CONFIG .. "/plugged"
-HOME = fn.expand("$HOME")
+HOME = fn.expand "$HOME"
 
 -- use 2 spaces instead of tab (to replace existing tab use :retab)
 -- copy indent from current line when starting a new line
@@ -17,7 +17,7 @@ opt.shiftwidth = 2
 opt.wrap = false
 
 -- autosave when lost focus
-vim.cmd([[ autocmd BufLeave, FocusLost * silent! wall ]])
+vim.cmd [[ autocmd BufLeave, FocusLost * silent! wall ]]
 
 opt.spelllang = "en,es,de,sv"
 
@@ -50,11 +50,11 @@ opt.backupdir = DATA .. "/backup//"
 opt.directory = DATA .. "/swap//"
 opt.undodir = DATA .. "/undo//"
 opt.undofile = true -- save  undotrees in files
-for _, name in pairs({ "backupdir", "directory", "undodir" }) do
-	local dirname = vim.api.nvim_get_option(name)
-	if vim.fn.isdirectory(dirname) == 0 then
-		vim.fn.mkdir(dirname, "p")
-	end
+for _, name in pairs { "backupdir", "directory", "undodir" } do
+  local dirname = vim.api.nvim_get_option(name)
+  if vim.fn.isdirectory(dirname) == 0 then
+    vim.fn.mkdir(dirname, "p")
+  end
 end
 
 vim.g.mapleader = " "
@@ -64,15 +64,15 @@ vim.g.gruvbox_material_diagnostic_text_highlight = 1
 vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
 
 -- Highlight on yank
-vim.cmd("au TextYankPost * lua vim.highlight.on_yank {on_visual = false}")
+vim.cmd "au TextYankPost * lua vim.highlight.on_yank {on_visual = false}"
 
 -- relative / hybrid line number switch
 vim.api.nvim_exec(
-	[[
+  [[
 augroup toggle_relative_numbers
   autocmd InsertEnter * :setlocal norelativenumber
   autocmd InsertLeave * :setlocal relativenumber
 augroup END
 ]],
-	false
+  false
 )
