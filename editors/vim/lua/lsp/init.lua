@@ -163,11 +163,25 @@ nvim_lsp.jsonls.setup {
   on_init = custom_init,
 }
 
-nvim_lsp.yamlls.setup {}
+nvim_lsp.yamlls.setup {
+  on_attach = custom_attach,
+  on_init = custom_init,
+}
 
-nvim_lsp.dockerls.setup {}
+nvim_lsp.dockerls.setup {
+  on_attach = custom_attach,
+  on_init = custom_init,
+}
 
-nvim_lsp.tsserver.setup {}
+nvim_lsp.tsserver.setup {
+  on_attach = custom_attach,
+  on_init = custom_init,
+}
+
+nvim_lsp.clangd.setup {
+  on_attach = custom_attach,
+  on_init = custom_init,
+}
 
 -- golang
 function GoImports(timeoutms)
