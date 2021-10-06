@@ -71,8 +71,13 @@ return require("packer").startup(function(use)
   use "monaqa/dial.nvim"
 
   -- Snippets
-  use "SirVer/ultisnips"
-  use "honza/vim-snippets"
+  use {
+    "SirVer/ultisnips",
+    requires = { "honza/vim-snippets" },
+    config = function()
+      vim.g.UltiSnipsRemoveSelectModeMappings = 0
+    end,
+  }
 
   -- tree-sitter support
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
@@ -147,4 +152,17 @@ return require("packer").startup(function(use)
 
   -- Avro syntax highlight
   use "gurpreetatwal/vim-avro"
+
+  -- Golang support
+  -- use {
+  -- "crispgm/nvim-go",
+  -- requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+  -- }
+  use "mfussenegger/nvim-dap"
+  use "rcarriga/nvim-dap-ui"
+  use "theHamsta/nvim-dap-virtual-text"
+  use "ray-x/go.nvim"
+
+  -- Folding support
+  use "pseewald/vim-anyfold"
 end)
