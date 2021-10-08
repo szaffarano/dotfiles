@@ -48,15 +48,51 @@ export FZF_DEFAULT_OPTS
 
 # OS specific environment
 case $(uname) in
-    Linux)
-      export MESA_LOADER_DRIVER_OVERRIDE=i965
-      export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+  Linux)
+    export MESA_LOADER_DRIVER_OVERRIDE=i965
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-      PATH="$HOME/projects/git-toolbelt:$PATH"
-      export PATH
+    PATH="$HOME/projects/git-toolbelt:$PATH"
+    export PATH
     ;;
-    Darwin)
-      export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
+  Darwin)
+    export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
     ;;
 esac
 
+nnnPlugins=(
+  'f:finder'
+  'o:fzopen'
+  'd:diffs'
+  't:nmount'
+  'p:preview-tui'
+  'r:renamer'
+)
+
+nnnBookmarks=(
+  'd:~/.dotfiles'
+  'p:~/projects'
+  'i:~/Pictures'
+  'D:~/Documents'
+)
+
+for b in $nnnBookmarks; do
+  if [ -z $NNN_BMS ]; then
+    NNN_BMS="$b"
+  else
+    NNN_BMS="$b;$NNN_BMS"
+  fi
+done
+
+
+for p in $nnnPlugins; do
+  if [ -z $NNN_PLUG ]; then
+    NNN_PLUG="$p"
+  else
+    NNN_PLUG="$p;$NNN_PLUG"
+  fi
+done
+
+export NNN_PLUG
+export NNN_BMS
+export NNN_FIFO=/tmp/nnn.fifo

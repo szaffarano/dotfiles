@@ -165,4 +165,7 @@ return require("packer").startup(function(use)
 
   -- Folding support
   use "pseewald/vim-anyfold"
+
+  --- nnn support
+  use "luukvbaal/nnn.nvim"
 end)
