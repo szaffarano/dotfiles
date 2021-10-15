@@ -26,6 +26,8 @@ opt.colorcolumn = "80,120"
 
 opt.hidden = true
 
+opt.mouse = "n"
+
 opt.relativenumber = true
 opt.number = true
 
