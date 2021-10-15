@@ -1,3 +1,28 @@
+local function copy_to_clipboard(files)
+  files = table.concat(files, "\n")
+  vim.fn.setreg("+", files)
+  print(files:gsub("\n", ", ") .. " copied to register")
+end
+
+local function cd_to_path(files)
+  local dir = files[1]:match ".*/"
+  local read = io.open(dir, "r")
+  if read ~= nil then
+    io.close(read)
+    vim.fn.execute("cd " .. dir)
+    print("working directory changed to: " .. dir)
+  end
+end
+
+local mappings = {
+  { "<C-t>", "tabedit" },
+  { "<C-s>", "split" },
+  { "<C-v>", "vsplit" },
+  { "<C-w>", cd_to_path },
+  { "<C-y>", { copy_to_clipboard, quit = false } },
+  { "<S-y>", { copy_to_clipboard, quit = true } },
+}
+
 local cfg = {
   picker = {
     style = {
@@ -8,7 +33,7 @@ local cfg = {
       border = "rounded",
     },
   },
-  mappings = {}, -- TODO
+  mappings = mappings,
 }
 
 require("nnn").setup(cfg)
