@@ -168,4 +168,7 @@ return require("packer").startup(function(use)
 
   --- nnn support
   use "luukvbaal/nnn.nvim"
+
+  -- terminals in a floating window
+  use "voldikss/vim-floaterm"
 end)
