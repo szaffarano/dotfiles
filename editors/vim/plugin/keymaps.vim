@@ -1,12 +1,12 @@
 inoremap jk <Esc>
 inoremap kj <Esc>
 
-inoremap <Up> <NOP>
-inoremap <Down> <NOP>
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
-noremap <Up> <NOP>
-noremap <Down> <NOP>
+inoremap   <Up>      <NOP>
+inoremap   <Down>    <NOP>
+inoremap   <Left>    <NOP>
+inoremap   <Right>   <NOP>
+noremap    <Up>      <NOP>
+noremap    <Down>    <NOP>
 
 " system clipboard
 vmap <leader>y "+y
@@ -35,8 +35,8 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " redefine leader key
-"map <space> <leader>
-"map <space> <localleader>
+map <space> <leader>
+map <space> <localleader>
 
 " clear matched search
 map <silent><C-l> :noh<cr>

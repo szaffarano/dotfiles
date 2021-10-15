@@ -59,8 +59,6 @@ for _, name in pairs { "backupdir", "directory", "undodir" } do
   end
 end
 
-vim.g.mapleader = " "
-
 vim.g.gruvbox_material_background = "hard"
 vim.g.gruvbox_material_diagnostic_text_highlight = 1
 vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
