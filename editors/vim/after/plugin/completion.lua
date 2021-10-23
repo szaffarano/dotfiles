@@ -8,7 +8,7 @@ local cmp = require "cmp"
 cmp.setup {
   snippet = {
     expand = function(args)
-      vim.fn["UltiSnips#Anon"](args.body)
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
     end,
   },
 
@@ -31,7 +31,7 @@ cmp.setup {
     { name = "zsh" },
     { name = "nvim_lsp" },
     { name = "path" },
-    { name = "ultisnips" },
+    { name = "vsnip" }, -- For vsnip users.
     { name = "buffer", keyword_length = 5 },
   },
 
@@ -43,7 +43,7 @@ cmp.setup {
         nvim_lsp = "[LSP]",
         nvim_lua = "[api]",
         path = "[path]",
-        ultisnips = "[snip]",
+        vsnip = "[vsnip]",
       },
     },
   },

@@ -46,7 +46,8 @@ return require("packer").startup(function(use)
   use "hrsh7th/cmp-path"
   use "hrsh7th/cmp-nvim-lua"
   use "hrsh7th/cmp-nvim-lsp"
-  use "quangnguyen30192/cmp-nvim-ultisnips"
+  use "hrsh7th/cmp-vsnip"
+
   use "tamago324/cmp-zsh"
   use "onsails/lspkind-nvim"
 
@@ -72,13 +73,10 @@ return require("packer").startup(function(use)
   use "mhinz/vim-startify"
 
   -- Snippets
-  use {
-    "SirVer/ultisnips",
-    requires = { "honza/vim-snippets" },
-    config = function()
-      vim.g.UltiSnipsRemoveSelectModeMappings = 0
-    end,
-  }
+  use "hrsh7th/vim-vsnip"
+  use "hrsh7th/vim-vsnip-integ"
+  use "golang/vscode-go"
+  use "rafamadriz/friendly-snippets"
 
   -- tree-sitter support
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
