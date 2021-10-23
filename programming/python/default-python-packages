@@ -1,7 +1,9 @@
 autorandr
 aws-login-tool
 bugwarrior
+cmake-language-server
 docker-compose
+elasticsearch
 jira
 pip
 pygobject
@@ -11,4 +13,3 @@ six
 tasklib
 taskw
 ueberzug
-elasticsearch
