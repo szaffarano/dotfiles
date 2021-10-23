@@ -1,6 +1,0 @@
-require "config.colorscheme"
-require "config.neuron"
-require "config.telescope"
-require "config.treesitter"
-require "config.which-key-neuron"
-require "config.nvim-go"

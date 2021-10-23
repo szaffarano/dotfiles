@@ -35,6 +35,7 @@ opt.ignorecase = true
 opt.smartcase = true
 
 opt.scrolloff = 10
+opt.timeoutlen = 500
 
 opt.splitbelow = true
 opt.splitright = true
