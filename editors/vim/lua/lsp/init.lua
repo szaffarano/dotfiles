@@ -1,11 +1,10 @@
 require "settings"
 
-local nvim_lsp = require "lspconfig"
-
-local custom_init = function(client)
-  client.config.flags = client.config.flags or {}
-  client.config.flags.allow_incremental_sync = true
+local has_lsp, lspconfig = pcall(require, "lspconfig")
+if not has_lsp then
+  return
 end
+local lspconfig_util = require "lspconfig.util"
 
 -- diagnostic config
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -16,16 +15,52 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 })
 
 -- signs
-vim.fn.sign_define("LspDiagnosticsSignError", { text = "✗", texthl = "LspDiagnosticsError" })
-vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "⚠", texthl = "LspDiagnosticsWarning" })
-vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "ⓘ", texthl = "LspDiagnosticsInformation" })
-vim.fn.sign_define("LspDiagnosticsSignHint", { text = "✓", texthl = "LspDiagnosticsHint" })
+vim.fn.sign_define("DiagnosticSignError", {
+  text = "✗",
+  texthl = "DiagnosticSignError",
+})
+
+vim.fn.sign_define("DiagnosticSignWarn", {
+  text = "⚠",
+  texthl = "DiagnosticSignWarn",
+})
+
+vim.fn.sign_define("DiagnosticSignInfo", {
+  text = "ⓘ",
+  texthl = "DiagnosticSignInfo",
+})
+
+vim.fn.sign_define("DiagnosticSignHint", {
+  text = "✓",
+  texthl = "DiagnosticSignHint",
+})
 
 local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
 updated_capabilities.textDocument.completion.completionItem.snippetSupport = true
+updated_capabilities.textDocument.codeLens = { dynamicRegistration = false }
+updated_capabilities = require("cmp_nvim_lsp").update_capabilities(updated_capabilities)
 
-local custom_attach = function(client, bufnr)
-  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+local sumneko_root_path = HOME .. "/projects/lua-language-server"
+local java_lsp_root_path = HOME .. "/projects/java-language-server"
+local kotlink_lsp_root_path = HOME .. "/projects/kotlin-language-server"
+
+local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
+local java_lsp_binary = java_lsp_root_path .. "/dist/lang_server_linux.sh"
+local kotlink_lsp_binary = kotlink_lsp_root_path .. "/server/build/install/server/bin/kotlin-language-server"
+
+local filetype_attach = setmetatable({}, {
+  __index = function()
+    return function() end
+  end,
+})
+
+local custom_init = function(client)
+  client.config.flags = client.config.flags or {}
+  client.config.flags.allow_incremental_sync = true
+end
+
+local custom_attach = function(client)
+  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
   local nmap = function(k, v)
     local o = { noremap = true, silent = true }
@@ -35,190 +70,176 @@ local custom_attach = function(client, bufnr)
     local o = { noremap = true, silent = true }
     vim.api.nvim_buf_set_keymap(0, "i", k, v, o)
   end
-  nmap("ca", "<cmd>lua   vim.lsp.buf.code_action()<cr>")
-  nmap("gd", "<cmd>lua   vim.lsp.buf.definition()<cr>")
-  nmap("gD", "<cmd>lua   vim.lsp.buf.declaration()<cr>")
-  nmap("gr", "<cmd>lua   vim.lsp.buf.references()<cr>")
-  nmap("K", "<cmd>lua   vim.lsp.buf.hover()<cr>")
-  nmap("<c-K>", "<cmd>lua   vim.lsp.buf.signature_help()<cr>")
-  imap("<c-K>", "<cmd>lua   vim.lsp.buf.signature_help()<cr>")
-  nmap("<F2>", "<cmd>lua   vim.lsp.diagnostic.goto_next()<cr>")
-  nmap("<S-F2>", "<cmd>lua   vim.lsp.diagnostic.goto_prev()<cr>")
-  nmap("<S-F6>", "<cmd>lua   vim.lsp.buf.rename()<CR>")
 
-  -- Set autocommands conditional on server capabilities
+  imap("<c-s>", "<cmd> lua vim.lsp.buf.signature_help()<cr>")
+  nmap("<space>cr", "<cmd> lua vim.lsp.buf.rename ()<cr>")
+  nmap("<a-ins>", "<cmd>lua vim.lsp.buf.code_action ()<cr>")
+  nmap("<c-b>", "<cmd>lua vim.lsp.buf.definition ()<cr>")
+  nmap("gD", "<cmd>lua vim.lsp.buf.declaration ()<cr>")
+  nmap("gT", "<cmd>lua vim.lsp.buf.type_definition ()<cr>")
+  nmap("<a-F7>", "<cmd>lua vim.lsp.buf.references ()<cr>")
+  nmap("K", "<cmd>lua vim.lsp.buf.hover ()<cr>")
+  nmap("<a-ins>", "<cmd>lua vim.lsp.buf.code_action ()<cr>")
+  nmap("<c-K>", "<cmd>lua vim.lsp.buf.signature_help ()<cr>")
+  imap("<c-K>", "<cmd>lua vim.lsp.buf.signature_help ()<cr>")
+  nmap("<F2>", "<cmd>lua vim.lsp.diagnostic.goto_next ()<cr>")
+  nmap("<S-F2>", "<cmd>lua vim.lsp.diagnostic.goto_prev ()<cr>")
+  nmap("<S-F6>", "<cmd>lua vim.lsp.buf.rename ()<cr>")
+
+  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+
+  -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
     vim.cmd [[
-            augroup lsp_document_highlight
-                autocmd! * <buffer>
-                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-            augroup END
-        ]]
+      augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+    ]]
   end
 
-  vim.api.nvim_set_current_dir(client.config.root_dir)
+  if client.resolved_capabilities.code_lens then
+    vim.cmd [[
+      augroup lsp_document_codelens
+        au! * <buffer>
+        autocmd BufWritePost,CursorHold <buffer> lua vim.lsp.codelens.refresh()
+      augroup END
+    ]]
+  end
 
-  require("lsp_signature").on_attach {
-    bind = true,
-    handler_opts = {
-      border = "single",
-    },
-  }
+  -- Attach any filetype specific options to the client
+  filetype_attach[filetype](client)
 end
 
-nvim_lsp.gopls.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-    },
-  },
-}
+local servers = {
+  gdscript = true,
+  graphql = true,
+  html = true,
+  pyright = true,
+  vimls = true,
+  yamlls = true,
+  jsonls = true,
+  dockerls = true,
+  rust_analyzer = true,
 
-nvim_lsp.java_language_server.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-  cmd = { HOME .. "/projects/java-language-server/dist/lang_server_linux.sh" },
-}
+  gopls = {
+    root_dir = function(fname)
+      local Path = require "plenary.path"
 
-nvim_lsp.kotlin_language_server.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-  cmd = { HOME .. "/projects/kotlin-language-server/server/build/install/server/bin/kotlin-language-server" },
-}
+      local absolute_cwd = Path:new(vim.loop.cwd()):absolute()
+      local absolute_fname = Path:new(fname):absolute()
 
-nvim_lsp.pylsp.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-  settings = {
-    pylsp = {
-      plugins = {
-        yapf = { enabled = true },
-        isort = { enabled = true },
-        mypy = { enabled = true },
-      },
-    },
-  },
-}
-
-nvim_lsp.vimls.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-}
-
-nvim_lsp.bashls.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-  filetypes = { "sh", "zsh" },
-}
-
-nvim_lsp.rust_analyzer.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-  cmd = { HOME .. "/projects/rust-analyzer/target/debug/rust-analyzer" },
-}
-
-nvim_lsp.terraformls.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-  filetypes = { "terraform", "hcl", "tf" },
-}
-
--- Lua LSP
-local sumneko_root_path = HOME .. "/projects/lua-language-server"
-local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
-nvim_lsp.sumneko_lua.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-  cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = "LuaJIT",
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { "vim" },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
-
-nvim_lsp.jsonls.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-}
-
-nvim_lsp.yamlls.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-}
-
-nvim_lsp.dockerls.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-}
-
-nvim_lsp.tsserver.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-}
-
-nvim_lsp.clangd.setup {
-  on_attach = custom_attach,
-  on_init = custom_init,
-}
-
--- golang
-function GoImports(timeoutms)
-  local params = vim.lsp.util.make_range_params()
-  params.context = { only = { "source.organizeImports" } }
-
-  local method = "textDocument/codeAction"
-  local result = vim.lsp.buf_request_sync(0, method, params, timeoutms)
-  for _, res in pairs(result or {}) do
-    for _, r in pairs(res.result or {}) do
-      if r.edit then
-        vim.lsp.util.apply_workspace_edit(r.edit)
-      else
-        vim.lsp.buf.execute_command(r.command)
+      if string.find(absolute_cwd, "/cmd/", 1, true) and string.find(absolute_fname, absolute_cwd, 1, true) then
+        return absolute_cwd
       end
-    end
+
+      return lspconfig_util.root_pattern("go.mod", ".git")(fname)
+    end,
+
+    settings = {
+      gopls = {
+        codelenses = { test = true },
+      },
+    },
+
+    flags = {
+      debounce_text_changes = 200,
+    },
+  },
+
+  java_language_server = {
+    cmd = { java_lsp_binary },
+  },
+
+  kotlin_language_server = {
+    cmd = { kotlink_lsp_binary },
+  },
+
+  bashls = {
+    filetypes = { "sh", "zsh" },
+  },
+
+  terraformls = {
+    filetypes = { "terraform", "hcl", "tf" },
+  },
+
+  cmake = (1 == vim.fn.executable "cmake-language-server"),
+
+  clangd = {
+    cmd = {
+      "clangd",
+      "--background-index",
+      "--suggest-missing-includes",
+      "--clang-tidy",
+      "--header-insertion=iwyu",
+    },
+  },
+
+  tsserver = {
+    cmd = { "typescript-language-server", "--stdio" },
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+    },
+  },
+
+  sumneko_lua = {
+    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+    settings = {
+      Lua = {
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = "LuaJIT",
+        },
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = { "vim" },
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
+  },
+}
+
+local setup_server = function(server, config)
+  if not config then
+    return
   end
 
-  vim.lsp.buf.formatting_sync(nil, timeoutms)
-end
-vim.api.nvim_command "au BufWritePre *.go lua GoImports(10000)"
+  if type(config) ~= "table" then
+    config = {}
+  end
 
-require("symbols-outline").setup {
-  highlight_hovered_item = true,
-  show_guides = true,
-  auto_preview = true,
-  position = "right",
-  show_numbers = false,
-  show_relative_numbers = false,
-  show_symbol_details = true,
-  keymaps = {
-    close = "<Esc>",
-    goto_location = "<Cr>",
-    focus_location = "o",
-    hover_symbol = "<C-space>",
-    rename_symbol = "r",
-    code_actions = "a",
-  },
-  lsp_blacklist = {},
+  config = vim.tbl_deep_extend("force", {
+    on_init = custom_init,
+    on_attach = custom_attach,
+    capabilities = updated_capabilities,
+    flags = {
+      debounce_text_changes = 50,
+    },
+  }, config)
+
+  lspconfig[server].setup(config)
+end
+
+for server, config in pairs(servers) do
+  setup_server(server, config)
+end
+
+return {
+  on_init = custom_init,
+  on_attach = custom_attach,
+  capabilities = updated_capabilities,
 }

@@ -40,11 +40,18 @@ return require("packer").startup(function(use)
 
   use { "tpope/vim-commentary" }
 
-  -- LSP and completion
+  -- LSP
   use "neovim/nvim-lspconfig"
-  use "hrsh7th/nvim-compe"
-  use "ray-x/lsp_signature.nvim"
-  use "simrat39/symbols-outline.nvim"
+
+  -- Completion
+  use "hrsh7th/nvim-cmp"
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-nvim-lua"
+  use "hrsh7th/cmp-nvim-lsp"
+  use "quangnguyen30192/cmp-nvim-ultisnips"
+  use "tamago324/cmp-zsh"
+  use "onsails/lspkind-nvim"
 
   -- Fugitive for Git
   use "tpope/vim-fugitive"
@@ -60,7 +67,7 @@ return require("packer").startup(function(use)
 
   -- status bar
   use {
-    "shadmansaleh/lualine.nvim",
+    "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   }
 
