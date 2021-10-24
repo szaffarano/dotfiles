@@ -124,4 +124,7 @@ return require("packer").startup(function(use)
 
   -- terminals in a floating window
   use "voldikss/vim-floaterm"
+
+  -- reopen files at last edites positions
+  use "farmergreg/vim-lastplace"
 end)
