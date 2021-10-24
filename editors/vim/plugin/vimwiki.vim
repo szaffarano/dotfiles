@@ -13,8 +13,6 @@ let g:vimwiki_list = [
 let g:vimwiki_folding='custom'
 
 set foldmethod=syntax
-set foldlevelstart=1
-set foldlevelstart=20
 
 " inserts a templet when create a new diary buffer
 augroup vimwiki_diary

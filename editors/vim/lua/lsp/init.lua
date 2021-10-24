@@ -87,8 +87,6 @@ local custom_attach = function(client)
 
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
-  require("folding").on_attach()
-
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
     vim.cmd [[

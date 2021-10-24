@@ -119,9 +119,6 @@ return require("packer").startup(function(use)
   use "theHamsta/nvim-dap-virtual-text"
   use "ray-x/go.nvim"
 
-  -- Folding support
-  use "pierreglaser/folding-nvim"
-
   --- nnn support
   use "luukvbaal/nnn.nvim"
 

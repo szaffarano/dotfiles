@@ -6,6 +6,8 @@ setlocal foldenable
 setlocal foldlevel=2
 setlocal foldcolumn=4
 
+set foldlevelstart=20
+
 setlocal foldexpr=Fold(v:lnum)
 setlocal foldtext=VimwikiFoldTextCustom()
 
