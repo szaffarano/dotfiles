@@ -120,7 +120,7 @@ return require("packer").startup(function(use)
   use "ray-x/go.nvim"
 
   -- Folding support
-  use "pseewald/vim-anyfold"
+  use "pierreglaser/folding-nvim"
 
   --- nnn support
   use "luukvbaal/nnn.nvim"

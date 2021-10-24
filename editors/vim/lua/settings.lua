@@ -67,6 +67,10 @@ vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
 -- Highlight on yank
 vim.cmd "au TextYankPost * lua vim.highlight.on_yank {on_visual = false}"
 
+-- Folding
+opt.foldlevel = 5
+opt.foldcolumn = "auto"
+
 -- relative / hybrid line number switch
 vim.api.nvim_exec(
   [[
