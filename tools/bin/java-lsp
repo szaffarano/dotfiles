@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+JDTLS="$HOME/.local/share/jdtls/"
+JAR="$JDTLS/plugins/org.eclipse.equinox.launcher_*.jar"
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <project-prefix>"
+    exit 1
+fi
+
+PROJECT=$1
+
+GRADLE_HOME='~/.asdf/shims/gradle' java \
+  -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044 \
+  -Declipse.application=org.eclipse.jdt.ls.core.id1 \
+  -Dosgi.bundles.defaultStartLevel=4 \
+  -Declipse.product=org.eclipse.jdt.ls.core.product \
+  -Dlog.protocol=true \
+  -Dlog.level=ALL \
+  -Xms1g \
+  -Xmx2G \
+  -jar $(echo "$JAR") \
+  -configuration "$JDTLS/config_linux" \
+  -data "$1" \
+  --add-modules=ALL-SYSTEM \
+  --add-opens java.base/java.util=ALL-UNNAMED \
+  --add-opens java.base/java.lang=ALL-UNNAMED

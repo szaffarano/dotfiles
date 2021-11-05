@@ -127,4 +127,7 @@ return require("packer").startup(function(use)
 
   -- reopen files at last edites positions
   use "farmergreg/vim-lastplace"
+
+  -- java support
+  use "mfussenegger/nvim-jdtls"
 end)

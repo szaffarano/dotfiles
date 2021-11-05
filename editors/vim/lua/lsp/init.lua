@@ -41,11 +41,9 @@ updated_capabilities.textDocument.codeLens = { dynamicRegistration = false }
 updated_capabilities = require("cmp_nvim_lsp").update_capabilities(updated_capabilities)
 
 local sumneko_root_path = HOME .. "/projects/lua-language-server"
-local java_lsp_root_path = HOME .. "/projects/java-language-server"
 local kotlink_lsp_root_path = HOME .. "/projects/kotlin-language-server"
 
 local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
-local java_lsp_binary = java_lsp_root_path .. "/dist/lang_server_linux.sh"
 local kotlink_lsp_binary = kotlink_lsp_root_path .. "/server/build/install/server/bin/kotlin-language-server"
 
 local filetype_attach = setmetatable({}, {
@@ -146,10 +144,6 @@ local servers = {
     flags = {
       debounce_text_changes = 200,
     },
-  },
-
-  java_language_server = {
-    cmd = { java_lsp_binary },
   },
 
   kotlin_language_server = {
