@@ -112,6 +112,7 @@ local custom_attach = function(client)
 end
 
 local servers = {
+  ansiblels = true,
   gdscript = true,
   graphql = true,
   html = true,
