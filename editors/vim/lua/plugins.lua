@@ -56,10 +56,6 @@ return require("packer").startup(function(use)
   use "rbong/vim-flog"
   use "tpope/vim-rhubarb"
 
-  -- Git commits and diff support
-  use "rhysd/committia.vim"
-  use "sindrets/diffview.nvim"
-
   -- Git decorations
   use "lewis6991/gitsigns.nvim"
 
@@ -99,16 +95,11 @@ return require("packer").startup(function(use)
   -- Preview Markdown files in a hosted HTML server
   use { "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && yarn install" }
 
-  use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" }
-
   -- Format code
   use "sbdchd/neoformat"
 
   -- Syntax highlight for i3
   use "mboughaba/i3config.vim"
-
-  -- Undotree helper
-  use "mbbill/undotree"
 
   -- Avro syntax highlight
   use "gurpreetatwal/vim-avro"
