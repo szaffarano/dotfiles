@@ -13,6 +13,8 @@ PROJECT=$1
 GRADLE_HOME='~/.asdf/shims/gradle' java \
   -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044 \
   -Declipse.application=org.eclipse.jdt.ls.core.id1 \
+  -javaagent:$HOME/.local/share/jars/lombok.jar \
+  -Xbootclasspath/a:$HOME/.local/share/jars/lombok.jar \
   -Dosgi.bundles.defaultStartLevel=4 \
   -Declipse.product=org.eclipse.jdt.ls.core.product \
   -Dlog.protocol=true \
