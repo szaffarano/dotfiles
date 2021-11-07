@@ -2,7 +2,7 @@ require "settings"
 
 local M = {}
 function M.setup()
-  local on_attach = function(client, bufnr)
+  local on_attach = function(client, _)
     require("jdtls.setup").add_commands()
     require("jdtls").setup_dap()
     require("lspkind").init()
@@ -32,8 +32,8 @@ function M.setup()
       nnoremap <leader>df <Cmd>lua require'jdtls'.test_class()<CR>
       nnoremap <leader>dn <Cmd>lua require'jdtls'.test_nearest_method()<CR>
 
-      nnoremap <C-b> <Cmd>lua vim.lsp.buf.declaration()<CR>
-      nnoremap gd <Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+      nnoremap <C-b> <Cmd>lua vim.lsp.buf.definition()<CR>
+      nnoremap gd <Cmd>lua vim.lsp.buf.declaration()<CR>
       nnoremap K <Cmd>lua vim.lsp.buf.hover()<CR>
       nnoremap gi <cmd>lua vim.lsp.buf.implementation()<CR>
       nnoremap <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
@@ -56,6 +56,7 @@ function M.setup()
   end
 
   local root_dir = require("jdtls.setup").find_root {
+    ".git",
     "gradlew",
     "mvnw",
     "pom.xml",
@@ -106,7 +107,7 @@ function M.setup()
     },
   }
 
-  local workspace = HOME .. "/.workspace" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
+  local workspace = HOME .. "/.workspace/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
   config.cmd = { "java-lsp", workspace }
   config.on_attach = on_attach
   config.on_init = function(client, _)
