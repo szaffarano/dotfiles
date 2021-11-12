@@ -37,7 +37,7 @@ set smartcase
 set incsearch
 set hlsearch
 
-map <silent><C-l> :noh<cr>
+map <C-l> :noh<cr>
 
 set ideajoin
 set ideastatusicon=gray
@@ -60,7 +60,8 @@ nmap <leader>e <Action>(GotoNextError)
 nmap <leader>h <Action>(PreviousTab)
 nmap <leader>i <Action>(Generate)
 nmap <leader>l <Action>(NextTab)
-nmap <leader>m <Action>(Git.Menu)
+nmap <leader>g <Action>(Git.Menu)
+vmap <leader>g <Action>(Git.Menu)
 nmap <leader>s <Action>(QuickChangeScheme)
 nnoremap <leader><leader> <C-Tab>
 
