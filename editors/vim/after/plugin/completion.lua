@@ -20,7 +20,7 @@ cmp.setup {
     ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
     ["<CR>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
+      select = false,
     },
 
     ["<c-space>"] = cmp.mapping.complete(),

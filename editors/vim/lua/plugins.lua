@@ -121,4 +121,7 @@ return require("packer").startup(function(use)
 
   -- java support
   use "mfussenegger/nvim-jdtls"
+
+  -- github copilot
+  use "github/copilot.vim"
 end)
