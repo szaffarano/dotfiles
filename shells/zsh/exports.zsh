@@ -76,22 +76,26 @@ nnnBookmarks=(
   'D:~/Documents'
 )
 
-for b in $nnnBookmarks; do
-  if [ -z $NNN_BMS ]; then
-    NNN_BMS="$b"
-  else
-    NNN_BMS="$b;$NNN_BMS"
-  fi
-done
+if [ -z "$NNN_BMS" ]; then
+  for b in $nnnBookmarks; do
+    if [ -z $NNN_BMS ]; then
+      NNN_BMS="$b"
+    else
+      NNN_BMS="$b;$NNN_BMS"
+    fi
+  done
+fi
 
 
-for p in $nnnPlugins; do
-  if [ -z $NNN_PLUG ]; then
-    NNN_PLUG="$p"
-  else
-    NNN_PLUG="$p;$NNN_PLUG"
-  fi
-done
+if [ -z "$NNN_PLUG" ]; then
+  for p in $nnnPlugins; do
+    if [ -z $NNN_PLUG ]; then
+      NNN_PLUG="$p"
+    else
+      NNN_PLUG="$p;$NNN_PLUG"
+    fi
+  done
+fi
 
 export NNN_PLUG
 export NNN_BMS
