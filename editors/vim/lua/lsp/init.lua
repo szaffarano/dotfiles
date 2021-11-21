@@ -114,7 +114,16 @@ local servers = {
   gdscript = true,
   graphql = true,
   html = true,
-  pyright = true,
+  pyright = {
+    settings = {
+      python = {
+        analysis = {
+          diagnosticMode = "workspace",
+        },
+        venvPath = ".venv",
+      },
+    },
+  },
   vimls = true,
   yamlls = true,
   jsonls = true,
