@@ -320,7 +320,7 @@ exec telegram-desktop
 # slack
 for_window [class="Slack" window_role="browser-window"] move to scratchpad, border none
 bindsym $mod+p [class="Slack" ] scratchpad show
-exec slack 
+exec slack -g error
 
 bindsym $mod+Shift+minus move scratchpad
 
