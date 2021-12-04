@@ -1,6 +1,6 @@
 ansible
 ansible-lint
-autorandr
+git+http://github.com/phillipberndt/autorandr#egg=autorandr
 aws-login-tool
 bugwarrior
 cmake-language-server

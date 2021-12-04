@@ -18,6 +18,9 @@ set $screenshots ~/Pictures/Screenshots
 font pango: FontAwesome 11
 
 # configure touchpad
+exec --no-startup-id autorandr-launcher -p $shims/autorandr
+
+# configure touchpad
 exec --no-startup-id $scripts/touchpad.sh
 
 # lock the screen after 2 minutes

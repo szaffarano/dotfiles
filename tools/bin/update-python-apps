@@ -2,6 +2,6 @@
 
 cat ~/.default-python-packages | while read -r l
 do
-  eval pip install --upgrade install $l
+  eval pip install --upgrade $l
 done
 asdf reshim
