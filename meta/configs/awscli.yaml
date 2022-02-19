@@ -3,3 +3,7 @@
     global: latest
     versions:
       - latest
+  - plugin: aws-sam-cli
+    global: latest
+    versions:
+      - latest
