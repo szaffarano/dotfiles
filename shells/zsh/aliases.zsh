@@ -98,3 +98,4 @@ n() {
 }
 
 alias n="n -GdR"
+alias t=dstask
