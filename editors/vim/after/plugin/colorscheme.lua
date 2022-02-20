@@ -1,10 +1,18 @@
+local ok, material = pcall(require, "material")
+if not ok then
+  print("material plugin is not installed")
+  return
+end
+
 vim.opt.termguicolors = true
 
-vim.cmd "colorscheme gruvbox-material"
-vim.cmd "set background=dark"
-vim.cmd 'let g:gruvbox_material_background = "medium"'
-vim.cmd "let g:gruvbox_material_enable_italic = 1"
-vim.cmd "let g:gruvbox_material_disable_italic_comment = 1"
-vim.cmd 'let g:gruvbox_material_ui_contrast = "hight"'
-vim.cmd 'let g:gruvbox_material_diagnostic_virtual_text = "colored"'
-vim.cmd 'let g:gruvbox_material_palette = "mix"'
+vim.g.material_style = "oceanic"
+
+material.setup({
+  italics = {
+    comments = true,
+  },
+  lualine_style = "stealth",
+})
+
+vim.cmd("colorscheme material")
