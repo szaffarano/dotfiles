@@ -32,13 +32,12 @@ zplug 'hlissner/zsh-autopair', defer:2
 # vi mode plug-in
 zplug "plugins/vi-mode", from:oh-my-zsh
 
-zplug "plugins/svn",        from:oh-my-zsh
-
 # some oh-my-zsh useful plug-ins
-zplug "lib/completion",  from:oh-my-zsh
-zplug "lib/grep",        from:oh-my-zsh
-zplug "lib/history",     from:oh-my-zsh
-zplug "lib/directories", from:oh-my-zsh
+zplug "lib/completion",            from:oh-my-zsh
+zplug "lib/grep",                  from:oh-my-zsh
+zplug "lib/history",               from:oh-my-zsh
+zplug "lib/directories",           from:oh-my-zsh
+zplug "lib/prompt_info_functions", from:oh-my-zsh
 
 # zsh theme
 zplug "themes/ys", from:oh-my-zsh
