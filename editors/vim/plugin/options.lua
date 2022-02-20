@@ -77,16 +77,15 @@ opt.mouse = "n"
 --   2. gw{motion} - Put cursor back after formatting motion.
 --
 -- TODO: w, {v, b, l}
-opt.formatoptions = opt.formatoptions
-  - "a" -- Auto formatting is BAD.
-  - "t" -- Don't auto format my code. I got linters for that.
-  + "c" -- In general, I like it when comments respect textwidth
-  + "q" -- Allow formatting comments w/ gq
-  - "o" -- O and o, don't continue comments
-  + "r" -- But do continue when pressing enter.
-  + "n" -- Indent past the formatlistpat, not underneath it.
-  + "j" -- Auto-remove comments if possible.
-  - "2" -- I'm not in gradeschool anymore
+opt.formatoptions:remove("a") -- Auto formatting is BAD.
+opt.formatoptions:remove("t") -- Don't auto format my code. I got linters for that.
+opt.formatoptions:append("c") -- In general, I like it when comments respect textwidth
+opt.formatoptions:append("q") -- Allow formatting comments w/ gq
+opt.formatoptions:remove("o") -- O and o, don't continue comments
+opt.formatoptions:append("r") -- But do continue when pressing enter.
+opt.formatoptions:append("n") -- Indent past the formatlistpat, not underneath it.
+opt.formatoptions:append("j") -- Auto-remove comments if possible.
+opt.formatoptions:remove("2") -- I'm not in gradeschool anymore
 
 -- set joinspaces
 opt.joinspaces = false -- Two spaces and grade school, we're done

@@ -53,6 +53,9 @@ function M.setup()
     use("rbong/vim-flog")
     use("tpope/vim-rhubarb")
 
+    -- Git decorations
+    use("lewis6991/gitsigns.nvim")
+
     -- Startup screen
     use("mhinz/vim-startify")
 
@@ -98,10 +101,28 @@ function M.setup()
 
     -- Terminal
     use("voldikss/vim-floaterm")
+
+    -- Wiki
+    use("vimwiki/vimwiki")
+
+    -- Useful mappings
+    use("tpope/vim-unimpaired")
+
+    -- Alignment
+    use("godlygeek/tabular")
+
+    -- Manage comments
+    use("numToStr/Comment.nvim")
+
+    -- reopen files at last edites positions
+    use("farmergreg/vim-lastplace")
+
+    -- github copilot
+    use("github/copilot.vim")
   end
 
-  require("packer").init(conf)
-  require("packer").startup(plugins)
+  packer.init(conf)
+  packer.startup(plugins)
 end
 
 return M
