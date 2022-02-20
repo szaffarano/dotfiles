@@ -6,18 +6,20 @@ local avoid_lsp_formatting = {
   sumneko_lua = true,
 }
 
+-- stylua: ignore start
 local lsp_keymappings = {
-  ["K"] = vim.lsp.buf.hover,
-  ["gD"] = vim.lsp.buf.declaration,
-  ["gd"] = vim.lsp.buf.definition,
-  ["gi"] = vim.lsp.buf.implementation,
-  ["gr"] = vim.lsp.buf.references,
-  ["<C-k>"] = vim.lsp.buf.signature_help,
-  ["[d"] = vim.diagnostic.goto_prev,
-  ["]d"] = vim.diagnostic.goto_next,
+  ["K"]         = vim.lsp.buf.hover,
+  ["gD"]        = vim.lsp.buf.declaration,
+  ["gd"]        = vim.lsp.buf.definition,
+  ["gi"]        = vim.lsp.buf.implementation,
+  ["gr"]        = vim.lsp.buf.references,
+  ["<C-k>"]     = vim.lsp.buf.signature_help,
+  ["[d"]        = vim.diagnostic.goto_prev,
+  ["]d"]        = vim.diagnostic.goto_next,
   ["<leader>a"] = vim.lsp.buf.code_action,
   ["<leader>r"] = vim.lsp.buf.rename,
 }
+-- stylua: ignore end
 
 function M.lsp_diagnostics()
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
