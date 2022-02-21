@@ -6,13 +6,19 @@ local avoid_lsp_formatting = {
   sumneko_lua = true,
 }
 
+local references = vim.lsp.buf.references
+local ok, telescope_builtins = pcall(require, "telescope.builtin")
+if ok then
+  references = telescope_builtins.lsp_references
+end
+
 -- stylua: ignore start
 local lsp_keymappings = {
   ["K"]         = vim.lsp.buf.hover,
   ["gD"]        = vim.lsp.buf.declaration,
   ["gd"]        = vim.lsp.buf.definition,
   ["gi"]        = vim.lsp.buf.implementation,
-  ["gr"]        = vim.lsp.buf.references,
+  ["gr"]        = references,
   ["<C-k>"]     = vim.lsp.buf.signature_help,
   ["[d"]        = vim.diagnostic.goto_prev,
   ["]d"]        = vim.diagnostic.goto_next,
