@@ -6,7 +6,7 @@ if require("sebas.bootstrap")() then
   return
 end
 
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
 require("sebas.disable_builtins")
 require("sebas.plugins").setup()
