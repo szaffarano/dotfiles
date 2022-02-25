@@ -101,4 +101,6 @@ export NNN_PLUG
 export NNN_BMS
 export NNN_FIFO=/tmp/nnn.fifo
 
+export TFENV_AUTO_INSTALL=true
+
 export DC_API_TOKEN_COMMAND="get-keepass-entry sebas@zaffarano.com.ar https://daycaptain.com"
