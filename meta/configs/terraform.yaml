@@ -3,6 +3,10 @@
     global: latest
     versions:
       - latest
+  - plugin: tfenv
+    global: latest
+    versions:
+      - latest
   - plugin: terraform-ls
     global: latest
     versions:
