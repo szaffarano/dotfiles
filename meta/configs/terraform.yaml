@@ -1,13 +1,7 @@
-- asdf:
-  - plugin: terraform
-    global: latest
-    versions:
-      - latest
-  - plugin: tfenv
-    global: latest
-    versions:
-      - latest
-  - plugin: terraform-ls
-    global: latest
-    versions:
-      - latest
+- shell:
+    - [test -d ~/.tfenv || git clone https://github.com/tfutils/tfenv.git ~/.tfenv, Cloning tfenv]
+    - [cd ~/.tfenv, Accessing to tfenv home]
+    - [git pull, Selecting the latest tfenv version]
+- link:
+    ~/.tfenv/use-gpgv: tools/tfenv/conf/use-gpgv
+    ~/.tfenv/version: tools/tfenv/conf/version

@@ -13,6 +13,7 @@ PATH="$HOME/.local/bin:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
 PATH="$HOME/.asdf/installs/python/$PYTHON_VERSION/bin:$PATH"
+PATH="$HOME/.tfenv/bin:$PATH"
 export PATH
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
