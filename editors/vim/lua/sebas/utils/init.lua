@@ -24,7 +24,7 @@ local function format()
 
   for _, client in pairs(clients) do
     if debug then
-      print(dump(client["server_capabilities"]))
+      print(dump(client.resolved_capabilities))
     end
     if client.resolved_capabilities.document_formatting then
       lsp_format = true
@@ -33,8 +33,14 @@ local function format()
   end
 
   if lsp_format then
-    vim.lsp.buf.formatting_sync()
+    if debug then
+      print("Using LSP formatter")
+    end
+    vim.lsp.buf.formatting()
   else
+    if debug then
+      print("Using Neoformat formatter")
+    end
     vim.cmd("Neoformat")
   end
 end
