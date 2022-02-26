@@ -7,3 +7,7 @@
     global: latest
     versions:
       - latest
+  - plugin: aws-vault
+    global: latest
+    versions:
+      - latest

@@ -12,6 +12,7 @@ git
 github-cli
 gnupg
 golang
+gopass
 gradle
 gtk
 hey
