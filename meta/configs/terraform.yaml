@@ -1,3 +1,8 @@
+- asdf:
+  - plugin: terraform-docs
+    global: latest
+    versions:
+      - latest
 - shell:
     - [test -d ~/.tfenv || git clone https://github.com/tfutils/tfenv.git ~/.tfenv, Cloning tfenv]
     - [cd ~/.tfenv, Accessing to tfenv home]
