@@ -136,3 +136,5 @@ fi
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh) 
 
 autoload -U +X bashcompinit && bashcompinit
+
+complete -o nospace -C /home/sebas/.tfenv/versions/1.1.6/terraform terraform

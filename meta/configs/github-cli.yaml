@@ -3,3 +3,6 @@
     global: latest
     versions:
       - latest
+
+- shell:
+    - [gh completion -s zsh > ~/.local/share/zsh/site-functions/_gh, Configuring completion]
