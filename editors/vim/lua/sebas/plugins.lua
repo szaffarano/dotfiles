@@ -6,7 +6,7 @@ if not ok then
   return M
 end
 
-function M.setup()
+function M.setup(bootstrap)
   local conf = {
     display = {
       open_fn = function()
@@ -119,6 +119,10 @@ function M.setup()
 
     -- github copilot
     use("github/copilot.vim")
+
+    if bootstrap then
+      packer.sync()
+    end
   end
 
   packer.init(conf)

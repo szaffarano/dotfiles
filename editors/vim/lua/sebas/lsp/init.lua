@@ -1,5 +1,11 @@
 local M = {}
 
+ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+if not ok then
+  print("lsp-installer plugin not installed")
+  return M
+end
+
 local function setup_servers()
   local lsp_installer = require("nvim-lsp-installer")
 

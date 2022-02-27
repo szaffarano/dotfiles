@@ -1,6 +1,6 @@
 local ok, telescope = pcall(require, "telescope")
 if not ok then
-  print("Telescope plugin is not installed")
+  print("telescope plugin is not installed")
   return
 end
 

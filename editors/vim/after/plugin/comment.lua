@@ -1,6 +1,6 @@
 local ok, comment = pcall(require, "Comment")
 if not ok then
-  print("Comment plugin is not installed")
+  print("comment plugin is not installed")
   return
 end
 

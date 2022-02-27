@@ -15,6 +15,8 @@ local download_packer = function()
   print(out)
   print("Downloading packer.nvim...")
   print("( You'll need to restart now )")
+
+  vim.cmd("packadd packer.nvim")
 end
 
 return function()

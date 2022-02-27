@@ -1,3 +1,9 @@
+ok, signature = pcall(require, "lsp_signature")
+if not ok then
+  print("signature plugin not installed")
+  return
+end
+
 local cfg = {}
 
-require("lsp_signature").setup(cfg)
+signature.setup(cfg)
