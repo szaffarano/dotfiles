@@ -6,10 +6,25 @@ vim.keymap.set("i", "<Down>", "<Nop>", { noremap = true })
 vim.keymap.set("i", "<Left>", "<Nop>", { noremap = true })
 vim.keymap.set("i", "<Right>", "<Nop>", { noremap = true })
 
+vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<A-h>", ":vertical resize -2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-l>", ":vertical resize +2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-j>", ":resize -2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-k>", ":resize +2<CR>", { noremap = true, silent = true })
+
 -- system clipboard
 vim.keymap.set("v", "<Leader>y", "+y")
 vim.keymap.set("v", "<Leader>d", "+d")
 vim.keymap.set({ "v", "n" }, "<Leader>p", "+p")
+vim.keymap.set({ "v", "n" }, "<Leader>p", "+p")
+
+vim.keymap.set("v", "p", '"_dP', { noremap = true, silent = true })
+
+vim.keymap.set("n", "<Esc>", "<Cmd>noh<Cr>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<Leader>y", "+yy")
 
