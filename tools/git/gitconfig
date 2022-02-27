@@ -81,6 +81,6 @@
   autocorrect = 1
 
 [init]
-  defaultBranch = main
+  defaultBranch = master
 
 # vim: ft=gitconfig
