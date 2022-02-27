@@ -1,3 +1,5 @@
+local utils = require("sebas.utils")
+
 vim.g.shfmt_opt = "-ci"
 
-vim.api.nvim_set_keymap("n", "<C-A-l>", ":Neoformat<CR>", { silent = true, noremap = true })
+vim.keymap.set({ "n", "i" }, "<C-A-l>", utils.format, { silent = true, noremap = true })

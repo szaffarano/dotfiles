@@ -3,4 +3,4 @@ if not ok then
   return
 end
 
-signs.setup {}
+signs.setup({})

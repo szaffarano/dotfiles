@@ -1,4 +1,10 @@
-require("nvim-treesitter.configs").setup {
+local ok, ts_configs = pcall(require, "nvim-treesitter.configs")
+if not ok then
+  print("treesitter plugin is not installed")
+  return
+end
+
+ts_configs.setup({
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true, -- false will disable the whole extension
@@ -13,4 +19,4 @@ require("nvim-treesitter.configs").setup {
   rainbow = {
     enable = true,
   },
-}
+})
