@@ -250,7 +250,7 @@ bar {
 
 # assign windows to an specific workspace
 assign [class="Google-chrome"]            →	$web
-assign [class="Firefox"]                  →	$web
+assign [class="firefox"]                  →	$web
 assign [class="jetbrains-idea-ce"]        →	$dev
 assign [class="jetbrains-idea"]           →	$dev
 assign [class="jetbrains-datagrip"]       →	$dev
