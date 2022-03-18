@@ -1,4 +1,8 @@
 - asdf:
+  - plugin: tflint 
+    global: latest
+    versions:
+      - latest
   - plugin: terraform-docs
     global: latest
     versions:
