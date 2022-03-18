@@ -2,4 +2,9 @@
     ~/.gitconfig: tools/git/gitconfig
     ~/.gitattributes: tools/git/gitattributes
 
+- asdf:
+  - plugin: pre-commit
+    global: latest
+    versions:
+      - latest
 
