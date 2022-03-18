@@ -33,26 +33,27 @@ zplug 'hlissner/zsh-autopair', defer:2
 zplug "plugins/vi-mode", from:oh-my-zsh
 
 # some oh-my-zsh useful plug-ins
-zplug "lib/completion",            from:oh-my-zsh
-zplug "lib/grep",                  from:oh-my-zsh
-zplug "lib/history",               from:oh-my-zsh
-zplug "lib/directories",           from:oh-my-zsh
+zplug "lib/completion", from:oh-my-zsh
+zplug "lib/grep", from:oh-my-zsh
+zplug "lib/history", from:oh-my-zsh
+zplug "lib/directories", from:oh-my-zsh
 zplug "lib/prompt_info_functions", from:oh-my-zsh
 
 # zsh theme
 zplug "themes/ys", from:oh-my-zsh
 
 if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo
+    zplug install
+  fi
 fi
 
 zplug load
 ####  end zplug setup
 
-which aws_completer > /dev/null 2>&1 && complete -C aws_completer aws
+which aws_completer >/dev/null 2>&1 && complete -C aws_completer aws
 
 #
 # Custom configurations
@@ -66,18 +67,17 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-
 setopt rmstarsilent
 
 # mac keybindings
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	bindkey "^[^[[D" backward-word
-	bindkey "^[^[[C" forward-word
+  bindkey "^[^[[D" backward-word
+  bindkey "^[^[[C" forward-word
 
-	bindkey "^[a" beginning-of-line
-	bindkey "^[e" end-of-line
+  bindkey "^[a" beginning-of-line
+  bindkey "^[e" end-of-line
 
-	bindkey "ç" fzf-cd-widget
+  bindkey "ç" fzf-cd-widget
 fi
 
 #
@@ -116,8 +116,6 @@ VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
-[ -f ~/.asdf/plugins/java/set-java-home.zsh ] && . ~/.asdf/plugins/java/set-java-home.zsh
-
 [ -f ~/.nix-profile/etc/profile.d/nix.sh ] && source ~/.nix-profile/etc/profile.d/nix.sh
 
 ## bindkeys
@@ -133,7 +131,7 @@ fi
 
 [[ $commands[terraform] ]] && complete -o nospace -C $commands[terraform] terraform
 
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh) 
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
 autoload -U +X bashcompinit && bashcompinit
 
