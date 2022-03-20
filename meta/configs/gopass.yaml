@@ -1,7 +1,7 @@
 - link:
-    ~/.local/bin/pass: ~/.asdf/shims/gopass
+    ~/.bin/pass: ~/.asdf/shims/gopass
 - asdf:
-  - plugin: gopass
-    global: latest
-    versions:
-      - latest
+    - plugin: gopass
+      global: latest
+      versions:
+        - latest
