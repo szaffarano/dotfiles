@@ -1,4 +1,3 @@
-ansible
 ansible-lint
 git+http://github.com/phillipberndt/autorandr#egg=autorandr
 aws-login-tool
