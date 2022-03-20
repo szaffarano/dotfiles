@@ -22,7 +22,7 @@ ls.config.set_config({
   ext_opts = {
     [types.choiceNode] = {
       active = {
-        virt_text = { { "<-", "Error" } },
+        virt_text = { { " <- Current Choice", "NonTest" } },
       },
     },
   },
@@ -44,4 +44,19 @@ vim.keymap.set({ "i", "s" }, "<c-j>", function()
   end
 end, { silent = true })
 
-require("luasnip.loaders.from_vscode").load()
+-- <c-l> is selecting within a list of options.
+-- This is useful for choice nodes (introduced in the forthcoming episode 2)
+vim.keymap.set("i", "<c-l>", function()
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end)
+
+vim.keymap.set("i", "<c-u>", require("luasnip.extras.select_choice"))
+
+local vscode_loader = require("luasnip.loaders.from_vscode")
+
+ls.filetype_extend("vimwiki", { "markdown" })
+
+vscode_loader.lazy_load()
+vscode_loader.lazy_load({ paths = { "./custom-snippets" } })
