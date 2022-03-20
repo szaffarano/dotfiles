@@ -1,0 +1,9 @@
+- asdf:
+    - plugin: direnv
+      url: https://github.com/asdf-community/asdf-direnv
+      global: latest
+      versions:
+        - latest
+- link:
+    ~/.config/direnv/direnvrc: tools/direnv/direnvrc
+    ~/.envrc: tools/direnv/envrc
