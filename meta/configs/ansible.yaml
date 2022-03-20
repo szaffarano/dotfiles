@@ -1,0 +1,6 @@
+- asdf:
+    - plugin: ansible-core
+      url: https://github.com/amrox/asdf-pyapp.git
+      global: latest
+      versions:
+        - latest
