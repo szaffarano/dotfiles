@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+source ~/.zshrc
+
 rofi_opts=(
    -dmenu
    -p "Power option"
