@@ -1,1 +1,4 @@
 use asdf
+
+local j=$(asdf which java)
+export JAVA_HOME="${j%/bin/java}"
