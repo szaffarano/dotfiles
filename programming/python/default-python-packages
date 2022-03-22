@@ -1,10 +1,12 @@
 ansible-lint
-git+http://github.com/phillipberndt/autorandr#egg=autorandr
 aws-login-tool
+boto3
+botocore
 bugwarrior
 cmake-language-server
 docker-compose
 elasticsearch
+git+http://github.com/phillipberndt/autorandr#egg=autorandr
 jira
 pip
 pygobject
