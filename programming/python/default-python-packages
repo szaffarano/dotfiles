@@ -1,8 +1,8 @@
+ansible
 ansible-lint
 aws-login-tool
 boto3
 botocore
 git+http://github.com/phillipberndt/autorandr#egg=autorandr
 pip
-pygobject
 pynvim
