@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source ~/.zshrc
+source ~/.exports.zsh
 
 rofi_opts=(
    -dmenu

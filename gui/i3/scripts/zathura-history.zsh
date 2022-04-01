@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source ~/.zshrc
+source ~/.exports.zsh
 
 zathura_history="$HOME/.local/share/zathura/history"
 
