@@ -63,6 +63,8 @@ case $(uname) in
     ;;
 esac
 
+export GOPASS_CLIPBOARD_COPY_CMD="gopass-copy"
+
 nnnPlugins=(
   'f:finder'
   'o:fzopen'

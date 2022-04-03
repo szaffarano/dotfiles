@@ -5,3 +5,11 @@
       global: latest
       versions:
         - latest
+- shell:
+    - [
+        gopass completion zsh > ~/.local/share/zsh/site-functions/_gopass,
+        Creating completion files,
+      ]
+
+- link:
+    ~/.config/gopass/config.yml: tools/gopass/config.yml
