@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source ~/.exports.zsh
+AUTORANDR="~/.asdf/shims/autorandr"
 
 rofi_opts=(
    -dmenu
@@ -14,12 +14,12 @@ rofi_opts=(
 
 declare -A display_modes_opts
 
-display_modes_opts["Dell U27 - Laptop Mirror"]="autorandr DELL_U2721DE-LAPTOP-MIRROR"
-display_modes_opts["Dell U27 -> Dell Laptop"]="autorandr DELL_U2721DE-LAPTOP"
-display_modes_opts["Dell U27"]="autorandr DELL_U2721DE"
-display_modes_opts["Dell U27 HDMI"]="autorandr DELL_U2721DE_HDMI"
-display_modes_opts["Dell Laptop"]="autorandr DELL_LAPTOP"
-display_modes_opts["Dell Laptop Old"]="autorandr DELL_LAPTOP_OLD"
+display_modes_opts["Dell U27 - Laptop Mirror"]="$AUTORANDR DELL_U2721DE-LAPTOP-MIRROR"
+display_modes_opts["Dell U27 -> Dell Laptop"]="$AUTORANDR DELL_U2721DE-LAPTOP"
+display_modes_opts["Dell U27"]="$AUTORANDR DELL_U2721DE"
+display_modes_opts["Dell U27 HDMI"]="$AUTORANDR DELL_U2721DE_HDMI"
+display_modes_opts["Dell Laptop"]="$AUTORANDR DELL_LAPTOP"
+display_modes_opts["Dell Laptop Old"]="$AUTORANDR DELL_LAPTOP_OLD"
 
 list=$(print -l ${(k)display_modes_opts} | sed s'/\"//g')
 action=$(echo $list | rofi ${rofi_opts[@]})
@@ -27,6 +27,7 @@ action=$(echo $list | rofi ${rofi_opts[@]})
 # exit if nothing is selected
 [[ -z $action ]] && exit
 
+echo $display_modes_opts["$action"]
 eval $display_modes_opts["$action"]
 
 exit 0
