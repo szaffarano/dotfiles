@@ -55,11 +55,18 @@
   features = villsau
   syntax-theme = gruvbox-dark
   side-by-side = false
+  navigate = true
 
   file-modified-label = modified:
 
 [interactive]
   diffFilter = delta --color-only
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+  colorMoved = default
 
 [push]
   default = simple
