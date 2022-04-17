@@ -32,7 +32,6 @@ function checkParamsAtLeast() {
 	fi
 }
 
-
 function checkParams() {
 	if [[ $1 -ne $2 ]]; then
 		usage
@@ -40,11 +39,10 @@ function checkParams() {
 	fi
 }
 
-
 function isValidFile() {
-  [[ -f "$1" ]] || die "$1: not found" 1
+	[[ -f "$1" ]] || die "$1: not found" 1
 }
 
 function isValidDir() {
-  [[ -d "$1" ]] || die "$1: not found" 2
+	[[ -d "$1" ]] || die "$1: not found" 2
 }

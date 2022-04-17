@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-
-read -r -d '' USAGE << EOM
+read -r -d '' USAGE <<EOM
 $(basename "$0") compares the files in two directories and list which ones that 
 don't exist in the second one
 
@@ -11,8 +10,10 @@ Usage:
 EOM
 export USAGE
 
-
-BASE=$( cd "$(dirname "$0")" || exit; pwd )
+BASE=$(
+	cd "$(dirname "$0")" || exit
+	pwd
+)
 
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
@@ -22,11 +23,10 @@ checkParams $# 2
 d1=$1
 d2=$2
 
-[[ -d  "$d1" ]] || die "$d1: must be a directory"
-[[ -d  "$d2" ]] || die "$d2: must be a directory"
+[[ -d "$d1" ]] || die "$d1: must be a directory"
+[[ -d "$d2" ]] || die "$d2: must be a directory"
 
-fd -t f -g '*' "$d1" | while read -r f
-do
-  s=$(basename $f)
-  [[ -e "$d2/$s"  ]] || echo "$f"
-done 
+fd -t f -g '*' "$d1" | while read -r f; do
+	s=$(basename $f)
+	[[ -e "$d2/$s" ]] || echo "$f"
+done

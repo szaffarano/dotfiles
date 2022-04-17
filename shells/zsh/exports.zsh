@@ -1,3 +1,4 @@
+export TERMINAL=kitty
 export EDITOR=nvim
 export LANG="en_US.UTF-8"
 
@@ -5,10 +6,16 @@ export GOPATH=$HOME/projects/go
 
 export PYTHON_VERSION=$(asdf current python | awk '{print $2}')
 
+export AWS_CLI_AUTO_PROMPT=on-partial
+export AWS_VAULT_BACKEND=pass
+
+PATH="$HOME/.asdf/installs/python/$PYTHON_VERSION/bin:$PATH"
+PATH="$HOME/.asdf/bin:$PATH"
+PATH="$HOME/.bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
-PATH="$HOME/.asdf/installs/python/$PYTHON_VERSION/bin:$PATH"
+PATH="$HOME/.tfenv/bin:$PATH"
 export PATH
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -44,15 +51,60 @@ export FZF_DEFAULT_OPTS
 
 # OS specific environment
 case $(uname) in
-    Linux)
-      export MESA_LOADER_DRIVER_OVERRIDE=i965
-      export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+  Linux)
+    export MESA_LOADER_DRIVER_OVERRIDE=i965
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-      PATH="$HOME/projects/git-toolbelt:$PATH"
-      export PATH
+    PATH="$HOME/projects/git-toolbelt:$PATH"
+    export PATH
     ;;
-    Darwin)
-      export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
+  Darwin)
+    export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
     ;;
 esac
 
+export GOPASS_CLIPBOARD_COPY_CMD="gopass-copy"
+
+nnnPlugins=(
+  'f:finder'
+  'o:fzopen'
+  'd:diffs'
+  't:nmount'
+  'p:preview-tui'
+  'r:renamer'
+)
+
+nnnBookmarks=(
+  'd:~/.dotfiles'
+  'p:~/projects'
+  'i:~/Pictures'
+  'D:~/Documents'
+)
+
+if [ -z "$NNN_BMS" ]; then
+  for b in $nnnBookmarks; do
+    if [ -z $NNN_BMS ]; then
+      NNN_BMS="$b"
+    else
+      NNN_BMS="$b;$NNN_BMS"
+    fi
+  done
+fi
+
+if [ -z "$NNN_PLUG" ]; then
+  for p in $nnnPlugins; do
+    if [ -z $NNN_PLUG ]; then
+      NNN_PLUG="$p"
+    else
+      NNN_PLUG="$p;$NNN_PLUG"
+    fi
+  done
+fi
+
+export NNN_PLUG
+export NNN_BMS
+export NNN_FIFO=/tmp/nnn.fifo
+
+export TFENV_AUTO_INSTALL=true
+
+export DC_API_TOKEN_COMMAND="get-keepass-entry sebas@zaffarano.com.ar https://daycaptain.com"

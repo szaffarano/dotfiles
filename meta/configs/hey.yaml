@@ -1,0 +1,6 @@
+- asdf:
+  - plugin: hey
+    url: https://github.com/raimon49/asdf-hey.git
+    global: v0.1.4
+    versions:
+      - v0.1.4

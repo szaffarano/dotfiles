@@ -6,6 +6,8 @@ setlocal foldenable
 setlocal foldlevel=2
 setlocal foldcolumn=4
 
+set foldlevelstart=20
+
 setlocal foldexpr=Fold(v:lnum)
 setlocal foldtext=VimwikiFoldTextCustom()
 
@@ -45,3 +47,5 @@ function! VimwikiFoldTextCustom() abort
     return main_text.len_text.content_text
   endif
 endfunction
+
+nnoremap <silent><buffer> <Leader>tbl :TaskWikiBufferLoad<CR>

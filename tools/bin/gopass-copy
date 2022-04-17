@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+
+local value=$(</dev/stdin)
+
+pbcopy () {
+	if [[ $OSTYPE == linux* && -r /proc/version && $(< /proc/version) == *[Mm]icrosoft* ]]
+	then
+		if ! xclip -selection clipboard -in 2> /dev/null
+		then
+			clip.exe
+		fi
+	elif (( ${+commands[xclip]} ))
+	then
+		xclip -selection clipboard -in
+	elif (( ${+commands[xsel]} ))
+	then
+		xsel -b
+	elif [[ $OSTYPE == darwin* ]]
+	then
+		command pbcopy
+	elif [[ $OSTYPE == (cygwin*|msys) ]]
+	then
+		tee > /dev/clipboard
+	fi
+}
+
+copyq disable
+echo -n $value | pbcopy
+copyq enable

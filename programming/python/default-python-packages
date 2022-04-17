@@ -1,9 +1,9 @@
-autorandr
+ansible
+ansible-lint
 aws-login-tool
-bugwarrior
-docker-compose
-pygobject
+boto3
+botocore
+libtmux
+git+http://github.com/phillipberndt/autorandr#egg=autorandr
+pip
 pynvim
-six
-tasklib
-taskw

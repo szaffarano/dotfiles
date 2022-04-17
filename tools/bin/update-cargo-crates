@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+cat ~/.default-cargo-crates | while read -r l
+do
+  eval cargo install $l
+done
+asdf reshim

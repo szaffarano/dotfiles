@@ -2,15 +2,18 @@
 
 set -e
 
-usage () {
-    echo "usage: git files <commit>" >&2
-    echo >&2
-    echo "List files modified by a given commit" >&2
-    echo >&2
+usage() {
+	echo "usage: git files <commit>" >&2
+	echo >&2
+	echo "List files modified by a given commit" >&2
+	echo >&2
 }
 
 commit="$@"
 
-[ -z "$commit" ] && (usage ; exit 3)
+[ -z "$commit" ] && (
+	usage
+	exit 3
+)
 
 git show --name-only --format="" $commit | sort -u

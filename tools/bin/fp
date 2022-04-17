@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-
-read -r -d '' USAGE << EOM
+read -r -d '' USAGE <<EOM
 $(basename "$0") find a certain pattern in all pom.xml files
 
 Usage:
@@ -10,8 +9,10 @@ Usage:
 EOM
 export USAGE
 
-
-BASE=$( cd "$(dirname "$0")" || exit; pwd )
+BASE=$(
+	cd "$(dirname "$0")" || exit
+	pwd
+)
 
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
@@ -21,11 +22,11 @@ checkParamsAtLeast $# 1
 pattern="$1"
 
 if [[ "$#" -gt 1 ]]; then
-    dir="$2"
+	dir="$2"
 else
-    dir="."
+	dir="."
 fi
 
 [[ -d $dir ]] || die "$dir: must be a valid path" 1
 
-fd pom.xml "$dir" -x ag -l "$pattern" {} 
+fd pom.xml "$dir" -x ag -l "$pattern" {}

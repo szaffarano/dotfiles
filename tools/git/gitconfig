@@ -1,84 +1,93 @@
 [include]
   path = ~/.gitconfig.local
 
+[core]
+  editor = nvim
+  pager = delta
+
 [color]
-	ui = auto
+  ui = auto
 
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+  current = yellow reverse
+  local   = yellow
+  remote  = green
 
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+  meta = yellow bold
+  frag = magenta bold
+  old  = red bold
+  new  = green bold
 
 [color "status"]
-	added = yellow
-	changed = red
-	untracked = cyan
+  added     = yellow
+  changed   = red
+  untracked = cyan
 
 [alias]
-	st = status
-	ci = commit
-	br = branch
-	co = checkout
-	df = diff
-	dc = diff --cached
-	lg = log -p
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-  loc = log --reverse --oneline --format="%h"
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	logo = log --pretty='format:%h %ad %s'
-	ls = ls-files
-	parent = log --pretty=%P -n 1 
-
-	ign = ls-files -o -i --exclude-standard
-
-	sho = show --name-only
-  shf = show --name-only --format=""
-	cpx = cherry-pick -x
-	cpa = cherry-pick --abort
-	cpc = cherry-pick --continue
+  st     = status
+  ci     = commit
+  br     = branch
+  co     = checkout
+  df     = diff
+  dc     = diff --cached
+  lg     = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  lol    = log --graph --decorate --pretty=oneline --abbrev-commit
+  loc    = log --reverse --oneline --format="%h"
+  lola   = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  logo   = log --pretty='format:%h %ad %s'
+  ls     = ls-files
+  parent = log --pretty=%P -n 1
+  ign    = ls-files -o -i --exclude-standard
+  sho    = show --name-only
+  shf    = show --name-only --format=""
+  cpx    = cherry-pick -x
+  cpa    = cherry-pick --abort
+  cpc    = cherry-pick --continue
+  cp     = commit -Ssebas@zaffarano.com.ar --author \"Sebastián Zaffarano <sebas@zaffarano.com.ar>\"
 
 [apply]
-	whitespace = nowarn
+  whitespace = nowarn
 
-[diff]
-	tool = vimdiff
+[delta]
+  line-numbers = true
+  # see: https://github.com/dandavison/delta/blob/master/themes.gitconfig
+  features = villsau
+  syntax-theme = gruvbox-dark
+  side-by-side = false
+  navigate = true
+
+  file-modified-label = modified:
+
+[interactive]
+  diffFilter = delta --color-only
 
 [merge]
-	tool = fugitive
+    conflictstyle = diff3
 
-[mergetool "fugitive"]
-	prompt = false
-	trustExitCode = true
-  cmd = nvim -f -c "Gdiff" "$MERGED"
-
-[difftool "vimdiff"]
-	trustExitCode = true
-  cmd = nvim -d $LOCAL $REMOTE
+[diff]
+  colorMoved = default
 
 [push]
-	default = simple
+  default = simple
 
 [log]
-	date = iso
-	abbrevCommit = true
+  date = iso
+  abbrevCommit = true
 
 [pull]
-	ff = only
+  ff = only
 
 [credential]
-	helper = keepassxc --unlock 0
+  helper = keepassxc --unlock 0
 
 [commit]
-	gpgsign = true
+  gpgsign = true
 
 [help]
-	autocorrect = 1
+  autocorrect = 1
 
 [init]
-	defaultBranch = main
+  defaultBranch = master
+
+# vim: ft=gitconfig

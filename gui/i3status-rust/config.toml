@@ -65,7 +65,16 @@ break_length  = 5
 notifier      = "notifysend"
 
 [[block]]
+interval = 15
+
+[[block]]
+block = "keyboard_layout"
+driver = "xkbswitch"
+format = "{layout} ({variant})"
+interval = 1
+
+[[block]]
 block    = "time"
 interval = 5
-format   = "%a %d/%m %R"
+format   = "%a %d/%m Work %R"
 on_click = "zenity --calendar"

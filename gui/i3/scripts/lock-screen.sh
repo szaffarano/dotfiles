@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
+
+source ~/.exports.zsh
 
 BASE="$HOME/.cache/lock"
 IMG="$BASE/locked.png"

@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+cat ~/.default-npm-packages | while read -r l
+do
+  eval npm -g install $l
+done
+asdf reshim

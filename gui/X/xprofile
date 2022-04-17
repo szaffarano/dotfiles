@@ -1,4 +1,7 @@
-PATH="$HOME/.asdf/shims:$PATH"
+TERMINAL="kitty"
+export TERMINAL
+
+PATH="$HOME/.bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 export PATH
 

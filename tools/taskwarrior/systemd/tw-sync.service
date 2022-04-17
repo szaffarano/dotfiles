@@ -2,7 +2,7 @@
 Description=tw-sync
 
 [Service]
-ExecStart=/usr/local/bin/task sync
+ExecStart="%h/.local/bin/sync-tw"
 Type=oneshot
 
 [Install]

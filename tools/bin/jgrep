@@ -2,27 +2,26 @@
 
 function usage() {
 	echo "Usage: "
-    echo "  $0 <pattern>"
-    echo "  $0 -d <directory> <pattern>"
+	echo "  $0 <pattern>"
+	echo "  $0 -d <directory> <pattern>"
 	exit 1
 }
 
-if [ $# -eq 1 ];then
+if [ $# -eq 1 ]; then
 	SEARCH_DIR="."
 	PATTERN="$1"
 elif [ $# -eq 2 ]; then
 	SEARCH_DIR="$2"
 	PATTERN="$1"
 else
-	usage;
+	usage
 fi
 
 echo "Searching on $SEARCH_DIR/*.jar files containing  \"$PATTERN\""
 
-find "$SEARCH_DIR" -name '*.jar' -type f | while read -r i
-do
+find "$SEARCH_DIR" -name '*.jar' -type f | while read -r i; do
 	jar tf "$i" 2>/dev/null 1>&2
-	if [ ! -f "$i" ]; then 
+	if [ ! -f "$i" ]; then
 		echo "Error reading file $i"
 	else
 		if [ "$(jar tvf "$i" | grep -c "$PATTERN")" -ne 0 ]; then

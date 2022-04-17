@@ -1,0 +1,15 @@
+aws-cdk
+bash-language-server
+dockerfile-language-server-nodejs
+gitbook
+gitbook-cli
+neovim
+prettier
+pyright
+quicktype
+@terraform-visual/cli
+typescript
+typescript-language-server
+vim-language-server
+vscode-langservers-extracted
+yaml-language-server

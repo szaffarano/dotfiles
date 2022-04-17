@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+function die {
+  echo "$1"
+  exit 1
+}
+
+BASE="$(dirname $(realpath $0))"
+LAYOUT="$BASE/KB_Programmer_Dvorak.png"
+LAYOUT="$BASE/KB_Dvorak.png"
+
+[ -f $LAYOUT ] || die "$LAYOUT: not found"
+
+pgrep -lfa $LAYOUT > /dev/null && die "Already running"
+
+feh --title 'kb-dvorak' $LAYOUT

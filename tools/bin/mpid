@@ -1,9 +1,10 @@
 #!/bin/bash
 
-FOUND=$(jps -v \
-	| grep Bootstrap \
-	| grep -v Studio \
-	| awk '{ print $1 }' \
+FOUND=$(
+	jps -v |
+		grep Bootstrap |
+		grep -v Studio |
+		awk '{ print $1 }'
 )
 
 M_INSTANCES=$(echo "$FOUND" | wc -w)

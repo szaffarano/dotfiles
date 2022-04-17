@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-
-read -r -d '' USAGE << EOM
+read -r -d '' USAGE <<EOM
 $(basename "$0") list the last N commits
 
 Usage:
@@ -9,7 +8,10 @@ Usage:
 EOM
 export USAGE
 
-BASE=$( cd "$(dirname "$0")" || exit; pwd )
+BASE=$(
+	cd "$(dirname "$0")" || exit
+	pwd
+)
 
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
@@ -18,4 +20,4 @@ checkParams $# 1
 
 n_commits="$1"
 
-git log HEAD~"$n_commits"..HEAD --oneline  --reverse | cut -d" " -f 1
+git log HEAD~"$n_commits"..HEAD --oneline --reverse | cut -d" " -f 1

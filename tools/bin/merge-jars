@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-
-read -r -d '' USAGE << EOM
+read -r -d '' USAGE <<EOM
 $(basename "$0") merges two or more jars in a new one
 
 Usage:
@@ -10,7 +9,10 @@ Usage:
 EOM
 export USAGE
 
-BASE=$( cd "$(dirname "$0")" || exit; pwd )
+BASE=$(
+	cd "$(dirname "$0")" || exit
+	pwd
+)
 
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
@@ -18,26 +20,25 @@ source "$BASE/common.sh"
 checkParamsAtLeast $# 3
 
 final=$(realpath "$1")
-jars=( "${@:2}" )
+jars=("${@:2}")
 
 pivot=$(mktemp -d)
 trap '{ rm -rf "$pivot"; }' EXIT
 
 list=()
 for jar in "${jars[@]}"; do
-  isValidFile "$jar"
-  list+=("$(realpath "$jar")")
+	isValidFile "$jar"
+	list+=("$(realpath "$jar")")
 done
 
-pushd > /dev/null "$pivot" || die "Error entering in temp dir"
+pushd >/dev/null "$pivot" || die "Error entering in temp dir"
 
 for jar in "${list[@]}"; do
-  echo -n "."
-  jar xf "$jar"
+	echo -n "."
+	jar xf "$jar"
 done
 
 jar cf "$final" .
 echo "done!"
 
-popd > /dev/null || die "Error returning to original dir"
-
+popd >/dev/null || die "Error returning to original dir"

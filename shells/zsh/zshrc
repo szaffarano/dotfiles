@@ -29,33 +29,31 @@ zplug "wfxr/forgit", defer:1
 # auto closes delimiters
 zplug 'hlissner/zsh-autopair', defer:2
 
-# zsh theme
-zplug "themes/ys", from:oh-my-zsh
-
-# timewarrior autocomplete
-zplug "svenXY/timewarrior"
-
-# taskwarrior autocomplete
-zplug "plugins/taskwarrior", from:oh-my-zsh
-
 # vi mode plug-in
 zplug "plugins/vi-mode", from:oh-my-zsh
 
 # some oh-my-zsh useful plug-ins
-zplug "lib/completion",  from:oh-my-zsh
-zplug "lib/grep",        from:oh-my-zsh
-zplug "lib/history",     from:oh-my-zsh
+zplug "lib/completion", from:oh-my-zsh
+zplug "lib/grep", from:oh-my-zsh
+zplug "lib/history", from:oh-my-zsh
 zplug "lib/directories", from:oh-my-zsh
+zplug "lib/prompt_info_functions", from:oh-my-zsh
+
+# zsh theme
+zplug "themes/ys", from:oh-my-zsh
 
 if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo
+    zplug install
+  fi
 fi
 
 zplug load
 ####  end zplug setup
+
+which aws_completer >/dev/null 2>&1 && complete -C aws_completer aws
 
 #
 # Custom configurations
@@ -66,21 +64,20 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
   autoload -Uz compinit
-  compinit
 fi
-
+compinit
 
 setopt rmstarsilent
 
 # mac keybindings
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	bindkey "^[^[[D" backward-word
-	bindkey "^[^[[C" forward-word
+  bindkey "^[^[[D" backward-word
+  bindkey "^[^[[C" forward-word
 
-	bindkey "^[a" beginning-of-line
-	bindkey "^[e" end-of-line
+  bindkey "^[a" beginning-of-line
+  bindkey "^[e" end-of-line
 
-	bindkey "ç" fzf-cd-widget
+  bindkey "ç" fzf-cd-widget
 fi
 
 #
@@ -104,7 +101,6 @@ fi
 
 # autosuggestions config
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
-ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # forgit config
 FORGIT_FZF_DEFAULT_OPTS="
@@ -120,8 +116,6 @@ VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
-[ -f ~/.asdf/plugins/java/set-java-home.zsh ] && . ~/.asdf/plugins/java/set-java-home.zsh
-
 [ -f ~/.nix-profile/etc/profile.d/nix.sh ] && source ~/.nix-profile/etc/profile.d/nix.sh
 
 ## bindkeys
@@ -134,3 +128,15 @@ if which tmux_sessions >/dev/null 2>&1; then
   zle -N new_tmux_session{,}
   bindkey  new_tmux_session
 fi
+
+[[ $commands[terraform] ]] && complete -o nospace -C $commands[terraform] terraform
+
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"
+
+command -v direnv >/dev/null && direnv() { asdf exec direnv "$@"; }
+
+autoload -U +X bashcompinit && bashcompinit
+
+complete -o nospace -C /home/sebas/.tfenv/versions/1.1.6/terraform terraform

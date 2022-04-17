@@ -1,6 +1,9 @@
 - asdf:
   - plugin: nodejs
 
+- link:
+    ~/.default-npm-packages: tools/npm/default-npm-packages
+
 - shell:
     - [$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring]
 

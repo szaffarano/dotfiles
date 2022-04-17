@@ -6,9 +6,9 @@ DEC_PATH="$DIRNAME/cfr-0.150.jar"
 DEC_URL="https://www.benf.org/other/cfr/$DEC_JAR"
 
 if [[ "$1" = "d" ]]; then
-	ARGS=( "--outputdir"  "${@:2}" )
+	ARGS=("--outputdir" "${@:2}")
 else
-	ARGS=( "${@}" )
+	ARGS=("${@}")
 fi
 
 [[ -f "$DEC_PATH" ]] || curl -L "$DEC_URL" -o "$DEC_PATH"

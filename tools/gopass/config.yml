@@ -1,0 +1,10 @@
+autoclip: false
+autoimport: true
+cliptimeout: 45
+exportkeys: false
+nopager: false
+notifications: true
+parsing: true
+path: ~/.password-store
+safecontent: false
+mounts: {}

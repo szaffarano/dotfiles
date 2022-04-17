@@ -1,24 +1,25 @@
 #!/usr/bin/env zsh
 
+source ~/.exports.zsh
+
 zathura_history="$HOME/.local/share/zathura/history"
 
 rofiopts=(
-   -dmenu
-   -p "Select PDF"
-   -i
-   -markup-rows
-   -lines 10
-   -bw 2 
-   -yoffset 2 
+  -dmenu
+  -p "Select PDF"
+  -i
+  -markup-rows
+  -lines 10
+  -bw 2
+  -yoffset 2
 )
 
 files=()
 
-cat $zathura_history | grep -Po '\[\K[^\]]*' | while read -r pdf
-do
-   if [ -f $pdf ]; then
-      files+=$pdf
-   fi
+cat $zathura_history | grep -Po '\[\K[^\]]*' | while read -r pdf; do
+  if [ -f $pdf ]; then
+    files+=$pdf
+  fi
 done
 
 selected=$(print -l $files | rofi ${rofiopts[@]})

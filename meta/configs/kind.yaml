@@ -1,0 +1,5 @@
+- asdf:
+  - plugin: kind
+    global: latest
+    versions:
+      - latest

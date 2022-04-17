@@ -18,10 +18,13 @@ set $screenshots ~/Pictures/Screenshots
 font pango: FontAwesome 11
 
 # configure touchpad
+exec --no-startup-id autorandr-launcher -p $shims/autorandr
+
+# configure touchpad
 exec --no-startup-id $scripts/touchpad.sh
 
 # lock the screen after 2 minutes
-exec --no-startup-id xset s on; xset s 120
+exec --no-startup-id xset s on; xset s 300
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $scripts/lock-screen.sh
 
 # start pulseaudio control
@@ -37,7 +40,7 @@ exec --no-startup-id dropbox start
 exec --no-startup-id run_keybase -a
 
 # start a terminal
-exec --no-startup-id alacritty -t Work 
+exec --no-startup-id i3-sensible-terminal -T=Work
 
 # configure thel wallpaper
 exec_always --no-startup-id $scripts/wallpaper.sh
@@ -63,8 +66,8 @@ bindsym XF86AudioMute			    exec pactl set-sink-mute   @DEFAULT_SINK@   toggle &
 bindsym XF86AudioMicMute		  exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # screenshots related bindings
-bindsym --release Shift+Print exec "$bin/screenshot.sh -s --output $screenshots"
-bindsym --release Print exec "$bin/screenshot.sh --output $screenshots"
+bindsym --release Shift+Print exec flameshot full -p $screenshots
+bindsym --release Print exec flameshot gui
 
 # configure media player control keys
 bindsym XF86AudioPlay			exec   playerctl play
@@ -78,6 +81,12 @@ bindsym XF86MonBrightnessDown   exec xbacklight -dec 20
 
 # shows a simple calendar
 bindsym $mod+t exec zenity --calendar
+
+# switch to querty layout
+bindsym $mod+Ctrl+q exec setxkbmap -layout us -variant altgr-intl -option nodeadkeys
+
+# switch to programmer dvorak layout
+bindsym $mod+Ctrl+d exec setxkbmap -layout us -variant dvorak-intl
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -241,11 +250,12 @@ bar {
 
 # assign windows to an specific workspace
 assign [class="Google-chrome"]            →	$web
-assign [class="Firefox"]                  →	$web
+assign [class="firefox"]                  →	$web
 assign [class="jetbrains-idea-ce"]        →	$dev
 assign [class="jetbrains-idea"]           →	$dev
+assign [class="jetbrains-datagrip"]       →	$dev
 assign [class="Code"]                     →	$dev
-assign [class="Alacritty" title="Work"]   →	$terms
+assign [class="kitty" title="Work"]       →	$terms
 assign [class="Joplin" instance="joplin"]	→ $office
 assign [class="libreoffice"]              → $office
 assign [class="Anki"]                     → $anki
@@ -260,6 +270,8 @@ for_window [class="^JetBrains Toolbox$"]               floating enable
 for_window [title="tracker - .*"]                      floating enable
 for_window [class="jetbrains-idea-ce" \
             title="Welcome to IntelliJ IDEA" ]         floating enable
+for_window [class="jetbrains-datagrip" \
+            title="Welcome to DataGrip" ]              floating enable
 for_window [class="jetbrains-idea" title="win0"]       floating enable
 for_window [class="jetbrains-goland" title="win0"]     floating enable
 for_window [class="Anki" title="Profiles"]             floating enable
@@ -269,18 +281,27 @@ for_window [class="Navigator" title=".*Audible.com.*"] floating enable
 for_window [class="KeePassXC"]                         floating enable
 for_window [class="keepassxc"]                         floating enable
 for_window [class="Blueman-manager"]                   floating enable
+for_window [class="flameshot"]                         floating enable
 
 #
 # scratchpads
 #
 # htop
-for_window [class="Alacritty" title="htop_scratchpad"] move to scratchpad, border none
-bindsym $mod+Shift+p [class="Alacritty" title="htop_scratchpad"] scratchpad show
+for_window [class="kitty" title="htop_scratchpad"] move to scratchpad, border none
+bindsym $mod+Shift+p [class="kitty" title="htop_scratchpad"] scratchpad show
 exec htop-scratchpad.sh
 
+# dvorak layout helper
+for_window [class="feh" title="kb-dvorak"] floating enable
+for_window [class="feh" title="kb-dvorak"] move to scratchpad, border none
+bindsym $mod+o [class="feh" title="kb-dvorak"] scratchpad show
+bindsym $mod+Shift+o exec show-dvorak
+exec show-dvorak
+
 # vim
-for_window [class="Alacritty" title="vim_scratchpad"] move to scratchpad, border none
-bindsym $mod+Shift+v [class="Alacritty" title="vim_scratchpad"] scratchpad show
+for_window [class="kitty" title="vim_scratchpad"] move to scratchpad, border none
+bindsym $mod+v [class="kitty" title="vim_scratchpad"] scratchpad show
+bindsym $mod+Shift+v exec vim-scratchpad.sh
 exec vim-scratchpad.sh
 
 # calculator
@@ -289,8 +310,8 @@ bindsym $mod+Shift+s [class="SpeedCrunch"] scratchpad show
 exec speedcrunch
 
 # spotify
-for_window [class="Alacritty" title="ncspot_scratchpad" window_type="normal"] move to scratchpad, border none
-bindsym $mod+m [class="Alacritty" title="ncspot_scratchpad"] scratchpad show
+for_window [class="kitty" title="ncspot_scratchpad" window_type="normal"] move to scratchpad, border none
+bindsym $mod+m [class="kitty" title="ncspot_scratchpad"] scratchpad show
 bindsym $mod+Shift+m exec ncspot-scratchpad.sh
 exec ncspot-scratchpad.sh
 
@@ -302,9 +323,11 @@ exec telegram-desktop
 # slack
 for_window [class="Slack" window_role="browser-window"] move to scratchpad, border none
 bindsym $mod+p [class="Slack" ] scratchpad show
-exec slack 
+exec slack -g error
 
 bindsym $mod+Shift+minus move scratchpad
 
 # rename parent conainer
 bindsym $mod+n exec $scripts/rename-parent-container.sh
+
+# vim: ft=i3config

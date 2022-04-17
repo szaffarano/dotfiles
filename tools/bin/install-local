@@ -2,7 +2,7 @@
 
 MVN="mvn"
 
-read -r -d '' USAGE << EOM
+read -r -d '' USAGE <<EOM
 $(basename "$0") installs an artifact in the local maven repository
 
 Usage:
@@ -11,15 +11,17 @@ Usage:
 EOM
 export USAGE
 
-BASE=$( cd "$(dirname "$0")" || exit; pwd )
+BASE=$(
+	cd "$(dirname "$0")" || exit
+	pwd
+)
 
 # shellcheck source=/dev/null
 source "$BASE/common.sh"
 
 checkParamsAtLeast $# 4
 
-whereis $MVN > /dev/null 2>&1 || die "MVN not found" 1
-
+whereis $MVN >/dev/null 2>&1 || die "MVN not found" 1
 
 GID="$1"
 AID="$2"
@@ -28,8 +30,8 @@ PKG="$4"
 FILE="$5"
 
 $MVN install:install-file \
-		-DartifactId="$AID" \
-		-DgroupId="$GID" \
-		-Dversion="$VER" \
-		-Dpackaging="$PKG" \
-		-Dfile="$FILE"
+	-DartifactId="$AID" \
+	-DgroupId="$GID" \
+	-Dversion="$VER" \
+	-Dpackaging="$PKG" \
+	-Dfile="$FILE"

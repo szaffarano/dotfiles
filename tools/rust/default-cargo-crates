@@ -1,3 +1,8 @@
 --git https://github.com/greshake/i3status-rust 
---git https://github.com/hrkfdn/ncspot
+--git https://github.com/hrkfdn/ncspot --features="share_clipboard,pulseaudio_backend,mpris,notify,cursive/pancurses-backend,cover"
 --git https://github.com/frederick888/git-credential-keepassxc --features notification,strict-caller
+git-delta
+tealdeer
+stylua
+du-dust
+tokei

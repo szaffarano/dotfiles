@@ -1,10 +1,8 @@
-""" @TODO: add comments explaining configurations
-
 set relativenumber
 
+map <space> <leader>
+
 noremap <Esc> <nop>
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
 
 nnoremap <C-j> :m +1<CR>
 nnoremap <C-k> :m -2<CR>
@@ -39,12 +37,7 @@ set smartcase
 set incsearch
 set hlsearch
 
-inoremap jk <Esc>
-inoremap kj <Esc>
-
-map <space> <leader>
-
-map <esc> :noh<cr>
+map <C-l> :noh<cr>
 
 set ideajoin
 set ideastatusicon=gray
@@ -61,20 +54,21 @@ map  <leader>o  <Action>(FileStructurePopup)
 map  <leader>r  <Action>(RenameElement)
 map  <leader>s  <Action>(SelectInProjectView)
 map  <leader>z  <Action>(ToggleDistractionFreeMode)
-map  <S-Space>  <Action>(GotoNextError)
+nmap <leader>/ <Action>(ShowErrorDescription)
 nmap <leader>bd <Action>(CloseEditor)
-nmap <leader>h  <Action>(PreviousTab)
-nmap <leader>l  <Action>(NextTab)
+nmap <leader>e <Action>(GotoNextError)
+nmap <leader>h <Action>(PreviousTab)
+nmap <leader>i <Action>(Generate)
+nmap <leader>l <Action>(NextTab)
+nmap <leader>g <Action>(Git.Menu)
+vmap <leader>g <Action>(Git.Menu)
+nmap <leader>s <Action>(QuickChangeScheme)
+nnoremap <leader><leader> <C-Tab>
 
 set scrolloff=5
 
 map Q gq
 
-" extensions
 set surround
-
-set NERDTree
-let g:NERDTreeMapActivateNode='l'
-let g:NERDTreeMapJumpParent='h'
 
 # vim: ft=vim

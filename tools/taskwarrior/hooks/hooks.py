@@ -3,8 +3,8 @@ Common code to write task warrios hooks
 Inspired on timewarrior 
 see https://github.com/mpoquet/taskwarrior-scripts/blob/master/hook-on-modify-timewarrior.py
 '''
-import json
 import sys
+
 
 def retrieve_args_dict():
     '''Read process arguments and store them in a dictionary.'''
@@ -17,5 +17,3 @@ def retrieve_args_dict():
             value = ''.join(splitted[1:])
             dictionary[key] = value
     return dictionary
-
-
