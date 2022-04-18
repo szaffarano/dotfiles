@@ -3,13 +3,7 @@
     ~/.gitattributes: tools/git/gitattributes
 
 - asdf:
-  - plugin: git
-    global: latest
-    versions:
-      - latest
-- asdf:
-  - plugin: pre-commit
-    global: latest
-    versions:
-      - latest
-
+    - plugin: git
+      global: latest
+      versions:
+        - latest

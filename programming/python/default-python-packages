@@ -6,4 +6,5 @@ botocore
 libtmux
 git+http://github.com/phillipberndt/autorandr#egg=autorandr
 pip
+pre-commit
 pynvim
