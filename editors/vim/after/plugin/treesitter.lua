@@ -5,7 +5,7 @@ if not ok then
 end
 
 ts_configs.setup({
-  ensure_installed = "maintained",
+  ensure_installed = "all",
 
   highlight = {
     enable = true,
