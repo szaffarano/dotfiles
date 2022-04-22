@@ -1,4 +1,3 @@
-source "$(asdf direnv hook asdf)"
 export DIRENV_LOG_FORMAT=""
 
 # vim: ft=shell
