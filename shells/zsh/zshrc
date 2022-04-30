@@ -23,8 +23,11 @@ zplug "zsh-users/zsh-autosuggestions"
 # interactive CLI git
 zplug "wfxr/forgit", defer:1
 
-# autostart tmux
-#zplug "zpm-zsh/tmux"
+# some useful autocompletions
+zplug "zsh-users/zsh-completions"
+
+# jump between folders
+zplug "Tarrasch/zsh-bd"
 
 # auto closes delimiters
 zplug 'hlissner/zsh-autopair', defer:2
@@ -52,6 +55,13 @@ fi
 
 zplug load
 ####  end zplug setup
+
+setopt AUTO_PUSHD        # Push the current directory visited on the stack.
+setopt PUSHD_IGNORE_DUPS # Do not store duplicates in the stack.
+setopt PUSHD_SILENT      # Do not print the directory stack after pushd or popd.
+
+alias d='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 which aws_completer >/dev/null 2>&1 && complete -C aws_completer aws
 

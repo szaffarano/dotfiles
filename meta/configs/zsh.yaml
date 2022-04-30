@@ -4,6 +4,7 @@
 - link:
     # zsh
     ~/.zshrc: shells/zsh/zshrc
+    ~/.zshenv: shells/zsh/zshenv
     ~/.exports.zsh: shells/zsh/exports.zsh
     ~/.aliases.zsh: shells/zsh/aliases.zsh
     ~/.p10k.zsh: shells/zsh/p10k.zsh
