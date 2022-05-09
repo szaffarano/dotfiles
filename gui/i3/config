@@ -329,6 +329,10 @@ for_window [class="Slack" window_role="browser-window"] move to scratchpad, bord
 bindsym $mod+p [class="Slack" ] scratchpad show
 exec slack -g error
 
+# logseq
+for_window [class="Logseq" window_role="browser-window"] move to scratchpad, border none
+bindsym $mod+g [class="Logseq" ] scratchpad show
+
 bindsym $mod+Shift+minus move scratchpad
 
 # rename parent conainer
