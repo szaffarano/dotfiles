@@ -9,9 +9,9 @@
 
 - asdf:
   - plugin: nodejs
-    global: latest
+    global: lts-gallium
     versions:
-      - latest
+      - lts-gallium
 
   - plugin: yarn
     global: latest
