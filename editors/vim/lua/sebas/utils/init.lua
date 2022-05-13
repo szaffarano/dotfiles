@@ -24,9 +24,9 @@ local function format()
 
   for _, client in pairs(clients) do
     if debug then
-      print(dump(client.resolved_capabilities))
+      print(dump(client.server_capabilities))
     end
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.document_formatting then
       lsp_format = true
       break
     end

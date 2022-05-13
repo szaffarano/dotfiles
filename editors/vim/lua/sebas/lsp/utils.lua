@@ -48,7 +48,7 @@ function M.lsp_diagnostics()
 end
 
 function M.lsp_highlight(client)
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     vim.api.nvim_exec(
       [[
         hi LspReferenceRead cterm=bold ctermbg=red guibg=#282f45
@@ -87,8 +87,8 @@ function M.lsp_config(client, bufnr)
   -- whichkey.register_lsp(client)
 
   if avoid_lsp_formatting[client.name] ~= nil then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
   end
 
   vim.cmd([[
