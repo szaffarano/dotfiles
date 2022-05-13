@@ -21,6 +21,8 @@ display_modes_opts["Dell U27 HDMI"]="$AUTORANDR DELL_U2721DE_HDMI"
 display_modes_opts["Dell Laptop"]="$AUTORANDR DELL_LAPTOP"
 display_modes_opts["Dell Laptop Old"]="$AUTORANDR DELL_LAPTOP_OLD"
 display_modes_opts["Samsung"]="$AUTORANDR SAMSUNG"
+display_modes_opts["Viewsonic"]="$AUTORANDR VIEWSONIC"
+display_modes_opts["Dell Wide"]="$AUTORANDR DELL_WIDE"
 
 list=$(print -l ${(k)display_modes_opts} | sed s'/\"//g')
 action=$(echo $list | rofi ${rofi_opts[@]})
