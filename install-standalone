@@ -11,6 +11,7 @@ ENV="$BASE_DIR/install.env"
 . "$ENV"
 
 updateSubmodules
+updateAsdfPlugins
 
 for config in "${@}"; do
   applyConfig "$config"

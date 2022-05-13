@@ -15,6 +15,7 @@ PROFILE="$META_DIR/$PROFILES_DIR/$1"
 [[ -f "$PROFILE" ]] || (echo "$PROFILE: not found" && exit 1)
 
 updateSubmodules
+updateAsdfPlugins
 
 echo -e "\nApplying profile $(basename "$PROFILE")..."
 
