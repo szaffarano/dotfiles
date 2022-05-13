@@ -1,19 +1,16 @@
 - asdf:
-  - plugin: nodejs
+    - plugin: nodejs
 
 - link:
     ~/.default-npm-packages: tools/npm/default-npm-packages
 
-- shell:
-    - [$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring]
-
 - asdf:
-  - plugin: nodejs
-    global: lts-gallium
-    versions:
-      - lts-gallium
+    - plugin: nodejs
+      global: lts
+      versions:
+        - lts
 
-  - plugin: yarn
-    global: latest
-    versions:
-      - latest
+    - plugin: yarn
+      global: latest
+      versions:
+        - latest
