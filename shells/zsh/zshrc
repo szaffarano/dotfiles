@@ -1,5 +1,7 @@
 export fpath=($HOME/.local/share/zsh/site-functions ~/.asdf/completions $fpath)
 
+[ -f "$HOME/.asdf/asdf.sh" ] && source $HOME/.asdf/asdf.sh
+
 ####  zplug setup
 [ -f ~/.zplug/init.zsh ] && source ~/.zplug/init.zsh
 
@@ -10,9 +12,6 @@ zplug "mafredri/zsh-async", defer:0
 
 # syntax highlight in the terminal
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
-
-# package manager for go, java, etc.
-zplug "kiurchv/asdf.plugin.zsh", defer:2
 
 # flexible clipboard use from CLI
 zplug "zpm-zsh/clipboard"
@@ -72,10 +71,8 @@ which aws_completer >/dev/null 2>&1 && complete -C aws_completer aws
 # brew autocomplete
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-  autoload -Uz compinit
 fi
-compinit
+autoload -Uz compinit && compinit
 
 setopt rmstarsilent
 
@@ -143,7 +140,6 @@ fi
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
-autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C "$HOME/.tfenv/bin/terraform" terraform
 
-complete -o nospace -C /home/sebas/.tfenv/versions/1.1.6/terraform terraform
 source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
