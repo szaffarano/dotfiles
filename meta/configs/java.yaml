@@ -1,7 +1,7 @@
 - asdf:
   - plugin: java
-    global: temurin-11.0.13+8
+    global: temurin-11.0.15+10
     versions:
-      - temurin-17.0.0+35
-      - temurin-11.0.13+8
+      - temurin-17.0.3+7
+      - temurin-11.0.15+10
 
