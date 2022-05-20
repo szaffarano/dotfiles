@@ -62,7 +62,7 @@ format      = "{percentage} {time}"
 block         = "pomodoro"
 length        = 25
 break_length  = 5
-notifier      = "notifysend"
+notifier      = "i3nag"
 
 [[block]]
 interval = 15
