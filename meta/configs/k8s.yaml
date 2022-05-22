@@ -11,3 +11,11 @@
     global: latest
     versions:
       - latest
+  - plugin: krew
+    global: latest
+    versions:
+      - latest
+  - plugin: stern
+    global: latest
+    versions:
+      - latest

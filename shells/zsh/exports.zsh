@@ -16,6 +16,7 @@ PATH="$HOME/.local/bin:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
 PATH="$HOME/.tfenv/bin:$PATH"
+PATH="$HOME/.krew/bin:$PATH"
 export PATH
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
