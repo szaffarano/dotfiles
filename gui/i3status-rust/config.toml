@@ -5,15 +5,6 @@ name = "plain"
 name = "awesome"
 
 [[block]]
-block = "backlight"
-device = "intel_backlight"
-
-[[block]]
-block = "music"
-player = "ncspot"
-buttons = ["play", "next"]
-
-[[block]]
 block     = "disk_space"
 path      = "/"
 info_type = "available"
@@ -46,12 +37,6 @@ interval = 1
 format   = "{1m}"
 
 [[block]]
-block = "sound"
-
-[[block]]
-block = "temperature"
-
-[[block]]
 block       = "battery"
 interval    = 10
 driver      = "upower"
@@ -65,9 +50,6 @@ break_length  = 5
 notifier      = "notifysend"
 
 [[block]]
-interval = 15
-
-[[block]]
 block = "keyboard_layout"
 driver = "xkbswitch"
 format = "{layout} ({variant})"
@@ -76,5 +58,5 @@ interval = 1
 [[block]]
 block    = "time"
 interval = 5
-format   = "%a %d/%m Work %R"
+format   = "%a %d/%m %R"
 on_click = "zenity --calendar"
