@@ -73,6 +73,14 @@ function M.setup(bootstrap)
     use("tamago324/cmp-zsh")
     use("ray-x/cmp-treesitter")
 
+    -- Golang
+    use("ray-x/go.nvim")
+    use("ray-x/guihua.lua")
+    use("mfussenegger/nvim-dap")
+    use("rcarriga/nvim-dap-ui")
+    use("theHamsta/nvim-dap-virtual-text")
+    -- use("nvim-telescope/telescope-dap.nvim")
+
     -- Adds vscode-like pictograms to neovim built-in lsp:
     use("onsails/lspkind-nvim")
 
