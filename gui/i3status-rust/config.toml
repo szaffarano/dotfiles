@@ -1,62 +1,39 @@
-[theme]
-name = "plain"
-
-[icons]
-name = "awesome"
+theme = "space-villain"
+icons = "awesome"
 
 [[block]]
-block     = "disk_space"
-path      = "/"
-info_type = "available"
-format    = "{icon} {available}"
-unit      = "GB"
-interval  = 20
-warning   = 50.0
-alert     = 20.0
+block      = "disk_space"
+alert_unit = "GB"
+warning    = 50.0
+alert      = 20.0
 
 [[block]]
-block         = "memory"
-format_mem    = "{mem_used_percents}"
-format_swap   = "{swap_used_percents}"
-display_type  = "memory"
-icons         = true
-clickable     = true
-interval      = 5
-warning_mem   = 80
-warning_swap  = 80
-critical_mem  = 95
-critical_swap = 95
+block       = "memory"
+format_mem  = "$mem_free.eng(3,B,M)($mem_total_used_percents.eng(2))"
+format_swap = "$swap_free.eng(3,B,M)($swap_used_percents.eng(2))"
 
 [[block]]
 block    = "cpu"
 interval = 1
+format = "$barchart.str() $utilization.eng()"
+format_alt = "$frequency.eng() \\|$boost.str()"
 
 [[block]]
 block    = "load"
-interval = 1
-format   = "{1m}"
+format   = "$1m"
 
 [[block]]
 block       = "battery"
-interval    = 10
-driver      = "upower"
-device      = "DisplayDevice"
-format      = "{percentage} {time}"
+format = "$percentage|N/A"
 
 [[block]]
-block         = "pomodoro"
-length        = 25
-break_length  = 5
-notifier      = "notifysend"
-
-[[block]]
-block = "keyboard_layout"
-driver = "xkbswitch"
-format = "{layout} ({variant})"
-interval = 1
+block = "pomodoro"
+notify_cmd = "notify-send '{msg}'"
+blocking_cmd = false
 
 [[block]]
 block    = "time"
-interval = 5
-format   = "%a %d/%m %R"
-on_click = "zenity --calendar"
+interval = 10
+[block.format]
+full   = "%a %d/%m %R"
+short = "%R"
