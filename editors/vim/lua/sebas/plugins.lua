@@ -126,7 +126,7 @@ function M.setup(bootstrap)
     use("farmergreg/vim-lastplace")
 
     -- github copilot
-    use("github/copilot.vim")
+    -- use("github/copilot.vim")
 
     if bootstrap then
       packer.sync()
