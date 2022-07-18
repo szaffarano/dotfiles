@@ -9,8 +9,8 @@ alert      = 20.0
 
 [[block]]
 block       = "memory"
-format_mem  = "$mem_free.eng(3,B,M)($mem_total_used_percents.eng(2))"
-format_swap = "$swap_free.eng(3,B,M)($swap_used_percents.eng(2))"
+format_mem  = "$mem_avail.eng(3,B,M)($mem_avail_percents.eng(2))"
+format_swap = "$swap_free.eng(3,B,M)($swap_free_percents.eng(2))"
 
 [[block]]
 block    = "cpu"
@@ -28,8 +28,8 @@ format = "$percentage|N/A"
 
 [[block]]
 block = "pomodoro"
-notify_cmd = "notify-send '{msg}'"
-blocking_cmd = false
+notify_cmd = "i3-nagbar -m '{msg}' -t warning"
+blocking_cmd = true
 
 [[block]]
 block    = "time"
