@@ -1,4 +1,7 @@
+[theme]
 theme = "semi-native"
+
+[icons]
 icons = "awesome"
 
 [[block]]
