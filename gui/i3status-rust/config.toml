@@ -38,13 +38,5 @@ blocking_cmd = true
 block    = "time"
 interval = 10
 [block.format]
-full   = "%a %d/%m %R [work]"
-short = "%R"
-
-[[block]]
-block    = "time"
-timezone = "America/Buenos_Aires"
-interval = 10
-[block.format]
-full   = "%a %d/%m %R [home]"
+full   = "%a %d/%m %R"
 short = "%R"
