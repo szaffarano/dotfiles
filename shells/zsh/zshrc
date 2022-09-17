@@ -144,3 +144,7 @@ fi
 complete -o nospace -C "$HOME/.tfenv/bin/terraform" terraform
 
 source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
