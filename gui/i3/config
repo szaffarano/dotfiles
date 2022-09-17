@@ -74,8 +74,8 @@ bindsym --release Shift+Print exec flameshot full -p $screenshots
 bindsym --release Print exec flameshot gui
 
 # configure media player control keys
-bindsym XF86AudioPlay			exec   playerctl play
-bindsym XF86AudioPause	  exec   playerctl stop
+bindsym XF86AudioPlay			exec   playerctl play-pause
+bindsym XF86AudioPause	  exec   playerctl pause
 bindsym XF86AudioNext			exec   playerctl next
 bindsym XF86AudioPrev			exec   playerctl previous
 
