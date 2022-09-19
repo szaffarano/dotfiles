@@ -5,6 +5,11 @@ theme = "semi-native"
 icons = "awesome"
 
 [[block]]
+block = "music"
+format = "$combo.rot-str(20) $play $next|"
+player = "ncspot"
+
+[[block]]
 block      = "disk_space"
 alert_unit = "GB"
 warning    = 50.0
