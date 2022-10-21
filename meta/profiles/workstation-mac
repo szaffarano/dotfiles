@@ -4,6 +4,7 @@ bin
 copyq
 fd
 fish
+flameshot
 fzf
 git
 github-cli
