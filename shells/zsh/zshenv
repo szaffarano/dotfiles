@@ -7,3 +7,5 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 
 export KEYTIMEOUT=1
+
+source "$HOME/.cargo/env"
