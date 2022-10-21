@@ -35,7 +35,7 @@ end
 function M.setup(installed_server)
   installed_server:setup({})
 
-  return require("lua-dev").setup(config(installed_server))
+  return require("neodev").setup(config(installed_server))
 end
 
 return M

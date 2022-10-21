@@ -37,7 +37,7 @@ function M.setup(bootstrap)
 
     use("williamboman/nvim-lsp-installer")
     use("ray-x/lsp_signature.nvim")
-    use("folke/lua-dev.nvim")
+    use("folke/neodev.nvim")
 
     -- Statusline
     use({
