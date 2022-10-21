@@ -65,7 +65,10 @@ opt.linebreak = true
 
 opt.belloff = "all" -- Just turn the dang bell off
 
-opt.clipboard = "unnamed" -- linux secondary clipboard
+if not vim.fn.has('macunix')
+then
+  opt.clipboard = "unnamed" -- linux secondary clipboard
+end
 
 opt.inccommand = "split"
 opt.shada = { "!", "'1000", "<50", "s10", "h" }
