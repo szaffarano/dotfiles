@@ -39,10 +39,6 @@ zplug "lib/completion", from:oh-my-zsh
 zplug "lib/grep", from:oh-my-zsh
 zplug "lib/history", from:oh-my-zsh
 zplug "lib/directories", from:oh-my-zsh
-zplug "lib/prompt_info_functions", from:oh-my-zsh
-
-# zsh theme
-zplug "themes/ys", from:oh-my-zsh
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
@@ -101,9 +97,6 @@ fi
 # Aliases
 [ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
 
-# Local configurations
-[ -f ~/.zshrc_local ] && source ~/.zshrc_local
-
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -143,8 +136,14 @@ fi
 
 complete -o nospace -C "$HOME/.tfenv/bin/terraform" terraform
 
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
-
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
+
+# Local configurations
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+eval "$(direnv hook zsh)"
+
+eval "$(starship init zsh)"
+
