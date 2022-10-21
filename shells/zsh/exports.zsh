@@ -4,13 +4,11 @@ export LANG="en_US.UTF-8"
 
 export GOPATH=$HOME/projects/go
 
-export PYTHON_VERSION=$(asdf current python | awk '{print $2}')
-
 export AWS_CLI_AUTO_PROMPT=on-partial
 export AWS_VAULT_BACKEND=pass
 
-PATH="$HOME/.asdf/installs/python/$PYTHON_VERSION/bin:$PATH"
 PATH="$HOME/.asdf/bin:$PATH"
+PATH="$HOME/.asdf/shims:$PATH"
 PATH="$HOME/.bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="/usr/local/bin:$PATH"
