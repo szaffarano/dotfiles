@@ -101,3 +101,5 @@ alias n="n -GdR"
 alias t=dstask
 
 command -v kubecolor >/dev/null 2>&1 && alias kubectl="kubecolor"
+
+alias k=kubectl
