@@ -23,6 +23,7 @@ rust
 scala
 shellcheck
 ssh-mac
+starship
 taskwarrior
 tmux
 youtube-dl
