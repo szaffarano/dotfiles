@@ -2,139 +2,102 @@ local M = {}
 
 local ok, packer = pcall(require, "packer")
 if not ok then
-  print("packer plugin is not installed")
-  return M
+	print("packer plugin is not installed")
+	return M
 end
 
-function M.setup(bootstrap)
-  local conf = {
-    display = {
-      open_fn = function()
-        return require("packer.util").float({ border = "rounded" })
-      end,
-    },
-  }
+function M.setup(is_bootstrap)
+	local conf = {
+		display = {
+			open_fn = function()
+				return require("packer.util").float({ border = "rounded" })
+			end,
+		},
+	}
 
-  local function plugins(use)
-    -- Packer can manage itself
-    use("wbthomason/packer.nvim")
+	local function plugins(use)
+		-- Speed up loading Lua modules in Neovim to improve startup time.
+		use("lewis6991/impatient.nvim")
 
-    -- Speed up loading Lua modules in Neovim to improve startup time.
-    use("lewis6991/impatient.nvim")
+		-- GnuPG transparent encryption
+		use("jamessan/vim-gnupg")
 
-    -- GnuPG transparent encryption
-    use("jamessan/vim-gnupg")
+		use("wbthomason/packer.nvim")
 
-    -- LSP configs
-    use({
-      "neovim/nvim-lspconfig",
+		-- Git integration
+		use("tpope/vim-fugitive") -- Git commands in nvim
+		use("tpope/vim-rhubarb") -- Fugitive-companion to interact with github
+		use("lewis6991/gitsigns.nvim") -- Add git related info in the signs columns and popups
 
-      config = function()
-        require("sebas.lsp").setup()
-        -- require("config.dap").setup()
-      end,
-    })
+		use("numToStr/Comment.nvim")
 
-    use("williamboman/nvim-lsp-installer")
-    use("ray-x/lsp_signature.nvim")
-    use("folke/neodev.nvim")
+		-- Highlight, edit, and navigate code
+		use("nvim-treesitter/nvim-treesitter")
+		use({ "nvim-treesitter/nvim-treesitter-textobjects", after = { "nvim-treesitter" } }) -- Additional textobjects for treesitter
 
-    -- Statusline
-    use({
-      "nvim-lualine/lualine.nvim",
-      requires = { "kyazdani42/nvim-web-devicons", opt = true }, -- icons support
-    })
+		-- Lsp stuff
+		use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
+		use("williamboman/mason.nvim") -- Manage external editor tooling i.e LSP servers
+		use("williamboman/mason-lspconfig.nvim") -- Automatically install language servers to stdpath
 
-    -- Color scheme
-    use("marko-cerovac/material.nvim")
+		-- Autocompletion
+		use({ "hrsh7th/nvim-cmp", requires = { "hrsh7th/cmp-nvim-lsp" } })
+		use("hrsh7th/cmp-buffer")
+		use("hrsh7th/cmp-path")
+		use("hrsh7th/cmp-nvim-lua")
+		use("hrsh7th/cmp-nvim-lsp")
+		use("hrsh7th/cmp-nvim-lsp-document-symbol")
+		use("saadparwaiz1/cmp_luasnip")
+		use("tamago324/cmp-zsh")
 
-    -- Fugitive for Git
-    use("tpope/vim-fugitive")
-    use("rbong/vim-flog")
-    use("tpope/vim-rhubarb")
+		-- Snippet Engine and Snippet Expansion
+		use({ "L3MON4D3/LuaSnip", requires = { "saadparwaiz1/cmp_luasnip" } })
+		use("rafamadriz/friendly-snippets")
 
-    -- Git decorations
-    use("lewis6991/gitsigns.nvim")
+		use("tpope/vim-unimpaired") -- Useful mappings
 
-    -- Startup screen
-    use("mhinz/vim-startify")
+		use("godlygeek/tabular") -- Alignment
 
-    -- tree-sitter support
-    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+		use("farmergreg/vim-lastplace") -- reopen files at last edites positions
 
-    -- Autocompletion
-    use("hrsh7th/nvim-cmp")
-    use("hrsh7th/cmp-buffer")
-    use("hrsh7th/cmp-path")
-    use("hrsh7th/cmp-nvim-lua")
-    use("hrsh7th/cmp-nvim-lsp")
-    use("hrsh7th/cmp-nvim-lsp-document-symbol")
-    use("saadparwaiz1/cmp_luasnip")
-    use("tamago324/cmp-zsh")
-    use("ray-x/cmp-treesitter")
+		use("joshdick/onedark.vim")
 
-    -- Golang
-    use("ray-x/go.nvim")
-    use("ray-x/guihua.lua")
-    use("mfussenegger/nvim-dap")
-    use("rcarriga/nvim-dap-ui")
-    use("theHamsta/nvim-dap-virtual-text")
-    -- use("nvim-telescope/telescope-dap.nvim")
+		use("nvim-lualine/lualine.nvim") -- Fancier statusline
 
-    -- Adds vscode-like pictograms to neovim built-in lsp:
-    use("onsails/lspkind-nvim")
+		use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
 
-    -- Comparators
-    use("lukas-reineke/cmp-under-comparator")
+		use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
 
-    -- Snippets
-    use("L3MON4D3/LuaSnip")
-    use("rafamadriz/friendly-snippets")
+		-- Fuzzy Finder (files, lsp, etc)
+		use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { "nvim-lua/plenary.nvim" } })
+		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable("make") == 1 })
 
-    -- Telescope
-    use({
-      "nvim-telescope/telescope.nvim",
-      requires = { { "nvim-lua/plenary.nvim" } },
-    })
-    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-    use("nvim-telescope/telescope-packer.nvim")
-    use({ "nvim-telescope/telescope-file-browser.nvim" })
-    use({
-      "nvim-telescope/telescope-frecency.nvim",
-      requires = { "tami5/sqlite.lua" },
-    })
+		-- Automatically highlighting other uses of the word under the cursor
+		use("RRethy/vim-illuminate")
 
-    -- Format code
-    use("sbdchd/neoformat")
+		if is_bootstrap then
+			packer.sync()
+		end
+	end
 
-    -- Terminal
-    use("voldikss/vim-floaterm")
+	local reloadPlugins = function()
+		vim.cmd([[ source $MYVIMRC ]])
+		require("plenary.reload").reload_module("sebas.plugins")
+		packer.compile()
+		packer.sync()
+	end
 
-    -- Wiki
-    use("vimwiki/vimwiki")
+	-- Automatically source and re-compile packer whenever you save this init.lua
+	local packer_group = vim.api.nvim_create_augroup("Packer", { clear = true })
+	vim.api.nvim_create_autocmd("BufWritePost", {
+		callback = reloadPlugins,
+		group = packer_group,
+		pattern = "*/sebas/plugins.lua",
+	})
 
-    -- Useful mappings
-    use("tpope/vim-unimpaired")
-
-    -- Alignment
-    use("godlygeek/tabular")
-
-    -- Manage comments
-    use("numToStr/Comment.nvim")
-
-    -- reopen files at last edites positions
-    use("farmergreg/vim-lastplace")
-
-    -- github copilot
-    -- use("github/copilot.vim")
-
-    if bootstrap then
-      packer.sync()
-    end
-  end
-
-  packer.init(conf)
-  packer.startup(plugins)
+	packer.init(conf)
+	packer.reset()
+	packer.startup(plugins)
 end
 
 return M

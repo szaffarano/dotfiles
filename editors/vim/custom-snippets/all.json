@@ -1,7 +1,0 @@
-{
-  "secure-file": {
-    "prefix": "cf",
-    "body": "vim: noswapfile nobackup nowritebackup viminfo= noundofile",
-    "description": "Add local vim configurations to avoid security risks"
-  }
-}

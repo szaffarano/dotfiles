@@ -1,18 +1,19 @@
-local ok, material = pcall(require, "material")
+local ok, lualine = pcall(require, "lualine")
 if not ok then
-  print("material plugin is not installed")
-  return
+	print("lualine plugin is not installed")
+	return
 end
 
-vim.opt.termguicolors = true
+vim.o.termguicolors = true
+vim.cmd([[ colorscheme onedark ]])
 
-vim.g.material_style = "oceanic"
-
-material.setup({
-  italics = {
-    comments = true,
-  },
-  lualine_style = "stealth",
+-- Set lualine as statusline
+-- See `:help lualine.txt`
+lualine.setup({
+	options = {
+		icons_enabled = false,
+		theme = "onedark",
+		component_separators = "|",
+		section_separators = "",
+	},
 })
-
-vim.cmd("colorscheme material")

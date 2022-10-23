@@ -1,6 +1,17 @@
-local ok, signs = pcall(require, "gitsigns")
+-- Gitsigns
+-- See `:help gitsigns.txt`
+local ok, gitsigns = pcall(require, "gitsigns")
 if not ok then
-  return
+	print("gitsigns plugin is not installed")
+	return
 end
 
-signs.setup({})
+gitsigns.setup({
+	signs = {
+		add = { text = "+" },
+		change = { text = "~" },
+		delete = { text = "_" },
+		topdelete = { text = "‾" },
+		changedelete = { text = "~" },
+	},
+})

@@ -1,39 +1,23 @@
--- Borrowed from tjdevries conf
+-- thanks TJ (tjdevries/config_manager)
+
 local download_packer = function()
-  if vim.fn.input("Download Packer? (y for yes)") ~= "y" then
-    return
-  end
+	local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+	local packer_repo = "https://github.com/wbthomason/packer.nvim"
 
-  local directory = string.format("%s/site/pack/packer/start/", vim.fn.stdpath("data"))
+	local out = vim.fn.system(string.format("git clone %s %s", packer_repo, install_path))
 
-  vim.fn.mkdir(directory, "p")
-
-  local out = vim.fn.system(
-    string.format("git clone %s %s", "https://github.com/wbthomason/packer.nvim", directory .. "/packer.nvim")
-  )
-
-  print(out)
-  print("Downloading packer.nvim...")
-  print("( You'll need to restart now )")
-
-  vim.cmd("packadd packer.nvim")
+	print(out)
+	print("Downloading packer.nvim...")
+	print("( You'll need to restart now )")
+	vim.cmd([[packadd packer.nvim]])
 end
 
 return function()
-  if not pcall(require, "packer") then
-    download_packer()
+	if not pcall(require, "packer") then
+		download_packer()
 
-    return true
-  end
+		return true
+	end
 
-  vim.cmd([[
-    packadd packer.nvim
-
-    augroup packer_user_config
-      autocmd!
-      autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-    augroup end
-  ]])
-
-  return false
+	return false
 end
