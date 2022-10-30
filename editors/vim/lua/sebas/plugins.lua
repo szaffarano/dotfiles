@@ -60,7 +60,7 @@ function M.setup(is_bootstrap)
 
 		use("farmergreg/vim-lastplace") -- reopen files at last edites positions
 
-		use("joshdick/onedark.vim")
+		use("catppuccin/nvim")
 
 		use("nvim-lualine/lualine.nvim") -- Fancier statusline
 
