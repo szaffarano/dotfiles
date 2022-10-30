@@ -75,6 +75,12 @@ function M.setup(is_bootstrap)
 		-- Automatically highlighting other uses of the word under the cursor
 		use("RRethy/vim-illuminate")
 
+		use 'ray-x/go.nvim'
+		use 'ray-x/guihua.lua'
+		use "mfussenegger/nvim-dap"
+		use "rcarriga/nvim-dap-ui"
+		use "theHamsta/nvim-dap-virtual-text"
+
 		if is_bootstrap then
 			packer.sync()
 		end
