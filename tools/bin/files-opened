@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+lsof | awk '{ print $2; }' | sort -rn | uniq -c | sort -rn | head
