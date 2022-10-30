@@ -29,7 +29,7 @@ if which bat >/dev/null 2>&1; then
 elif which batcat >/dev/null 2>&1; then
   CAT="batcat"
 else
-  cat="cat"
+  CAT="cat"
 fi
 
 export FZF_DEFAULT_COMMAND='fd --type f'
