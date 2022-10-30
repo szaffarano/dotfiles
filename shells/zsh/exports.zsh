@@ -7,6 +7,7 @@ export GOPATH=$HOME/projects/go
 export AWS_CLI_AUTO_PROMPT=on-partial
 export AWS_VAULT_BACKEND=pass
 
+PATH="$HOME/.cargo/bin:$PATH"
 PATH="$HOME/.asdf/bin:$PATH"
 PATH="$HOME/.asdf/shims:$PATH"
 PATH="$HOME/.bin:$PATH"
