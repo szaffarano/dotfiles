@@ -14,3 +14,4 @@ editors/vim/plugin/packer_compiled.vim
 editors/vim/plugin/packer_compiled.lua
 anki
 idea
+.luarc.json

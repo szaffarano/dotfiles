@@ -39,6 +39,7 @@ function M.setup(is_bootstrap)
 		use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
 		use("williamboman/mason.nvim") -- Manage external editor tooling i.e LSP servers
 		use("williamboman/mason-lspconfig.nvim") -- Automatically install language servers to stdpath
+		use("folke/neodev.nvim")
 
 		-- Autocompletion
 		use({ "hrsh7th/nvim-cmp", requires = { "hrsh7th/cmp-nvim-lsp" } })
