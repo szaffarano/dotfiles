@@ -7,10 +7,11 @@ export GOPATH=$HOME/projects/go
 export AWS_CLI_AUTO_PROMPT=on-partial
 export AWS_VAULT_BACKEND=pass
 
+PATH="$HOME/.cargo/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.bin:$PATH"
 PATH="$HOME/.asdf/bin:$PATH"
 PATH="$HOME/.asdf/shims:$PATH"
-PATH="$HOME/.bin:$PATH"
-PATH="$HOME/.local/bin:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
 PATH="$HOME/.tfenv/bin:$PATH"
@@ -29,7 +30,7 @@ if which bat >/dev/null 2>&1; then
 elif which batcat >/dev/null 2>&1; then
   CAT="batcat"
 else
-  cat="cat"
+  CAT="cat"
 fi
 
 export FZF_DEFAULT_COMMAND='fd --type f'
@@ -41,6 +42,9 @@ FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --multi"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview-window=:hidden"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview '([[ -f {} ]] && ($CAT --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008'"
+FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284"
+FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf"
+FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --prompt='∼ ' --pointer='▶' --marker='✓'"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind '?:toggle-preview'"
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-a:select-all'"
@@ -106,4 +110,4 @@ export NNN_FIFO=/tmp/nnn.fifo
 
 export TFENV_AUTO_INSTALL=true
 
-export DC_API_TOKEN_COMMAND="get-keepass-entry sebas@zaffarano.com.ar https://daycaptain.com"
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"

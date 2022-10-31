@@ -1,18 +1,29 @@
-local ok, material = pcall(require, "material")
+local ok, lualine, catppuccin
+ok, lualine = pcall(require, "lualine")
 if not ok then
-  print("material plugin is not installed")
-  return
+	print("lualine plugin is not installed")
+	return
+end
+ok, catppuccin = pcall(require, "catppuccin")
+if not ok then
+	print("catppuccin plugin is not installed")
+	return
 end
 
-vim.opt.termguicolors = true
+catppuccin.setup {
+    flavour = "frappe" -- mocha, macchiato, frappe, latte
+}
 
-vim.g.material_style = "oceanic"
+vim.o.termguicolors = true
+vim.cmd([[ colorscheme catppuccin ]])
 
-material.setup({
-  italics = {
-    comments = true,
-  },
-  lualine_style = "stealth",
+-- Set lualine as statusline
+-- See `:help lualine.txt`
+lualine.setup({
+	options = {
+		icons_enabled = false,
+		theme = "catppuccin",
+		component_separators = "|",
+		section_separators = "",
+	},
 })
-
-vim.cmd("colorscheme material")

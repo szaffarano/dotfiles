@@ -17,8 +17,8 @@ alert      = 20.0
 
 [[block]]
 block       = "memory"
-format_mem  = "$mem_avail.eng(3,B,M)($mem_avail_percents.eng(2))"
-format_swap = "$swap_free.eng(3,B,M)($swap_free_percents.eng(2))"
+format  = "$mem_avail.eng(3,B,M)($mem_avail_percents.eng(2))"
+format_alt = "$swap_free.eng(3,B,M)($swap_free_percents.eng(2))"
 
 [[block]]
 block    = "cpu"
