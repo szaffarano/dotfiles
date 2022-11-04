@@ -90,8 +90,8 @@ function M.setup(is_bootstrap)
 	local reloadPlugins = function()
 		vim.cmd([[ source $MYVIMRC ]])
 		require("plenary.reload").reload_module("sebas.plugins")
-		packer.compile()
 		packer.sync()
+		packer.compile()
 	end
 
 	-- Automatically source and re-compile packer whenever you save this init.lua

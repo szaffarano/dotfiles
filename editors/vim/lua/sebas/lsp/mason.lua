@@ -48,7 +48,8 @@ for _, server in pairs(servers) do
 	}
 
 	local path = "sebas.lsp.settings." .. server
-	local ok, custom_settings = pcall(require, "sebas.lsp.settings." .. server)
+	local custom_settings
+	ok, custom_settings = pcall(require, path)
 	if ok then
 		opts = vim.tbl_deep_extend("force", custom_settings, opts)
 	end
