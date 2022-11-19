@@ -6,4 +6,3 @@ function __complete_terraform
     terraform
 end
 complete -c terraform -a "(__complete_terraform)"
-

@@ -14,7 +14,7 @@ function die {
 
 		    Take screenshot of a whole screen or a specified region,
 		    save it to a specified folder (default is working directori)
-		    and copy it to the clipboard. 
+		    and copy it to the clipboard.
 
 		       -h   - print help and exit
 		       -s   - take a screenshot of a screen region

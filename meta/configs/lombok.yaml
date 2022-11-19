@@ -1,3 +1,3 @@
 - shell:
-    - [test -d ~/.local/share/jars || mkdir ~/.local/share/jars, "Shared jars initialized"]
-    - [curl -L https://projectlombok.org/downloads/lombok.jar -o ~/.local/share/jars/lombok.jar, Downloading lombok jar]
+    - ["test -d ~/.local/share/jars || mkdir ~/.local/share/jars", "Shared jars initialized"]
+    - ["curl -L https://projectlombok.org/downloads/lombok.jar -o ~/.local/share/jars/lombok.jar", "Downloading lombok jar"]

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-'''
+"""
 If a task is recurring, move it to "in progress" by default.
-'''
+"""
 import json
 import sys
 import hooks
@@ -12,9 +12,9 @@ def main():
     args = hooks.retrieve_args_dict()
 
     feedback = None
-    if 'api' in args:  # Only do something for known API.
-        if args['api'] in ['2']:  # APIs that give us a 'command' key.
-            task['state'] = 'new'
+    if "api" in args:  # Only do something for known API.
+        if args["api"] in ["2"]:  # APIs that give us a 'command' key.
+            task["state"] = "new"
 
     # Generate output as task expects it.
     print(json.dumps(task))

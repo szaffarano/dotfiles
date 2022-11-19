@@ -33,7 +33,7 @@ log_file="$output/errors.log"
 
 test_expression=$(echo $test_expression | sed -E s'/\[.*\]$/*/g')
 
-IFS="." 
+IFS="."
 test_parts=(${=test_expression})
 IFS=" "
 

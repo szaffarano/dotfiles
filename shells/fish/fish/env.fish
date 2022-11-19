@@ -50,4 +50,3 @@ switch (uname)
       set -a FZF_DEFAULT_OPTS --bind '"ctrl-y:execute-silent(echo {+} | pbcopy)"'
       set -gx PKG_CONFIG_PATH "/usr/local/opt/icu4c/lib/pkgconfig"
 end
-

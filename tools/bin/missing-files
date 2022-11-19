@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 read -r -d '' USAGE <<EOM
-$(basename "$0") compares the files in two directories and list which ones that 
+$(basename "$0") compares the files in two directories and list which ones that
 don't exist in the second one
 
 Usage:

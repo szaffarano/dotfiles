@@ -8,8 +8,8 @@ rofi_opts=(
    -i
    -markup-rows
    -lines 10
-   -bw 2 
-   -yoffset 2 
+   -bw 2
+   -yoffset 2
 )
 
 declare -A power_opts

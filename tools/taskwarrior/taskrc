@@ -18,7 +18,7 @@ search.case.sensitive = 0
 report.triage.description=List all task that have to be triaged
 report.triage.columns=id,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
 report.triage.labels=ID,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
-report.triage.filter=project:Inbox 
+report.triage.filter=project:Inbox
 report.triage.sort=urgency-
 
 # }
@@ -89,4 +89,3 @@ urgency.user.tag.later.coefficient=-6.0
 urgency.user.tag.review.coefficient=6
 
 # }
-

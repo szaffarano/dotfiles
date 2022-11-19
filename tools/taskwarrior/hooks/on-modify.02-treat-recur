@@ -1,29 +1,29 @@
 #!/usr/bin/env python3
-'''
+"""
 Removes the in_progress tag when a task is completed
-'''
+"""
 import json
 import sys
 import hooks
 
 
 def main():
-    '''Main function of this module.'''
+    """Main function of this module."""
     json.loads(sys.stdin.readline())  # read the old task and discard it
     new_task = json.loads(sys.stdin.readline())
     args = hooks.retrieve_args_dict()
 
     feedback = None
-    if 'api' in args:  # Only do something for known API.
-        if args['api'] in ['2']:  # APIs that give us a 'command' key.
-            cmd = args['command']
-            if cmd == 'done':
-                if new_task['status'] == 'completed':
-                    new_task['state'] = 'done'
-            elif cmd == 'start':
-                new_task['state'] = 'in-progress'
-            elif cmd == 'stop':
-                new_task['state'] = 'planned'
+    if "api" in args:  # Only do something for known API.
+        if args["api"] in ["2"]:  # APIs that give us a 'command' key.
+            cmd = args["command"]
+            if cmd == "done":
+                if new_task["status"] == "completed":
+                    new_task["state"] = "done"
+            elif cmd == "start":
+                new_task["state"] = "in-progress"
+            elif cmd == "stop":
+                new_task["state"] = "planned"
 
     # Generate output as task expects it.
     print(json.dumps(new_task))

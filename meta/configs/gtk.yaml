@@ -2,7 +2,7 @@
     - [mkdir -p ~/.config/gtk-3.0, Creating gtk3 config directory]
 
 - link:
-    ~/.gtkrc-2.0: 
+    ~/.gtkrc-2.0:
         path:  gui/gtk/2/gtkrc-2.0
         force: true
     ~/.config/gtk-3.0/settings.ini:
