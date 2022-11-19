@@ -16,39 +16,51 @@ function M.setup(is_bootstrap)
 	}
 
 	local function plugins(use)
+		use("wbthomason/packer.nvim")
+
+		use({
+			"neovim/nvim-lspconfig",
+			requires = {
+				"williamboman/mason.nvim",
+				"williamboman/mason-lspconfig.nvim",
+
+				"j-hui/fidget.nvim",
+			},
+		})
+
+		use({
+			"hrsh7th/nvim-cmp",
+			requires = {
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-path",
+				"hrsh7th/cmp-nvim-lua",
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-nvim-lsp-document-symbol",
+				"saadparwaiz1/cmp_luasnip",
+				"tamago324/cmp-zsh",
+			},
+		})
+
+		use({
+			"nvim-treesitter/nvim-treesitter",
+			run = function()
+				pcall(require("nvim-treesitter.install").update({ with_sync = true }))
+			end,
+		})
+		use({ "nvim-treesitter/nvim-treesitter-textobjects", after = { "nvim-treesitter" } })
+
+		use("tpope/vim-fugitive")
+		use("tpope/vim-rhubarb")
+		use("lewis6991/gitsigns.nvim")
+
 		-- Speed up loading Lua modules in Neovim to improve startup time.
 		use("lewis6991/impatient.nvim")
 
 		-- GnuPG transparent encryption
 		use("jamessan/vim-gnupg")
 
-		use("wbthomason/packer.nvim")
-
-		-- Git integration
-		use("tpope/vim-fugitive") -- Git commands in nvim
-		use("tpope/vim-rhubarb") -- Fugitive-companion to interact with github
-		use("lewis6991/gitsigns.nvim") -- Add git related info in the signs columns and popups
-
 		use("numToStr/Comment.nvim")
-
-		-- Highlight, edit, and navigate code
-		use("nvim-treesitter/nvim-treesitter")
-		use({ "nvim-treesitter/nvim-treesitter-textobjects", after = { "nvim-treesitter" } }) -- Additional textobjects for treesitter
-
-		-- Lsp stuff
-		use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
-		use("williamboman/mason.nvim") -- Manage external editor tooling i.e LSP servers
-		use("williamboman/mason-lspconfig.nvim") -- Automatically install language servers to stdpath
-
-		-- Autocompletion
-		use({ "hrsh7th/nvim-cmp", requires = { "hrsh7th/cmp-nvim-lsp" } })
-		use("hrsh7th/cmp-buffer")
-		use("hrsh7th/cmp-path")
-		use("hrsh7th/cmp-nvim-lua")
-		use("hrsh7th/cmp-nvim-lsp")
-		use("hrsh7th/cmp-nvim-lsp-document-symbol")
-		use("saadparwaiz1/cmp_luasnip")
-		use("tamago324/cmp-zsh")
 
 		-- Snippet Engine and Snippet Expansion
 		use({ "L3MON4D3/LuaSnip", requires = { "saadparwaiz1/cmp_luasnip" } })
@@ -68,18 +80,19 @@ function M.setup(is_bootstrap)
 
 		use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
 
-		-- Fuzzy Finder (files, lsp, etc)
 		use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { "nvim-lua/plenary.nvim" } })
 		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable("make") == 1 })
 
 		-- Automatically highlighting other uses of the word under the cursor
 		use("RRethy/vim-illuminate")
 
-		use 'ray-x/go.nvim'
-		use 'ray-x/guihua.lua'
-		use "mfussenegger/nvim-dap"
-		use "rcarriga/nvim-dap-ui"
-		use "theHamsta/nvim-dap-virtual-text"
+		use("ray-x/go.nvim")
+		use("ray-x/guihua.lua")
+		use("mfussenegger/nvim-dap")
+		use("rcarriga/nvim-dap-ui")
+		use("theHamsta/nvim-dap-virtual-text")
+
+		use("sbdchd/neoformat")
 
 		if is_bootstrap then
 			packer.sync()

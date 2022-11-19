@@ -10,9 +10,9 @@ if not ok then
 	return
 end
 
-catppuccin.setup {
-    flavour = "frappe" -- mocha, macchiato, frappe, latte
-}
+catppuccin.setup({
+	flavour = "frappe", -- mocha, macchiato, frappe, latte
+})
 
 vim.o.termguicolors = true
 vim.cmd([[ colorscheme catppuccin ]])
