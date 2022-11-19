@@ -3,7 +3,7 @@
 function die {
 	echo "$1"
 	if [[ "$#" -gt 1 ]]; then
-		exit "$2" 
+		exit "$2"
 	else
 		exit 1
 	fi

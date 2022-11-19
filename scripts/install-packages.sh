@@ -67,4 +67,3 @@ if [ -n "$PKGS" ]; then
       sudo apt-get install -y "${PKGS}"
   fi
 fi
-

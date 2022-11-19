@@ -57,7 +57,9 @@ setopt PUSHD_SILENT      # Do not print the directory stack after pushd or popd.
 setopt completealiases
 
 alias d='dirs -v'
-for index ({1..9}) alias "$index"="cd +${index}"; unset index
+for index ({1..9}); do
+  alias "$index"="cd +${index}"; unset index
+done
 
 which aws_completer >/dev/null 2>&1 && complete -C aws_completer aws
 
@@ -121,6 +123,8 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 
 ## bindkeys
 
+bindkey -M vicmd 'K' edit-command-line
+
 if which tmux_sessions >/dev/null 2>&1; then
   function new_tmux_session() {
     tmux_sessions
@@ -146,4 +150,3 @@ gpgconf --launch gpg-agent
 eval "$(direnv hook zsh)"
 
 eval "$(starship init zsh)"
-

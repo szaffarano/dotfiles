@@ -18,8 +18,8 @@ if len(sys.argv) < 2:
     current = date.today()
 else:
     raw_date = os.path.splitext(os.path.basename(sys.argv[1]))[0]
-    current = datetime.strptime(raw_date, '%Y-%m-%d')
+    current = datetime.strptime(raw_date, "%Y-%m-%d")
 
 yesterday = current - delta
 
-print(template.format(date=yesterday.strftime('%Y-%m-%d')))
+print(template.format(date=yesterday.strftime("%Y-%m-%d")))

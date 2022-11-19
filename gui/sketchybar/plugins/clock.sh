@@ -6,4 +6,3 @@
 
 sketchybar --set $NAME \
   label="$(date '+%a, %b %d')  $(TZ=Europe/Stockholm date '+%H:%M') (STH) $(TZ=Europe/Helsinki date '+%H:%M') (HEL)"
-

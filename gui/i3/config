@@ -234,12 +234,12 @@ mode "resize" {
    bindsym j resize shrink height 10 px or 10 ppt
    bindsym k resize   grow height 10 px or 10 ppt
    bindsym l resize   grow width  10 px or 10 ppt
-   
+
    bindsym Right resize   grow width  10 px or 10 ppt
    bindsym    Up resize   grow height 10 px or 10 ppt
    bindsym  Down resize shrink height 10 px or 10 ppt
    bindsym  Left resize shrink width  10 px or 10 ppt
-   
+
    bindsym Return mode "default"
    bindsym Escape mode "default"
    bindsym $mod+r mode "default"
@@ -323,7 +323,7 @@ exec ncspot-scratchpad.sh
 # telegram
 for_window [class="Telegram" title="Telegram"] move to scratchpad, border none
 bindsym $mod+Shift+t [class="Telegram" ] scratchpad show
-exec telegram-desktop 
+exec telegram-desktop
 
 # slack
 for_window [class="Slack" window_role="browser-window"] move to scratchpad, border none

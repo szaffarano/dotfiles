@@ -53,7 +53,7 @@ try:
 except:
     exit()
 
-state = [""]*6
+state = [""] * 6
 for lnum, line in enumerate(file_content):
 
     match_header = rx_header.match(line)
@@ -69,14 +69,16 @@ for lnum, line in enumerate(file_content):
     cur_searchterm = "^" + match_header.group(0).rstrip("\r\n") + "$"
     cur_kind = "h"
 
-    state[cur_lvl-1] = cur_tag
+    state[cur_lvl - 1] = cur_tag
     for i in range(cur_lvl, 6):
         state[i] = ""
 
-    scope = "&&&".join(
-            [state[i] for i in range(0, cur_lvl-1) if state[i] != ""])
+    scope = "&&&".join([state[i] for i in range(0, cur_lvl - 1) if state[i] != ""])
     if scope:
         scope = "\theader:" + scope
 
-    print('{0}\t{1}\t/{2}/;"\t{3}\tline:{4}{5}'.format(
-        cur_tag, filename, cur_searchterm, cur_kind, str(lnum+1), scope))
+    print(
+        '{0}\t{1}\t/{2}/;"\t{3}\tline:{4}{5}'.format(
+            cur_tag, filename, cur_searchterm, cur_kind, str(lnum + 1), scope
+        )
+    )

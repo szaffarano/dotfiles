@@ -16,5 +16,5 @@ end
 [ -p /dev/stdin ]; or usage
 
 while read line
-  echo $line 
+  echo $line
 end | grep src | grep -v target | sed -E -e s'/^(.*)\/src.*$/\1/g' | sort -u

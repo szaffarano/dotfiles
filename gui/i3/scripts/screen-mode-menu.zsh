@@ -8,8 +8,8 @@ rofi_opts=(
    -i
    -markup-rows
    -lines 10
-   -bw 2 
-   -yoffset 2 
+   -bw 2
+   -yoffset 2
 )
 
 declare -A display_modes_opts
@@ -36,4 +36,3 @@ echo $display_modes_opts["$action"]
 eval $display_modes_opts["$action"]
 
 exit 0
-

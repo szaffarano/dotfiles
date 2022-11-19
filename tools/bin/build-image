@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 read -r -d '' USAGE <<EOM
-$(basename "$0") builds a cloudhub image 
+$(basename "$0") builds a cloudhub image
 
 Usage:
 	$0 <mule.family> <mule.version> <mule.extension.version>

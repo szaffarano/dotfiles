@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	
+
 	BAT_VERSION=$(bat --version 2>/dev/null || echo UNKNONW)
 
 	DEB=$(curl -s https://api.github.com/repos/sharkdp/bat/releases/latest | \

@@ -1,4 +1,4 @@
 - shell:
-    - [which neuron > /dev/null 2>&1 || curl -L https://nixos.org/nix/install -o /tmp/install, Downloading nix installer]
-    - [which neuron > /dev/null 2>&1 || sh /tmp/install, Installing nix]
-    - [which neuron > /dev/null 2>&1 || rm /tmp/install, Cleaning up temporary files]
+    - ["which neuron > /dev/null 2>&1 || curl -L https://nixos.org/nix/install -o /tmp/install, Downloading nix installer"]
+    - ["which neuron > /dev/null 2>&1 || sh /tmp/install, Installing nix"]
+    - ["which neuron > /dev/null 2>&1 || rm /tmp/install, Cleaning up temporary files"]

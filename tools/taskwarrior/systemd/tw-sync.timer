@@ -7,4 +7,3 @@ OnUnitActiveSec=15m
 
 [Install]
 WantedBy=timers.target
-
